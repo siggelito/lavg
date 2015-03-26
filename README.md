@@ -1,2 +1,2 @@
 # lavg
-LättillgängligAutomatiskVideoreklamsGenerering [LAVG]
+Koden...
