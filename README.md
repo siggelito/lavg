@@ -1,2 +1,0 @@
-# lavg
-LättillgängligAutomatiskVideoreklamsGenerering [LAVG]
