@@ -1,9 +1,9 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from polls_gamla import views
+#from polls import views
 
 urlpatterns = patterns('',
-    url(r'^polls_gamla/', include('polls_gamla.urls', namespace="polls_gamla")),
+    url(r'^polls/', include('polls.urls', namespace="polls")),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'', views.index, name='index'),
+    #url(r'', views.index, name='index'),
 )
