@@ -1,6 +1,6 @@
 from django.contrib import admin
-from polls.models import Question
-from polls.models import Choice
+from polls_gamla.models import Question
+from polls_gamla.models import Choice
 
 # Register your models here.
 
