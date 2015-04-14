@@ -1,43 +1,24 @@
-function handleFileSelect(evt) {
-    var files = evt.target.files; // FileList object
+$(document).ready(function(){ 
+    var video = new Array();
 
-    // files is a FileList of File objects. List some properties.
-    var output = [];
-    for (var i = 0, f; f = files[i]; i++) {
-      output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-                  f.size, ' bytes, last modified: ',
-                  f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
-                  '</li>');
-    }
-    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-  }
+    var input = document.getElementById('input');
+    input.addEventListener('change', handleFiles);
 
-  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+    function handleFiles(e) {
+        
+        var img = new Image;
+        img.src = URL.createObjectURL(e.target.files[0]);
 
-/*KOMMMMM*/
-
-
-
-function upload_img(input) {
-    $("#counter_id").text("debug 1");
-    $("#counter_id").css("background-color", "red");
-    
-    alert($('#files').get(0));
-    alert($('#files').get(1));
-    
-    if (input.files /*&& input.files[0]*/) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('#img_1').attr('src', e.target.result);
-            $('#img_2').attr('src', e.target.result);
-
-            alert("hej" + video.length);
+        /* To render the image in canvas do: */
+        var ctx = document.getElementById('canvas').getContext('2d');
+        img.onload = function() {
+            ctx.drawImage(img, 20,20);
+            alert('the image is drawn');
         }
-        //alert("hej" + video.length);
-        reader.readAsDataURL(input.files[0]);
-        //video[video.length] = input.files[0];
-        //alert("hej" + video.length);
-       $("#counter").text(video.length);
+        /*end*/
+
+        /* Append image to video array */
+        video[video.length] = img;
+        alert(video.length);
     }
-}
+}) 
