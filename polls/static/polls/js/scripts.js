@@ -24,17 +24,19 @@ $("#imgInp2").change(function(){
 });
 
 function upload_img(input) {
+    $("#counter_id").text("debug 1");
+    $("#counter_id").css("background-color": "red");
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
-            
+            $('#img_id').attr('src', e.target.result);
             alert("hej" + video.length);
         }
         alert("hej" + video.length);
         reader.readAsDataURL(input.files[0]);
         video[video.length] = input.files[0];
         alert("hej" + video.length);
-        &("#counterText").text(video.length);
+        &("#counter").text(video.length);
     }
 }

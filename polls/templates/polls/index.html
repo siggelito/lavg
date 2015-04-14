@@ -12,12 +12,12 @@
     {% else %}
         <p>No polls are available.</p>
     {% endif %}
-
+	<p id="counter_id">0</p>
 	<form id="form_img">
         <input type='file' onchange="upload_img(this);" />
         <input type='file' onchange="upload_img(this);" />
         <img id="img_id" src="#" alt="your image" />
 
     </form>
-    <p id="counter"></p>
+
 {% endblock %}
