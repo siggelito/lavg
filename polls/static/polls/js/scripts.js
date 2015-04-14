@@ -1,47 +1,55 @@
-var video = new Array();
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        
-        var reader = new FileReader();
-        
-        reader.onload = function (e) {
-            
-            $('#preview').attr('src', e.target.result);
-        }
-        
-        reader.readAsDataURL(input.files[0]);
-        video[video.length] = input.files[0];
-        alert("hej" + video.length);
+function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+
+    // files is a FileList of File objects. List some properties.
+    var output = [];
+    for (var i = 0, f; f = files[i]; i++) {
+      output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+                  f.size, ' bytes, last modified: ',
+                  f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                  '</li>');
     }
-}
-    
-$("#imgInp1").change(function(){
-    alert("hej");
-    readURL(this);
-});
-$("#imgInp2").change(function(){
-    readURL(this);
-});
+    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+  }
+
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+
+
+
+
+
+
+
 
 function upload_img(input) {
     $("#counter_id").text("debug 1");
-    $("#counter_id").css("background-color": "red");
-    if (input.files && input.files[0]) {
+    $("#counter_id").css("background-color", "red");
+    
+    alert($('#files').get(0));
+    alert($('#files').get(1));
+    
+    if (input.files /*&& input.files[0]*/) {
         var reader = new FileReader();
 
-<<<<<<< HEAD
-        /*reader.onload = function (e) {
-            
-=======
         reader.onload = function (e) {
-            $('#img_id').attr('src', e.target.result);
->>>>>>> 6ab99f025dd320edd05e4d0a9172b65d59b3f90d
+            $('#img_1').attr('src', e.target.result);
+            $('#img_2').attr('src', e.target.result);
+
             alert("hej" + video.length);
-        }*/
+        }
         //alert("hej" + video.length);
         reader.readAsDataURL(input.files[0]);
-        video[video.length] = input.files[0];
-        alert("hej" + video.length);
-        &("#counter").text(video.length);
+        //video[video.length] = input.files[0];
+        //alert("hej" + video.length);
+       $("#counter").text(video.length);
+       
+       
+       
+       
+        
+       
+       
+       
+       
     }
 }
