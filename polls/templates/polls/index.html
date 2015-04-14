@@ -13,11 +13,11 @@
         <p>No polls are available.</p>
     {% endif %}
 
-
 	<form id="form_img">
         <input type='file' onchange="upload_img(this);" />
         <input type='file' onchange="upload_img(this);" />
-        
+        <img id="img_id" src="#" alt="your image" />
+
     </form>
-    <p id="counterText">0</p>
+    <p id="counter"></p>
 {% endblock %}
