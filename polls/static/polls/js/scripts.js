@@ -19,7 +19,7 @@ function handleFileSelect(evt) {
 
 
 
-
+/*KOMMENTAR*/
 
 function upload_img(input) {
     $("#counter_id").text("debug 1");
