@@ -17,14 +17,15 @@ $(document).ready(function(){
         alert("nr of files: " + video.length);
 
         var current = 0;
+        var nextIndex = 0;
         var canvas = document.getElementById('slideshow');
         var context = canvas.getContext('2d');
+        var isRunning = false;
         
         setTimeout(function(){
 
-            $('#slideshow').click(function(){
-                var nextIndex    = 0;
-                
+            $(canvas).click(function(){
+
                 if(video.length-1 > current){
                     nextIndex = current +1;
                 }
@@ -33,19 +34,40 @@ $(document).ready(function(){
                 }
                 var next = video[nextIndex];
 
-                // This browser supports canvas, fade it into view:
+                $(canvas).fadeOut(800,function() {
 
-                var imageRatio = ( next.width / next.height );
-                var imageScaledWidth = ( imageRatio * canvas.height );
-                // Show the next slide below the current one:
-                context.drawImage(next, ( (canvas.width - imageScaledWidth) / 2 ), 0, imageScaledWidth, canvas.height );
-                //next.show();
-                current = nextIndex;
+                    var size = calcSize(canvas, next);
+                    var width = size[0];
+                    var height = size[1];
+
+                    context.drawImage(next, ( (canvas.width - width) / 2 ), ( (canvas.height - height) / 2 ), width, height );
+                    $(canvas).fadeIn(400);
+                    current = nextIndex;
+                });
             });
 
         },100);
     }
 }) 
+
+function calcSize( canvas, image ) {
+    var imageRatio = ( image.width / image.height );
+
+    var widthScalingFactor = ( imageRatio * canvas.height ) / image.width;
+    var heightScalingFactor = ( canvas.width / imageRatio ) / image.height;
+
+    if (widthScalingFactor > heightScalingFactor) {
+        var width = image.width * widthScalingFactor;
+        var height = image.height * widthScalingFactor;
+    } else{
+        var width = image.width * heightScalingFactor;
+        var height = image.height * heightScalingFactor;
+    };
+
+    return [width, height];
+}
+
+
 
 
 
