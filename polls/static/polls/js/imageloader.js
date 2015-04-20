@@ -1,7 +1,7 @@
+var imageSet = [];
 
 $(document).ready(function(){ 
-    var video = [];
-    var slideshow = document.getElementById('slideshow');
+	var slideshow = document.getElementById('slideshow');
     var input = document.getElementById('input');
     input.addEventListener('change', handleFiles);
 
@@ -15,7 +15,7 @@ $(document).ready(function(){
 
             content = new Object();
             content.canvas = document.createElement('canvas');
-            video[video.length] = content;
+            imageSet[imageSet.length] = content;
 
             var element = document.createElement("li");
 
@@ -26,10 +26,10 @@ $(document).ready(function(){
         loadImages(sources, function(images) {
             for (var i = 0; i < images.length; i++) {
                 
-                video[i].image = images[i];
+                imageSet[i].image = images[i];
 
-                var canvas = video[i].canvas;
-                var image = video[i].image;
+                var canvas = imageSet[i].canvas;
+                var image = imageSet[i].image;
 
                 var size = calcSize(canvas, image);
                 var width = size[0];
@@ -42,9 +42,7 @@ $(document).ready(function(){
             };
 
         });
-
-        slideshow = $("#slideshow li");
-
+		
         var startButton = document.getElementById("start-button");
     }
 }) 
