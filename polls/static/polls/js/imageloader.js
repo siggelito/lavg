@@ -40,30 +40,49 @@ $(document).ready(function(){
 
                 var context = canvas.getContext('2d');
                 context.drawImage(image, paddingLeft, paddingTop , width, height );  
+                $(canvas).hide();
                 showImages(image);
             };
 
         });
 		
         var startButton = document.getElementById("start-button");
-        startButton.addEventListener('change', runSlideShow);
-        $(startButton).show();
+        $(startButton).show();        
     }
 }) 
 
-function runSlideShow() {
-    for (var i = 0; i < imageSet.length-1; i++) {
-        setTimeout(function() {
-            imageSet[i].canvas.hide();
-            imageSet[i+1].show();
-        }, 1000);
-        
-    };
+function runSlideShow(current) {
+    if (current != 0) {
+        transition(imageSet[current].canvas, imageSet[current+1].canvas);
+        current++;
+    } else {
+        $(imageSet[current].canvas).show();
+    }
+    
+
+    if (current < imageSet.length-1) {
+        setTimeout(function(){runSlideShow(current)}, 1000);
+    }
     
 }
 
-function waitFunc(param, callback) {
-    callback();
+function loop() {
+    var args = arguments;
+    if (args.length <= 0)
+        return;
+    (function chain(i) {
+        if (i >= args.length || typeof args[i] !== 'function')
+            return;
+        window.setTimeout(function() {
+            args[i]();
+            chain(i + 1);
+        }, 2000);
+    })(0);
+} 
+
+function transition(current, next) {
+    $(current).hide();
+    $(next).show();
 }
 
 function calcSize( canvas, image ) {
