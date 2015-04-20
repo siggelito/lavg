@@ -42,10 +42,24 @@ $(document).ready(function(){
             };
 
         });
-		
+		showImages();
         var startButton = document.getElementById("start-button");
+        startButton.addEventListener('change', runSlideShow);
+        $(startButton).show();
     }
 }) 
+
+function runSlideShow() {
+    for (var i = 0; i < imageSet.length; i++) {
+        setTimeout(fadeImage() {}, 1000)
+        
+    };
+    
+}
+
+function fadeImage(param, callback) {
+    callback();
+}
 
 function calcSize( canvas, image ) {
     var imageRatio = ( image.width / image.height );
