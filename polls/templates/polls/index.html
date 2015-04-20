@@ -1,8 +1,10 @@
 {% extends "polls/base.html" %}
 
-{% block head %}Polls{% endblock %}
+
+{% block head %}LAVG{% endblock %}
 
 {% block content %}
+<!--
     {% if latest_question_list %}
         <div class="list-group">
         {% for question in latest_question_list %}
@@ -12,9 +14,10 @@
     {% else %}
         <p>No polls are available.</p>
     {% endif %}
-
+-->
 	<input type="file" id="input" multiple />
 	<ul id="slideshow"></ul>
+	<div id="images"></div>
 	<button id="start-button" type="button">Start</button>
 
 {% endblock %}
