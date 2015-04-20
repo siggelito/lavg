@@ -9,7 +9,7 @@ $(document).ready(function(){
 
         var sources = [];
 
-        for (var i = e.target.files.length - 1; i >= 0; i--) {
+        for (var i = 0; i < e.target.files.length; i++) {
             
             sources[i] = URL.createObjectURL(e.target.files[i]);
 
@@ -40,6 +40,7 @@ $(document).ready(function(){
                 var context = canvas.getContext('2d');
                 context.drawImage(image, paddingLeft, paddingTop , width, height );  
             };
+
         });
 
         slideshow = $("#slideshow li");
