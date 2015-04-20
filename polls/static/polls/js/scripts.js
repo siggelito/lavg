@@ -24,7 +24,7 @@ $(document).ready(function(){
         }
 
         loadImages(sources, function(images) {
-            for (var i = 0; i <= images.length - 1; i++) {
+            for (var i = 0; i < images.length; i++) {
                 
                 video[i].image = images[i];
 
@@ -34,14 +34,17 @@ $(document).ready(function(){
                 var size = calcSize(canvas, image);
                 var width = size[0];
                 var height = size[1];
+                var paddingLeft = ( (canvas.scrollWidth - width) / 2 );
+                var paddingTop =( (canvas.scrollHeight - height) / 2 );
 
                 var context = canvas.getContext('2d');
-                context.drawImage(image, ( (canvas.scrollWidth - width) / 2 ), ( (canvas.scrollHeight - height) / 2 ), width, height );  
+                context.drawImage(image, paddingLeft, paddingTop , width, height );  
             };
-            video = images;
         });
 
         slideshow = $("#slideshow li");
+
+        var startButton = document.getElementById("start-button");
     }
 }) 
 
