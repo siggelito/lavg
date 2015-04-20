@@ -1,5 +1,6 @@
 var imageSet = [];
 
+
 $(document).ready(function(){ 
 	var slideshow = document.getElementById('slideshow');
     var input = document.getElementById('input');
