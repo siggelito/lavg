@@ -27,10 +27,10 @@ $(document).ready(function(){
         loadImages(sources, function(images) {
             for (var i = 0; i < images.length; i++) {
                 
-                imageSet[imageSet.length].image = images[i];
+                imageSet[i].image = images[i];
 
-                var canvas = imageSet[imageSet.length + i].canvas;
-                var image = imageSet[imageSet.length + i].image;
+                var canvas = imageSet[i].canvas;
+                var image = imageSet[i].image;
 
                 var size = calcSize(canvas, image);
                 var width = size[0];
