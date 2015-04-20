@@ -24,7 +24,7 @@ $(document).ready(function(){
         }
 
         loadImages(sources, function(images) {
-            for (var i = 0; i <= images.length - 1; i++) {
+            for (var i = 0; i < images.length; i++) {
                 
                 video[i].image = images[i];
 
@@ -38,7 +38,7 @@ $(document).ready(function(){
                 var context = canvas.getContext('2d');
                 context.drawImage(image, ( (canvas.scrollWidth - width) / 2 ), ( (canvas.scrollHeight - height) / 2 ), width, height );  
             };
-            video = images;
+			
         });
 
         slideshow = $("#slideshow li");
