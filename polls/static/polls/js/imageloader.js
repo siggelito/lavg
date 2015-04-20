@@ -52,9 +52,9 @@ $(document).ready(function(){
 
 function runSlideShow() {
     for (var i = 0; i < imageSet.length; i++) {
-        setTimeout(fadeImage() {}, 1000)
+        setTimeout(fadeImage(), 1000);
         
-    };
+    }
     
 }
 
