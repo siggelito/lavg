@@ -12,7 +12,7 @@ $(document).ready(function(){
 
         for (var i = 0; i < e.target.files.length; i++) {
             
-            sources[i] = URL.createObjectURL(e.target.files[i]);
+            sources[sources.length] = URL.createObjectURL(e.target.files[i]);
 
             content = new Object();
             content.canvas = document.createElement('canvas');
@@ -27,10 +27,10 @@ $(document).ready(function(){
         loadImages(sources, function(images) {
             for (var i = 0; i < images.length; i++) {
                 
-                imageSet[i].image = images[i];
+                imageSet[imageSet.length].image = images[i];
 
-                var canvas = imageSet[i].canvas;
-                var image = imageSet[i].image;
+                var canvas = imageSet[imageSet.length + i].canvas;
+                var image = imageSet[imageSet.length + i].image;
 
                 var size = calcSize(canvas, image);
                 var width = size[0];
@@ -40,10 +40,11 @@ $(document).ready(function(){
 
                 var context = canvas.getContext('2d');
                 context.drawImage(image, paddingLeft, paddingTop , width, height );  
+                showImages(image);
             };
 
         });
-		showImages();
+		
         var startButton = document.getElementById("start-button");
         startButton.addEventListener('change', runSlideShow);
         $(startButton).show();
@@ -51,14 +52,17 @@ $(document).ready(function(){
 }) 
 
 function runSlideShow() {
-    for (var i = 0; i < imageSet.length; i++) {
-        setTimeout(fadeImage(), 1000);
+    for (var i = 0; i < imageSet.length-1; i++) {
+        setTimeout(function() {
+            imageSet[i].canvas.hide();
+            imageSet[i+1].show();
+        }, 1000);
         
-    }
+    };
     
 }
 
-function fadeImage(param, callback) {
+function waitFunc(param, callback) {
     callback();
 }
 
