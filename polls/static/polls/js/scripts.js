@@ -36,7 +36,7 @@ $(document).ready(function(){
                 var height = size[1];
 
                 var context = canvas.getContext('2d');
-                context.drawImage(image, ( (canvas.width - width) / 2 ), ( (canvas.height - height) / 2 ), width, height );  
+                context.drawImage(image, ( (canvas.scrollWidth - width) / 2 ), ( (canvas.scrollHeight - height) / 2 ), width, height );  
             };
             video = images;
         });
@@ -47,18 +47,18 @@ $(document).ready(function(){
 
 function calcSize( canvas, image ) {
     var imageRatio = ( image.width / image.height );
-    var withcanv = canvas.width;
+    var withcanv = canvas.scrollWidth;
     var withimg = image.width;
-    var heightcanv = canvas.height;
+    var heightcanv = canvas.scrollHeight;
     var heigthimg = image.height;
-    var widthScalingFactor = ( imageRatio * canvas.height ) / image.width;
-    var heightScalingFactor = ( canvas.width / imageRatio ) / image.height;
+    var widthScalingFactor = ( imageRatio * canvas.scrollHeight ) / image.width;
+    var heightScalingFactor = ( canvas.scrollWidth / imageRatio ) / image.height;
 
     if (widthScalingFactor > heightScalingFactor) {
         var width = image.width * widthScalingFactor;
-        var height = image.height * widthScalingFactor;
+        var height = canvas.scrollHeight;
     } else{
-        var width = image.width * heightScalingFactor;
+        var width = canvas.scrollWidth;
         var height = image.height * heightScalingFactor;
     };
 
