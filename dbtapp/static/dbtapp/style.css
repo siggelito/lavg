@@ -66,6 +66,13 @@ footer {
 	height: 100%;
 }
 
+#images li {
+	display:inline;
+	list-style-type: none;
+	padding-right: 10px;
+	padding-bottom: 10px;
+}
+
 
 /* Modal preview window */
 

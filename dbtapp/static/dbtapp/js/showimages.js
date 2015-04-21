@@ -1,5 +1,5 @@
 function showImages(imageObject, index) {
-	var nrOfPics = $('#imageUl li').length;
+	var nrOfPics = $('#images li').length;
 	var imageUl = document.getElementById('images');
 	var image = imageObject.image;
 	image.width = 200;
