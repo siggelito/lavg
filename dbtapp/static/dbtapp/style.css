@@ -67,7 +67,6 @@ footer {
 }
 
 #images {
-	float: left;
 }
 
 #images li {
@@ -75,15 +74,18 @@ footer {
 	list-style-type: none;
 	margin-right: 10px;
 	margin-bottom: 10px;
+	float:left;
 }
 
 #addFileWrapper {
+	display:inline-block;
 	position:relative; 
-	float:left;
 	width: 100px; 
 	height: 100px; 
 	margin-top:50px;
-	margin-left:30px;
+	margin-bottom:60px;
+	margin-left:51px;
+	margin-right:60px;
 }
 
 #input {
