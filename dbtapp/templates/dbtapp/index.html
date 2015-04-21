@@ -1,6 +1,6 @@
 {% extends "dbtapp/base.html" %}
-
-
+{% load staticfiles %}
+	
 {% block head %}LAVG{% endblock %}
 
 {% block content %}
@@ -15,8 +15,9 @@
         <p>No polls are available.</p>
     {% endif %}
 -->
-	<div style="position:relative; width: 100px; height:100px;">
-		<span id="addFile">+</span>
+	<ul id="images"></ul>
+	<div id="addFileWrapper">
+		<img id="addFile" src="{% static 'dbtapp/img/plus-sign.jpg'%}" alt="Lägg till bild"/>
 		<input type="file" id="input" multiple />
 	</div>
 	
@@ -30,7 +31,7 @@
 		</div>
 	</div>
 	
-	<ul id="images"><br />Dina bilder:<br /></ul>
+	
 	
 
 {% endblock %}
