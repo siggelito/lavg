@@ -50,31 +50,6 @@ $(document).ready(function(){
     doneLoadingFiles(imageSet);
 }) 
 
-function runSlideShow(current) {
-    if (current != 0) {
-        transition(imageSet[current-1].canvas, imageSet[current].canvas);
-        
-    } else {
-        $(imageSet[current].canvas).show();
-    }
-    current++;
-
-    if (current < imageSet.length) {
-        setTimeout(function(){runSlideShow(current)}, 1000);
-    } else {
-        setTimeout(function() {
-            $(imageSet[current-1].canvas).hide();
-        }, 1000);
-        
-    }
-    
-}
-
-function transition(current, next) {
-    $(current).hide();
-    $(next).show();
-}
-
 function calcSize( canvas, image ) {
     var imageRatio = ( image.width / image.height );
     var withcanv = canvas.scrollWidth;

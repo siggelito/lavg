@@ -1,7 +1,8 @@
 function doneLoadingFiles (imageSet) {
-	showStartButton();
+	initPreview();
 }
 
 function oneLoadedFile (imageObject) {
 	showImages(imageObject);
+
 }
