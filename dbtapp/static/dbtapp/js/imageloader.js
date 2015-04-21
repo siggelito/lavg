@@ -32,13 +32,13 @@ $(document).ready(function(){
             layerContent.settings = settings;
 
 
-            imageSet[offset + i] = layerContent;
+            imageSet[offset + i] = layerOne;
 
             
 
             var element = document.createElement("li");
 
-            element.appendChild(layerContent.imageCanvas);
+            element.appendChild(layerContent.layerOne);
             slideshow.appendChild(element);
         }
 
@@ -47,18 +47,18 @@ $(document).ready(function(){
                 
                 imageSet[i].image = images[i];
 
-                var imageCanvas = imageSet[i].imageCanvas;
+                var layerOne = imageSet[i].layerOne;
                 var image = imageSet[i].image;
 
-                var size = calcSize(imageCanvas, image);
+                var size = calcSize(layerOne, image);
                 var width = size[0];
                 var height = size[1];
-                var paddingLeft = ( (imageCanvas.scrollWidth - width) / 2 );
-                var paddingTop =( (imageCanvas.scrollHeight - height) / 2 );
+                var paddingLeft = ( (layerOne.scrollWidth - width) / 2 );
+                var paddingTop =( (layerOne.scrollHeight - height) / 2 );
 
-                var context = imageCanvas.getContext('2d');
+                var context = layerOne.getContext('2d');
                 context.drawImage(imageSet[i].image, paddingLeft, paddingTop, width, height );  
-                $(imageSet[i].imageCanvas).hide();
+                $(imageSet[i].layerOne).hide();
                 
                 oneLoadedFile(imageSet[i], i);
             };
