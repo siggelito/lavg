@@ -6,14 +6,19 @@ $(document).ready(function(){
     var slideshow = document.getElementById('slideshow');
     var input = document.getElementById('input');
     input.addEventListener('change', handleFiles);
+    var sources = [];
 
     function handleFiles(e) {
 
-        var sources = [];
+        if (sources.length != 0) {
+            offset = sources.length;
+        } else {
+            offset = 0;
+        }
 
         for (var i = 0; i < e.target.files.length; i++) {
             
-            sources[sources.length] = URL.createObjectURL(e.target.files[i]);
+            sources[offset + i] = URL.createObjectURL(e.target.files[i]);
 
             content = new Object();
             content.canvas = document.createElement('canvas');
@@ -24,7 +29,7 @@ $(document).ready(function(){
             element.appendChild(content.canvas);
             slideshow.appendChild(element);
         }
-
+        e = null;
         loadImages(sources, function(images) {
             for (var i = 0; i < images.length; i++) {
                 
@@ -43,7 +48,7 @@ $(document).ready(function(){
                 context.drawImage(imageSet[i].image, paddingLeft, paddingTop, width, height );  
                 $(imageSet[i].canvas).hide();
                 
-                oneLoadedFile(imageSet[i]);
+                oneLoadedFile(imageSet[i], i);
             };
         });       
     }
