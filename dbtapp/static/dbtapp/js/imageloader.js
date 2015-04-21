@@ -6,10 +6,10 @@ $(document).ready(function(){
     var slideshow = document.getElementById('slideshow');
     var input = document.getElementById('input');
     input.addEventListener('change', handleFiles);
-    
+    var sources = [];
 
     function handleFiles(e) {
-        var sources = [];
+        
         if (sources.length != 0) {
             offset = sources.length;
         } else {
@@ -18,11 +18,11 @@ $(document).ready(function(){
 
         for (var i = 0; i < e.target.files.length; i++) {
             
-            sources[sources.length] = URL.createObjectURL(e.target.files[i]);
+            sources[offset + i] = URL.createObjectURL(e.target.files[i]);
 
             content = new Object();
             content.canvas = document.createElement('canvas');
-            imageSet[imageSet.length] = content;
+            imageSet[offset + i] = content;
 
             var element = document.createElement("li");
 
