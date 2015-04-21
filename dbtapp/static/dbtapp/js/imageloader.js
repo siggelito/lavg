@@ -1,7 +1,8 @@
-var imageSet = [];
+
 
 
 $(document).ready(function(){ 
+    var imageSet = [];
     var slideshow = document.getElementById('slideshow');
     var input = document.getElementById('input');
     input.addEventListener('change', handleFiles);
@@ -37,21 +38,16 @@ $(document).ready(function(){
                 var height = size[1];
                 var paddingLeft = ( (canvas.scrollWidth - width) / 2 );
                 var paddingTop =( (canvas.scrollHeight - height) / 2 );
-                //var image2 = image;
-                //image2.width = width;
-                //image2.height = height;
 
                 var context = canvas.getContext('2d');
                 context.drawImage(imageSet[i].image, paddingLeft, paddingTop, width, height );  
                 $(imageSet[i].canvas).hide();
-                showImages(image);
+                
+                oneLoadedFile(imageSet[i]);
             };
-
-        });
-        
-        var startButton = document.getElementById("start-button");
-        $(startButton).show();        
+        });       
     }
+    doneLoadingFiles(imageSet);
 }) 
 
 function runSlideShow(current) {
