@@ -1,7 +1,13 @@
 
 function initPreview (imageSet) {
 	var startButton = document.getElementById("start-button");
+	var previewButton = document.getElementById("show-preview-button");
+	
     $(startButton).on("click", function() {
+    	runSlideShow(imageSet, 0);
+    });
+
+    $(previewButton).delay(1000).on("click", function() {
     	runSlideShow(imageSet, 0);
     });
 }
