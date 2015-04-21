@@ -1,5 +1,5 @@
 function doneLoadingFiles (imageSet) {
-	initPreview();
+	initPreview(imageSet);
 }
 
 function oneLoadedFile (imageObject) {

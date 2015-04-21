@@ -15,7 +15,7 @@ function runSlideShow(imageSet, current) {
     current++;
 
     if (current < imageSet.length) {
-        setTimeout(function(){runSlideShow(current)}, 1000);
+        setTimeout(function(){runSlideShow(imageSet, current)}, 1000);
     } else {
         setTimeout(function() {
             $(imageSet[current-1].canvas).hide();
