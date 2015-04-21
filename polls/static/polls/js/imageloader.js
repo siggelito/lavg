@@ -37,10 +37,13 @@ $(document).ready(function(){
                 var height = size[1];
                 var paddingLeft = ( (canvas.scrollWidth - width) / 2 );
                 var paddingTop =( (canvas.scrollHeight - height) / 2 );
+                var image2 = image;
+                image2.width = width;
+                image2.height = height;
 
                 var context = canvas.getContext('2d');
-                context.drawImage(image, paddingLeft, paddingTop , width, height );  
-                $(canvas).hide();
+                context.drawImage(image2, width, height );  
+
                 showImages(image);
             };
 
@@ -53,32 +56,23 @@ $(document).ready(function(){
 
 function runSlideShow(current) {
     if (current != 0) {
-        transition(imageSet[current].canvas, imageSet[current+1].canvas);
-        current++;
+        transition(imageSet[current-1].canvas, imageSet[current].canvas);
+        
     } else {
         $(imageSet[current].canvas).show();
     }
-    
+    current++;
 
-    if (current < imageSet.length-1) {
+    if (current < imageSet.length) {
         setTimeout(function(){runSlideShow(current)}, 1000);
+    } else {
+        setTimeout(function() {
+            $(imageSet[current-1].canvas).hide();
+        }, 1000);
+        
     }
     
 }
-
-function loop() {
-    var args = arguments;
-    if (args.length <= 0)
-        return;
-    (function chain(i) {
-        if (i >= args.length || typeof args[i] !== 'function')
-            return;
-        window.setTimeout(function() {
-            args[i]();
-            chain(i + 1);
-        }, 2000);
-    })(0);
-} 
 
 function transition(current, next) {
     $(current).hide();
