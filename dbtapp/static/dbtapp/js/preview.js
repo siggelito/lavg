@@ -13,8 +13,10 @@ function initPreview (imageSet) {
 }
 
 function runSlideShow(imageSet, current) {
+
     if (current != 0) {
-        transition(imageSet[current-1].canvas, imageSet[current].canvas);
+    	imageSet[current].settings.transition(imageSet[current-1].canvas, imageSet[current].canvas);
+        //transition(imageSet[current-1].canvas, imageSet[current].canvas);
         
     } else {
         $(imageSet[current].canvas).show();

@@ -22,7 +22,18 @@ $(document).ready(function(){
 
             content = new Object();
             content.canvas = document.createElement('canvas');
+
+            var settings = {
+                transition: function(current, next)){
+                    transition(current, next);
+                }
+            }
+            content.settings = settings;
+
+
             imageSet[offset + i] = content;
+
+            
 
             var element = document.createElement("li");
 
