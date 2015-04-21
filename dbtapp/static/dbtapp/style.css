@@ -71,21 +71,24 @@ footer {
 }
 
 #images li {
-	display:inline;
+	display:inline-block;
 	list-style-type: none;
-	padding-right: 10px;
-	padding-bottom: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
 }
 
 #addFileWrapper {
 	position:relative; 
+	float:left;
 	width: 100px; 
 	height: 100px; 
-	float:left;
+	margin-top:50px;
+	margin-left:30px;
 }
 
 #input {
 	position:absolute; 
+	float:left;
 	z-index: 2; 
 	opacity: 0;
 	width: 100%;
@@ -106,13 +109,9 @@ footer {
     -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
 }
 
-#preview {
-	clear:both;
-	position:fixed;
-	right:0;
-	top:0;
-	
-	
+#show-preview-button{
+	position:relative;
+	float:right;
 }
 
 /* Modal preview window */

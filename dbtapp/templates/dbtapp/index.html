@@ -1,7 +1,10 @@
 {% extends "dbtapp/base.html" %}
 {% load staticfiles %}
 	
-{% block head %}LAVG{% endblock %}
+{% block head %}
+	LAVG
+	<a id="show-preview-button" href="#preview" class="btn btn-default">Preview</a>
+{% endblock %}
 
 {% block content %}
 <!--
@@ -18,10 +21,10 @@
 	<ul id="images"></ul>
 	<div id="addFileWrapper">
 		<img id="addFile" src="{% static 'dbtapp/img/plus-sign.jpg'%}" alt="Lägg till bild"/>
-		<input type="file" id="input" multiple />
+		<input id="input" type="file" multiple />
 	</div>
 	
-	<a id="show-preview-button" href="#preview" class="btn btn-default">Preview</a>
+	
 
 	<div id="preview" class="modalDialog">
 		<div>
