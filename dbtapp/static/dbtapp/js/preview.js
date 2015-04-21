@@ -13,11 +13,13 @@ function initPreview (imageSet) {
 }
 
 function runSlideShow(imageSet, current) {
+
     if (current != 0) {
-        transition(imageSet[current-1].canvas, imageSet[current].canvas);
+    	imageSet[current].settings.transition(imageSet[current-1].layerOne, imageSet[current].layerOne);
+        //transition(imageSet[current-1].canvas, imageSet[current].canvas);
         
     } else {
-        $(imageSet[current].canvas).show();
+        $(imageSet[current].layerOne).show();
     }
     current++;
 
@@ -25,7 +27,7 @@ function runSlideShow(imageSet, current) {
         setTimeout(function(){runSlideShow(imageSet, current)}, 1000);
     } else {
         setTimeout(function() {
-            $(imageSet[current-1].canvas).hide();
+            $(imageSet[current-1].layerOne).hide();
         }, 1000);
         
     }
