@@ -18,11 +18,14 @@
         <p>No polls are available.</p>
     {% endif %}
 -->
-	<ul id="images"></ul>
-	<div id="addFileWrapper">
+	<ul id="images">
+			<div id="addFileWrapper">
 		<img id="addFile" src="{% static 'dbtapp/img/plus-sign.jpg'%}" alt="Lägg till bild"/>
 		<input id="input" type="file" multiple />
 	</div>
+	</ul>
+	
+
 	
 	
 
@@ -30,7 +33,6 @@
 		<div>
 			<a href="#" title="Close" class="close">X</a>
 			<ul id="slideshow"></ul>
-			<button id="start-button" type="button">Start</button>
 		</div>
 	</div>
 	
