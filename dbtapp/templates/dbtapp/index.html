@@ -16,7 +16,16 @@
     {% endif %}
 -->
 	<input type="file" id="input" multiple />
-	<ul id="slideshow"></ul>
+	
+	<a href="#openModal">Preview</a>
+
+	<div id="openModal" class="modalDialog">
+		<div>
+			<a href="#close" title="Close" class="close">X</a>
+			<ul id="slideshow"></ul>
+		</div>
+	</div>
+	
 	<button id="start-button" type="button">Start</button>
 	<div id="images"><br />Dina bilder:<br /></div>
 	
