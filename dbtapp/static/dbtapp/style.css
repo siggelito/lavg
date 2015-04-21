@@ -76,9 +76,6 @@ footer {
 
 /* Modal preview window */
 
-#openModal {
-}
-
 .modalDialog {
 	position: fixed;
 	font-family: Arial, Helvetica, sans-serif;
