@@ -73,6 +73,26 @@ footer {
 	padding-bottom: 10px;
 }
 
+#input {
+	position:absolute; 
+	z-index: 99999; 
+	opacity: 0;
+	width: 40px;
+	height:40px;
+	top:0;
+	left:0;
+}
+
+#addFile {
+	position:absolute;
+	font-size: 72px; 
+	width: 40px;
+	height:40px;
+	pointer-events: none;
+	top:-40px;
+	left:0;
+}
+
 
 /* Modal preview window */
 
