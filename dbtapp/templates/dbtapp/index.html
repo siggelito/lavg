@@ -15,15 +15,16 @@
         <p>No polls are available.</p>
     {% endif %}
 -->
-	<div style="font-size: 72px; width: 40px;">+</div>
-	<input type="file" id="input" style="z-index: 99999; position:relative; top:-50px; opacity: 0;" multiple />
-	
+	<div style="position:relative; width: 100px; height:100px;">
+		<span id="addFile">+</span>
+		<input type="file" id="input" multiple />
+	</div>
 	
 	<a id="show-preview-button" href="#preview" class="btn btn-default">Preview</a>
 
 	<div id="preview" class="modalDialog">
 		<div>
-			<a href="" title="Close" class="close">X</a>
+			<a href="#" title="Close" class="close">X</a>
 			<ul id="slideshow"></ul>
 			<button id="start-button" type="button">Start</button>
 		</div>
