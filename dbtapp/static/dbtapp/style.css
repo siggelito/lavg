@@ -125,7 +125,7 @@ footer {
 	bottom: 0;
 	left: 0;
 	background: rgba(0,0,0,0.8);
-	z-index: 99999;
+	z-index: 9999;
 	opacity:0;
 	-webkit-transition: opacity 400ms ease-in;
 	-moz-transition: opacity 400ms ease-in;
@@ -139,17 +139,28 @@ footer {
 }
 
 .modalDialog > div {
-	width: 600px;
+	width: 575px;
 	position: relative;
 	margin: 10% auto;
 	padding: 5px 20px 13px 20px;
+	/*
 	border-radius: 10px;
 	background: #fff;
 	background: -moz-linear-gradient(#fff, #999);
 	background: -webkit-linear-gradient(#fff, #999);
 	background: -o-linear-gradient(#fff, #999);
+	*/
 }
 
+.close {
+	position:relative;
+	opacity: 1;
+	z-index: 99999;
+	padding:7px 10px;	
+	border:2px solid black;
+	border-radius: 30px 30px;
+	background:white;
+}
 
 
 
