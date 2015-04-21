@@ -20,24 +20,25 @@ $(document).ready(function(){
             
             sources[offset + i] = URL.createObjectURL(e.target.files[i]);
 
-            content = new Object();
-            content.canvas = document.createElement('canvas');
+            layerContent = new Object();
+            layerContent.layerOne = document.createElement('canvas');
+            layerContent.layerTwo = document.createElement('canvas');
 
             var settings = {
-                transition: function(current, next)){
+                transition: function(current, next){
                     transition(current, next);
                 }
-            }
-            content.settings = settings;
+            };
+            layerContent.settings = settings;
 
 
-            imageSet[offset + i] = content;
+            imageSet[offset + i] = layerContent;
 
             
 
             var element = document.createElement("li");
 
-            element.appendChild(content.canvas);
+            element.appendChild(layerContent.imageCanvas);
             slideshow.appendChild(element);
         }
 
@@ -46,18 +47,18 @@ $(document).ready(function(){
                 
                 imageSet[i].image = images[i];
 
-                var canvas = imageSet[i].canvas;
+                var imageCanvas = imageSet[i].imageCanvas;
                 var image = imageSet[i].image;
 
-                var size = calcSize(canvas, image);
+                var size = calcSize(imageCanvas, image);
                 var width = size[0];
                 var height = size[1];
-                var paddingLeft = ( (canvas.scrollWidth - width) / 2 );
-                var paddingTop =( (canvas.scrollHeight - height) / 2 );
+                var paddingLeft = ( (imageCanvas.scrollWidth - width) / 2 );
+                var paddingTop =( (imageCanvas.scrollHeight - height) / 2 );
 
-                var context = canvas.getContext('2d');
+                var context = imageCanvas.getContext('2d');
                 context.drawImage(imageSet[i].image, paddingLeft, paddingTop, width, height );  
-                $(imageSet[i].canvas).hide();
+                $(imageSet[i].imageCanvas).hide();
                 
                 oneLoadedFile(imageSet[i], i);
             };
