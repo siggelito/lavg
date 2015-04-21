@@ -32,7 +32,7 @@ $(document).ready(function(){
             layerContent.settings = settings;
 
 
-            imageSet[offset + i] = layerOne;
+            imageSet[offset + i] = layerContent;
 
             
 
