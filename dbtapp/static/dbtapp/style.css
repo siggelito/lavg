@@ -68,6 +68,12 @@ footer {
 
 
 /* Modal preview window */
+
+#openModal {
+	position: relative;
+	float: right;
+}
+
 .modalDialog {
 	position: fixed;
 	font-family: Arial, Helvetica, sans-serif;
