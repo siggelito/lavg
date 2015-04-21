@@ -14,27 +14,21 @@ function initPreview (imageSet) {
 
 function runSlideShow(imageSet, current) {
 
-    if (current != 0) {
-    	imageSet[current].settings.transition(imageSet[current-1].layerOne, imageSet[current].layerOne);
-        //transition(imageSet[current-1].canvas, imageSet[current].canvas);
-        
+    if (current == 0) {
+    	startAnimation(imageSet[0])
+
     } else {
-        $(imageSet[current].layerOne).show();
+    	imageSet[current].settings.transition(imageSet[current-1].layerOne, imageSet[current].layerOne);        
     }
     current++;
 
     if (current < imageSet.length) {
-        setTimeout(function(){runSlideShow(imageSet, current)}, 1000);
+        setTimeout(function(){runSlideShow(imageSet, current)}, imageSet[current].settings.duration);
     } else {
         setTimeout(function() {
-            $(imageSet[current-1].layerOne).hide();
-        }, 1000);
+        	endAnimation(imageSet[current-1]);
+        }, imageSet[current-1].settings.duration);
         
     }
     
-}
-
-function transition(current, next) {
-    $(current).hide();
-    $(next).show();
 }

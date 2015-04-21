@@ -20,14 +20,20 @@ $(document).ready(function(){
             
             sources[offset + i] = URL.createObjectURL(e.target.files[i]);
 
-            layerContent = new Object();
-            layerContent.layerOne = document.createElement('canvas');
-            layerContent.layerTwo = document.createElement('canvas');
+            var layerContent = {
+                layerOne: document.createElement('canvas'),
+                layerTwo: document.createElement('canvas')
+            };
+            
+            layerContent.layerOne.className = "layerOne";
+            layerContent.layerTwo.className = "layerTwo";
+
 
             var settings = {
                 transition: function(current, next){
-                    transition(current, next);
-                }
+                    simpleTransition(current, next);
+                },
+                duration: 2000
             };
             layerContent.settings = settings;
 
@@ -39,6 +45,7 @@ $(document).ready(function(){
             var element = document.createElement("li");
 
             element.appendChild(layerContent.layerOne);
+            element.appendChild(layerContent.layerTwo);
             slideshow.appendChild(element);
         }
 
