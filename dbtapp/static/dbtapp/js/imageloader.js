@@ -1,12 +1,29 @@
-
-
+var logoLayer;
 
 $(document).ready(function(){ 
     var imageSet = [];
     var slideshow = document.getElementById('slideshow');
     var input = document.getElementById('input');
+    var inputLogo = document.getElementById('input-logo');
     input.addEventListener('change', handleFiles);
+    inputLogo.addEventListener('change', handleLogoFile);
     var sources = [];
+    var sourceLogo;
+
+    function handleLogoFile (e) {
+        if (e.target.files.length > 0) {
+            sourceLogo = URL.createObjectURL(e.target.files[0]);
+            logoLayer = document.createElement('canvas');
+
+            loadSingleImage(sourceLogo, function (image) {
+                logoLayer.width = $("#slideshow").width();
+                logoLayer.height = $("#slideshow").height();
+            });
+
+        };
+
+
+    }
 
     function handleFiles(e) {
         
@@ -57,14 +74,13 @@ $(document).ready(function(){
                 var layerOne = imageSet[i].layerOne;
                 var image = imageSet[i].image;
 
+                layerOne.width = layerOne.scrollWidth;
+                layerOne.height = layerOne.scrollHeight;
+
                 var size = calcSize(layerOne, image);
-                var width = size.width;
-                var height = size.height;
-                var paddingLeft = size.paddingLeft;
-                var paddingTop = size.paddingTop;
 
                 var context = layerOne.getContext('2d');
-                context.drawImage(image, paddingLeft, paddingTop, width, height); //, paddingLeft, paddingTop, width, height  
+                context.drawImage(image, size.paddingLeft, size.paddingTop, size.width, size.height); //, paddingLeft, paddingTop, width, height  
                 $(imageSet[i].layerOne).hide();
                 
                 oneLoadedFile(imageSet[i], i);
@@ -93,9 +109,6 @@ function calcSize( canvas, image ) {
     var paddingLeft = ( (canvas.scrollWidth - width) / 2 );
     var paddingTop =( (canvas.scrollHeight - height) / 2 );
 
-    canvas.width = canvas.scrollWidth;
-    canvas.height = canvas.scrollHeight;
-
     return {width: width, height: height, paddingLeft: paddingLeft, paddingTop: paddingTop};
 }
 
@@ -116,6 +129,16 @@ function loadImages(sources, callback) {
         };
         images[src].src = sources[src];
     }
+}
+
+function loadSingleImage(source, callback) {
+    var image;
+
+    image = new Image();
+    image.onload = function() {
+        callback(image);
+    };
+    image.src = source;
 }
 
 

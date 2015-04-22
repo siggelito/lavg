@@ -72,6 +72,16 @@ footer {
 	margin-right: 10px;
 	margin-bottom: 10px;
 	float:left;
+	width: 200px;
+	height: 200px;
+	overflow: hidden;
+	position: relative;
+}
+
+#images li img {
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 #addFileWrapper {
@@ -161,6 +171,8 @@ footer {
 	border-radius: 30px 30px;
 	background:white;
 }
+
+
 
 
 
