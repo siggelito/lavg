@@ -58,13 +58,13 @@ $(document).ready(function(){
                 var image = imageSet[i].image;
 
                 var size = calcSize(layerOne, image);
-                var width = size[0];
-                var height = size[1];
-                var paddingLeft = ( (layerOne.scrollWidth - width) / 2 );
-                var paddingTop =( (layerOne.scrollHeight - height) / 2 );
+                var width = size.width;
+                var height = size.height;
+                var paddingLeft = size.paddingLeft;
+                var paddingTop = size.paddingTop;
 
                 var context = layerOne.getContext('2d');
-                context.drawImage(imageSet[i].image, paddingLeft, paddingTop, width, height );  
+                context.drawImage(image, paddingLeft, paddingTop, width, height); //, paddingLeft, paddingTop, width, height  
                 $(imageSet[i].layerOne).hide();
                 
                 oneLoadedFile(imageSet[i], i);
@@ -75,23 +75,28 @@ $(document).ready(function(){
 }) 
 
 function calcSize( canvas, image ) {
-    var imageRatio = ( image.width / image.height );
-    var withcanv = canvas.scrollWidth;
-    var withimg = image.width;
-    var heightcanv = canvas.scrollHeight;
-    var heigthimg = image.height;
-    var widthScalingFactor = ( imageRatio * canvas.scrollHeight ) / image.width;
-    var heightScalingFactor = ( canvas.scrollWidth / imageRatio ) / image.height;
+    var imageRatioW = ( image.width / image.height );
+    var imageRatioH = ( image.height / image.width );
+
+    var widthScalingFactor = ( imageRatioW * canvas.scrollHeight ) / image.width;
+    var heightScalingFactor = ( imageRatioH * canvas.scrollWidth ) / image.height;
+    
 
     if (widthScalingFactor > heightScalingFactor) {
         var width = image.width * widthScalingFactor;
-        var height = canvas.scrollHeight;
+        var height = image.height * widthScalingFactor;
     } else{
-        var width = canvas.scrollWidth;
+        var width = image.width * heightScalingFactor;
         var height = image.height * heightScalingFactor;
     };
 
-    return [width, height];
+    var paddingLeft = ( (canvas.scrollWidth - width) / 2 );
+    var paddingTop =( (canvas.scrollHeight - height) / 2 );
+
+    canvas.width = canvas.scrollWidth;
+    canvas.height = canvas.scrollHeight;
+
+    return {width: width, height: height, paddingLeft: paddingLeft, paddingTop: paddingTop};
 }
 
 function loadImages(sources, callback) {
