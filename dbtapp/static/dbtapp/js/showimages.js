@@ -16,7 +16,5 @@ function showImages(imageObject, index) {
 function openImageSetting() {
 	var allImages = document.getElementById("images");
 	var images = allImages.getElementsByTagName("li");
-	for (image in images) {
-		alert("Tryckt på bild!");
-	}	
+	alert("Det finns " + images.length + "st bilder!");
 }
