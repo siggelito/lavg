@@ -88,8 +88,11 @@ $(document).ready(function(){
 
                 var context = layerOne.getContext('2d');
                 context.drawImage(image, size.paddingLeft, size.paddingTop, size.width, size.height); //, paddingLeft, paddingTop, width, height  
-                $(imageSet[offset + i].layers[0]).hide();
-                $(imageSet[offset + i].layers[1]).hide();
+				
+				$(imageSet[offset + i].layers).hide();
+				
+                //$(imageSet[offset + i].layers[0]).hide();
+                //$(imageSet[offset + i].layers[1]).hide();
                 
                 oneLoadedFile(imageSet[offset + i], offset + i);
             };

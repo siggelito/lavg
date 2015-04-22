@@ -118,7 +118,7 @@ footer {
     -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
 }
 
-#show-preview-button{
+#preview-button{
 	position:relative;
 	float:right;
 }
