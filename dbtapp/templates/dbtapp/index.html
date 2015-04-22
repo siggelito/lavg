@@ -8,7 +8,10 @@
 {% endblock %}
 
 {% block content %}
-Logo: <input id="input-logo" type="file" />
+	<div id="logo-box">
+		<p><b>Choose a logo:</b></p>
+		<input id="input-logo" type="file" />
+	</div>
 	<ul id="images">
 		<div id="addFileWrapper">
 			<img id="addFile" src="{% static 'dbtapp/img/plus-sign.jpg'%}" alt="Lägg till bild"/>

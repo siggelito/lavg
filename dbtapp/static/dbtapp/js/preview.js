@@ -23,28 +23,24 @@ function runSlideShow(imageSet, current) {
     	if (logo != null) {
     		$(logo).show();
     		logo.style.zIndex = 99999;
-
-    		if (logo.width > 70) {
+    		
+			//if ((logo.width > 51) || (logo < 48)) {
+			if (logo.width > 70) {
     			var imageRatio = ( logo.width / logo.height );
 		    	var scalingFactor = ( imageRatio * 50 ) / logo.width;
 		    	logo.width = logo.width * scalingFactor; 
     		};
-	    	
-    	};
-    	       
-
+    	}; 
     } else {
     	imageSet[current].settings.transition(imageSet[current-1], imageSet[current]);        
     }
     current++;
-
     if (current < imageSet.length) {
         timer = setTimeout(function(){runSlideShow(imageSet, current)}, imageSet[current].settings.duration);
     } else {
         timer = setTimeout(function() {
         	endAnimation(imageSet[current-1]);
         }, imageSet[current-1].settings.duration);
-        
     }
 	
 	$(".close").click(function() {
@@ -52,5 +48,4 @@ function runSlideShow(imageSet, current) {
 		$(imageSet[current].layers).hide();
         //$(imageSet[current].layers).hide();
 	});
-    
 }
