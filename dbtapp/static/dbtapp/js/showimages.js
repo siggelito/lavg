@@ -22,14 +22,13 @@ function openImageSetting() {
 var imagePositions = {};
 imagePositions.oldPos = [];
 imagePositions.newPos = [];
-var previewReordered = false;
 var sortFromIndex = 0;
 var previousIndex = 0;
 
 
 function sortSlideShow(imageSet) {	
 	
-	if(previewReordered) {
+	if(previousIndex < imagePositions.newPos.length) {
 		sortFromIndex = imagePositions.newPos.length - previousIndex - 1;
 		previousIndex = imagePositions.newPos.length;
 		
@@ -72,14 +71,14 @@ $(document).ready(function sortImages() {
 		//mer än 50% av draggable bild täcker droppable bild
 		tolerance: "intersect",
 		
+		//Spara index där den börjar dras
 		start: function(event, ui) {
 			imagePositions.oldPos.unshift(ui.item.index());
 		},
 		
+		//Spara index där den släpps
 		stop: function(event, ui) {
 			imagePositions.newPos.unshift(ui.item.index());
-			
-			previewReordered = true;
 		}
 		
 	});
