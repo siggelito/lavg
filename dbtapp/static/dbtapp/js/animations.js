@@ -9,4 +9,5 @@ function startAnimation(layerContent) {
 
 function endAnimation(layerContent) {
 	$(layerContent.layerOne).fadeOut();
+	$("#logo-image").fadeOut();
 }

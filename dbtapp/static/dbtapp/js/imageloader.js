@@ -1,4 +1,4 @@
-var logoImage;
+
 
 $(document).ready(function(){ 
     var imageSet = [];
@@ -19,9 +19,8 @@ $(document).ready(function(){
             slideshow.appendChild(element);
 
             loadSingleImage(sourceLogo, function (image) {
-
                 element.appendChild(image);
-                logoImage = image;
+                image.id = "logo-image";
             });
 
         };
