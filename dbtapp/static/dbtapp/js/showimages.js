@@ -8,7 +8,8 @@ function showImages(imageObject, index) {
 	if(index >= nrOfPics) {
 		var element = document.createElement('li');
 		element.appendChild(image);
-		imageUl.appendChild(element);
+		var addFileDiv = document.getElementById('addFileWrapper');
+		imageUl.insertBefore(element,addFileDiv);
 	}
 }
 

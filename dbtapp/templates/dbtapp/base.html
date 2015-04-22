@@ -12,6 +12,7 @@
 	<script type="text/javascript" src="{% static 'dbtapp/js/imageloader.js' %}"></script>
 	<script type="text/javascript" src="{% static 'dbtapp/js/preview.js' %}"></script>
 	<script type="text/javascript" src="{% static 'dbtapp/js/showimages.js' %}"></script>
+	<script type="text/javascript" src="{% static 'dbtapp/js/phantomTest.js' %}"></script>
 	<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/style.css' %}" />
 	
 </head>
@@ -19,12 +20,12 @@
 	<header class="navbar navbar-default">
 		<div class="container">
 			<div class="navbar-header">
-				<a href="{% url 'dbtapp:index' %}" class="navbar-brand">DBT</a>
+				<a href="{% url 'dbtapp:index' %}" class="navbar-brand">App</a>
 			</div>
 			<nav class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li>
-						<a href="{% url 'dbtapp:index' %}">App</a>
+						<!--<a href="{% url 'dbtapp:index' %}">App</a>-->
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -45,7 +46,7 @@
 	
 	<footer class="footer">
 		<div class="footer-container">
-			<p class="text-muted">Copyright &copy; djDjango Development Team {% now "Y" %}</p>	
+			<p class="text-muted">Copyright &copy; Dragon Beast Team {% now "Y" %}</p>	
 		</div>
 	</footer>
 </body>

@@ -86,13 +86,13 @@ footer {
 
 #addFileWrapper {
 	display:inline-block;
-	position:relative; 
+	position:relative;
 	width: 100px; 
 	height: 100px; 
 	margin-top:50px;
 	margin-bottom:60px;
-	margin-left:51px;
-	margin-right:60px;
+	margin-left:50px;
+	margin-right:40px;
 }
 
 #input {
@@ -151,13 +151,6 @@ footer {
 	position: relative;
 	margin: auto;
 	padding: 5px 20px 13px 20px;
-	/*
-	border-radius: 10px;
-	background: #fff;
-	background: -moz-linear-gradient(#fff, #999);
-	background: -webkit-linear-gradient(#fff, #999);
-	background: -o-linear-gradient(#fff, #999);
-	*/
 }
 
 .close {
