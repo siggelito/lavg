@@ -80,27 +80,6 @@ $(document).ready(function sortImages() {
 			previewReordered = true;
 		}
 		
-		
-		/*
-		//Visa kryss när element börjar dras
-		start: function(event, ui){
-			$("#canvasTrashCan").fadeIn(500);
-		},
-		
-		//Återställ till vanlig position om element släpps utanför droppable
-		revert : function(event, ui) {
-			$(this).data("uiDraggable").originalPosition = {
-				top : 0,
-				left : 0
-			};
-			return !event;
-		},
-		
-		//Ta bort kryss när elementet släpps
-		stop: function(event, ui){
-			$("#canvasTrashCan").fadeOut(500);
-		}
-		*/
 	});
 });
 	
