@@ -4,17 +4,20 @@ function showImages(imageObject, index) {
 	var image = imageObject.image;
 	//image.width = 200; //333
 	//image.height = 200; //eller 120
-	
+	var size = cropImage(image);
+
+	// fungerar tydligt inte, värdena fastnar inte
+	image.right = size.paddingLeft;
+	image.top = size.paddingTop;
+	image.width = size.width;
+	image.height = size.height;
 	
 	if(index >= nrOfPics) {
-		var size = cropImage(image);
 		var element = document.createElement('li');
 		element.appendChild(image);
 		var addFileDiv = document.getElementById('addFileWrapper');
 		imageUl.insertBefore(element,addFileDiv);
-		image.right = size.paddingLeft;
-		image.top = size.paddingTop;
-		image.width = size.width;
+
 	}
 }
 

@@ -1,21 +1,13 @@
 function simpleTransition(current, next) {
-	for (var i = 0; i < current.layers.length; i++) {
-		$(current.layers[i]).fadeOut();
-	};
-	for (var i = 0; i < next.layers.length; i++) {
-		$(next.layers[i]).fadeIn();
-	};
+	$(current.layers).fadeOut();
+	$(next.layers).fadeIn();
 }
 
 function startAnimation(layerContent) {
-	for (var i = 0; i < layerContent.layers.length; i++) {
-		$(layerContent.layers[i]).fadeIn();
-	};
+	$(layerContent.layers).fadeIn();
 }
 
 function endAnimation(layerContent) {
 	$("#logo-image").fadeOut();
-	for (var i = 0; i < layerContent.layers.length; i++) {
-		$(layerContent.layers[i]).fadeOut();
-	};
+	$(layerContent.layers).fadeOut();
 }
