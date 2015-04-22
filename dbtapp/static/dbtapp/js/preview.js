@@ -14,8 +14,12 @@ function initPreview (imageSet) {
 
 function runSlideShow(imageSet, current) {
 
+
     if (current == 0) {
-    	startAnimation(imageSet[0])
+    	startAnimation(imageSet[0]);
+    	if (logoLayer != null) {
+    		$(logoLayer).show();
+    	};
 
     } else {
     	imageSet[current].settings.transition(imageSet[current-1].layerOne, imageSet[current].layerOne);        

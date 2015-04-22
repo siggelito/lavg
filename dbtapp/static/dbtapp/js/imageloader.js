@@ -13,11 +13,15 @@ $(document).ready(function(){
     function handleLogoFile (e) {
         if (e.target.files.length > 0) {
             sourceLogo = URL.createObjectURL(e.target.files[0]);
-            logoLayer = document.createElement('canvas');
+
+            var element = document.createElement("li");
+
+            slideshow.appendChild(element);
 
             loadSingleImage(sourceLogo, function (image) {
-                logoLayer.width = $("#slideshow").width();
-                logoLayer.height = $("#slideshow").height();
+
+                element.appendChild(image);
+
             });
 
         };
