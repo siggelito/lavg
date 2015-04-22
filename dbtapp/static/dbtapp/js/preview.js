@@ -3,11 +3,15 @@ function initPreview (imageSet) {
 	var startButton = document.getElementById("start-button");
 	var previewButton = document.getElementById("show-preview-button");
 	
+	/* Oanvänd funktion!
     $(startButton).on("click", function() {
+		imageSet = sortSlideShow(imageSet, 0);
     	runSlideShow(imageSet, 0);
     });
+	*/
 
     $(previewButton).delay(1000).on("click", function() {
+		imageSet = sortSlideShow(imageSet);
     	runSlideShow(imageSet, 0);
     });
 }
