@@ -1,4 +1,4 @@
-var logoLayer;
+var logoImage;
 
 $(document).ready(function(){ 
     var imageSet = [];
@@ -21,7 +21,7 @@ $(document).ready(function(){
             loadSingleImage(sourceLogo, function (image) {
 
                 element.appendChild(image);
-
+                logoImage = image;
             });
 
         };
