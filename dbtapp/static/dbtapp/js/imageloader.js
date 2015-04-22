@@ -5,7 +5,7 @@ $(document).ready(function(){
     var slideshow = document.getElementById('slideshow');
     var input = document.getElementById('input');
     var inputLogo = document.getElementById('input-logo');
-    input.addEventListener('click', handleFiles);
+    input.addEventListener('change', handleFiles);
     inputLogo.addEventListener('change', handleLogoFile);
     var sources = [];
     var sourceLogo;
@@ -24,9 +24,7 @@ $(document).ready(function(){
             });
 
         };
-
-
-    }
+    };
 
     function handleFiles(e) {
         
