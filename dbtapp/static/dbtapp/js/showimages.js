@@ -23,17 +23,23 @@ var imagePositions = {};
 imagePositions.oldPos = [];
 imagePositions.newPos = [];
 var previewReordered = false;
+var sortFromIndex = 0;
+var previousIndex = 0;
 
 
-function sortSlideShow(imageSet) {
+function sortSlideShow(imageSet) {	
+	
 	if(previewReordered) {
-		for(i = 0; i < imagePositions.newPos.length; i++) {
+		sortFromIndex = imagePositions.newPos.length - previousIndex - 1;
+		previousIndex = imagePositions.newPos.length;
+		
+		for(i = sortFromIndex; i >= 0; i--) {
 			
 			//Om nya positionen är efter gamla positionen
 			if(imagePositions.newPos[i] > imagePositions.oldPos[i]) {	
 			
 				//Sätt in bild på ny position
-				imageSet.splice(imagePositions.newPos[i], 0, imageSet[imagePositions.oldPos[i]]);
+				imageSet.splice(imagePositions.newPos[i]+1, 0, imageSet[imagePositions.oldPos[i]]);
 				
 				//ta bort gamla bilden på sitt vanliga index
 				imageSet.splice(imagePositions.oldPos[i], 1);
@@ -47,14 +53,6 @@ function sortSlideShow(imageSet) {
 				//ta bort gamla bilden på sitt index som är 1 större
 				imageSet.splice(imagePositions.oldPos[i]+1, 1);
 			}
-			
-			/*
-			tempImage = imageSet[imagePositions.newPos[i]];
-			imageSet[imagePositions.newPos[i]] = imageSet[imagePositions.origPos[i]];
-			imageSet[imagePositions.origPos[i]] = tempImage;
-			*/
-			
-			//document.write("origPos:" + imagePositions.origPos[i] + " newPos:" + imagePositions.newPos[i] + "<br />");
 		}
 		
 		previewReordered = false;
@@ -62,13 +60,17 @@ function sortSlideShow(imageSet) {
 	return imageSet;
 }
 
+var imageItems = [];
 
 $(document).ready(function sortImages() {
 	
 	$("#images").sortable({
 		
 		//Mjuk animering till ny position
-		revert:true,
+		revert: true,
+		
+		//mer än 50% av draggable bild täcker droppable bild
+		tolerance: "intersect",
 		
 		start: function(event, ui) {
 			imagePositions.oldPos.unshift(ui.item.index());
