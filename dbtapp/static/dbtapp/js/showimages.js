@@ -2,15 +2,42 @@ function showImages(imageObject, index) {
 	var nrOfPics = $('#images li').length;
 	var imageUl = document.getElementById('images');
 	var image = imageObject.image;
-	image.width = 200; //333
-	image.height = 200; //eller 120
+	//image.width = 200; //333
+	//image.height = 200; //eller 120
+	
 	
 	if(index >= nrOfPics) {
+		var size = cropImage(image);
 		var element = document.createElement('li');
 		element.appendChild(image);
 		var addFileDiv = document.getElementById('addFileWrapper');
 		imageUl.insertBefore(element,addFileDiv);
+		image.right = size.paddingLeft;
+		image.top = size.paddingTop;
+		image.width = size.width;
 	}
+}
+
+function cropImage (image) {
+    var imageRatioW = ( image.width / image.height );
+    var imageRatioH = ( image.height / image.width );
+
+    var widthScalingFactor = ( imageRatioW * 200 ) / image.width;
+    var heightScalingFactor = ( imageRatioH * 200 ) / image.height;
+    
+
+    if (widthScalingFactor > heightScalingFactor) {
+        var width = image.width * widthScalingFactor;
+        var height = image.height * widthScalingFactor;
+    } else{
+        var width = image.width * heightScalingFactor;
+        var height = image.height * heightScalingFactor;
+    };
+
+    var paddingLeft = ( (200 - width) / 2 );
+    var paddingTop =( (200 - height) / 2 );
+
+    return {width: width, height: height, paddingLeft: paddingLeft, paddingTop: paddingTop};
 }
 
 function openImageSetting() {
