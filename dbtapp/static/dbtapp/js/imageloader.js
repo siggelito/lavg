@@ -5,7 +5,7 @@ $(document).ready(function(){
     var slideshow = document.getElementById('slideshow');
     var input = document.getElementById('input');
     var inputLogo = document.getElementById('input-logo');
-    input.addEventListener('change', handleFiles);
+    input.addEventListener('click', handleFiles);
     inputLogo.addEventListener('change', handleLogoFile);
     var sources = [];
     var sourceLogo;
@@ -57,13 +57,9 @@ $(document).ready(function(){
             };
             layerContent.settings = settings;
 
-
             imageSet[offset + i] = layerContent;
 
-            
-
             var element = document.createElement("li");
-
             element.appendChild(layerContent.layerOne);
             element.appendChild(layerContent.layerTwo);
             slideshow.appendChild(element);
@@ -88,9 +84,10 @@ $(document).ready(function(){
                 
                 oneLoadedFile(imageSet[i], i);
             };
+            doneLoadingFiles(imageSet);
         });       
     }
-    doneLoadingFiles(imageSet);
+    
 }) 
 
 function calcSize( canvas, image ) {
