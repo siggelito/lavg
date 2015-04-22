@@ -167,8 +167,8 @@ footer {
 
 #logo-image {
 	position: absolute;
-	top: 10;
-	left: 10;
+	top: 10px;
+	left: 10px;
 	display: none;
 	z-index: 999;
 }

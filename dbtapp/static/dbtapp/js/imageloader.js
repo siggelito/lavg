@@ -38,14 +38,16 @@ $(document).ready(function(){
             
             sources[i] = URL.createObjectURL(e.target.files[i]);
 
-            var layerContent = {
-                layerOne: document.createElement('canvas'),
-                layerTwo: document.createElement('canvas')
-            };
-            
-            layerContent.layerOne.className = "layerOne";
-            layerContent.layerTwo.className = "layerTwo";
+            var layers = [
+                document.createElement('canvas'),
+                document.createElement('canvas')
+            ];
 
+            layers[0].className = "layer";
+            layers[0].style.zIndex = 1;
+
+            layers[1].className = "layer";
+            layers[1].style.zIndex = 2;
 
             var settings = {
                 transition: function(current, next){
@@ -53,13 +55,17 @@ $(document).ready(function(){
                 },
                 duration: 2000
             };
-            layerContent.settings = settings;
+
+            var layerContent = {
+                layers: layers,
+                settings: settings
+            }; 
 
             imageSet[offset + i] = layerContent;
 
             var element = document.createElement("li");
-            element.appendChild(layerContent.layerOne);
-            element.appendChild(layerContent.layerTwo);
+            element.appendChild(layerContent.layers[0]);
+            element.appendChild(layerContent.layers[1]);
             slideshow.appendChild(element);
         }
 
@@ -68,17 +74,22 @@ $(document).ready(function(){
                 
                 imageSet[offset + i].image = images[i];
 
-                var layerOne = imageSet[offset + i].layerOne;
+                var layerOne = imageSet[offset + i].layers[0];
+                var layerTwo = imageSet[offset + i].layers[1];
                 var image = imageSet[offset + i].image;
 
                 layerOne.width = layerOne.scrollWidth;
                 layerOne.height = layerOne.scrollHeight;
 
+                layerTwo.width = layerTwo.scrollWidth;
+                layerTwo.height = layerTwo.scrollHeight;
+
                 var size = calcSize(layerOne, image);
 
                 var context = layerOne.getContext('2d');
                 context.drawImage(image, size.paddingLeft, size.paddingTop, size.width, size.height); //, paddingLeft, paddingTop, width, height  
-                $(imageSet[offset + i].layerOne).hide();
+                $(imageSet[offset + i].layers[0]).hide();
+                $(imageSet[offset + i].layers[1]).hide();
                 
                 oneLoadedFile(imageSet[offset + i], offset + i);
             };

@@ -1,13 +1,21 @@
 function simpleTransition(current, next) {
-    $(current).fadeOut();
-    $(next).fadeIn();
+	for (var i = 0; i < current.layers.length; i++) {
+		$(current.layers[i]).fadeOut();
+	};
+	for (var i = 0; i < next.layers.length; i++) {
+		$(next.layers[i]).fadeIn();
+	};
 }
 
 function startAnimation(layerContent) {
-	$(layerContent.layerOne).fadeIn();
+	for (var i = 0; i < layerContent.layers.length; i++) {
+		$(layerContent.layers[i]).fadeIn();
+	};
 }
 
 function endAnimation(layerContent) {
-	$(layerContent.layerOne).fadeOut();
 	$("#logo-image").fadeOut();
+	for (var i = 0; i < layerContent.layers.length; i++) {
+		$(layerContent.layers[i]).fadeOut();
+	};
 }
