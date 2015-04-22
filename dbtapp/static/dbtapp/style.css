@@ -171,6 +171,11 @@ footer {
 	left: 10px;
 	display: none;
 	z-index: 999;
+	width: 50px;
+}
+
+#logo-box {
+	padding: 20px 10px;
 }
 
 
