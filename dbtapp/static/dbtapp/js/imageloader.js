@@ -30,13 +30,14 @@ $(document).ready(function(){
         
         if (sources.length != 0) {
             offset = sources.length;
+            sources = [];
         } else {
             offset = 0;
         }
 
         for (var i = 0; i < e.target.files.length; i++) {
             
-            sources[offset + i] = URL.createObjectURL(e.target.files[i]);
+            sources[i] = URL.createObjectURL(e.target.files[i]);
 
             var layerContent = {
                 layerOne: document.createElement('canvas'),
@@ -66,10 +67,10 @@ $(document).ready(function(){
         loadImages(sources, function(images) {
             for (var i = 0; i < images.length; i++) {
                 
-                imageSet[i].image = images[i];
+                imageSet[offset + i].image = images[i];
 
-                var layerOne = imageSet[i].layerOne;
-                var image = imageSet[i].image;
+                var layerOne = imageSet[offset + i].layerOne;
+                var image = imageSet[offset + i].image;
 
                 layerOne.width = layerOne.scrollWidth;
                 layerOne.height = layerOne.scrollHeight;
@@ -78,9 +79,9 @@ $(document).ready(function(){
 
                 var context = layerOne.getContext('2d');
                 context.drawImage(image, size.paddingLeft, size.paddingTop, size.width, size.height); //, paddingLeft, paddingTop, width, height  
-                $(imageSet[i].layerOne).hide();
+                $(imageSet[offset + i].layerOne).hide();
                 
-                oneLoadedFile(imageSet[i], i);
+                oneLoadedFile(imageSet[offset + i], offset + i);
             };
             doneLoadingFiles(imageSet);
         });       
