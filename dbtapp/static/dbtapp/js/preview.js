@@ -24,10 +24,14 @@ function runSlideShow(imageSet, current) {
     	var logo = document.getElementById('logo-image');
     	if (logo != null) {
     		$(logo).show();
+    		logo.style.zIndex = 99999;
 
-	    	var imageRatio = ( logo.width / logo.height );
-		    var scalingFactor = ( imageRatio * 50 ) / logo.width;
-		    logo.width = logo.width * scalingFactor; 
+    		if (logo.width > 51) {
+    			var imageRatio = ( logo.width / logo.height );
+		    	var scalingFactor = ( imageRatio * 50 ) / logo.width;
+		    	logo.width = logo.width * scalingFactor; 
+    		};
+	    	
     	};
     	       
 
