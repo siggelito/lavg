@@ -9,6 +9,7 @@ $(document).ready(function(){
     inputLogo.addEventListener('change', handleLogoFile);
     var sources = [];
     var sourceLogo;
+    var offset = 0;
 
     function handleLogoFile (e) {
         if (e.target.files.length > 0) {
@@ -29,10 +30,8 @@ $(document).ready(function(){
     function handleFiles(e) {
         
         if (sources.length != 0) {
-            offset = sources.length;
+            offset = offset + sources.length;
             sources = [];
-        } else {
-            offset = 0;
         }
 
         for (var i = 0; i < e.target.files.length; i++) {
