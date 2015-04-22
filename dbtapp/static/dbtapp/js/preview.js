@@ -17,10 +17,18 @@ function runSlideShow(imageSet, current) {
 
     if (current == 0) {
     	startAnimation(imageSet[0]);
-    	$("#logo-image").show();
+    	var logo = document.getElementById('logo-image');
+    	if (logo != null) {
+    		$(logo).show();
+
+	    	var imageRatio = ( logo.width / logo.height );
+		    var scalingFactor = ( imageRatio * 50 ) / logo.width;
+		    logo.width = logo.width * scalingFactor; 
+    	};
+    	       
 
     } else {
-    	imageSet[current].settings.transition(imageSet[current-1].layerOne, imageSet[current].layerOne);        
+    	imageSet[current].settings.transition(imageSet[current-1], imageSet[current]);        
     }
     current++;
 
