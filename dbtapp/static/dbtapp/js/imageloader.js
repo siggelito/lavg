@@ -97,9 +97,6 @@ $(document).ready(function(){
                 context.drawImage(image, size.paddingLeft, size.paddingTop, size.width, size.height); //, paddingLeft, paddingTop, width, height  
 				
 				$(imageSet[offset + i].layers).hide();
-				
-                //$(imageSet[offset + i].layers).hide();
-                //$(imageSet[offset + i].layers[1]).hide();
                 
                 oneLoadedFile(imageSet[offset + i], offset + i);
             };
