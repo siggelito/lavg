@@ -17,9 +17,11 @@ function showImages(imageObject, index) {
 		element.appendChild(image);
 		var addFileDiv = document.getElementById('addFileWrapper');
 		imageUl.insertBefore(element,addFileDiv);
+		/*
 		image.addEventListener('click', function () {
 			openImageSetting(imageObject, index);
 		});
+		*/
 	}
 }
 
@@ -46,9 +48,29 @@ function cropImage (image) {
 }
 
 function openImageSetting(imageObject, index) {
-	var allImages = document.getElementById("images");
-	var images = allImages.getElementsByTagName("li");
-	alert("Det finns " + images.length + "st bilder!" + " Vald index: " + index);
+
+	var canvasList = document.getElementById("images").childNodes;
+	var element = canvasList[index]
+	alert("Vald index: " + index + " Number of elements: " + canvasList.length);
+
+	var imageRectangle = element.getBoundingClientRect();
+	var left = imageRectangle.left;
+	var height = imageRectangle.top;
+
+	var newObject = element.cloneNode(true);
+
+
+	newObject.style.zIndex = "100";
+	newObject.style.position = "absolute";
+	newObject.style.left = left + "px";
+	newObject.style.top = top + "px";
+	newObject.style.margin = "0px";
+
+	document.body.appendChild(newObject);
+
+	element.style.opacity = "0";
+
+
 }
 
 var imagePositions = {};
