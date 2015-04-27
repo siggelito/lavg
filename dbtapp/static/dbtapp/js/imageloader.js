@@ -13,17 +13,24 @@ $(document).ready(function(){
 
     function handleLogoFile (e) {
         if (e.target.files.length > 0) {
+
             sourceLogo = URL.createObjectURL(e.target.files[0]);
 
-            var element = document.createElement("li");
+            var imageElement = document.getElementById('logo-image');
 
-            slideshow.appendChild(element);
+            if( imageElement != null) {
 
-            loadSingleImage(sourceLogo, function (image) {
-                element.appendChild(image);
-                image.id = "logo-image";
-            });
-
+                loadSingleImage(sourceLogo, function (image) {
+                    imageElement.src = image.src;
+                });
+            } else {
+                var element = document.createElement("div");
+                slideshow.appendChild(element);
+                loadSingleImage(sourceLogo, function (image) {
+                    element.appendChild(image);
+                    image.id = "logo-image";
+                });
+            }
         };
     };
 
@@ -53,7 +60,7 @@ $(document).ready(function(){
                 transition: function(current, next){
                     simpleTransition(current, next);
                 },
-                duration: 2000
+                duration: 2000 //(Math.floor((Math.random() * 4) + 2) * 1000)
             };
 
             var layerContent = {
@@ -91,7 +98,7 @@ $(document).ready(function(){
 				
 				$(imageSet[offset + i].layers).hide();
 				
-                //$(imageSet[offset + i].layers[0]).hide();
+                //$(imageSet[offset + i].layers).hide();
                 //$(imageSet[offset + i].layers[1]).hide();
                 
                 oneLoadedFile(imageSet[offset + i], offset + i);

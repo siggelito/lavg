@@ -23,13 +23,6 @@ function runSlideShow(imageSet, current) {
     	if (logo != null) {
     		$(logo).show();
     		logo.style.zIndex = 99999;
-    		
-			//if ((logo.width > 51) || (logo < 48)) {
-			if (logo.width > 70) {
-    			var imageRatio = ( logo.width / logo.height );
-		    	var scalingFactor = ( imageRatio * 50 ) / logo.width;
-		    	logo.width = logo.width * scalingFactor; 
-    		};
     	}; 
     } else {
     	imageSet[current].settings.transition(imageSet[current-1], imageSet[current]);        
@@ -46,6 +39,5 @@ function runSlideShow(imageSet, current) {
 	$(".close").click(function() {
 		clearTimeout(timer);
 		$(imageSet[current].layers).hide();
-        //$(imageSet[current].layers).hide();
 	});
 }

@@ -17,7 +17,9 @@ function showImages(imageObject, index) {
 		element.appendChild(image);
 		var addFileDiv = document.getElementById('addFileWrapper');
 		imageUl.insertBefore(element,addFileDiv);
-
+		image.addEventListener('click', function () {
+			openImageSetting(imageObject, index);
+		});
 	}
 }
 
@@ -43,10 +45,10 @@ function cropImage (image) {
     return {width: width, height: height, paddingLeft: paddingLeft, paddingTop: paddingTop};
 }
 
-function openImageSetting() {
+function openImageSetting(imageObject, index) {
 	var allImages = document.getElementById("images");
 	var images = allImages.getElementsByTagName("li");
-	alert("Det finns " + images.length + "st bilder!");
+	alert("Det finns " + images.length + "st bilder!" + " Vald index: " + index);
 }
 
 var imagePositions = {};
@@ -113,4 +115,3 @@ $(document).ready(function sortImages() {
 		
 	});
 });
-	
