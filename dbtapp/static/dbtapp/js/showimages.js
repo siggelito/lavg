@@ -125,6 +125,8 @@ $(document).ready(function sortImages() {
 		//mer än 50% av draggable bild täcker droppable bild
 		tolerance: "intersect",
 		
+		helper: "clone",
+		
 		//Spara index där den börjar dras
 		start: function(event, ui) {
 			imagePositions.oldPos.unshift(ui.item.index());
