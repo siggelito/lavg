@@ -2,15 +2,18 @@ function showImages(imageObject, index) {
 	var nrOfPics = $('#images li').length;
 	var imageUl = document.getElementById('images');
 	var image = imageObject.image;
-	//image.width = 200; //333
-	//image.height = 200; //eller 120
+	image.width = 200;
+	image.height = 200; //140
+	
+	/*
 	var size = cropImage(image);
 
 	// fungerar tydligt inte, värdena fastnar inte
-	image.right = size.paddingLeft;
+	image.left = size.paddingLeft;
 	image.top = size.paddingTop;
 	image.width = size.width;
 	image.height = size.height;
+	*/
 	
 	if(index >= nrOfPics) {
 		var element = document.createElement('li');

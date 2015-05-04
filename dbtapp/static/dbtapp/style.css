@@ -73,7 +73,7 @@ footer {
 	margin-bottom: 10px;
 	float:left;
 	width: 200px;
-	height: 200px;
+	height: 200px; //140px
 	overflow: hidden;
 	position: relative;
 }
