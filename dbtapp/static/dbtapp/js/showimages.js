@@ -17,11 +17,11 @@ function showImages(imageObject, index) {
 		element.appendChild(image);
 		var addFileDiv = document.getElementById('addFileWrapper');
 		imageUl.insertBefore(element,addFileDiv);
-		/*
+		
 		image.addEventListener('click', function () {
 			openImageSetting(imageObject, index);
 		});
-		*/
+		
 	}
 }
 
@@ -50,7 +50,7 @@ function cropImage (image) {
 function openImageSetting(imageObject, index) {
 
 	var canvasList = document.getElementById("images").childNodes;
-	var element = canvasList[index]
+	var element = canvasList[index + 1]
 	alert("Vald index: " + index + " Number of elements: " + canvasList.length);
 
 	var imageRectangle = element.getBoundingClientRect();
@@ -66,7 +66,7 @@ function openImageSetting(imageObject, index) {
 	newObject.style.top = top + "px";
 	newObject.style.margin = "0px";
 
-	document.body.appendChild(newObject);
+	canvasList.appendChild(newObject);
 
 	element.style.opacity = "0";
 
