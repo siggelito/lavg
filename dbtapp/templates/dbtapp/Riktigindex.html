@@ -1,9 +1,31 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html lang="en">
-<head>
+<head> 
+
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<title>DBT</title>
+
+	<!--<link rel="stylesheet" type="text/css" href="dbtapp/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="dbtapp/css/bootstrap-theme.min.css" />
+	<link rel="stylesheet" type="text/css" href="dbtapp/style.css" />
+
+	<script type="text/javascript" src="dbtapp/js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="dbtapp/js/jquery-ui.js"></script>
+	<script type="text/javascript" src="dbtapp/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="dbtapp/js/animations.js"></script>
+	<script type="text/javascript" src="dbtapp/js/loadFinished.js"></script>
+	<script type="text/javascript" src="dbtapp/js/imageloader.js"></script>
+	<script type="text/javascript" src="dbtapp/js/preview.js"></script>
+	<script type="text/javascript" src="dbtapp/js/showimages.js"></script>
+	<script type="text/javascript" src="dbtapp/js/phantomTest.js"></script>
+-->
+
+	{% load staticfiles %}
 	<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/css/bootstrap.min.css' %}" />
-	<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/css/bootstrap-theme.min.css' %}" />
+	<!--<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/css/bootstrap-theme.min.css' %}" />-->
 	<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/style.css' %}" />
 	<script type="text/javascript" src="{% static 'dbtapp/js/jquery-1.11.2.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'dbtapp/js/jquery-ui.js' %}"></script>
@@ -14,12 +36,14 @@
 	<script type="text/javascript" src="{% static 'dbtapp/js/preview.js' %}"></script>
 	<script type="text/javascript" src="{% static 'dbtapp/js/showimages.js' %}"></script>
 	<script type="text/javascript" src="{% static 'dbtapp/js/phantomTest.js' %}"></script>
+
 	
-	
+
+
 </head>
 <body>
 	<header class="navbar navbar-default">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="navbar-header">
 				<a href="{% url 'dbtapp:index' %}" class="navbar-brand">App</a>
 			</div>
@@ -38,7 +62,7 @@
 		</div>
 	</header>
 	
-	<div class="container" id="container-main">
+	<div class="container-fluid" id="container-main">
 		<div class="page-header">
 		</div>
 	
