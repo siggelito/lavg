@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from dbtapp import views
 
 urlpatterns = [
-     url(r'^$', views.index, name='index'),
+     url(r'^$', views.videoList, name='index'),
      url(r'^video/list/$', views.videoList, name='videoList'),
      url(r'^video/new/$', views.newVideo, name='videoNew'),
      url(r'^video/(?P<pk>\d+)/$', views.videoEdit, name='videoEdit'),

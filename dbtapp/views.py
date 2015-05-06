@@ -41,7 +41,9 @@ def newVideo(request):
 
 def videoRemove(request, pk):
     video = Video.objects.get(pk=pk)
-    Photo.objects.get(video = video).delete()
+    photos = Photo.objects.filter(video = video)
+    for photo in photos:
+        photo.delete()
     video.delete()
     return redirect('dbtapp:videoList')
 
