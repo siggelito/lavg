@@ -13,7 +13,7 @@ from .models import Photo, Video
 from .forms import PhotoForm, VideoForm
 
 def index(request):
-    return render(request, 'dbtapp/index.html')
+    return render(request, 'dbtapp/Riktigindex.html')
 
 def videoList(request):
     video_list = Video.objects.all()
@@ -78,7 +78,4 @@ def videoEdit(request, pk):
         'dbtapp/list.html',
         {'images': photos, 'video': video, 'form': form},
     )
-
-def riktigIndex(request):
-    return render(request, 'dbtapp/riktigIndex.html')
 

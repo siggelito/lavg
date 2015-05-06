@@ -15,5 +15,5 @@ from django.dispatch.dispatcher import receiver
 
 @receiver(pre_delete, sender=Photo)
 def photo_delete(sender, instance, **kwargs):
-    # Pass false so FileField doesn't save the model.
+    # Pass false so ImageField doesn't save the model.
     instance.photoFile.delete(False)
