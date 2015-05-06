@@ -8,25 +8,12 @@
 
 	<title>DBT</title>
 
-	<!--<link rel="stylesheet" type="text/css" href="dbtapp/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="dbtapp/css/bootstrap-theme.min.css" />
-	<link rel="stylesheet" type="text/css" href="dbtapp/style.css" />
-
-	<script type="text/javascript" src="dbtapp/js/jquery-1.11.2.min.js"></script>
-	<script type="text/javascript" src="dbtapp/js/jquery-ui.js"></script>
-	<script type="text/javascript" src="dbtapp/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="dbtapp/js/animations.js"></script>
-	<script type="text/javascript" src="dbtapp/js/loadFinished.js"></script>
-	<script type="text/javascript" src="dbtapp/js/imageloader.js"></script>
-	<script type="text/javascript" src="dbtapp/js/preview.js"></script>
-	<script type="text/javascript" src="dbtapp/js/showimages.js"></script>
-	<script type="text/javascript" src="dbtapp/js/phantomTest.js"></script>
--->
-
 	{% load staticfiles %}
 	<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/css/bootstrap.min.css' %}" />
-	<!--<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/css/bootstrap-theme.min.css' %}" />-->
 	<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/style.css' %}" />
+	<!-- eget CSS -->
+    <link rel="stylesheet" href="{% static 'dbtapp/stylesheet1.css' %}" type="text/css">
+
 	<script type="text/javascript" src="{% static 'dbtapp/js/jquery-1.11.2.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'dbtapp/js/jquery-ui.js' %}"></script>
 	<script type="text/javascript" src="{% static 'dbtapp/js/bootstrap.min.js' %}"></script>
@@ -37,37 +24,76 @@
 	<script type="text/javascript" src="{% static 'dbtapp/js/showimages.js' %}"></script>
 	<script type="text/javascript" src="{% static 'dbtapp/js/phantomTest.js' %}"></script>
 
-	
-
 
 </head>
-<body>
-	<header class="navbar navbar-default">
+<body id="page-top">
+	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a href="{% url 'dbtapp:index' %}" class="navbar-brand">App</a>
+				<a href="{% url 'dbtapp:index' %}" class="navbar-brand">Skapa din video!</a>
 			</div>
 			<nav class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li>
-						<!--<a href="{% url 'dbtapp:index' %}">App</a>-->
-					</li>
+				<ul class="nav navbar-nav">		
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li>
-						<a href="{% url 'admin:index' %}">Admin</a>
-					</li>
+	                    <a href="#page-top">Hem</a>
+	                </li> 
+	                <li>
+	                    <a href="#step">Steg-för-steg</a>
+	                </li>
+	                <li>
+	                    <a href="#about">Om</a>
+	                </li>
+	               	<li>
+	                    <a href="#inspiration">Inspiration</a>
+	                </li>
+	                <li>
+	                    <a href="#contact">Kontakt</a>
+	                </li>
 				</ul>
 			</nav>
 		</div>
-	</header>
-	
-	<div class="container-fluid" id="container-main">
-		<div class="page-header">
-		</div>
-	
-	</div>
-	
+	</nav>
+
+
+	<header>
+        <div class="header-content">
+            <div class="row">
+                <div class="col-lg-4 text-right">
+                </div>
+                <div class="col-lg-8 text-right">
+                    <h1>SKAPA EN EGEN PRODUKTVIDEO PÅ NÅGRA MINUTER!</h1>
+                    <a href="#" class="btn btn-primary btn-xl page-scroll">Börja skapa film!</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <section id="step">
+	</section>
+
+
+
+    <section id="about">
+	</section>
+
+
+
+	<section id="inspiration">
+	</section>
+
+
+
+	<section id="contact">
+	</section>
+</body>
+
+
+
+
+
 	<footer class="footer">
 		<div class="footer-container">
 			<p class="text-muted">Copyright &copy; Dragon Beast Team {% now "Y" %}</p>	
