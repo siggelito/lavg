@@ -52,8 +52,8 @@ def videoEdit(request, pk):
 
     if request.method == 'POST':
         form = PhotoForm(request.POST, request.FILES)
-        import pdb; pdb.set_trace()
-        print(len(form.files('photoFile')))
+        #import pdb; pdb.set_trace()
+        #print(len(form.files('photoFile')))
         if form.is_valid():
             photo = form.save(commit=False)
             photo.video = video
