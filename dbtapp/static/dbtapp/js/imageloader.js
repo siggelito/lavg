@@ -99,6 +99,8 @@ $(document).ready(function(){
 				$(imageSet[offset + i].layers).hide();
                 
                 oneLoadedFile(imageSet[offset + i], offset + i);
+
+                
             };
             doneLoadingFiles(imageSet);
         });       
