@@ -2,24 +2,21 @@ function showImages(imageObject, index) {
 	var nrOfPics = $('#images li').length;
 	var imageUl = document.getElementById('images');
 	var image = imageObject.image;
-	image.width = 200;
-	image.height = 200; //140
-	
-	/*
-	var size = cropImage(image);
+	var images = $('#images li img');
 
-	// fungerar tydligt inte, värdena fastnar inte
-	image.left = size.paddingLeft;
-	image.top = size.paddingTop;
-	image.width = size.width;
-	image.height = size.height;
-	*/
-	
+	for (var i = 0; i < images.length; i++) {
+		
+		var size = getNewSize(images[i]);
+		images[i].width = size.width;
+		images[i].height = size.height;
+		images[i].setAttribute("style", "margin-top:" + size.paddingTop.toString() + "px");
+		images[i].setAttribute("style", "margin-left:" + size.paddingLeft.toString() + "px");
+	}
 	if(index >= nrOfPics) {
-		var element = document.createElement('li');
-		element.appendChild(image);
-		var addFileDiv = document.getElementById('addFileWrapper');
-		imageUl.insertBefore(element,addFileDiv);
+		//var element = document.createElement('li');
+		//element.appendChild(image);
+		//var addFileDiv = document.getElementById('addFileWrapper');
+		//imageUl.insertBefore(element,addFileDiv);
 		
 		image.addEventListener('click', function () {
 			openImageSetting(imageObject, index);
@@ -28,7 +25,7 @@ function showImages(imageObject, index) {
 	}
 }
 
-function cropImage (image) {
+function getNewSize (image) {
     var imageRatioW = ( image.width / image.height );
     var imageRatioH = ( image.height / image.width );
 

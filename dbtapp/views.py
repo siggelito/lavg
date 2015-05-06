@@ -62,7 +62,7 @@ def videoEdit(request, pk):
             photos = Photo.objects.filter(video = video)
             return render(
                 request,
-                'dbtapp/list.html',
+                'dbtapp/preview.html',
                 {'images': photos, 'video': video, 'form': PhotoForm()},
         )
     else:
@@ -75,7 +75,7 @@ def videoEdit(request, pk):
     # Render list page with the documents and the form
     return render(
         request,
-        'dbtapp/list.html',
+        'dbtapp/preview.html',
         {'images': photos, 'video': video, 'form': form},
     )
 

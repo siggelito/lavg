@@ -11,6 +11,71 @@ $(document).ready(function(){
     var sourceLogo;
     var offset = 0;
 
+    function initializeVideo () {
+        var images = $('#images li img');
+
+        for(var i = 0; i < images.length; i++) { 
+            var layers = [
+                document.createElement('img'),
+                document.createElement('canvas')
+            ];
+
+            layers[0].className = "layer";
+            layers[0].style.zIndex = 1;
+
+            layers[1].className = "layer";
+            layers[1].style.zIndex = 2;
+
+            var settings = {
+                transition: function(current, next){
+                    simpleTransition(current, next);
+                },
+                duration: 2000 //(Math.floor((Math.random() * 4) + 2) * 1000)
+            };
+
+            var layerContent = {
+                layers: layers,
+                settings: settings
+            }; 
+
+            imageSet[i] = layerContent;
+
+            var element = document.createElement("li");
+            element.appendChild(layers[0]);
+            element.appendChild(layers[1]);
+            slideshow.appendChild(element);
+            
+
+            var img = document.createElement("img");
+            layers[0].src = images[i].src
+            img.src = images[i].src;
+            imageSet[i].image = img;
+
+            var size = calcSize(slideshow, images[i]);
+
+            layers[0].width = size.width;
+            layers[0].height = size.height;
+            $(layers[0]).css( "margin-top", size.paddingTop, "margin-left", size.paddingLeft );
+            //layers[0].style.top = size.paddingTop + "px";
+            //layers[0].style.left = size.paddingLeft;
+
+            layers[1].width = slideshow.scrollWidth;
+            layers[1].height = slideshow.scrollHeight;
+
+            var size = calcSize(slideshow, images[i]);
+
+            //var context = layers[0].getContext('2d');
+            //context.drawImage(imageSet[i].image, size.paddingLeft, size.paddingTop, size.width, size.height); //, paddingLeft, paddingTop, width, height  
+            
+            $(imageSet[i].layers).hide();
+            
+            oneLoadedFile(imageSet[i], i);
+        }
+        doneLoadingFiles(imageSet);
+    }
+
+    initializeVideo();
+
     function handleLogoFile (e) {
         if (e.target.files.length > 0) {
 
@@ -109,19 +174,19 @@ $(document).ready(function(){
 }) 
 
 function calcSize( canvas, image ) {
-    var imageRatioW = ( image.width / image.height );
-    var imageRatioH = ( image.height / image.width );
+    var imageRatioW = ( image.naturalWidth / image.naturalHeight );
+    var imageRatioH = ( image.naturalHeight / image.naturalWidth );
 
-    var widthScalingFactor = ( imageRatioW * canvas.scrollHeight ) / image.width;
-    var heightScalingFactor = ( imageRatioH * canvas.scrollWidth ) / image.height;
+    var widthScalingFactor = ( imageRatioW * canvas.scrollHeight ) / image.naturalWidth;
+    var heightScalingFactor = ( imageRatioH * canvas.scrollWidth ) / image.naturalHeight;
     
 
     if (widthScalingFactor > heightScalingFactor) {
-        var width = image.width * widthScalingFactor;
-        var height = image.height * widthScalingFactor;
+        var width = image.naturalWidth * widthScalingFactor;
+        var height = image.naturalHeight * widthScalingFactor;
     } else{
-        var width = image.width * heightScalingFactor;
-        var height = image.height * heightScalingFactor;
+        var width = image.naturalWidth * heightScalingFactor;
+        var height = image.naturalHeight * heightScalingFactor;
     };
 
     var paddingLeft = ( (canvas.scrollWidth - width) / 2 );

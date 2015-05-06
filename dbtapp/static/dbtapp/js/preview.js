@@ -1,5 +1,6 @@
 
 function initPreview (imageSet) {	
+	
     $("#preview-button").delay(1000).on("click", function() {
 		imageSet = sortSlideShow(imageSet);
     	runSlideShow(imageSet, 0);
