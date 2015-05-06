@@ -76,3 +76,7 @@ def videoEdit(request, pk):
         'dbtapp/list.html',
         {'images': photos, 'video': video, 'form': form},
     )
+
+def riktigIndex(request):
+    return render(request, 'dbtapp/riktigIndex.html')
+
