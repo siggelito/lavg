@@ -1,0 +1,19 @@
+{% extends "dbtapp/base.html" %}
+{% load staticfiles %}
+	
+{% block head %}
+	LAVG
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'dbtapp:videoNew' %}" method="post" enctype="multipart/form-data">
+	    {% csrf_token %}
+	    <p>{{ form.video_name.label_tag }}</p>
+	    <p>{{ form.video_name }}</p>
+
+	    <p>{{ form.company_name.label_tag }}</p>
+	    <p>{{ form.company_name }}</p>
+	    <input type="submit" value="Submit" />
+	</form>
+	<a href="{% url 'dbtapp:videoList' %}" class="btn btn-default">back</a>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "dbtapp/base.html" %}
+{% load staticfiles %}
+	
+{% block head %}
+	LAVG
+	<a id="preview-button" href="#preview" class="btn btn-warning">Preview</a>
+{% endblock %}
+
+{% block content %}
+	<div id="logo-box">
+		<p><b>Choose a logo:</b></p>
+		<input id="input-logo" type="file" />
+	</div>
+	<ul id="images">
+
+		{% if images %}
+			{% for image in images %}
+				<li>
+					<div class="image-wrapper">
+						<img src="{{ image.photoFile.url }}">
+					</div>
+				</li>
+			{% endfor %}
+		{% endif %}
+		<div id="addFileWrapper">
+			<img id="addFile" src="{% static 'dbtapp/img/plus-sign.jpg'%}" alt="Lägg till bild"/>
+			<form action="{% url 'dbtapp:videoEdit' video.pk %}" method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ form.photoFile }}
+			</form>
+		</div>
+	</ul>
+
+	<div id="preview" class="modalDialog">
+		<ul id="slideshow">
+			<a href="#" title="Close" class="close">X</a>
+		</ul>
+	</div>
+	<a href="{% url 'dbtapp:videoList' %}" class="btn btn-default">back</a>
+
+{% endblock %}

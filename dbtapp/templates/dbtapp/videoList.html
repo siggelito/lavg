@@ -1,0 +1,29 @@
+{% extends "dbtapp/base.html" %}
+{% load staticfiles %}
+	
+{% block head %}
+	LAVG
+{% endblock %}
+
+{% block content %}
+    {% if video_list %}
+        <div class="list-group">
+        {% for video in video_list %}
+            
+            <div class="col-md-10">
+                <a class="list-group-item" href="{% url 'dbtapp:videoEdit' video.pk %}">{{ video.video_name }} - {{ video.company_name }} </a>
+            </div>
+            <div class="col-md-2">
+                <a href="{% url 'dbtapp:videoRemove' video.pk %}" class="btn btn-default">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remove
+                </a>
+            </div>
+            
+
+        {% endfor %}
+        </div>
+    {% else %}
+        <p>No videos are available.</p>
+    {% endif %}
+    <div class="col-lg-11"><a href="{% url 'dbtapp:videoNew' %}" class="btn btn-default">New Video</a></div>
+{% endblock %}
