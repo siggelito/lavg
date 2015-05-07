@@ -2,7 +2,7 @@ function showImages(imageObject, index) {
 	var nrOfPics = $('#images li').length;
 	var imageUl = document.getElementById('images');
 	var image = imageObject.image;
-	var images = $('#images li img');
+	/*var images = $('#images li img');
 
 	for (var i = 0; i < images.length; i++) {
 		
@@ -11,7 +11,7 @@ function showImages(imageObject, index) {
 		images[i].height = size.height;
 		images[i].setAttribute("style", "margin-top:" + size.paddingTop.toString() + "px");
 		images[i].setAttribute("style", "margin-left:" + size.paddingLeft.toString() + "px");
-	}
+	}*/
 	if(index >= nrOfPics) {
 		//var element = document.createElement('li');
 		//element.appendChild(image);
@@ -26,19 +26,19 @@ function showImages(imageObject, index) {
 }
 
 function getNewSize (image) {
-    var imageRatioW = ( image.width / image.height );
-    var imageRatioH = ( image.height / image.width );
+    var imageRatioW = ( image.naturalWidth / image.naturalHeight );
+    var imageRatioH = ( image.naturalHeight / image.naturalWidth );
 
-    var widthScalingFactor = ( imageRatioW * 200 ) / image.width;
-    var heightScalingFactor = ( imageRatioH * 200 ) / image.height;
+    var widthScalingFactor = ( imageRatioW * 200 ) / image.naturalWidth;
+    var heightScalingFactor = ( imageRatioH * 200 ) / image.naturalHeight;
     
 
     if (widthScalingFactor > heightScalingFactor) {
-        var width = image.width * widthScalingFactor;
-        var height = image.height * widthScalingFactor;
+        var width = image.naturalWidth * widthScalingFactor;
+        var height = image.naturalHeight * widthScalingFactor;
     } else{
-        var width = image.width * heightScalingFactor;
-        var height = image.height * heightScalingFactor;
+        var width = image.naturalWidth * heightScalingFactor;
+        var height = image.naturalHeight * heightScalingFactor;
     };
 
     var paddingLeft = ( (200 - width) / 2 );

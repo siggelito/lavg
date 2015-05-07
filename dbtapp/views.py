@@ -5,9 +5,6 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.core.urlresolvers import reverse
-from PIL import Image
-import io
-
 
 from .models import Photo, Video
 from .forms import PhotoForm, VideoForm
@@ -51,19 +48,22 @@ def videoEdit(request, pk):
     video = Video.objects.get(pk=pk)
 
     if request.method == 'POST':
-        form = PhotoForm(request.POST, request.FILES)
+        #form = PhotoForm(request.POST, request.FILES)
         #import pdb; pdb.set_trace()
         #print(len(form.files('photoFile')))
-        if form.is_valid():
-            photo = form.save(commit=False)
-            photo.video = video
-            photo.save()
+        import pdb; pdb.set_trace()
+        for afile in request.FILES.getlist('photoFile'):
+            Photo(video=video, photoFile=afile).save()
+        # if form.is_valid():
+        #     photo = form.save(commit=False)
+        #     photo.video = video
+        #     photo.save()
 
-            photos = Photo.objects.filter(video = video)
-            return render(
-                request,
-                'dbtapp/preview.html',
-                {'images': photos, 'video': video, 'form': PhotoForm()},
+        photos = Photo.objects.filter(video = video)
+        return render(
+            request,
+            'dbtapp/preview.html',
+            {'images': photos, 'video': video, 'form': PhotoForm()},
         )
     else:
         form = PhotoForm()

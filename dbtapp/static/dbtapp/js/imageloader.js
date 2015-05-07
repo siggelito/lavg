@@ -5,8 +5,8 @@ $(document).ready(function(){
     var slideshow = document.getElementById('slideshow');
     var input = document.getElementById('input');
     var inputLogo = document.getElementById('input-logo');
-    input.addEventListener('change', handleFiles);
-    inputLogo.addEventListener('change', handleLogoFile);
+    //input.addEventListener('change', handleFiles);
+    //inputLogo.addEventListener('change', handleLogoFile);
     var sources = [];
     var sourceLogo;
     var offset = 0;
@@ -47,8 +47,8 @@ $(document).ready(function(){
             
 
             var img = document.createElement("img");
-            layers[0].src = images[i].src
             img.src = images[i].src;
+            layers[0].src = images[i].src
             imageSet[i].image = img;
 
             var size = calcSize(slideshow, images[i]);
@@ -76,6 +76,19 @@ $(document).ready(function(){
 
     initializeVideo();
 
+    var images = $('#images li img');
+
+
+    for (var i = 0; i < images.length; i++) {
+        var size = getNewSize(images[i]);
+        images[i].width = size.width;
+        images[i].height = size.height;
+        images[i].setAttribute("style", "margin-top:" + size.paddingTop.toString() + "px");
+        images[i].setAttribute("style", "margin-left:" + size.paddingLeft.toString() + "px");
+        
+    }
+
+    /*
     function handleLogoFile (e) {
         if (e.target.files.length > 0) {
 
@@ -170,6 +183,7 @@ $(document).ready(function(){
             doneLoadingFiles(imageSet);
         });       
     }
+    */
     
 }) 
 
