@@ -8,7 +8,7 @@ class PhotoForm(forms.ModelForm):
     	model = Photo
     	fields = ('photoFile',)
     	widgets = {
-            'photoFile': forms.FileInput(attrs={'id': 'input', 'multiple': 'true', 'onchange': 'this.form.submit();'}),
+            'photoFile': forms.FileInput(attrs={'id': 'input', 'onchange': 'this.form.submit();'}),
         }
 
 class VideoForm(forms.ModelForm):

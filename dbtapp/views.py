@@ -48,16 +48,16 @@ def videoEdit(request, pk):
     video = Video.objects.get(pk=pk)
 
     if request.method == 'POST':
-        #form = PhotoForm(request.POST, request.FILES)
+        form = PhotoForm(request.POST, request.FILES)
         #import pdb; pdb.set_trace()
         #print(len(form.files('photoFile')))
-        import pdb; pdb.set_trace()
-        for afile in request.FILES.getlist('photoFile'):
-            Photo(video=video, photoFile=afile).save()
-        # if form.is_valid():
-        #     photo = form.save(commit=False)
-        #     photo.video = video
-        #     photo.save()
+        # import pdb; pdb.set_trace()
+        # for afile in request.FILES.getlist('photoFile'):
+        #     Photo(video=video, photoFile=afile).save()
+        if form.is_valid():
+            photo = form.save(commit=False)
+            photo.video = video
+            photo.save()
 
         photos = Photo.objects.filter(video = video)
         return render(
