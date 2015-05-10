@@ -135,6 +135,24 @@ $(document).ready(function sortImages() {
 		//Spara index där den släpps
 		stop: function(event, ui) {
 			imagePositions.newPos.unshift(ui.item.index());
+			//alert("stop: " + ui.item.index() + " oldPos: " + imagePositions.oldPos[0] + " rel: " + $(ui.item).attr('rel'));
+			
+            $.ajax({
+                 type:"POST",
+                 url:postURL,
+                 dataType: "json",
+                 csrfmiddlewaretoken: '{{ csrf_token }}',
+                 data: {
+                        'oldPos': imagePositions.oldPos[0], // from form
+                        'newPos': ui.item.index(), // from form
+                        'imgId': $(ui.item).attr('rel')
+                        },
+                 success: function(){
+                     //$('#message').html("<h2>Contact Form Submitted!</h2>") 
+                    }
+            });
+
+
 		}
 		
 	});

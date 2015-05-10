@@ -1,9 +1,12 @@
 from django import forms
 from models import Photo, Video
-
+from django.forms.models import modelformset_factory
 
 class PhotoForm(forms.ModelForm):
     """Image upload form."""
+    oldPos = forms.IntegerField()
+    newPos = forms.IntegerField()
+    imgId = forms.IntegerField()
     class Meta:
     	model = Photo
     	fields = ('photoFile',)
@@ -12,7 +15,12 @@ class PhotoForm(forms.ModelForm):
         }
 
 class VideoForm(forms.ModelForm):
-    """Image upload form."""
+    """Video Create form."""
     class Meta:
     	model = Video
     	fields = ('company_name','video_name')
+
+class PosForm(forms.ModelForm):
+    """Video Create form."""
+    oldPos = forms.IntegerField()
+    newPos = forms.IntegerField()

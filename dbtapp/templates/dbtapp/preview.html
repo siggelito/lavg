@@ -1,7 +1,11 @@
 {% extends "dbtapp/base.html" %}
 {% load staticfiles %}
-	
+
 {% block head %}
+	<script>
+		var postURL = "{% url 'dbtapp:videoEdit' video.pk %}";
+	</script>
+	<script type="text/javascript" src="{% static 'dbtapp/js/WearProtection.js' %}"></script>
 	LAVG
 	<a id="preview-button" href="#preview" class="btn btn-warning">Preview</a>
 {% endblock %}
@@ -15,9 +19,9 @@
 
 		{% if images %}
 			{% for image in images %}
-				<li>
+				<li rel="{{ image.pk }}">
 					<div class="image-wrapper">
-						<img src="{{ image.photoFile.url }}">
+						<img src="{{ image.photoFile.url }}" rel="{{ image.order }}">
 					</div>
 				</li>
 			{% endfor %}
