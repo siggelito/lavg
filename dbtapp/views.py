@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from dbtapp.phantomjs import PhantomjsTest
 from django.shortcuts import render_to_response
 from django.shortcuts import redirect
 from django.template import RequestContext
@@ -9,9 +8,11 @@ from django.core.urlresolvers import reverse
 from django import forms
 from django.forms.formsets import formset_factory
 import json
+from subprocess import Popen, PIPE, STDOUT
 
 from .models import Photo, Video
 from .forms import PhotoForm, VideoForm, PosForm
+from django.core.files.base import File
 
 def index(request):
     return render(request, 'dbtapp/Riktigindex.html')
@@ -115,3 +116,28 @@ def videoEdit(request, pk):
             {'images': orderedPhotos, 'video': video, 'form': form},
         )
 
+def phantomjs(request):
+    command = "phantomjs"
+    phantomjs_script = "phantomTest.js"
+    url = ('https://www.google.se')
+    file_name = 'google.jpg'
+    process = Popen([command, phantomjs_script, url, file_name], stdout=PIPE, stderr=STDOUT)
+    
+    # Open the file created by PhantomJS
+    #return_file = File(open(file_name, 'r'))
+    #response = HttpResponse(return_file, mimetype='application/force-download')
+    #response['Content-Disposition'] = 'attachment; filename=google.jpg'
+    # Return the file to the browser and force it as download item
+    #return response
+    
+    #try:
+    #    output, errors = process.communicate(timeout=30)
+    #except Exception as e:
+    #    print("\t\tException: %s" % e)
+    #    process.kill()
+    
+    #phantom_output = ''
+    #for out_line in output.splitlines():
+    #    phantom_output += out_line.decode('utf-8')
+       
+    return HttpResponse('')
