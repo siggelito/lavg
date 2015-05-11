@@ -72,11 +72,12 @@ def videoEdit(request, pk):
             return render(
                 request,
                 'dbtapp/preview.html',
-                {'images': photos, 'video': video, 'form': PhotoForm()},
+                {'images': orderedPhotos, 'video': video, 'form': PhotoForm()},
             )
         else:
             if request.is_ajax():
                 #import pdb; pdb.set_trace()
+                #import os; print(os.path.join(os.path.dirname( __file__ ))
                 print("AJAX!!!")
                 print("Old position: " + request.POST['oldPos'] + " New position: " + request.POST['newPos'] + " pk: " + request.POST['imgId'])
                 oldPos = int(request.POST['oldPos'])
