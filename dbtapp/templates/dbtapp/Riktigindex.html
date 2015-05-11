@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head> 
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>DBT</title>
+
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/css/bootstrap.min.css' %}" />
+	
+	<!-- eget CSS -->
+	<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/stylesheet1.css' %}" />
+
+	<script type="text/javascript" src="{% static 'dbtapp/js/jquery-1.11.2.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'dbtapp/js/jquery-ui.js' %}"></script>
+	<script type="text/javascript" src="{% static 'dbtapp/js/bootstrap.min.js' %}"></script>
+
+</head>
+
+<body id="page-top">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="{% url 'dbtapp:index' %}" class="navbar-brand">Skapa din video!</a>
+			</div>
+			<nav class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">		
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="#page-top">Hem</a>
+					</li> 
+					<li>
+						<a href="#step">Steg-för-steg</a>
+					</li>
+					<li>
+						<a href="#about">Om</a>
+					</li>
+					<li>
+						<a href="#inspiration">Inspiration</a>
+					</li>
+					<li>
+						<a href="#contact">Kontakt</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</nav>
+
+	<header>
+
+		<div class="big-header">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-4 text-right">
+					<h1>SKAPA EN EGEN PRODUKTVIDEO PÅ NÅGRA MINUTER!</h1>
+					<a href="{% url 'dbtapp:videoList' %}" class="btn btn-primary btn-xl page-scroll">Börja skapa film!</a>
+				</div>
+			</div>
+		</div>
+	</header>
+
+
+	<section id="step">
+		<div>
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2 class="section-heading">Några enkla steg</h2>
+				</div>
+			</div>
+		</div>
+
+		<div>
+			<div class="row">
+
+				
+
+				<div class="col-lg-2 col-lg-offset-2 text-center">
+					<div>
+						<h3> Döp projektet</h3>
+						<p>Lite försklaring om steget här....</p>
+					</div>
+				</div>
+
+				<div class="col-lg-1 text-center">
+					<div class="icon">
+						<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+					</div>
+				</div>
+
+				<div class="col-lg-2 text-center">
+					<h3> Ladda upp bilder</h3>
+					<p>Lite försklaring om steget här....</p>
+				</div>
+
+				<div class="col-lg-1 text-center">
+					<div class="icon">
+						<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+					</div>
+				</div>
+
+				<div class="col-lg-2 text-center">
+					<h3> Redigera och använd</h3>
+					<p>Lite försklaring om steget här....</p>
+				</div>
+			</div>
+		</section>
+
+
+
+		<section class="bgOrange" id="about">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2>Om detta verktyg!</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2 text-center">
+					<p>Inom datavetenskap – speciellt programmering – avser text en datamängd som återges med skrivbara tecken och några få styrtecken som radbyte och tabulator. Motsatsen är ofta binära data, som lagras i en form som inte lika enkelt kan presenteras på en skärm eller ett skrivarpapper.</p>
+				</div>
+			</div>
+		</section>
+
+
+
+		<section id="inspiration">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2>Inspireras av andra</h2>
+				</div>
+			</div>
+		</section>
+
+
+
+		<section class="bgDark" id="contact">
+		</section>
+	</body>
+	</html>
