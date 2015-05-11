@@ -6,7 +6,7 @@ $(document).ready(function(){
     var input = document.getElementById('input');
     var inputLogo = document.getElementById('input-logo');
     //input.addEventListener('change', handleFiles);
-    //inputLogo.addEventListener('change', handleLogoFile);
+    inputLogo.addEventListener('change', postLogoForm);
     var sources = [];
     var sourceLogo;
     var offset = 0;

@@ -9,6 +9,7 @@ urlpatterns = [
      url(r'^video/new/$', views.newVideo, name='videoNew'),
      url(r'^video/(?P<pk>\d+)/$', views.videoEdit, name='videoEdit'),
      url(r'^video/remove/(?P<pk>\d+)/$', views.videoRemove, name='videoRemove'),
+     url(r'^video/(?P<pk>\d+)/logoPost$', views.logoPost, name='logoPost'),
      #url(r'^riktigIndex/$', views.riktigIndex, name='riktigIndex')
 ]
 if settings.DEBUG:
