@@ -15,6 +15,7 @@ body {
 
 nav.navbar.navbar-default{
   margin-bottom: 0px;
+  border:none !important;
 }
 
 .navbar-fixed-top {
@@ -25,14 +26,16 @@ nav.navbar.navbar-default{
 
 .navbar-default .navbar-nav>li>a {
   color: #FF9900;
-  background-color: transparent;
 }
 .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
   color: #ffffff;
   background-color: transparent;
 }
 
-
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{
+  color: #fff;
+  background-color: transparent;
+}
 
 header {
   position: relative;
@@ -97,11 +100,12 @@ section {
 
 .bgDark{
   background-color: #2B2B2B;
+  color: #fff;
 }
 
 
 #about{
-  background-color: #FF9900;
+
 }
 
 #inspiration{
@@ -116,6 +120,54 @@ section {
   font-size: 50px;
   color: #FF9900;
   margin-top: 21px;
+}
+
+
+glyphicon glyphicon-triangle-bottom
+
+.triangle-footer{
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 150px 320px 150px 0;
+  border-color: transparent rgba(255,255,255,1) transparent transparent;
+}
+
+#triangle-div{
+  position: relative;
+}
+
+.triangle-header{
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent transparent transparent rgba(255,255,255,0.4);
+}
+
+#triangle-one{
+ /* width: 100%;
+  height: 100%;*/
+  border-width: 250px 0 250px 400px;
+  position: absolute;
+  top: 0;
+  /*left: 4px;*/
+}
+
+#triangle-two{
+ /* width: 100%;
+  height: 100%;*/
+  border-width: 200px 0 200px 320px;
+  position: absolute;
+  top: 0;
+  /*left: 4px;*/
+  z-index: 10;
+  margin-top: 200px;
+}
+
+#triangle-three{
+  position: absolute;
+  top: -100px;
+ /* right: 20px; */
 }
 
 
