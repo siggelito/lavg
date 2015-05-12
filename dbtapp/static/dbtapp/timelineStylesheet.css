@@ -1,4 +1,4 @@
-  /*Stilmall för tidslinjen*/
+﻿  /*Stilmall för tidslinjen*/
   .round-button {
     width:25px;
   }
@@ -6,11 +6,11 @@
   /*"grund" klassen för cirklarna*/
   .round-button-circle{
     position: absolute; 
-    width: 100px;
+    width: 60px;
     height:0;
-    padding-bottom: 100px;
-    border-radius: 75px;        
-    background: #E8E8E8;    
+    padding-bottom: 60px;
+    border-radius: 45px;        
+    background: #cfdcec;    
     overflow: hidden;
     transition: background 0.5s;
     -webkit-transition: background 0.5s; /* Safari 3.1 to 6.0 */  
@@ -37,28 +37,28 @@
 
   #round-button-circle1 { 
     top: 40px;
-    left: 100px;
+    left: 20px;
   }
 
   #round-button-circle2 {
     top: 40px;
-    left: 310px;
+    left: 150px;
   }
 
   #round-button-circle3 {     
     top: 40px;
-    left: 400px;
+    left: 200px;
     /*z-index: -1;*/
   }
 
   #round-button-circle4 { 
     top: 40px;
-    left: 490px;
+    left: 250px;
   }
 
   #round-button-circle5 { 
     top: 40px;
-    left: 700px;
+    left: 380px;
   }
 
   /*Hover för cirklarna, har flera olika för att i framtiden kunna ändra dom var för sig*/
@@ -79,9 +79,8 @@
     background: #FF9900;
   }
 
-  /*-------------lägga till visited med fonten i den färg som cirkeln är-------------*/
+  /*--------------------------*/
  
-
 
   /* används för att indikera vilken sida som användaren är på.*/
   .currentPageOrange1 {
@@ -104,35 +103,35 @@
   .round-button a {
     display:block;
     float:left;
-    width:100px;
-    padding-top:50px;
-    padding-bottom:50px;
+    width:60px;
+    padding-top:30px;
+    padding-bottom:30px;
     line-height:1em;
     margin-top:-0.5em;
     
     text-align:center;
-    color: #fff;
-    font-family: 'Open sans', sans-serif;
-    font-weight: 300;
-    font-size: 30px;
+    color:#e2eaf3;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
     text-decoration:none;
   }
 
 /*Linjen mellan cirklarna*/
   .hline {
-    width: 110px;
+    width: 95px;
     height:8px;
-    background: #E8E8E8; 
+    background: #cfdcec; 
   }
 
   #hlineLeft { 
     position: absolute;  
-    top: 90px;
-    left: 200px;
+    top: 70px;
+    left: 58px;
   }
 
   #hlineRight {
    position: absolute; 
-   top: 90px;
-   left: 590px;
+   top: 70px;
+   left: 308px;
  }
