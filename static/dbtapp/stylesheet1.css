@@ -1,33 +1,5 @@
-/*
-
-
-stylesheet för riktigIndex.html
-
-
-*/
-
-h1{
-  padding-top: 40px;
-  font-family: 'Roboto Condensed', sans-serif;
-  font-weight: 700;
-}
-
 h2{
   margin-bottom: 30px;
-  font-family: 'Roboto Condensed', sans-serif;
-  font-weight: 400;
-  text-transform: uppercase;
-}
-
-h3{
-  font-family: 'Roboto Condensed', sans-serif;
-  font-weight: 300;
-}
-
-h5{
-  font-family: 'Roboto Condensed', sans-serif;
-  font-weight: 300;
-  font-size: 19px;
 }
 
 html,
@@ -38,14 +10,11 @@ body {
 }
 
 body {
-    font-family: 'Open sans', Arial, sans-serif;
-    font-weight: 300;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
 nav.navbar.navbar-default{
   margin-bottom: 0px;
-  border:none !important;
-  font-size: 16px;
 }
 
 .navbar-fixed-top {
@@ -56,16 +25,14 @@ nav.navbar.navbar-default{
 
 .navbar-default .navbar-nav>li>a {
   color: #FF9900;
+  background-color: transparent;
 }
 .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
   color: #ffffff;
   background-color: transparent;
 }
 
-.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{
-  color: #fff;
-  background-color: transparent;
-}
+
 
 header {
   position: relative;
@@ -104,11 +71,6 @@ header .big-header h1{
 
 .btn{
   border-radius: 5px;
-  line-height: 1.7;
-  padding: 14px 20px 14px 20px;
-  font-family: 'Roboto Condensed', sans-serif;
-  font-weight: 300;
-  font-size: 19px;
 }
 
 .btn-primary {
@@ -135,12 +97,11 @@ section {
 
 .bgDark{
   background-color: #2B2B2B;
-  color: #fff;
 }
 
 
 #about{
-
+  background-color: #FF9900;
 }
 
 #inspiration{
@@ -153,42 +114,8 @@ section {
 
 .icon{
   font-size: 50px;
-  color: #EC6568;
+  color: #FF9900;
   margin-top: 21px;
-}
-
-.triangle-footer{
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 150px 320px 150px 0;
-  border-color: transparent rgba(255,255,255,1) transparent transparent;
-}
-
-#triangle-div{
-  position: relative;
-  padding-left: 0px;
-}
-
-.triangle-header{
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-color: transparent transparent transparent rgba(255,255,255,0.4);
-}
-
-#triangle-one{
-  border-width: 250px 0 250px 400px;
-  position: absolute;
-  top: 0;
-}
-
-#triangle-two{
-  border-width: 200px 0 200px 320px;
-  position: absolute;
-  top: 0;
-  z-index: 10;
-  margin-top: 200px;
 }
 
 

@@ -2,46 +2,43 @@ function showImages(imageObject, index) {
 	var nrOfPics = $('#images li').length;
 	var imageUl = document.getElementById('images');
 	var image = imageObject.image;
-	image.width = 200;
-	image.height = 200; //140
-	
-	/*
-	var size = cropImage(image);
+	/*var images = $('#images li img');
 
-	// fungerar tydligt inte, värdena fastnar inte
-	image.left = size.paddingLeft;
-	image.top = size.paddingTop;
-	image.width = size.width;
-	image.height = size.height;
-	*/
-	
+	for (var i = 0; i < images.length; i++) {
+		
+		var size = getNewSize(images[i]);
+		images[i].width = size.width;
+		images[i].height = size.height;
+		images[i].setAttribute("style", "margin-top:" + size.paddingTop.toString() + "px");
+		images[i].setAttribute("style", "margin-left:" + size.paddingLeft.toString() + "px");
+	}*/
 	if(index >= nrOfPics) {
-		var element = document.createElement('li');
-		element.appendChild(image);
-		var addFileDiv = document.getElementById('addFileWrapper');
-		imageUl.insertBefore(element,addFileDiv);
-		/*
+		//var element = document.createElement('li');
+		//element.appendChild(image);
+		//var addFileDiv = document.getElementById('addFileWrapper');
+		//imageUl.insertBefore(element,addFileDiv);
+		
 		image.addEventListener('click', function () {
 			openImageSetting(imageObject, index);
 		});
-		*/
+		
 	}
 }
 
-function cropImage (image) {
-    var imageRatioW = ( image.width / image.height );
-    var imageRatioH = ( image.height / image.width );
+function getNewSize (image) {
+    var imageRatioW = ( image.naturalWidth / image.naturalHeight );
+    var imageRatioH = ( image.naturalHeight / image.naturalWidth );
 
-    var widthScalingFactor = ( imageRatioW * 200 ) / image.width;
-    var heightScalingFactor = ( imageRatioH * 200 ) / image.height;
+    var widthScalingFactor = ( imageRatioW * 200 ) / image.naturalWidth;
+    var heightScalingFactor = ( imageRatioH * 200 ) / image.naturalHeight;
     
 
     if (widthScalingFactor > heightScalingFactor) {
-        var width = image.width * widthScalingFactor;
-        var height = image.height * widthScalingFactor;
+        var width = image.naturalWidth * widthScalingFactor;
+        var height = image.naturalHeight * widthScalingFactor;
     } else{
-        var width = image.width * heightScalingFactor;
-        var height = image.height * heightScalingFactor;
+        var width = image.naturalWidth * heightScalingFactor;
+        var height = image.naturalHeight * heightScalingFactor;
     };
 
     var paddingLeft = ( (200 - width) / 2 );
@@ -53,7 +50,7 @@ function cropImage (image) {
 function openImageSetting(imageObject, index) {
 
 	var canvasList = document.getElementById("images").childNodes;
-	var element = canvasList[index]
+	var element = canvasList[index + 1]
 	alert("Vald index: " + index + " Number of elements: " + canvasList.length);
 
 	var imageRectangle = element.getBoundingClientRect();
@@ -69,7 +66,7 @@ function openImageSetting(imageObject, index) {
 	newObject.style.top = top + "px";
 	newObject.style.margin = "0px";
 
-	document.body.appendChild(newObject);
+	canvasList.appendChild(newObject);
 
 	element.style.opacity = "0";
 
@@ -138,6 +135,24 @@ $(document).ready(function sortImages() {
 		//Spara index där den släpps
 		stop: function(event, ui) {
 			imagePositions.newPos.unshift(ui.item.index());
+			//alert("stop: " + ui.item.index() + " oldPos: " + imagePositions.oldPos[0] + " rel: " + $(ui.item).attr('rel'));
+			
+            $.ajax({
+                 type:"POST",
+                 url:postURL,
+                 dataType: "json",
+                 csrfmiddlewaretoken: '{{ csrf_token }}',
+                 data: {
+                        'oldPos': imagePositions.oldPos[0], // from form
+                        'newPos': ui.item.index(), // from form
+                        'imgId': $(ui.item).attr('rel')
+                        },
+                 success: function(){
+                     //$('#message').html("<h2>Contact Form Submitted!</h2>") 
+                    }
+            });
+
+
 		}
 		
 	});

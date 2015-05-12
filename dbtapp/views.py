@@ -8,9 +8,12 @@ from django.core.urlresolvers import reverse
 from django import forms
 from django.forms.formsets import formset_factory
 import json
+from subprocess import Popen, PIPE, STDOUT
 
 from .models import Photo, Video
-from .forms import PhotoForm, VideoForm, PosForm
+from .forms import PhotoForm, VideoForm, PosForm, LogoForm
+from django.core.files.base import File
+
 
 def index(request):
     return render(request, 'dbtapp/Riktigindex.html')
@@ -44,6 +47,7 @@ def videoRemove(request, pk):
     photos = Photo.objects.filter(video = video)
     for photo in photos:
         photo.delete()
+    video.logo.delete()
     video.delete()
     return redirect('dbtapp:videoList')
 
@@ -72,7 +76,7 @@ def videoEdit(request, pk):
             return render(
                 request,
                 'dbtapp/preview.html',
-                {'images': orderedPhotos, 'video': video, 'form': PhotoForm()},
+                {'images': orderedPhotos, 'video': video, 'form': PhotoForm(), 'logoForm': LogoForm(), 'logo': video.logo},
             )
         else:
             if request.is_ajax():
@@ -83,34 +87,106 @@ def videoEdit(request, pk):
                 oldPos = int(request.POST['oldPos'])
                 newPos = int(request.POST['newPos'])
                 key = request.POST['imgId']
-                if oldPos < newPos:
-                    #import pdb; pdb.set_trace()
-                    minVal = oldPos
-                    maxVal = newPos
+                #import pdb; pdb.set_trace()
+                if ((oldPos is not None) and (newPos is not None)):
+
                     orderedPhotos[oldPos].order = newPos
                     orderedPhotos[oldPos].save()
-                    xr = xrange(minVal+1,maxVal+1)
-                    for i in xr:
-                        orderedPhotos[i].order = i - 1
-                        orderedPhotos[i].save()
-                else:
-                    #import pdb; pdb.set_trace()
-                    minVal = newPos
-                    maxVal = oldPos
-                    orderedPhotos[oldPos].order = newPos
-                    orderedPhotos[oldPos].save()
-                    xr = xrange(minVal,maxVal)
-                    for i in xr:
-                        orderedPhotos[i].order = i + 1
-                        orderedPhotos[i].save()
-                return HttpResponse('')
+
+                    if oldPos < newPos:
+                        #import pdb; pdb.set_trace()
+                        minVal = oldPos
+                        maxVal = newPos
+                        xr = xrange(minVal+1,maxVal+1)
+                        for i in xr:
+                            orderedPhotos[i].order = i - 1
+                            orderedPhotos[i].save()
+                    else:
+                        #import pdb; pdb.set_trace()
+                        minVal = newPos
+                        maxVal = oldPos
+                        xr = xrange(minVal,maxVal)
+                        for i in xr:
+                            orderedPhotos[i].order = i + 1
+                            orderedPhotos[i].save()
+                    return HttpResponse('')
+
                 
     else:
         form = PhotoForm()
+        logoForm = LogoForm()
         # Render list page with the documents and the form
         return render(
             request,
             'dbtapp/preview.html',
-            {'images': orderedPhotos, 'video': video, 'form': form},
+            {'images': orderedPhotos, 'video': video, 'form': form, 'logoForm': logoForm, 'logo': video.logo},
         )
 
+def logoPost(request, pk):
+    if request.method == 'POST':
+        #import pdb; pdb.set_trace()
+        form = LogoForm(request.POST, request.FILES)
+        if form.is_valid():
+            video = Video.objects.get(pk=pk)
+            if video is not None:
+                model = form.save()
+                if video.logo is not None:
+                    video.logo.delete()
+                video.logo = model
+                video.save() 
+                print("logo insert sucsess!!!")
+                return HttpResponse('<h1>sucsess!!!</h1>')
+            print("video does not exist")
+        print("form not valid....")
+        return HttpResponse('<h1>Not Valid post...</h1>')
+    else:
+        print("loading page... (not good)")
+        return HttpResponse('<h1>loading...</h1>')
+
+
+def phantomjs(request):
+    command = 'phantomjs'
+    phantomjs_script = './dbtapp/static/dbtapp/js/phantomTest.js'
+    url = ('https://www.google.se')
+    fileName = './media/pictures/test.jpg'
+    process = Popen([command, phantomjs_script, url, fileName] + " | " + 'ffmpeg -y -c:v png -f image2pipe -r 25 -t 10  -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart dragon.mp4')
+    
+    #returnFile = File(open(fileName, 'r'))
+    #response = HttpResponse(returnFile, mimetype='application/force-download')
+    #response['Content-Disposition'] = 'attachment; filename=test.jpg'
+    
+    #try:
+    #    output = process.communicate(timeout=30)
+#     except Exception as e:
+#         print("\t\tException: %s" % e)
+#         process.kill()
+#     
+#     phantom_output = ''
+#     for out_line in output.splitlines():
+#         phantom_output += out_line.decode('utf-8')
+#        
+#     return HttpResponse('')
+    #return response
+
+def phantomjswithpk(request, pk):
+    command = "phantomjs"
+    phantomjs_script = './dbtapp/static/dbtapp/js/phantomTest.js'
+    url = (request.url)
+    fileName = './media/' + pk + '/picture/test.jpg'
+    process = Popen([command, phantomjs_script, url, fileName])
+    
+    #returnFile = File(open(fileName, 'r'))
+    #response = HttpResponse(returnFile, mimetype='application/force-download')
+    #response['Content-Disposition'] = 'attachment; filename=test.jpg'
+    
+    #try:
+    #    output = process.communicate(timeout=30)
+    #except Exception as e:
+    #    print("\t\tException: %s" % e)
+    #    process.kill()
+    
+    #phantom_output = ''
+    #for out_line in output.splitlines():
+    #   phantom_output += out_line.decode('utf-8')
+       
+    return HttpResponse('')

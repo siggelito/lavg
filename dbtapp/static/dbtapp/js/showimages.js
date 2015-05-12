@@ -157,3 +157,21 @@ $(document).ready(function sortImages() {
 		
 	});
 });
+
+function postLogoForm(e){
+	var str = postLogoURL;
+	var data = new FormData($('#logo-form').get(0));
+	$.ajax({ 
+	    type: 'POST', 
+	    url: postLogoURL, 
+	    data: data,
+	    cache: false,
+	    processData: false,
+	    contentType: false,
+	    success: function() {
+	        
+	    }
+    });
+    return false;
+
+}
