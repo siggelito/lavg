@@ -1,4 +1,4 @@
-var page = require('webpage').create();
+/*var page = require('webpage').create();
 page.viewportSize = { width: 640, height: 480 };
 
 page.open('http://www.catgifpage.com/', 
@@ -6,7 +6,7 @@ function () {
 	setInterval(function () {
 		page.render('/dev/stdout', {format: "png"});
 	}, 25);
-});
+});*/
 
 /*
 page.onError = function (msg, trace) {

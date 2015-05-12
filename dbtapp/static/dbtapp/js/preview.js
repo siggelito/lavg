@@ -10,7 +10,7 @@ function initPreview (imageSet) {
 		//for image in slide
 			//if iamgeSet.settings == transitionslide
 			//transitionSlide(tl, imageSet[i].image, imageSet[i+1].image);
-			transitionSlide(tl, imageSet[0].image, imageSet[1].image);
+			transSlide(tl, imageSet[0].image, imageSet[1].image);
 			
 			//if choice == other
 		

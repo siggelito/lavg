@@ -16,9 +16,146 @@ function endAnimation(layerContent) {
 
 function transSlide(timeline, current, next) {
 	
+	alert(timeline);
+	timeline.add(TweenLite.delayedCall(1, setImagePlain, [current.src, $("#lay1")]));
+	timeline.add(TweenLite.to($("#lay1"), 1.5, {width:"800px", height:"480px"}));
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+function ani2(imageSet) {
+
+	var tl = new TimelineLite();
+	
+	//Setup layer, first, final
+	layerSetupAni2();
+	imageSet.unshift("First slide");
+
+		for(i = 0; i<imageSet.length; i++){
+			//On first
+			if (i == 0){
+				alert("firstslide");
+				tl.add(TweenLite.to($("#lay3"), 2, {delay:0, opacity: 1}));
+				tl.add(TweenLite.to($("#lay3"), 2, {delay:4, opacity: 0.2}));
+				/*tl.add(TweenLite.to($("#lay3"), 2, {width:"800px", height:"480px"}));
+				tl.add(TweenMax.to(TweenMax.to($("#line"), 1.5, {delay:1, width: "0px", left: "+=400px", backgroundPosition:"0px"})));
+				tl.add(TweenLite.delayedCall(-0.2, fadeElement, [$("#videoName"), "out"]));*/
+			}
+			//On final
+			/*else if (i == imageSet.length-1){
+				tl.add(TweenLite.delayedCall(1, finalSlideAni1, ['CREATOR', 'CONTACT.COM']));
+				tl.add(TweenLite.to($("#lay3"), 1, {delay:1, width:"800px", height:"480px"}));
+				tl.add(TweenLite.to($("#line"), 1, {delay:-0.3, width:"400px", height:"2px"}));
+				tl.add(TweenLite.delayedCall(-0.2, fadeElement, [$("#videoName"), "in"]));
+				tl.add(TweenLite.delayedCall(1, setVisible));
+				//TweenLite.to('#lay3', 0.2, {opacity: 0, onComplete:test});
+				//tl.add(TweenLite.delayedCall(0, fadeElement, [$("#contact"), "in"]));
+				//tl.add(TweenLite.delayedCall(0, fadeElement, [$("#creator"), "in"]));
+			}*/
+			//Rest
+			else{
+				if (i%2 == 0) {
+					tl.add(TweenLite.delayedCall(1, setImagePlain, [imageSet[i].image.src, $("#lay1")]));
+					tl.add(TweenLite.to($("#lay1"), 2, {delay:0, opacity: 1}));
+					
+					tl.add(TweenLite.to($("#lay2"), 2, {delay:-2,opacity: 0}));
+					
+					
+				}
+				else{
+					tl.add(TweenLite.delayedCall(1, setImagePlain, [imageSet[i].image.src, $("#lay2")]));
+					tl.add(TweenLite.to($("#lay2"), 2, {delay:0, opacity: 1}));
+					
+					tl.add(TweenLite.to($("#lay1"), 2, {delay:-2 ,opacity: 0}));
+					//tl.add(TweenLite.delayedCall(1, setImagePlain, [imageSet[i].image.src, $("#lay2")]));
+					//TweenLite.to('#lay1', 1, {opacity: 0});
+					//TweenLite.to('#lay2', 1, {opacity: 1});
+					
+					
+				}		
+			}
+			
+			
+
+		}
+		
+		restoreAni2(imageSet);
+}
+//Helpers
+function layerSetupAni2(){
+	$(".videoLayer").css( "width", "800px"  );
+	$(".videoLayer").css( "opacity", "0"  );
+	$("#lay1").css( "z-index", "1"  );
+	$("#lay2").css( "z-index", "2"  );
+	
+	$("#lay3").css( "background-color", "rgba(255, 0, 0, 0.9)"  );
+	//$("#lay3").css( "z-index", "0"  );
+	
 	
 	
 }
+//Helpers
+function setImagePlain(imageSrc, topLayerElement) {
+
+	$(topLayerElement).css( "background-image", "url('" + imageSrc + "')"  );
+}
+
+function restoreAni2(imageSet){
+	/*$("#lay1").css( "background-image", "none"  );
+	$("#lay2").css( "background-image", "none"  );
+	$("#lay3").css( "z-index", "0"  );
+	
+	imageSet.pop();*/
+	
+	$(".videoLayer").css( "opacity", "0"  );
+	
+	imageSet.shift();
+}
+
+
+
+
+
+				//TweenLite.to('#lay3', 0.2, {opacity: 0, onComplete:test});
+				//tl.add(TweenLite.delayedCall(0, fadeElement, [$("#contact"), "in"]));
+				//tl.add(TweenLite.delayedCall(0, fadeElement, [$("#creator"), "in"]));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function ani1(imageSet) {
 
