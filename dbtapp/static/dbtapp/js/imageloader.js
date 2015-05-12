@@ -28,10 +28,10 @@ $(document).ready(function(){
             layers[1].style.zIndex = 2;
 
             var settings = {
-                transition: function(current, next){
-                    simpleTransition(current, next);
+                transition: function(current, next, timeline){
+                    simpleTransition(current, next, timeline);
                 },
-                duration: 2000 //(Math.floor((Math.random() * 4) + 2) * 1000)
+                duration: 2 //(Math.floor((Math.random() * 4) + 2) * 1000)
             };
 
             var layerContent = {

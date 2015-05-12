@@ -1,13 +1,14 @@
 {% extends "dbtapp/base.html" %}
-<<<<<<< HEAD
 
 {% block head %}
 <!--Stegnummer och beskrivning-->
 <div class="content" id="header">
   	<div class="row">
-		<div class="col-lg-5 col-md-offset-3">
-    		 <h1 id="stepNumber">1</h1>
-   			 <h2 id="description"> Beskrivningbeskrivning</h2>
+		<div class="col-md-1 col-md-offset-3 text-right">
+    		 <h1>1</h1>
+    	</div>
+    	<div class="col-md-5 text-left">
+   			 <h2 id="description"> Börja med att namnge din film och skriv in förstagsnamnet.</h2>
 	   </div>
 	</div>
 </div>
@@ -63,7 +64,7 @@
 </form>
 
 <script>$('span.glyphicon').click(function(){ $('#form').submit()});</script>
-
+{% endblock %}
 
 <!--<div class="row">
     <div class="col-lg-4 col-md-offset-4">
@@ -80,24 +81,4 @@
 </div>
 </div> -->
 	<!--<a href="{% url 'dbtapp:videoList' %}" class="btn btn-default">back</a>
-{% endblock %}-->
-=======
-{% load staticfiles %}
-	
-{% block head %}
-	LAVG 
-{% endblock %}
-
-{% block content %}
-    <form action="{% url 'dbtapp:videoNew' %}" method="post" enctype="multipart/form-data">
-	    {% csrf_token %}
-	    <p>{{ form.video_name.label_tag }}</p>
-	    <p>{{ form.video_name }}</p>
-
-	    <p>{{ form.company_name.label_tag }}</p>
-	    <p>{{ form.company_name }}</p>
-	    <input type="submit" value="Submit" />
-	</form>
-	<a href="{% url 'dbtapp:videoList' %}" class="btn btn-default">back</a>
-{% endblock %}
->>>>>>> origin/master
+-->
