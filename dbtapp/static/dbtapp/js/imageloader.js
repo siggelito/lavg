@@ -4,7 +4,10 @@ $(document).ready(function(){
     var input = document.getElementById('input');
     var inputLogo = document.getElementById('input-logo');
     //input.addEventListener('change', handleFiles);
-    inputLogo.addEventListener('change', postLogoForm);
+	
+	if(inputLogo != null) {
+		inputLogo.addEventListener('change', postLogoForm);
+	}
     var sources = [];
     var sourceLogo;
     var offset = 0;
@@ -230,8 +233,8 @@ function loadSingleImage(source, callback) {
 $(window).load(function(){
     var images = $('#images li img');
 
-
     for (var i = 0; i < images.length; i++) {
+		
 		var size = getNewSize(images[i]);
         images[i].width = size.width;
         images[i].height = size.height;

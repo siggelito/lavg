@@ -26,19 +26,21 @@ function showImages(imageObject, index) {
 }
 
 function getNewSize (image) {
-    var imageRatioW = ( image.naturalWidth / image.naturalHeight );
-    var imageRatioH = ( image.naturalHeight / image.naturalWidth );
+	//Image img = new Image();
+	//img.src = image.src;
+    var imageRatioW = ( image.width / image.height );
+    var imageRatioH = ( image.height / image.width );
 
-    var widthScalingFactor = ( imageRatioW * 200 ) / image.naturalWidth;
-    var heightScalingFactor = ( imageRatioH * 200 ) / image.naturalHeight;
+    var widthScalingFactor = ( imageRatioW * 200 ) / image.width;
+    var heightScalingFactor = ( imageRatioH * 200 ) / image.height;
     
 
     if (widthScalingFactor > heightScalingFactor) {
-        var width = image.naturalWidth * widthScalingFactor;
-        var height = image.naturalHeight * widthScalingFactor;
+        var width = image.width * widthScalingFactor;
+        var height = image.height * widthScalingFactor;
     } else{
-        var width = image.naturalWidth * heightScalingFactor;
-        var height = image.naturalHeight * heightScalingFactor;
+        var width = image.width * heightScalingFactor;
+        var height = image.height * heightScalingFactor;
     };
 
     var paddingLeft = ( (200 - width) / 2 );
