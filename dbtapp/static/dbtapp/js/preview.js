@@ -19,8 +19,9 @@ function initPreview (imageSet) {
 	
 	
     $("#preview-button").delay(1000).on("click", function() {
+    	var tl = new TimelineLite();
 		imageSet = sortSlideShow(imageSet);
-    	runSlideShow(imageSet, 0);
+    	runSlideShow(imageSet, tl, 0);
     });
 }
 
@@ -29,37 +30,27 @@ function initPreview (imageSet) {
 
 
 
-var timer = null;
 
-function runSlideShow(imageSet, current) {
+
+function runSlideShow(imageSet, timeline, index) {
 	
 	$(".close").click(function() {
-		$(imageSet[current].layers).hide();
-		clearTimeout(timer);
-		timer = null;
+		$(imageSet[index].layers).hide();
 	});
 	
-	if (current == 0) {
+	if (index == 0) {
 		startAnimation(imageSet[0]);
+		timeline.add(TweenLite.to(0, imageSet[index].settings.duration, {})); 
 	} else {
-		imageSet[current].settings.transition(imageSet[current-1], imageSet[current]);        
+		imageSet[index].settings.transition(imageSet[index-1], imageSet[index], timeline);
+		timeline.add(TweenLite.to(0, imageSet[index].settings.duration, {}));        
 	}
-	current++;
+	index++;
 	
-	if (current < imageSet.length) {
-		if(timer){
-			clearTimeout(timer);
-			timer = null;
-		}
-		timer = setTimeout(function(){runSlideShow(imageSet, current)}, imageSet[current].settings.duration);
+	if (index < imageSet.length) {
+		runSlideShow(imageSet, timeline, index);
 	} 
 	else {
-		if(timer){
-			clearTimeout(timer);
-			timer = null;
-		}
-		timer = setTimeout(function() {
-			endAnimation(imageSet[current-1]);
-		}, imageSet[current-1].settings.duration);
+		endAnimation(imageSet[index-1]);
 	}
 }
