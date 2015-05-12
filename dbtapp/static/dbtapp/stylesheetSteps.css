@@ -1,23 +1,13 @@
+/*
 
-p {
-	font-family: 'Roboto Condensed' !important;
-}
+CSS för de olika stegen - VIKTIGT - skriv inte över styleBase.css
 
-h1	{
-	font-family: 'Roboto Condensed' !important;
-	font-weight: 700;
-}
+/ Hanna
+*/
 
-h2	{
-	font-family: 'Roboto Condensed' !important;
-	font-weight: 400;
-}
 
-h3	{
-	font-family: 'Roboto Condensed' !important;
-	font-weight: 300;
 
-}
+
 
 #content	{
 	/*background-color: #FF9900;*/
@@ -45,7 +35,7 @@ h3	{
 	background-color: #FF9900;
     padding-top: 3%;
 }
-
+/*
 #stepNumber {
 	font-size: 300%;
     display: inline-block;
@@ -56,6 +46,7 @@ h3	{
 	/* width and height can be anything, as long as they're equal */
 
 }
+*/ 
 
 #description {
 	display: inline-block;
