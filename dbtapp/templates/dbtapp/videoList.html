@@ -11,7 +11,7 @@
         {% for video in video_list %}
             
             <div class="col-md-10">
-                <a class="list-group-item" href="{% url 'videoEdit' video.pk %}">{{ video.video_name }} - {{ video.company_name }} </a>
+                <a class="list-group-item" href="{% url 'dbtapp:videoEdit' video.pk %}">{{ video.video_name }} - {{ video.company_name }} </a>
             </div>
             <div class="col-md-2">
                 <a href="{% url 'dbtapp:videoRemove' video.pk %}" class="btn btn-default">
@@ -25,5 +25,5 @@
     {% else %}
         <p>No videos are available.</p>
     {% endif %}
-    <div class="col-lg-11"><a href="{% url 'videoNew' %}" class="btn btn-default">New Video</a></div>
+    <div class="col-lg-11"><a href="{% url 'dbtapp:videoNew' %}" class="btn btn-default">New Video</a></div>
 {% endblock %}
