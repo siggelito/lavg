@@ -231,14 +231,21 @@ function loadSingleImage(source, callback) {
 
 $(window).load(function(){
     var images = $('#images li img');
-
-
-    for (var i = 0; i < images.length; i++) {
-        var size = getNewSize(images[i]);
+	
+    for (var i = 0; i < images.length; i++) {		
+	
+		var size = getNewSize(images[i]);
+		
         images[i].width = size.width;
         images[i].height = size.height;
         images[i].setAttribute("style", "margin-top:" + size.paddingTop.toString() + "px");
         images[i].setAttribute("style", "margin-left:" + size.paddingLeft.toString() + "px");
-        
     }
 });
+
+function imgSetNaturalSize(img) {
+	if($(img).prop('naturalWidth') == undefined || $(img).prop('naturalWidth') == 0) {
+		$(img).prop('naturalWidth', img.width);
+		$(img).prop('naturalHeight', img.height);
+	}
+}

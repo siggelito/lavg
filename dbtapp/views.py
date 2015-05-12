@@ -117,27 +117,50 @@ def videoEdit(request, pk):
         )
 
 def phantomjs(request):
-    command = "phantomjs"
-    phantomjs_script = "phantomTest.js"
+    command = 'phantomjs'
+    phantomjs_script = './dbtapp/static/dbtapp/js/phantomTest.js'
     url = ('https://www.google.se')
-    file_name = 'google.jpg'
-    process = Popen([command, phantomjs_script, url, file_name], stdout=PIPE, stderr=STDOUT)
+    fileName = './media/pictures/test.jpg'
+    process = Popen([command, phantomjs_script, url, fileName] + " | " + 'ffmpeg -y -c:v png -f image2pipe -r 25 -t 10  -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart dragon.mp4')
     
-    # Open the file created by PhantomJS
-    #return_file = File(open(file_name, 'r'))
-    #response = HttpResponse(return_file, mimetype='application/force-download')
-    #response['Content-Disposition'] = 'attachment; filename=google.jpg'
-    # Return the file to the browser and force it as download item
-    #return response
+    #returnFile = File(open(fileName, 'r'))
+    #response = HttpResponse(returnFile, mimetype='application/force-download')
+    #response['Content-Disposition'] = 'attachment; filename=test.jpg'
     
     #try:
-    #    output, errors = process.communicate(timeout=30)
+    #    output = process.communicate(timeout=30)
+#     except Exception as e:
+#         print("\t\tException: %s" % e)
+#         process.kill()
+#     
+#     phantom_output = ''
+#     for out_line in output.splitlines():
+#         phantom_output += out_line.decode('utf-8')
+#        
+#     return HttpResponse('')
+    #return response
+
+def phantomjswithpk(request, pk):
+    command = "phantomjs"
+    phantomjs_script = './dbtapp/static/dbtapp/js/phantomTest.js'
+    url = (request.url)
+    fileName = './media/' + pk + '/picture/test.jpg'
+    process = Popen([command, phantomjs_script, url, fileName])
+    
+    #returnFile = File(open(fileName, 'r'))
+    #response = HttpResponse(returnFile, mimetype='application/force-download')
+    #response['Content-Disposition'] = 'attachment; filename=test.jpg'
+    
+    #try:
+    #    output = process.communicate(timeout=30)
     #except Exception as e:
     #    print("\t\tException: %s" % e)
     #    process.kill()
     
     #phantom_output = ''
     #for out_line in output.splitlines():
-    #    phantom_output += out_line.decode('utf-8')
+    #   phantom_output += out_line.decode('utf-8')
        
     return HttpResponse('')
+    #return response
+    

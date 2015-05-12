@@ -1,7 +1,13 @@
-var page = require('webpage').create(),
-    system = require('system'),
-    address, output, size;
-	
+var page = require('webpage').create();
+page.viewportSize = { width: 640, height: 480 };
+
+page.open('http://www.catgifpage.com/', 
+function () {
+	setInterval(function () {
+		page.render('/dev/stdout', {format: "png"});
+	}, 25);
+});
+
 /*
 page.onError = function (msg, trace) {
 	console.log(msg);
@@ -16,7 +22,7 @@ page.onResourceReceived = function(resource) {
 	}
 };
 */
-
+/*
 if (system.args.length < 3 || system.args.length > 5) {
     console.log('Usage: customizedRender URL filename [paperwidth*paperheight|paperformat] [zoom]');
     console.log('  paper (pdf output) examples: "5in*7.5in", "10cm*20cm", "A4", "Letter"');
@@ -49,16 +55,17 @@ if (system.args.length < 3 || system.args.length > 5) {
     if (system.args.length > 4) {
         page.zoomFactor = system.args[4];
     }
-    page.open(address, function (status) {
+    page.open('http://www.catgifpage.com/', function (status) {
         if (status !== 'success') {
 	    console.log('Unable to load the adress!');
 	    phantom.exit(1);
 	} else {
-	    window.setTimeout(function () {
-		page.render(output);
-		phantom.exit();
-	    }, 200);
+		window.setTimeout(function () {
+		page.render("/dev/stdout", {format: "png"});
+		//phantom.exit();
+		}, 25);
 	}
     });
 }
+*/
 
