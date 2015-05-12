@@ -185,6 +185,45 @@ footer {
 	width: 70px;
 }
 
+#videoCont{
+	width: 800px;
+	height: 480px;
+	background-color: rgba(240, 240, 240, 1);
+	position: relative;
+	
+}
+.videoLayer{	
+	width: 800px;
+	heigth: 480px;
+}
+
+#lay1{
+	/*background-color: rgba(0, 255, 33, 1);*/
+	z-index: 1;
+	height: 480px;
+	position: absolute;
+	top: 0px;
+	
+
+}
+#lay2{
+    /*background-color: rgba(234, 164, 0, 1);*/
+	z-index: 2;
+	height: 480px;
+	position: absolute;
+	top: 0px;
+
+
+}
+#lay3{
+	/*background-color: rgba(255, 0, 0, 0.7);*/
+	z-index: 3;
+	/*height: 200px;*/
+	height: 480px;
+	position: absolute;
+	top: 0px;
+
+}
 
 
 

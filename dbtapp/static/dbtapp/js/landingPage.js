@@ -26,4 +26,3 @@ $(window).scroll(function() {
     $(".navbar").css("background-color","transparent").css("font-size", "16px");
   }
 }); 
-

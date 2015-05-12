@@ -1,5 +1,3 @@
-
-
 $(document).ready(function(){ 
     var imageSet = [];
     var slideshow = document.getElementById('slideshow');
