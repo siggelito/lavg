@@ -46,8 +46,10 @@ def videoRemove(request, pk):
     video = Video.objects.get(pk=pk)
     photos = Photo.objects.filter(video = video)
     for photo in photos:
-        photo.delete()
-    video.logo.delete()
+        if photo is not None:
+            photo.delete()
+    if video.logo is not None:
+        video.logo.delete()
     video.delete()
     return redirect('dbtapp:videoList')
 
@@ -146,10 +148,14 @@ def logoPost(request, pk):
 
 def phantomjs(request):
     command = 'phantomjs'
-    phantomjs_script = './dbtapp/static/dbtapp/js/phantomTest.js'
+    phantomjs_script = './dbtapp/phantomTest.js'
     url = ('https://www.google.se')
     fileName = './media/pictures/test.jpg'
-    process = Popen([command, phantomjs_script, url, fileName] + " | " + 'ffmpeg -y -c:v png -f image2pipe -r 25 -t 10  -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart dragon.mp4')
+    phantomProcess = Popen([command, phantomjs_script, url, fileName])
+    
+    
+    ffmpegProcess = Popen('ffmpeg -y -c:v png -f image2pipe -r 25 -t 10  -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart dragon.mp4', stdin=phantomProcess, stderr=PIPE, stdout=PIPE)
+    
     
     #returnFile = File(open(fileName, 'r'))
     #response = HttpResponse(returnFile, mimetype='application/force-download')
@@ -170,7 +176,7 @@ def phantomjs(request):
 
 def phantomjswithpk(request, pk):
     command = "phantomjs"
-    phantomjs_script = './dbtapp/static/dbtapp/js/phantomTest.js'
+    phantomjs_script = './dbtapp/phantomTest.js'
     url = (request.url)
     fileName = './media/' + pk + '/picture/test.jpg'
     process = Popen([command, phantomjs_script, url, fileName])

@@ -1,6 +1,16 @@
-function simpleTransition(current, next) {
-	$(current.layers).fadeOut();
-	$(next.layers).fadeIn();
+function simpleTransition(current, next, timeline) {
+/*	$(current.layers).fadeOut();
+	$(next.layers).fadeIn();*/
+	
+	timeline.add(TweenLite.delayedCall(0, function(){
+		$(next).show();
+		next.layers[0].setAttribute("style", "margin-left:" + 800 + "px");
+	}),null);
+	timeline.add(TweenLite.to($(next.layers[0]), 2, {marginLeft:"0px"}));
+	timeline.add(TweenLite.to($(current.layers[0]), 0, {display:"none"}));
+/*	timeline.add(TweenLite.delayedCall(0, function(){
+		$(current).hide();
+  	}),null);*/
 }
 
 function startAnimation(layerContent) {

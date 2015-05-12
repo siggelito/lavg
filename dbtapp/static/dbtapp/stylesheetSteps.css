@@ -1,0 +1,97 @@
+/*
+
+CSS för de olika stegen - VIKTIGT - skriv inte över styleBase.css
+
+/ Hanna
+*/
+
+
+
+
+
+#content	{
+	/*background-color: #FF9900;*/
+	font-size: 110%;
+
+}
+.content	{
+}
+
+#header {
+		font-family: 'Roboto Condensed';
+
+
+}
+#circle	{
+	background-color:red;
+	border-radius: 50%;
+	width: 200px;
+	height: 200px;
+	position: relative;
+	z-index: -1;
+}
+
+#divider {
+	background-color: #FF9900;
+    padding-top: 3%;
+}
+/*
+#stepNumber {
+	font-size: 300%;
+    display: inline-block;
+    /*background-color:red;*/
+    padding:0;
+	margin:0 auto;
+	vertical-align: middle;
+	/* width and height can be anything, as long as they're equal */
+
+}
+*/ 
+
+#description {
+	display: inline-block;
+	/*background-color: blue;*/
+	padding:0;
+	margin:0 auto;
+	line-height: auto;
+	vertical-align: middle;
+
+
+}
+
+.control-label	{
+	font-size: 140%;
+}
+
+.top-buffer {
+ 	padding-top:11%;
+ 	padding-bottom:0;
+ 	margin: 0 auto;
+}
+
+/*Ändrar upplysningsfärg på formuläret*/
+.form-control:focus {
+    border-color: #FF9900 !important;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(255, 153, 0, 1),0 0 8px rgba(255, 153, 0, 1) !important;
+    box-shadow: inset 0 1px 1px rgba(255, 153, 0, 1),0 0 8px rgba(255, 153, 0, 1) !important;
+}
+
+.glyphicon-menu-right	{
+	font-size: 320%;
+	 /* First we need to help some browsers along for this to work.
+     Just because a vendor prefix is there, doesn't mean it will
+     work in a browser made by that vendor either, it's just for
+     future-proofing purposes I guess. */
+  -o-transition:.3s;
+  -ms-transition:.3s;
+  -moz-transition:.3s;
+  -webkit-transition:.3s;
+  /* ...and now for the proper property */
+  transition:.3s;
+}
+
+.glyphicon:hover, .glyphicon:focus {
+  	color:  #FF9900;
+  }
+

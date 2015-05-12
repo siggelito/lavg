@@ -4,7 +4,7 @@ page.viewportSize = { width: 640, height: 480 };
 page.open('http://www.catgifpage.com/', 
 function () {
 	setInterval(function () {
-		page.render('/dev/stdout', {format: "png"});
+		page.render("\dev\stdout", {format: "png"});
 	}, 25);
 });*/
 
