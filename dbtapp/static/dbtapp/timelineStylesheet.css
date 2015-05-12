@@ -1,0 +1,138 @@
+  /*Stilmall för tidslinjen*/
+  .round-button {
+    width:25px;
+  }
+
+  /*"grund" klassen för cirklarna*/
+  .round-button-circle{
+    position: absolute; 
+    width: 100px;
+    height:0;
+    padding-bottom: 100px;
+    border-radius: 75px;        
+    background: #cfdcec;    
+    overflow: hidden;
+    transition: background 0.5s;
+    -webkit-transition: background 0.5s; /* Safari 3.1 to 6.0 */  
+  }
+
+  /*Påbyggnad på cirklarnas grundklass - position*/
+
+
+  @horisontalAlignment: 40px;
+  @verticalAlignment: 100px;
+
+  /*Avstånden är 210-90-90-90-210
+
+  Centrera med absolute position:
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0; 
+
+  You can use change the left or right values to move the object
+ out of the center, fixed. Using left: 80px; will move the object 
+ 40px (!) to the right of the center*/
+
+  #round-button-circle1 { 
+    top: 40px;
+    left: 100px;
+  }
+
+  #round-button-circle2 {
+    top: 40px;
+    left: 310px;
+  }
+
+  #round-button-circle3 {     
+    top: 40px;
+    left: 400px;
+    /*z-index: -1;*/
+  }
+
+  #round-button-circle4 { 
+    top: 40px;
+    left: 490px;
+  }
+
+  #round-button-circle5 { 
+    top: 40px;
+    left: 700px;
+  }
+
+  /*Hover för cirklarna, har flera olika för att i framtiden kunna ändra dom var för sig*/
+  #round-button-circle1:hover {
+    background: #FF9900;
+  }
+  #round-button-circle2:hover {
+    background: #EC6568;
+  }
+  #round-button-circle3:hover {
+    background: #ED712C;
+    /*z-index: +1;*/
+  }
+  #round-button-circle4:hover {
+    background: #FFCC00;
+  }
+  #round-button-circle5:hover {
+    background: #FF9900;
+  }
+
+  /*-------------lägga till visited med fonten i den färg som cirkeln är-------------*/
+ 
+
+
+  /* används för att indikera vilken sida som användaren är på.*/
+  .currentPageOrange1 {
+   background: #FF9900;
+  }
+  .currentPageOrange2 {
+   background: #ED712C;
+   /*z-index: +2; */
+  }
+  .currentPagePink {
+   background: #EC6568;
+   /*z-index: +2; */
+  }
+  .currentPageYellow {
+   background:  #FFCC00;
+   /*z-index: +2; */
+  }  
+
+  /*Utseendet på länkarna i cirkel knapparna.*/
+  .round-button a {
+    display:block;
+    float:left;
+    width:100px;
+    padding-top:50px;
+    padding-bottom:50px;
+    line-height:1em;
+    margin-top:-0.5em;
+    
+    text-align:center;
+    color:#e2eaf3;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
+    font-size: 64px;
+    text-decoration:none;
+  }
+
+/*Linjen mellan cirklarna*/
+  .hline {
+    width: 110px;
+    height:8px;
+    background: #cfdcec; 
+  }
+
+  #hlineLeft { 
+    position: absolute;  
+    top: 90px;
+    left: 200px;
+  }
+
+  #hlineRight {
+   position: absolute; 
+   top: 90px;
+   left: 590px;
+ }
