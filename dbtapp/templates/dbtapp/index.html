@@ -1,0 +1,38 @@
+{% extends "dbtapp/base.html" %}
+
+	
+{% block head %}
+	LAVG 
+	<a id="preview-button" href="#preview" class="btn btn-warning">Preview</a>
+
+{% endblock %}
+
+{% block content %}
+
+
+
+	<div id="logo-box">
+		<p><b>Choose a logo:</b></p>
+		<input id="input-logo" type="file" />
+	</div>
+	<ul id="images">
+		<div id="addFileWrapper">
+			<img id="addFile" src="{% static 'dbtapp/img/plus-sign.jpg'%}" alt="Lägg till bild"/>
+			<input id="input" type="file" multiple />
+		</div>
+	</ul>
+
+	<div id="preview" class="modalDialog">
+		<ul id="slideshow">
+			<a href="" title="Close" class="close">X</a>
+		</ul>
+	</div>
+	
+	
+				
+				
+
+	
+	
+	
+{% endblock %}

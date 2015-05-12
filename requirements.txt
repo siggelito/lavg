@@ -1,7 +1,4 @@
-colorama==0.2.5
-Django==1.7.7
-html5lib==0.999
-requests==2.2.1
-six==1.5.2
-urllib3==1.7.1
-virtualenv==12.0.7
+Django==1.8
+Pillow==2.8.1
+argparse==1.2.1
+wsgiref==0.1.2
