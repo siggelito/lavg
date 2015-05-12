@@ -4,6 +4,7 @@
 {% block head %}
 	<script>
 		var postURL = "{% url 'dbtapp:videoEdit' video.pk %}";
+		var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
 	</script>
 	<script type="text/javascript" src="{% static 'dbtapp/js/WearProtection.js' %}"></script>
 	LAVG
@@ -12,8 +13,13 @@
 
 {% block content %}
 	<div id="logo-box">
+		<img id="logo-img" src="{{ logo.photoFile.url }}">
 		<p><b>Choose a logo:</b></p>
-		<input id="input-logo" type="file" />
+		<form id="logo-form" action="{% url 'dbtapp:logoPost' video.pk %}" method="post" enctype="multipart/form-data">
+		    {% csrf_token %}
+		    <p>{{ logoForm.photoFile }}</p>
+		</form>
+		
 	</div>
 	<ul id="images">
 
@@ -41,7 +47,5 @@
 		</ul>
 	</div>
 	<a href="{% url 'dbtapp:videoList' %}" class="btn btn-default">back</a>
-	<!--<a href="{ url 'dbtapp:phantomjs' video.pk %}" class="btn btn-default">back</a>-->
-	
 
 {% endblock %}

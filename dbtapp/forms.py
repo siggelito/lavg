@@ -1,5 +1,5 @@
 from django import forms
-from models import Photo, Video
+from models import Photo, Video, Logo
 from django.forms.models import modelformset_factory
 
 class PhotoForm(forms.ModelForm):
@@ -24,3 +24,11 @@ class PosForm(forms.ModelForm):
     """Video Create form."""
     oldPos = forms.IntegerField()
     newPos = forms.IntegerField()
+
+class LogoForm(forms.ModelForm):
+    class Meta:
+        model = Logo
+        fields = ('photoFile',)
+        widgets = {
+            'photoFile': forms.FileInput(attrs={'id': 'input-logo'}),
+        }
