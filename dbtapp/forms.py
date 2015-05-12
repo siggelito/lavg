@@ -1,5 +1,5 @@
 from django import forms
-from models import Photo, Video
+from dbtapp.models import Photo, Video
 from django.forms.models import modelformset_factory
 
 class PhotoForm(forms.ModelForm):
@@ -10,9 +10,7 @@ class PhotoForm(forms.ModelForm):
     class Meta:
     	model = Photo
     	fields = ('photoFile',)
-    	widgets = {
-            'photoFile': forms.FileInput(attrs={'id': 'input', 'multiple': 'true', 'onchange': 'this.form.submit();'}),
-        }
+    	widgets = {'photoFile': forms.FileInput(attrs={'id': 'input', 'multiple': 'true', 'onchange': 'this.form.submit();'}),}
 
 class VideoForm(forms.ModelForm):
     """Video Create form."""
