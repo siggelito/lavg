@@ -41,7 +41,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 	'widget_tweaks',
     'dbtapp',
-    'widget_tweaks',
 )
 
 MIDDLEWARE_CLASSES = (
