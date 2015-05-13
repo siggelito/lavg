@@ -31,11 +31,9 @@
   left: 0;
   right: 0; 
 
-  You can use change the left or right values to move the object
- out of the center, fixed. Using left: 80px; will move the object 
- 40px (!) to the right of the center*/
+
  
- /*360 px*/
+ /*centreras med left: 50% och sedan dras ett pixel antal bort från varje div för att centrera*/
 
   #round-button-circle1 { 
     top: 0px;;
@@ -147,7 +145,5 @@
  
  .col-md-8 {
   position: relative;
-  height: 60px;
-
-    
+  height: 60px;    
 }
