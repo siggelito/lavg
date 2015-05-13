@@ -153,10 +153,11 @@ def phantomjs(request):
     #url = ('https://www.google.se')
     #fileName = './media/pictures/test.jpg'
     
+    #celery
+    
     phantomProcess = Popen([command, phantomjs_script], stdout=PIPE, stderr=PIPE)
     
-    ffmpegProcess = Popen('ffmpeg -y -c:v png -f image2pipe -r 25 -t 10  -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart test.mp4'.split(), stdin=phantomProcess, stderr=PIPE, stdout=PIPE)
-    
+    ffmpegProcess = Popen(['ffmpeg', '-y', '-c:v', 'png', '-f', 'image2pipe', '-r', '25', '-t', '10', '-i', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', 'test.mp4'], stdin=phantomProcess, stdout=PIPE, stderr=PIPE)
     
     #returnFile = File(open(fileName, 'r'))
     #response = HttpResponse(returnFile, mimetype='application/force-download')
