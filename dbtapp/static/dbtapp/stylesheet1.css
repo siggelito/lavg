@@ -1,4 +1,4 @@
-/*
+﻿/*
 
 
 stylesheet för riktigIndex.html
@@ -89,9 +89,11 @@ header .big-header{
   text-align: center;
   font-size: 90px;
 }
+
 header .big-header h1{
   font-size: 60px;
 }  
+
 .smallHeader{
   text-transform: uppercase;
 }
@@ -157,19 +159,6 @@ section {
   color: #fff;
 }
 
-
-#about{
-
-}
-
-#inspiration{
-
-}
-
-#contact{
-
-}
-
 .icon{
   font-size: 50px;
   color: #EC6568;
@@ -211,4 +200,24 @@ section {
 }
 
 
+@media (min-width: 768px){
+  header {
+    min-height: 100%;
+  }
 
+  .down{
+    display: none;
+  }
+}
+
+@media (max-width: 768px){
+  .icon{
+    font-size: 50px;
+    color: #EC6568;
+    margin-top: 21px;
+  }
+
+  .right{
+    display: none;
+  }
+}
