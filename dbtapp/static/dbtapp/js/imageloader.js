@@ -13,7 +13,7 @@ $(document).ready(function(){
     var offset = 0;
 
     function initializeVideo () {
-        var images = $('#images li img');
+        var images = $('#images li div img');
 
         for(var i = 0; i < images.length; i++) { 
             var layers = [
