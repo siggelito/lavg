@@ -169,6 +169,10 @@ footer {
 	background:white;
 }
 
+#closeButton {
+	color:black;
+}
+
 #logo-image {
 	position: absolute;
 	top: 10px;
