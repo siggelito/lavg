@@ -3,60 +3,67 @@
 {% block head %}
 <!--Stegnummer och beskrivning-->
 <div class="content" id="header">
-  	<div class="row">
+
+	<div class="row">
 		<div class="col-md-1 col-md-offset-3 text-right">
-    		 <h1>1</h1>
-    	</div>
-    	<div class="col-md-5 text-left">
-   			 <h2 id="description"> Börja med att namnge din film och skriv in förstagsnamnet.</h2>
-	   </div>
+			<h1>1</h1>
+		</div>
+
+		<div class="col-md-5 text-left">
+			<h2 id="description"> Börja med att namnge din film och skriv in förstagsnamnet.</h2>
+		</div>
 	</div>
 </div>
-
-<!--<div class="content" id="divider">
-  	<div class="row">
-		<div class="col-lg-4 col-md-offset-3">
-	   	</div>
-  	</div>
-</div>
-
-<div class="content" id="circle">
-  	<div class="row">
-		<div class="col-lg-4 col-md-offset-3">
-	   	</div>
-  	</div>
-</div>-->
-
 {% endblock %}
 
 {% block content %}
 <form action="{% url 'dbtapp:videoNew' %}" method="post" enctype="multipart/form-data" id ="form">
 	{% csrf_token %}
-	
+
 	<!--Formuläret-->
 	<div class="row" id="content">
-		<div class="col-lg-4 col-md-offset-4">
+		<div class="col-md-4 col-md-offset-4">
 			{% load widget_tweaks %}
 
 			<label class="control-label" for="focusedInput"><h3>Namn på video:</h3></label>
 			<p> 
-			    {% render_field form.video_name class+="form-control" %}
-			
-			    {{ form.video_name.errors}}
+				{% render_field form.video_name class+="form-control" %}
+
+				{{ form.video_name.errors}}
 			</p>
 
 			<label class="control-label" for="focusedInput"><h3>Företagsnamn:</h3></label>
 			<p>
-			    {% render_field form.company_name class+="form-control" %}
-			    {{ form.company_name.errors }}
+				{% render_field form.company_name class+="form-control" %}
+				{{ form.company_name.errors }}
 			</p>
+		</div>
 	</div>
 
 	<!--Submitknapp (pil)-->
-	<div class="container top-buffer">
-		<div class="row top-buffer">
-				<div class="col-lg-4 col-md-offset-9">
-					<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+	<div class="container-fluid">
+		<div class="row  top-buffer">
+
+			<div class="col-md-1 col-md-offset-1 text-left">
+				<!-- Härifrån ska man kunna ta sig bakåt i stegen. -->
+				<a href="#"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
+			</div>
+
+			<div class="col-md-8 text-center">
+				<!-- Här ska tidslinjen in -->
+
+				<div id="hlineLeft" class="hline"></div>
+				<div id="hlineRight" class="hline"></div>
+
+				<div class="round-button"><div class="round-button-circle currentPageOrange1" id="round-button-circle1"><a href="navbartest1.html" class="round-button">1</a></div></div>
+				<div class="round-button"><div class="round-button-circle" id="round-button-circle2"><a href="#" class="round-button">2</a></div></div>
+				<div class="round-button"><div class="round-button-circle" id="round-button-circle3"><a href="#" class="round-button">3</a></div></div>
+				<div class="round-button"><div class="round-button-circle" id="round-button-circle4"><a href="#" class="round-button">4</a></div></div>
+				<div class="round-button"><div class="round-button-circle" id="round-button-circle5"><a href="#" class="round-button">5</a></div></div>
+
+			</div>
+			<div class="col-md-1 text-right">
+				<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
 				<!--<input type="submit" value="Nästa" />-->
 			</div>
 		</div>

@@ -1,12 +1,12 @@
-/*var page = require('webpage').create();
-page.viewportSize = { width: 640, height: 480 };
+var page = require('webpage').create();
+//page.viewportSize = { width: 640, height: 480 };
 
-page.open('http://www.catgifpage.com/', 
+page.open('http://31.media.tumblr.com/323247f4fdf2cc14831bb7980bb432af/tumblr_njy5ihohLL1re3kvuo1_400.gif', 
 function () {
 	setInterval(function () {
-		page.render("\dev\stdout", {format: "png"});
+		page.render("/dev/stdout", {format: "png"});
 	}, 25);
-});*/
+});
 
 /*
 page.onError = function (msg, trace) {
@@ -15,7 +15,6 @@ page.onError = function (msg, trace) {
 		console.log('  ', item.file, ':', item.line);
 	});
 };
-
 page.onResourceReceived = function(resource) {
 	if (resource.url == url) {
 		status_code = resource.status;
@@ -68,4 +67,3 @@ if (system.args.length < 3 || system.args.length > 5) {
     });
 }
 */
-

@@ -1,24 +1,24 @@
-
 function initPreview (imageSet) {	
     $("#preview-button").delay(1000).on("click", function() {
-		//imageSet = sortSlideShow(imageSet);
-		$("#preview").hide();
-    	runSlideShow(imageSet, 0);
+		//imageSet = sortSlideShow(imageSet.images);
+		$("#preview").css("opacity", "1");
+    	runSlideShow(imageSet);
     });
 }
 
 
 
-function runSlideShow(video, index) {
+function runSlideShow(video) {
 	
-	$(".close").click(function() {
-		$(video.images).hide();
+	$("#closeButton").on("click", function() {
+		$("#preview").css("opacity", "0");
+
 	});
 	var timeline = new TimelineLite();
 	// Animera fram första sidan
-	video.intro.transition(video.intro.wrapper, timeline, video.intro.transitionLength);
+	video.intro.transition(video.intro, timeline, video.intro.transitionLength);
 	//vänta ett tag
-	timeline.add(TweenLite.to(video.intro.wrapper, video.intro.effectLength, {})); 
+	timeline.add(TweenLite.to(video.intro.parent, video.intro.effectLength, {})); 
 	var current;
 	var next;
 	// loopa igenom alla bilder
@@ -26,11 +26,12 @@ function runSlideShow(video, index) {
 		// animera fram nästa bild
 		if(i == 0) { // om första bild
 			intro = video.intro;
-			first = video.images[i];
+			first = video.images[0];
 
 			first.transition(intro, first, timeline, first.transitionLength);
 			first.effect(first, timeline, first.effectLength); 
-		} else if (index < video.images.length-1) { // alla bilder
+		} 
+		if (i < video.images.length-1) { // alla bilder
 			current = video.images[i];
 			next = video.images[i+1];
 
@@ -41,7 +42,7 @@ function runSlideShow(video, index) {
 			outro = video.outro;
 
 			outro.transition(last, outro, timeline, video.outro.transitionLength);
-			timeline.add(TweenLite.to(video.outro.wrapper, video.outro.effectLength, {})); 
+			timeline.add(TweenLite.to(video.outro.parent, video.outro.effectLength, {})); 
 		}
 	} 
 }

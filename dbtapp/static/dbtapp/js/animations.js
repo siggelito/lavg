@@ -1,32 +1,36 @@
 function simpleTransition(current, next, timeline, transitionLength) {
-	
+	// lägg nästa bild utanför
+	timeline.add(TweenLite.delayedCall(0,function () {
+		$(next.parent).css("left", "800px");
+		$(next.parent).css("opacity", "1");
 
-	
-	timeline.add(TweenLite.set($(next.wrapper), 2, {opacity: 1}));
-	//timeline.add(TweenLite.to($(next.layers), 2, {delay: -1.5, opacity: 1}));
-
-
-
-
-
-/*	timeline.add(TweenLite.to($(next.wrapper), 0.1, {opacity: 1}));
-	timeline.add(TweenLite.to($(next.wrapper), transitionLength, {marginLeft:"0px"}));
-
-	timeline.add(TweenLite.delayedCall($(current), function(){
-		$(current).css("opacity", "0");
-  	}),null);*/
+		var div = document.createElement("div");
+		next.parent.appendChild(div);
+		div.style.width = "50px";
+		div.style.height = "50px";
+		div.style.backgroundColor = "#ff3";
+		div.style.position = "absolute";
+		div.style.left = "100px";
+		div.style.top = "100px";
+	}),null);
+	// animera tillbaka bilden som nu är synlig
+	timeline.add(TweenLite.to($(next.parent), 2, {left:0}));
+	// dölj den gamla bilden
+	timeline.add(TweenLite.delayedCall(0,function () {
+		$(current.parent).css("opacity", "0");
+	}),null);
 }
 
 function startAnimation(first, timeline, transitionLength) {
-	timeline.add(TweenLite.delayedCall(transitionLength, function(){
-		$(first.wrapper).show();
-	}, null));
+	timeline.add(TweenLite.delayedCall(0,function () {
+		$(first.parent).css("opacity", "1");
+	}),null);
 }
 
 function endAnimation(last, outro, timeline, transitionLength) {
-	timeline.add(TweenLite.delayedCall(transitionLength, function(){
-		$(last.wrapper).hide();
-		$(outro.wrapper).show();
+	timeline.add(TweenLite.delayedCall(0,function () {
+		$(last.parent).css("opacity", "0");
+		$(outro.parent).css("opacity", "1");
 	}),null);
 }
 
@@ -187,6 +191,3 @@ function restoreAni1(imageSet){
 	imageSet.shift();
 	imageSet.pop();
 }
-
-
-

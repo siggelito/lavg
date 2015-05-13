@@ -149,13 +149,15 @@ def logoPost(request, pk):
 def phantomjs(request):
     command = 'phantomjs'
     phantomjs_script = './dbtapp/phantomTest.js'
-    url = ('https://www.google.se')
-    fileName = './media/pictures/test.jpg'
-    phantomProcess = Popen([command, phantomjs_script, url, fileName])
     
+    #url = ('https://www.google.se')
+    #fileName = './media/pictures/test.jpg'
     
-    ffmpegProcess = Popen('ffmpeg -y -c:v png -f image2pipe -r 25 -t 10  -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart dragon.mp4', stdin=phantomProcess, stderr=PIPE, stdout=PIPE)
+    #celery
     
+    phantomProcess = Popen([command, phantomjs_script], stdout=PIPE, stderr=STDOUT)
+    
+    ffmpegProcess = Popen(['ffmpeg -y -c:v png -f image2pipe -r 25 -t 1 -i -c:v libx264 -pix_fmt yuv420p -movflags +faststart testmovie.mp4'], stdin=phantomProcess.communicate(), stdout=PIPE, stderr=STDOUT)
     
     #returnFile = File(open(fileName, 'r'))
     #response = HttpResponse(returnFile, mimetype='application/force-download')

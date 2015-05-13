@@ -25,37 +25,36 @@ $(document).ready(function(){
             },
             transitionLength: 1,
             effectLengt: 2, 
-            wrapper: list[0]
+            parent: list[0]
         } 
         $(list[0]).css("opacity", "0");
         var i;
         for(i = 0; i < images.length; i++) { 
+            $(images[i]).zIndex = i+1;
             var imgSettings = {
                 transition: function(current, next, timeline, transitionLength){
                     simpleTransition(current, next, timeline, transitionLength);
                 },
                 effect: function(current, timeline, effectLength){
-                    simpleTransition(current, timeline, effectLength);
+                    //simpleTransition(current, timeline, effectLength);
                 },
                 transitionLength: 2, //(Math.floor((Math.random() * 4) + 2) * 1000)
                 effectLength: 2,
                 image: images[i],
-                wrapper: list[i+1]
+                parent: list[i+1]
             };
             video.images[i] = imgSettings;
 
-            /*
+            
             var size = calcSize(slideshow, images[i]);
 
-            img.width = size.width;
-            img.height = size.height;
-            $(img).css( "margin-top", size.paddingTop, "margin-left", size.paddingLeft );
+            images[i].width = size.width;
+            images[i].height = size.height;
+            $(images[i]).css( "margin-top", size.paddingTop, "margin-left", size.paddingLeft );
             //layers[0].style.top = size.paddingTop + "px";
             //layers[0].style.left = size.paddingLeft;
 
-            img.width = slideshow.scrollWidth;
-            img.height = slideshow.scrollHeight;
-            */
+            
             $(list[i+1]).css("opacity", "0");
             
             oneLoadedFile(video.images[i], i);
@@ -67,7 +66,7 @@ $(document).ready(function(){
             },
             transitionLength: 1,
             effectLengt: 2,
-            wrapper: list[i+1]
+            parent: list[i+1]
         } 
         $(list[i+1]).css("opacity", "0");
 
@@ -83,13 +82,9 @@ $(document).ready(function(){
     /*
     function handleLogoFile (e) {
         if (e.target.files.length > 0) {
-
             sourceLogo = URL.createObjectURL(e.target.files[0]);
-
             var imageElement = document.getElementById('logo-image');
-
             if( imageElement != null) {
-
                 loadSingleImage(sourceLogo, function (image) {
                     imageElement.src = image.src;
                 });
@@ -103,73 +98,57 @@ $(document).ready(function(){
             }
         };
     };
-
     function handleFiles(e) {
         
         if (sources.length != 0) {
             offset = offset + sources.length;
             sources = [];
         }
-
         for (var i = 0; i < e.target.files.length; i++) {
             
             sources[i] = URL.createObjectURL(e.target.files[i]);
-
             var layers = [
                 document.createElement('canvas'),
                 document.createElement('canvas')
             ];
-
             layers[0].className = "layer";
             layers[0].style.zIndex = 1;
-
             layers[1].className = "layer";
             layers[1].style.zIndex = 2;
-
             var settings = {
                 transition: function(current, next){
                     simpleTransition(current, next);
                 },
                 duration: 2000 //(Math.floor((Math.random() * 4) + 2) * 1000)
             };
-
             var layerContent = {
                 layers: layers,
                 settings: settings
             }; 
-
             imageSet[offset + i] = layerContent;
-
             var element = document.createElement("li");
             element.appendChild(layerContent.layers[0]);
             element.appendChild(layerContent.layers[1]);
             slideshow.appendChild(element);
         }
-
         loadImages(sources, function(images) {
             for (var i = 0; i < images.length; i++) {
                 
                 imageSet[offset + i].image = images[i];
-
                 var layerOne = imageSet[offset + i].layers[0];
                 var layerTwo = imageSet[offset + i].layers[1];
                 var image = imageSet[offset + i].image;
-
                 layerOne.width = layerOne.scrollWidth;
                 layerOne.height = layerOne.scrollHeight;
-
                 layerTwo.width = layerTwo.scrollWidth;
                 layerTwo.height = layerTwo.scrollHeight;
-
                 var size = calcSize(layerOne, image);
-
                 var context = layerOne.getContext('2d');
                 context.drawImage(image, size.paddingLeft, size.paddingTop, size.width, size.height); //, paddingLeft, paddingTop, width, height  
 				
 				$(imageSet[offset + i].layers).hide();
                 
                 oneLoadedFile(imageSet[offset + i], offset + i);
-
                 
             };
             doneLoadingFiles(imageSet);
