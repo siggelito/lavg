@@ -47,7 +47,7 @@
 				{% endif %}
 				<!-- Ladda upp bild -->
 				<div id="addFileWrapper">
-					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+					<img id="addFile" src="{% static 'dbtapp/img/plus-sign.jpg' %}"/>
 
 					<form action="{% url 'dbtapp:videoEdit' video.pk %}" method="post" enctype="multipart/form-data">
 						{% csrf_token %}
