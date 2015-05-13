@@ -36,29 +36,29 @@
  40px (!) to the right of the center*/
 
   #round-button-circle1 { 
-    top: 40px;
-    left: 20px;
+    top: 0px;
+    left: 0px;
   }
 
   #round-button-circle2 {
-    top: 40px;
-    left: 150px;
+    top: 0px;
+    left: 130px;
   }
 
   #round-button-circle3 {     
-    top: 40px;
-    left: 200px;
+    top: 0px;
+    left: 180px;
     /*z-index: -1;*/
   }
 
   #round-button-circle4 { 
-    top: 40px;
-    left: 250px;
+    top: 0px;
+    left: 230px;
   }
 
   #round-button-circle5 { 
-    top: 40px;
-    left: 380px;
+    top: 0px;
+    left: 360px;
   }
 
   /*Hover för cirklarna, har flera olika för att i framtiden kunna ändra dom var för sig*/
@@ -126,12 +126,12 @@
 
   #hlineLeft { 
     position: absolute;  
-    top: 70px;
-    left: 58px;
+    top: 30px;
+    left: 38px;
   }
 
   #hlineRight {
    position: absolute; 
-   top: 70px;
-   left: 308px;
+   top: 30px;
+   left: 288px;
  }
