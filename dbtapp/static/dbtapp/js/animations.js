@@ -1,26 +1,37 @@
-function simpleTransition(current, next, timeline) {
-/*	$(current.layers).fadeOut();
-	$(next.layers).fadeIn();*/
-	
-	timeline.add(TweenLite.delayedCall($(next.layers[0]), function(){
-		$(next).show();
-		next.layers[0].setAttribute("style", "margin-left:" + 800 + "px");
+function simpleTransition(current, next, timeline, transitionLength) {
+	// lägg nästa bild utanför
+	timeline.add(TweenLite.delayedCall(0,function () {
+		$(next.parent).css("left", "800px");
+		$(next.parent).css("opacity", "1");
+		var div = document.createElement("div");
+		
+		next.parent.appendChild(div);
+		div.style.width = "50px";
+		div.style.height = "50px";
+		div.style.backgroundColor = "#ff3";
+		div.style.position = "absolute";
+		div.style.left = "100px";
+		div.style.top = "100px";
 	}),null);
-	timeline.add(TweenLite.to($(next.layers[0]), 2, {marginLeft:"0px"}));
-	timeline.add(TweenLite.to($(current.layers[0]), 0.1, {display:"none"}));
-	//timeline.add(TweenLite.delayedCall()
-	timeline.add(TweenLite.delayedCall($(next.layers[0]), function(){
-		$(current).hide();
-  	}),null);
+	// animera tillbaka bilden som nu är synlig
+	timeline.add(TweenLite.to($(next.parent), 2, {left:0}));
+	// dölj den gamla bilden
+	timeline.add(TweenLite.delayedCall(0,function () {
+		$(current.parent).css("opacity", "0");
+	}),null);
 }
 
-function startAnimation(layerContent) {
-	$(layerContent.layers).fadeIn();
+function startAnimation(first, timeline, transitionLength) {
+	timeline.add(TweenLite.delayedCall(0,function () {
+		$(first.parent).css("opacity", "1");
+	}),null);
 }
 
-function endAnimation(layerContent) {
-	$("#logo-image").fadeOut();
-	$(layerContent.layers).fadeOut();
+function endAnimation(last, outro, timeline, transitionLength) {
+	timeline.add(TweenLite.delayedCall(0,function () {
+		$(last.parent).css("opacity", "0");
+		$(outro.parent).css("opacity", "1");
+	}),null);
 }
 
 

@@ -1,6 +1,8 @@
 {% extends "dbtapp/base.html" %}
 {% load staticfiles %}
-
+<script>
+	var companyName = {{video.name}}
+</script>
 {% block head %}
 <!--Stegnummer och beskrivning-->
 <div class="content" id="header">
@@ -39,7 +41,6 @@
 				<li rel="{{ image.pk }}" class="list-group-item col-xs-1">
 					<div class="image-wrapper">
 						<img src="{{ image.photoFile.url }}" rel="{{ image.order }}">
-
 					</div>
 				</li>
 			{% endfor %}
@@ -55,9 +56,27 @@
 
 	<!-- Preview-knapp -->
 	<div id="preview" class="modalDialog">
-		<ul id="slideshow">
-			<a id="closeButton" href="#" title="Close" class="close">X</a>
-		</ul>
+		
+		<div id="slideshow-container">
+			<a id="closeButton" href="#" title="Close">X</a>
+			<ul id="slideshow">			
+				<li>
+					<p id="video-text">iPhone<p>
+					<p id="company-text">Apple<p>
+				</li>
+				{% if images %}
+					{% for image in images %}
+						<li rel="{{ image.pk }}">
+							<img src="{{ image.photoFile.url }}" rel="{{ image.order }}">
+						</li>
+					{% endfor %}
+				{% endif %}
+				<li>
+					<p id="video-text">Slutbildstext<p>
+					<p id="contact-text">mail till codemill<p>
+				</li>
+			</ul>
+		</div>
 	</div>
 
 	<!--Submitknapp (högerpil)-->
