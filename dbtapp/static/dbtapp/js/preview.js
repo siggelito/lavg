@@ -40,10 +40,10 @@ function runSlideShow(imageSet, timeline, index) {
 	
 	if (index == 0) {
 		startAnimation(imageSet[0]);
-		timeline.add(TweenLite.to(0, imageSet[index].settings.duration, {})); 
+		timeline.add(TweenLite.to(imageSet[index].layers[0], imageSet[index].settings.duration, {})); 
 	} else {
 		imageSet[index].settings.transition(imageSet[index-1], imageSet[index], timeline);
-		timeline.add(TweenLite.to(0, imageSet[index].settings.duration, {}));        
+		timeline.add(TweenLite.to(imageSet[index].layers[0], imageSet[index].settings.duration, {}));        
 	}
 	index++;
 	
