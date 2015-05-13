@@ -151,10 +151,9 @@ def phantomjs(request):
     phantomjs_script = './dbtapp/phantomTest.js'
     url = ('https://www.google.se')
     fileName = './media/pictures/test.jpg'
-    phantomProcess = Popen([command, phantomjs_script, url, fileName])
+    phantomProcess = Popen([command, phantomjs_script])#, stdin=PIPE, stdout=PIPE, stderr=PIPE)
     
-    
-    ffmpegProcess = Popen('ffmpeg -y -c:v png -f image2pipe -r 25 -t 10  -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart dragon.mp4', stdin=phantomProcess, stderr=PIPE, stdout=PIPE)
+    ffmpegProcess = Popen('ffmpeg -y -c:v png -f image2pipe -r 25 -t 10  -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart test.mp4', stdin=phantomProcess, stderr=PIPE, stdout=PIPE)
     
     
     #returnFile = File(open(fileName, 'r'))
