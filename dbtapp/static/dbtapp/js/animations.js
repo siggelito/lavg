@@ -3,8 +3,8 @@ function simpleTransition(current, next, timeline, transitionLength) {
 	timeline.add(TweenLite.delayedCall(0,function () {
 		$(next.parent).css("left", "800px");
 		$(next.parent).css("opacity", "1");
+
 		var div = document.createElement("div");
-		
 		next.parent.appendChild(div);
 		div.style.width = "50px";
 		div.style.height = "50px";
