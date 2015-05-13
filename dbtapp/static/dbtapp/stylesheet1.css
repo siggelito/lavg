@@ -89,17 +89,13 @@ header .big-header{
   text-align: center;
   font-size: 90px;
 }
+
 header .big-header h1{
   font-size: 60px;
 }  
+
 .smallHeader{
   text-transform: uppercase;
-}
-
-@media (min-width: 768px){
-  header {
-  min-height: 100%;
-  }
 }
 
 .btn{
@@ -136,19 +132,6 @@ section {
 .bgDark{
   background-color: #2B2B2B;
   color: #fff;
-}
-
-
-#about{
-
-}
-
-#inspiration{
-
-}
-
-#contact{
-
 }
 
 .icon{
@@ -192,4 +175,24 @@ section {
 }
 
 
+@media (min-width: 768px){
+  header {
+    min-height: 100%;
+  }
 
+  .down{
+    display: none;
+  }
+}
+
+@media (max-width: 768px){
+  .icon{
+    font-size: 50px;
+    color: #EC6568;
+    margin-top: 21px;
+  }
+
+  .right{
+    display: none;
+  }
+}
