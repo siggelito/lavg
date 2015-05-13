@@ -157,7 +157,7 @@ def phantomjs(request):
     
     phantomProcess = Popen([command, phantomjs_script], stdout=PIPE, stderr=PIPE)
     
-    ffmpegProcess = Popen(['ffmpeg ', '-y ', '-c:v ', 'png ', '-f ', 'image2pipe ', '-r ', '25 ', '-t ', '1 ', '-i ', '-c:v ', 'libx264 ', '-pix_fmt ', 'yuv420p ', '-movflags ', '+faststart ', 'test.mp4'], stdin=phantomProcess.communicate(), stdout=PIPE, stderr=STDOUT)
+    ffmpegProcess = Popen(['ffmpeg ', '-y ', '-c:v ', 'png ', '-f ', 'image2pipe ', '-r ', '25 ', '-t ', '1 ', '-i ', '-c:v ', 'libx264 ', '-pix_fmt ', 'yuv420p ', '-movflags ', '+faststart ', 'test.mp4'], stdin=phantomProcess, stdout=PIPE, stderr=STDOUT)
     
     #returnFile = File(open(fileName, 'r'))
     #response = HttpResponse(returnFile, mimetype='application/force-download')
