@@ -1,5 +1,9 @@
 $(document).ready(function(){ 
-    var imageSet = [];
+    var video = {
+        images: [],
+        intro: null,
+        outro: null
+    };
     var slideshow = document.getElementById('slideshow');
     var input = document.getElementById('input');
     var inputLogo = document.getElementById('input-logo');
@@ -13,66 +17,63 @@ $(document).ready(function(){
     var offset = 0;
 
     function initializeVideo () {
-        var images = $('#images li img');
-
-        for(var i = 0; i < images.length; i++) { 
-            var layers = [
-                document.createElement('img'),
-                document.createElement('canvas')
-            ];
-
-            layers[0].className = "layer";
-            layers[0].style.zIndex = 1;
-
-            layers[1].className = "layer";
-            layers[1].style.zIndex = 2;
-
-            var settings = {
-                transition: function(current, next, timeline){
-                    simpleTransition(current, next, timeline);
+        var list = $('#preview ul li');
+        var images = $('#preview ul li img');
+        video.intro = {
+            transition: function(first, timeline, transitionLength){
+                startAnimation(first, timeline, transitionLength);
+            },
+            transitionLength: 1,
+            effectLengt: 2, 
+            wrapper: list[0]
+        } 
+        $(list[0]).css("opacity", "0");
+        var i;
+        for(i = 0; i < images.length; i++) { 
+            var imgSettings = {
+                transition: function(current, next, timeline, transitionLength){
+                    simpleTransition(current, next, timeline, transitionLength);
                 },
-                duration: 2 //(Math.floor((Math.random() * 4) + 2) * 1000)
+                effect: function(current, timeline, effectLength){
+                    simpleTransition(current, timeline, effectLength);
+                },
+                transitionLength: 2, //(Math.floor((Math.random() * 4) + 2) * 1000)
+                effectLength: 2,
+                image: images[i],
+                wrapper: list[i+1]
             };
+            video.images[i] = imgSettings;
 
-            var layerContent = {
-                layers: layers,
-                settings: settings
-            }; 
-
-            imageSet[i] = layerContent;
-
-            var element = document.createElement("li");
-            element.appendChild(layers[0]);
-            element.appendChild(layers[1]);
-            slideshow.appendChild(element);
-            
-
-            var img = document.createElement("img");
-            img.src = images[i].src;
-            layers[0].src = images[i].src
-            imageSet[i].image = img;
-
+            /*
             var size = calcSize(slideshow, images[i]);
 
-            layers[0].width = size.width;
-            layers[0].height = size.height;
-            $(layers[0]).css( "margin-top", size.paddingTop, "margin-left", size.paddingLeft );
+            img.width = size.width;
+            img.height = size.height;
+            $(img).css( "margin-top", size.paddingTop, "margin-left", size.paddingLeft );
             //layers[0].style.top = size.paddingTop + "px";
             //layers[0].style.left = size.paddingLeft;
 
-            layers[1].width = slideshow.scrollWidth;
-            layers[1].height = slideshow.scrollHeight;
-
-            var size = calcSize(slideshow, images[i]);
-
-            //var context = layers[0].getContext('2d');
-            //context.drawImage(imageSet[i].image, size.paddingLeft, size.paddingTop, size.width, size.height); //, paddingLeft, paddingTop, width, height  
+            img.width = slideshow.scrollWidth;
+            img.height = slideshow.scrollHeight;
+            */
+            $(list[i+1]).css("opacity", "0");
             
-            $(imageSet[i].layers).hide();
-            
-            oneLoadedFile(imageSet[i], i);
+            oneLoadedFile(video.images[i], i);
         }
-        doneLoadingFiles(imageSet);
+
+        video.outro = {
+            transition: function(last, outro, timeline, transitionLength){
+                endAnimation(last, outro, timeline, transitionLength);
+            },
+            transitionLength: 1,
+            effectLengt: 2,
+            wrapper: list[i+1]
+        } 
+        $(list[i+1]).css("opacity", "0");
+
+
+
+        doneLoadingFiles(video);
     }
 
     initializeVideo();
