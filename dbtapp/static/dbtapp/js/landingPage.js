@@ -19,8 +19,23 @@ jQuery(document).ready(function($) {
 });
 
 
+/* Scroll-test 2 */
+$(window).scroll(function(){
+
+  var scroll = $(window).scrollTop();
+
+  if (scroll > 0 ) {
+    $(".navbar").addClass('scrolled');
+  }
+
+  if (scroll <= 0 ) {
+    $(".navbar").removeClass('scrolled');
+ }
+
+});
+
 /* TEST: Ändra menyn när man scrollar (med övergångar) */
-$(window).scroll(function() {
+/*$(window).scroll(function() {
 
   var scroll_pos = window.pageYOffset;
   if(scroll_pos>=40) {
@@ -29,7 +44,6 @@ $(window).scroll(function() {
                 backgroundColor: '#2B2B2B'
 
   }, 50, function() {
-    // Animation complete.
   });
 }
 
@@ -40,10 +54,9 @@ $(window).scroll(function() {
         backgroundColor: 'transparent'
 
   }, 100, function() {
-    // Animation complete.
   });
   }
-}); 
+});*/ 
 
 /*
 Change in navbar colour and fontsize when scrolling down.
