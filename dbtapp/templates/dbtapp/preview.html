@@ -32,31 +32,26 @@
 		</form>
 	</div>
 
-	<div class="row">
-		<div class="col-md-12">
-			<!-- Bildserie -->
-			<ul id="images">
-				{% if images %}
-					{% for image in images %}
-						<li rel="{{ image.pk }}">
-							<div class="image-wrapper">
-								<img src="{{ image.photoFile.url }}" rel="{{ image.order }}">
-							</div>
-						</li>
-					{% endfor %}
-				{% endif %}
-				<!-- Ladda upp bild -->
-				<div id="addFileWrapper">
-					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+	<!-- Bildserie -->
+	<ul id="images" class="list-group row">
+		{% if images %}
+			{% for image in images %}
+				<li rel="{{ image.pk }}" class="list-group-item col-xs-1">
+					<div class="image-wrapper">
+						<img src="{{ image.photoFile.url }}" rel="{{ image.order }}">
 
-					<form action="{% url 'dbtapp:videoEdit' video.pk %}" method="post" enctype="multipart/form-data">
-						{% csrf_token %}
-						{{ form.photoFile }}
-					</form>
-				</div>
-			</ul>
+					</div>
+				</li>
+			{% endfor %}
+		{% endif %}
+		<!-- Ladda upp bild -->
+		<div id="addFileWrapper" >
+			<form action="{% url 'dbtapp:videoEdit' video.pk %}" class="form-class clearfix" method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ form.photoFile }}
+			</form>
 		</div>
-	</div>
+	</ul>
 
 	<!-- Preview-knapp -->
 	<div id="preview" class="modalDialog">
