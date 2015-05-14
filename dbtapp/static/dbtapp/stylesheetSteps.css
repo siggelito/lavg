@@ -345,7 +345,16 @@ footer {
 	margin-left: 28%;
 }
 
-#navigationArrow {
+a {
+	color: #454545;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.navigationArrow {
 	color: #454545 !important;
 }
 

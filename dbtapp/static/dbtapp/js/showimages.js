@@ -171,7 +171,7 @@ function postLogoForm(e){
 	    processData: false,
 	    contentType: false,
 	    success: function() {
-	        
+	        window.location.reload();
 	    }
     });
     return false;

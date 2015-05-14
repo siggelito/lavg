@@ -27,14 +27,14 @@
 
 			<label class="control-label" for="focusedInput"><h3>Namn på video:</h3></label>
 			<p> 
-				{% render_field form.video_name class+="form-control" %}
+				{% render_field form.video_name class+="form-control" tabindex=1 %}
 
 				{{ form.video_name.errors}}
 			</p>
 
 			<label class="control-label" for="focusedInput"><h3>Företagsnamn:</h3></label>
 			<p>
-				{% render_field form.company_name class+="form-control" %}
+				{% render_field form.company_name class+="form-control" tabindex=2 %}
 				{{ form.company_name.errors }}
 			</p>
 		</div>
@@ -46,7 +46,7 @@
 
 			<div class="col-xs-6 col-sm-6 col-md-1 text-left">
 				<!-- Härifrån ska man kunna ta sig bakåt i stegen. -->
-				<a href="{% url 'dbtapp:index'%}"><span id="navigationArrow" class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
+				<a href="{% url 'dbtapp:index'%}" id="navigationArrow" class="glyphicon glyphicon-menu-left" aria-hidden="true" tabindex=4></a>
 			</div>
 
 			<div class="col-md-10 text-center ">
@@ -64,7 +64,7 @@
 			</div>
 			
 			<div class="col-xs-6 col-sm-6 col-md-1 text-right">
-				<span id="navigationArrow" class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+				<a id="navigationArrow" class="glyphicon glyphicon-menu-right" aria-hidden="true" tabindex=3 ></a>
 
 				<!--<input type="submit" value="Nästa" />-->
 			</div>
@@ -72,5 +72,14 @@
 	</div>
 </form>
 
-<script>$('span.glyphicon').click(function(){ $('#form').submit()});</script>
+<script>
+	$('a.glyphicon').click(function(){ 
+		$('#form').submit()
+	});
+	$('a.glyphicon').keypress(function (e) {
+		if (e.which == 13) {
+			$('#form').submit();
+		}
+	});
+</script>
 {% endblock %}
