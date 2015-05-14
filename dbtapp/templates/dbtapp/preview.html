@@ -47,6 +47,7 @@
 		{% endif %}
 		<!-- Ladda upp bild -->
 		<div id="addFileWrapper" >
+			<span class="glyphicon glyphicon-plus"></span>
 			<form action="{% url 'dbtapp:videoEdit' video.pk %}" class="form-class clearfix" method="post" enctype="multipart/form-data">
 				{% csrf_token %}
 				{{ form.photoFile }}

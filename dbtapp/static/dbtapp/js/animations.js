@@ -68,6 +68,11 @@ function endAnimation(last, outro, timeline, transitionLength) {
 		$(last.parent).css("opacity", "0");
 		$(outro.parent).css("opacity", "1");
 	}),null);
+	
+	
+	timeline.add(TweenLite.delayedCall(1,function () {
+		$(outro.parent).css("opacity", "0");
+	}),null);
 }
 
 
