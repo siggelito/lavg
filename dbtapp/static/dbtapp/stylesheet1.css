@@ -62,7 +62,8 @@ nav.navbar.navbar-default{
   background-color: transparent;
 }
 
-.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, 
+.navbar-default .navbar-nav>.active>a:focus{
   color: #fff;
   background-color: transparent;
 }
@@ -138,7 +139,8 @@ header .big-header h1{
   border-color: #FF9900;
 }
 
-.btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+.btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, 
+.btn-primary.active, .open>.dropdown-toggle.btn-primary {
   color: #ffffff;
   background-color: #ED712C;
   border-color: #ED712C;
@@ -200,6 +202,8 @@ section {
 }
 
 
+/* Olika inställningar för tablet och mobil */
+
 @media (min-width: 768px){
   header {
     min-height: 100%;
@@ -219,5 +223,9 @@ section {
 
   .right{
     display: none;
+  }
+
+  .navbar{
+    background-color: #222;
   }
 }
