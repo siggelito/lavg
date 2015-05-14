@@ -51,6 +51,11 @@ nav.navbar.navbar-default{
   font-size: 16px;
 }
 
+/*Tar bort prickade linjen runt länkar när man klickar*/
+a:hover, a:active, a:focus {
+  outline: 0;
+}
+
 .navbar-fixed-top {
   top: 0;
   border-width: 0 0px;
