@@ -359,3 +359,9 @@ a:hover {
 	font-size: 20px;
 	color: #222;
 }
+
+.errorlist {
+	list-style: none;
+	color: #EC6568;
+	padding: 0;
+}

@@ -1,13 +1,17 @@
 from django.db import models
+from django.forms import Field
+from django.utils.translation import ugettext_lazy
+
+Field.default_error_messages = {
+	'required': ugettext_lazy("Hoppsan, detta fylldes inte i!")}
 
 class Logo(models.Model):
-	photoFile = models.ImageField()
+    photoFile = models.ImageField()
 
 class Video(models.Model):
     company_name = models.CharField(max_length=100, default = None)
     video_name = models.CharField(max_length=100, default = None)
     logo = models.ForeignKey(Logo, null=True, blank=True, default = None)
-    
     
 class Photo(models.Model):
     video = models.ForeignKey(Video, null=True, blank=True, default = None)
