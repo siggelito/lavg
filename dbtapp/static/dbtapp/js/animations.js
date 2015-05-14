@@ -21,6 +21,42 @@ function simpleTransition(current, next, timeline, transitionLength) {
 	}),null);
 }
 
+function fadeTransition(current, next, timeline, transitionLength) {
+	timeline.add(TweenLite.to($(next.parent), transitionLength, {opacity: 1}));
+	timeline.add(TweenLite.to($(current.parent), transitionLength, {opacity: 0}));
+}
+
+function circleTransition(current, next, timeline, transitionLength) {
+
+	timeline.add(TweenLite.delayedCall(2,function () {
+
+		$(next.parent).css("opacity", "1");
+		//$(next.image).css("opacity", "0");
+		
+	}),null);
+	//timeline.add(TweenLite.to($(next.parent), transitionLength, {delay: 1, opacity: 1}));
+
+	//timeline.add(TweenLite.to($(".shrink"), 4, {width:"5px", height:"5px"}));
+
+	//timeline.add(TweenLite.to($("#test"), 2, {width:"50px", height:"50px"}));
+	//timeline.add(TweenLite.to($(current.parent), 0.1, {opacity: 0}));
+	
+	
+	
+	timeline.add(TweenLite.delayedCall(1,function () {
+		
+		//$(next.image).css("opacity", "1");
+
+		//restore shrink
+		$(".shrink").css("width", "50%");
+		$(".shrink").css("height", "50%");
+		
+	}),null);
+	//timeline.add(TweenLite.to($(".hejd"), transitionLength, {delay: 2, x: 0}));
+	
+	
+}
+
 function startAnimation(first, timeline, transitionLength) {
 	timeline.add(TweenLite.delayedCall(0,function () {
 		$(first.parent).css("opacity", "1");
@@ -36,11 +72,11 @@ function endAnimation(last, outro, timeline, transitionLength) {
 
 
 
-function transSlide(timeline, current, next) {
-	
-	
-	
-}
+
+
+
+
+
 
 function ani1(imageSet) {
 
