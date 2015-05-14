@@ -1,5 +1,5 @@
 from django import forms
-from dbtapp.models import Photo, Video, Logo
+from .models import Photo, Video, Logo
 from django.forms.models import modelformset_factory
 
 class PhotoForm(forms.ModelForm):

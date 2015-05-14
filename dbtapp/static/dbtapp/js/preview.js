@@ -1,9 +1,9 @@
-
 function initPreview (imageSet) {	
     $("#preview-button").delay(1000).on("click", function() {
 		//imageSet = sortSlideShow(imageSet.images);
 		$("#preview").css("opacity", "1");
     	runSlideShow(imageSet);
+		
     });
 }
 
@@ -15,6 +15,7 @@ function runSlideShow(video) {
 		$("#preview").css("opacity", "0");
 
 	});
+
 	var timeline = new TimelineLite();
 	// Animera fram första sidan
 	video.intro.transition(video.intro, timeline, video.intro.transitionLength);

@@ -3,7 +3,6 @@ function showImages(imageObject, index) {
 	var imageUl = document.getElementById('images');
 	var image = imageObject.image;
 	/*var images = $('#images li img');
-
 	for (var i = 0; i < images.length; i++) {
 		
 		var size = getNewSize(images[i]);
