@@ -28,7 +28,7 @@
 
 	<!-- CSS för de olika stegen - VIKTIGT - skriv inte över styleBase.css -->
 	<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/stylesheetSteps.css' %}" />
-	<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/style.css' %}" />
+	<!--<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/style.css' %}" />-->
 
 	<!-- CSS för tidslinjen-->
 	<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/timelineStylesheet.css' %}" />
@@ -49,7 +49,7 @@
 					<!-- Även denna ska scrollas rätt... kolla er på det..-->
 
 					<!-- Här ska navigenringen till startsidan ändras men hur? -->
-					<a class="navbar-brand" href="#page-top">Skapa din video!</a>
+					<a class="navbar-brand" href="{% url 'dbtapp:index'%}">MillVid</a>
 				</div>
 
 				<div class="collapse navbar-collapse navbar-right" id="myNavbar">
@@ -61,7 +61,7 @@
 		</nav>
 	</header>
 
-	<section>
+	<section class="step-content">
 		<div class="container" id="container-main">
 			<div class="page-header">
 				<h1>{% block head %}{% endblock %}</h1>

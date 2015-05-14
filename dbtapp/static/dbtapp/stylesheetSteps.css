@@ -110,12 +110,11 @@ body {
 	box-sizing: border-box;
 }
 
-/* denna finns även i style.css*/
 #container-main {
 	padding-bottom: 10px;
 }
 
-/*Ska kolla över detta - finns det både här och i style.css???*/
+/*Ska kolla över detta - finns det både här och i style.css???*//*
 footer {
 	position: absolute;
 	bottom: 0px;
@@ -136,24 +135,32 @@ footer {
 .footer-container p{
 	line-height: 80px;
 	margin: 0px;
-}
+}*/
 
 .input-group {
 	margin-bottom: 10px;
 }
 
+#slideshow-container{
+	width: 800px;
+	height: 480px;
+	margin: 50px auto;
+	position: relative;
+}
+
 #slideshow{
     background-color:#F5F5F5;
-    margin:50px auto;
     -moz-box-shadow:0 0 22px #111;
     -webkit-box-shadow:0 0 22px #111;
     box-shadow:0 0 22px #111;
-    width: 800px;
-    height: 480px;
+   /* width: 800px;
+    height: 480px;*/
+    width: 100%;
+    height: 100%;
     position: relative;
     list-style-type: none;
     padding: 0px;
-
+    overflow: hidden;
 }
 
 #slideshow li {
@@ -163,9 +170,9 @@ footer {
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-
 }
 
+/*ny?*/
 #slideshow li canvas {
 	width: 100%;
 	height: 100%;
@@ -176,9 +183,8 @@ footer {
 	list-style-type: none;
 	margin-right: 10px;
 	margin-bottom: 10px;
-	float:left;
-	width: 200px;
-	height: 200px; //140px
+	height: 100px;
+	padding:0px;
 }
 .image-wrapper {
 	overflow: hidden;
@@ -187,6 +193,7 @@ footer {
 	position: relative;
 }
 
+/*Vad gör denna?*/
 #images li .image-wrapper img {
 	position: absolute;
 }
@@ -200,12 +207,14 @@ footer {
 	margin-bottom:60px;
 	margin-left:50px;
 	margin-right:40px;
+	/* Border skiljer från style.css */
 	border:solid;
 	border-color: #454545;
 	border-radius: 6%;
 	padding:0%;
 }
 
+/*Används denna?*/
 #addFileWrapper:hover {
 	border-color:#454545 !important;
   	color:  #FF9900;
@@ -256,7 +265,8 @@ footer {
 	pointer-events: auto;
 }
 
-.close {
+#closeButton {
+	color: black;
 	position:absolute;
 	right:-20px;
 	top:-20px;
@@ -267,6 +277,8 @@ footer {
 	border-radius: 30px 30px;
 	background:white;
 }
+
+
 
 #logo-image {
 	position: absolute;
