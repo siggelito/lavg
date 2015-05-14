@@ -1,12 +1,101 @@
 /*
-
 CSS för de olika stegen - VIKTIGT - skriv inte över styleBase.css
-
 / Hanna
 */
 
 
-/* end of style.css */
+
+
+
+#content	{
+	/*background-color: #FF9900;*/
+	font-size: 110%;
+
+}
+.content	{
+}
+
+#header {
+		font-family: 'Roboto Condensed';
+
+
+}
+#circle	{
+	background-color:red;
+	border-radius: 50%;
+	width: 200px;
+	height: 200px;
+	position: relative;
+	z-index: -1;
+}
+
+#divider {
+	background-color: #FF9900;
+    padding-top: 3%;
+}
+/*
+#stepNumber {
+	font-size: 300%;
+    display: inline-block;
+    padding:0;
+	margin:0 auto;
+	vertical-align: middle;
+}
+*/ 
+
+#description {
+	display: inline-block;
+	padding:0;
+	margin:0 auto;
+	line-height: auto;
+	vertical-align: middle;
+}
+
+.control-label	{
+	font-size: 140%;
+}
+
+.top-buffer {
+ 	padding-top:11%;
+ 	padding-bottom:0;
+ 	margin: 0 auto;
+}
+
+/*Ändrar upplysningsfärg på formuläret*/
+.form-control:focus {
+    border-color: #FF9900 !important;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(255, 153, 0, 1),0 0 8px rgba(255, 153, 0, 1) !important;
+    box-shadow: inset 0 1px 1px rgba(255, 153, 0, 1),0 0 8px rgba(255, 153, 0, 1) !important;
+}
+
+.glyphicon-menu-right, .glyphicon-menu-left	{
+	font-size: 320%;
+	 /* First we need to help some browsers along for this to work.
+     Just because a vendor prefix is there, doesn't mean it will
+     work in a browser made by that vendor either, it's just for
+     future-proofing purposes I guess. */
+}
+
+.glyphicon{
+	  -o-transition:.3s;
+  -ms-transition:.3s;
+  -moz-transition:.3s;
+  -webkit-transition:.3s;
+  /* ...and now for the proper property */
+  transition:.3s;
+}
+
+.glyphicon:hover, .glyphicon:focus {
+  	color:  #FF9900;
+  	cursor:pointer !important;
+  	cursor:hand !important;
+  }
+
+
+
+
+/* Gamla style.css */
 html {
    height: 100%;
 }
@@ -20,9 +109,10 @@ body {
 }
 
 #container-main {
-	padding-bottom: 100px;
+	padding-bottom: 10px;
 }
 
+/*Ska kolla över detta - finns det både här och i style.css???*//*
 footer {
 	position: absolute;
 	bottom: 0px;
@@ -33,7 +123,6 @@ footer {
 	height: 80px;
 	text-align: center;
 }
-
 .footer-container {
 	height: 100%;
 	background-color: #f5f5f5;
@@ -43,25 +132,26 @@ footer {
 .footer-container p{
 	line-height: 80px;
 	margin: 0px;
-}
+}*/
 
 .input-group {
 	margin-bottom: 10px;
 }
 
-#slideshow-container {
+#slideshow-container{
 	width: 800px;
-    height: 480px;
-    margin:50px auto;
-    position: relative;
+	height: 480px;
+	margin: 50px auto;
+	position: relative;
 }
 
 #slideshow{
     background-color:#F5F5F5;
-    
     -moz-box-shadow:0 0 22px #111;
     -webkit-box-shadow:0 0 22px #111;
     box-shadow:0 0 22px #111;
+   /* width: 800px;
+    height: 480px;*/
     width: 100%;
     height: 100%;
     position: relative;
@@ -79,12 +169,19 @@ footer {
 	overflow: hidden;
 }
 
+/*ny?*/
+#slideshow li canvas {
+	width: 100%;
+	height: 100%;
+}
+
 #images li {
 	display:inline-block;
 	list-style-type: none;
 	margin-right: 10px;
 	margin-bottom: 10px;
-	height: 200px;
+	height: 100px;
+	padding:0px;
 }
 .image-wrapper {
 	overflow: hidden;
@@ -93,7 +190,8 @@ footer {
 	position: relative;
 }
 
-.image-wrapper img {
+/*Vad gör denna?*/
+#images li .image-wrapper img {
 	position: absolute;
 }
 
@@ -106,12 +204,14 @@ footer {
 	margin-bottom:60px;
 	margin-left:50px;
 	margin-right:40px;
+	/* Border skiljer från style.css */
 	border:solid;
 	border-color: #454545;
 	border-radius: 6%;
-	background-color: #FF9900;
+	padding:0%;
 }
 
+/*Används denna?*/
 #addFileWrapper:hover {
 	border-color:#454545 !important;
   	color:  #FF9900;
@@ -120,17 +220,12 @@ footer {
 #input {
 	position:absolute; 
 	float:left;
+	z-index: 2; 
+	opacity: 0;
 	width: 100%;
 	height:100%;
 	cursor:pointer !important;
   	cursor:hand !important;
-	opacity: 0;
-}
-
-
-.form-class {
-	width: 100%;
-	height: 100px;
 }
 
 #input:hover {
@@ -168,7 +263,7 @@ footer {
 }
 
 #closeButton {
-	color:black;
+	color: black;
 	position:absolute;
 	right:-20px;
 	top:-20px;
@@ -179,6 +274,8 @@ footer {
 	border-radius: 30px 30px;
 	background:white;
 }
+
+
 
 #logo-image {
 	position: absolute;
@@ -195,101 +292,45 @@ footer {
 #logo-img {
 	width: 70px;
 }
-/* end of style.css */
 
-
-
-#content	{
-	/*background-color: #FF9900;*/
-	font-size: 110%;
-
-}
-.content	{
-}
-
-#header {
-		font-family: 'Roboto Condensed';
-
-
-}
-#circle	{
-	background-color:red;
-	border-radius: 50%;
-	width: 200px;
-	height: 200px;
+#videoCont{
+	width: 800px;
+	height: 480px;
+	background-color: rgba(240, 240, 240, 1);
 	position: relative;
-	z-index: -1;
+	
+}
+.videoLayer{	
+	width: 800px;
+	heigth: 480px;
 }
 
-#divider {
-	background-color: #FF9900;
-    padding-top: 3%;
-}
-/*
-#stepNumber {
-	font-size: 300%;
-    display: inline-block;
-    /*background-color:red;*/
-    padding:0;
-	margin:0 auto;
-	vertical-align: middle;
-	/* width and height can be anything, as long as they're equal */
+#lay1{
+	/*background-color: rgba(0, 255, 33, 1);*/
+	z-index: 1;
+	height: 480px;
+	position: absolute;
+	top: 0px;
+	
 
 }
-*/ 
-
-#description {
-	display: inline-block;
-	/*background-color: blue;*/
-	padding:0;
-	margin:0 auto;
-	line-height: auto;
-	vertical-align: middle;
+#lay2{
+    /*background-color: rgba(234, 164, 0, 1);*/
+	z-index: 2;
+	height: 480px;
+	position: absolute;
+	top: 0px;
 
 
 }
-
-.control-label	{
-	font-size: 140%;
+#lay3{
+	/*background-color: rgba(255, 0, 0, 0.7);*/
+	z-index: 3;
+	/*height: 200px;*/
+	height: 480px;
+	position: absolute;
+	top: 0px;
 }
-
-.top-buffer {
- 	padding-top:11%;
- 	padding-bottom:0;
- 	margin: 0 auto;
-}
-
-/*Ändrar upplysningsfärg på formuläret*/
-.form-control:focus {
-    border-color: #FF9900 !important;
-    outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(255, 153, 0, 1),0 0 8px rgba(255, 153, 0, 1) !important;
-    box-shadow: inset 0 1px 1px rgba(255, 153, 0, 1),0 0 8px rgba(255, 153, 0, 1) !important;
-}
-
-.glyphicon-menu-right	{
-	font-size: 320%;
-	 /* First we need to help some browsers along for this to work.
-     Just because a vendor prefix is there, doesn't mean it will
-     work in a browser made by that vendor either, it's just for
-     future-proofing purposes I guess. */
-
-}
-.glyphicon{
-	  -o-transition:.3s;
-  -ms-transition:.3s;
-  -moz-transition:.3s;
-  -webkit-transition:.3s;
-  /* ...and now for the proper property */
-  transition:.3s;
-}
-
-.glyphicon:hover, .glyphicon:focus {
-  	color:  #FF9900;
-  	cursor:pointer !important;
-  	cursor:hand !important;
-  }
-
 
 
 /* Nya för steg 2 (Karro)*/
@@ -305,4 +346,7 @@ footer {
 	color: #454545 !important;
 }
 
-
+.sign{
+	font-size: 20px;
+	color: #222;
+}

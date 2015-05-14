@@ -13,6 +13,7 @@ h1	{
 	font-family: 'Roboto Condensed', sans-serif !important;
 	font-weight: 700;
 	font-size: 60px;
+  margin-top: 0px;
 }
 
 h2{
@@ -72,10 +73,11 @@ nav.navbar.navbar-default{
 .bgDark{
   background-color: #2B2B2B;
   color: #fff;
+  padding: 100px 0px;
 }
 
-section {
-  padding: 100px 0;
+.step-content {
+  padding: 10px 0;
   display: block;
 }
 
