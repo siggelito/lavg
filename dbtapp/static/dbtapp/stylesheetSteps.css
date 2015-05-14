@@ -39,24 +39,18 @@ CSS för de olika stegen - VIKTIGT - skriv inte över styleBase.css
 #stepNumber {
 	font-size: 300%;
     display: inline-block;
-    /*background-color:red;*/
     padding:0;
 	margin:0 auto;
 	vertical-align: middle;
-	/* width and height can be anything, as long as they're equal */
-
 }
 */ 
 
 #description {
 	display: inline-block;
-	/*background-color: blue;*/
 	padding:0;
 	margin:0 auto;
 	line-height: auto;
 	vertical-align: middle;
-
-
 }
 
 .control-label	{
@@ -77,14 +71,14 @@ CSS för de olika stegen - VIKTIGT - skriv inte över styleBase.css
     box-shadow: inset 0 1px 1px rgba(255, 153, 0, 1),0 0 8px rgba(255, 153, 0, 1) !important;
 }
 
-.glyphicon-menu-right	{
+.glyphicon-menu-right, .glyphicon-menu-left	{
 	font-size: 320%;
 	 /* First we need to help some browsers along for this to work.
      Just because a vendor prefix is there, doesn't mean it will
      work in a browser made by that vendor either, it's just for
      future-proofing purposes I guess. */
-
 }
+
 .glyphicon{
 	  -o-transition:.3s;
   -ms-transition:.3s;
@@ -101,6 +95,8 @@ CSS för de olika stegen - VIKTIGT - skriv inte över styleBase.css
   }
 
 
+
+
 /* Gamla style.css */
 html {
    height: 100%;
@@ -114,10 +110,12 @@ body {
 	box-sizing: border-box;
 }
 
+/* denna finns även i style.css*/
 #container-main {
-	padding-bottom: 100px;
+	padding-bottom: 10px;
 }
 
+/*Ska kolla över detta - finns det både här och i style.css???*/
 footer {
 	position: absolute;
 	bottom: 0px;
@@ -337,4 +335,9 @@ footer {
 
 #navigationArrow {
 	color: #454545 !important;
+}
+
+.sign{
+	font-size: 20px;
+	color: #222;
 }

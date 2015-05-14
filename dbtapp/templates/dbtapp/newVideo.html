@@ -5,12 +5,12 @@
 <div class="content" id="header">
 
 	<div class="row">
-		<div class="col-md-1 col-md-offset-3 text-right">
+		<div class="col-xs-12 col-sm-12 col-md-1 col-md-offset-2 text-center">
 			<h1>1</h1>
 		</div>
 
-		<div class="col-md-5 text-left">
-			<h2 id="description"> Börja med att namnge din film och skriv in förstagsnamnet.</h2>
+		<div class="col-xs-12 col-sm-12 col-md-6 text-left">
+			<h2 id="description"> Börja med att namnge din film och skriv in förstagsnamnet. <a href="#"><span class="glyphicon glyphicon-question-sign sign" aria-hidden="true"></span></a></h2> 
 		</div>
 	</div>
 </div>
@@ -22,7 +22,7 @@
 
 	<!--Formuläret-->
 	<div class="row" id="content">
-		<div class="col-md-4 col-md-offset-4">
+		<div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
 			{% load widget_tweaks %}
 
 			<label class="control-label" for="focusedInput"><h3>Namn på video:</h3></label>
@@ -44,26 +44,29 @@
 	<div class="container-fluid">
 		<div class="row  top-buffer">
 
-			<div class="col-md-1 col-md-offset-1 text-left">
+			<div class="col-xs-6 col-sm-6 col-md-1 text-left">
 				<!-- Härifrån ska man kunna ta sig bakåt i stegen. -->
-				<a href="#"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
+				<a href="#"><span id="navigationArrow" class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
 			</div>
 
-			<div class="col-md-8 text-center">
+			<div class="col-md-10 text-center ">
 				<!-- Här ska tidslinjen in -->
+				
+					<div id="hlineLeft" class="hline"></div>
+					<div id="hlineRight" class="hline"></div>
 
-				<div id="hlineLeft" class="hline"></div>
-				<div id="hlineRight" class="hline"></div>
-
-				<div class="round-button"><div class="round-button-circle currentPageOrange1" id="round-button-circle1"><a href="navbartest1.html" class="round-button">1</a></div></div>
-				<div class="round-button"><div class="round-button-circle" id="round-button-circle2"><a href="#" class="round-button">2</a></div></div>
-				<div class="round-button"><div class="round-button-circle" id="round-button-circle3"><a href="#" class="round-button">3</a></div></div>
-				<div class="round-button"><div class="round-button-circle" id="round-button-circle4"><a href="#" class="round-button">4</a></div></div>
-				<div class="round-button"><div class="round-button-circle" id="round-button-circle5"><a href="#" class="round-button">5</a></div></div>
-
+					<div class="round-button"><div class="round-button-circle currentPageOrange1" id="round-button-circle1"><a href="navbartest1.html" class="round-button">1</a></div></div>
+					<div class="round-button"><div class="round-button-circle" id="round-button-circle2"><a href="#" class="round-button">2</a></div></div>
+					<div class="round-button"><div class="round-button-circle" id="round-button-circle3"><a href="#" class="round-button">3</a></div></div>
+					<div class="round-button"><div class="round-button-circle" id="round-button-circle4"><a href="#" class="round-button">4</a></div></div>
+					<div class="round-button"><div class="round-button-circle" id="round-button-circle5"><a href="#" class="round-button">5</a></div></div>
+			
 			</div>
-			<div class="col-md-1 text-right">
-				<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+
+
+			<div class="col-xs-6 col-sm-6 col-md-1 text-right">
+				<span id="navigationArrow" class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+
 				<!--<input type="submit" value="Nästa" />-->
 			</div>
 		</div>
@@ -72,20 +75,3 @@
 
 <script>$('span.glyphicon').click(function(){ $('#form').submit()});</script>
 {% endblock %}
-
-<!--<div class="row">
-    <div class="col-lg-4 col-md-offset-4">
-	    <form action="{% url 'dbtapp:videoNew' %}" method="post" enctype="multipart/form-data" id ="form">
-		    {% csrf_token %}
-		    <p>{{ form.video_name.label_tag }}</p>
-		    <p>{{ form.video_name }}</p>
-
-		    <p>{{ form.company_name.label_tag }}</p>
-		    <p>{{ form.company_name }}</p>
-		    <input type="submit" value="Submit" />
-		</form>
-	</div>
-</div>
-</div> -->
-	<!--<a href="{% url 'dbtapp:videoList' %}" class="btn btn-default">back</a>
--->
