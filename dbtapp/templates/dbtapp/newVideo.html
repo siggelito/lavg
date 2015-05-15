@@ -41,10 +41,19 @@
 		</div>
 	</div>
 </form>
+{% endblock %}
 
+
+{% block leftNav %}
+<a href="{% url 'dbtapp:videoList' %}"><span id="navigationArrow" tabindex=3 class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
+{% endblock %}
+
+{% block rightNav %}
+<a><span id="navigationArrow" tabindex=3 class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
+{% endblock %}
 <script>
-	$('a.glyphicon').click(function(){ 
-		$('#form').submit()
+	$('#a.glyphicon').click(function(){ 
+		$('#form').submit();
 	});
 	$('a.glyphicon').keypress(function (e) {
 		if (e.which == 13) {
@@ -52,4 +61,3 @@
 		}
 	});
 </script>
-{% endblock %}
