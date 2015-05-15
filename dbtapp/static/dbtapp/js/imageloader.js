@@ -33,7 +33,7 @@ $(document).ready(function(){
             $(images[i]).zIndex = i+1;
             var imgSettings = {
                 transition: function(current, next, timeline, transitionLength){
-                    fadeTransition(current, next, timeline, transitionLength);
+                    simpleTransition(current, next, timeline, transitionLength);
                 },
                 transitionSetup: function(video, i){
                     //shrinkTransSetup(video, i);
