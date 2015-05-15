@@ -76,61 +76,8 @@
 			{% block content %}{% endblock %}
 			<!--Submitknapp (högerpil)-->
 
-			<div class="container-fluid">
-				<div class="row top-buffer">
-
-					<div class="col-xs-6 col-sm-6 col-md-1 text-left">
-						<!-- Härifrån ska man kunna ta sig bakåt i stegen. -->
-						{% block leftNav %}{% endblock %}
-						
-					</div>
-
-					<div class="col-md-10 text-center ">
-						<!-- Tidslinje -->
-
-						<div id="hlineLeft" class="hline"></div>
-						<div id="hlineRight" class="hline"></div>
-
-						<div class="round-button">
-							<div class="round-button-circle" id="round-button-circle1">
-								<a href="{% url 'dbtapp:videoUpdate'%}" class="round-button">1</a>
-							</div>
-						</div>
-
-						<div class="round-button">
-							<div class="round-button-circle" id="round-button-circle2">
-								<a href="#" class="round-button">2</a>
-							</div>
-						</div>
-
-						<div class="round-button">
-							<div class="round-button-circle" id="round-button-circle3">
-								<a href="#" class="round-button">3</a>
-							</div>
-						</div>
-						
-						<div class="round-button">
-							<div class="round-button-circle" id="round-button-circle4">
-								<a href="#" class="round-button">4</a>
-							</div>
-						</div>
-						
-						<div class="round-button">
-							<div class="round-button-circle" id="round-button-circle5">
-								<a href="#" class="round-button">5</a>
-							</div>
-						</div>
-
-					</div>
-
-					<div class="col-xs-6 col-sm-6 col-md-1 text-right">
-						{% block rightNav %}{% endblock %}
-						
-						<!--<input type="submit" value="Nästa" />-->
-					</div>
-					
-				</div>
-			</div>
+			{% block navigation %}{% endblock %}
+			
 		</div>
 	</section>
 	<section class="bgDark" id="contact">
