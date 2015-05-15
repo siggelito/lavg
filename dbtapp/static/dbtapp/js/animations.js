@@ -19,6 +19,17 @@ function simpleTransition(current, next, timeline, transitionLength) {
 	timeline.add(TweenLite.delayedCall(0,function () {
 		$(current.parent).css("opacity", "0");
 	}),null);
+		
+	$("#closeButton").on("click", function() {
+		
+		$("#preview").css("opacity", "0");
+		
+		$(current.parent).css("opacity", "0");
+		
+		$(next.parent).css("opacity", "0");
+		
+		timeline.kill();
+	});
 }
 
 

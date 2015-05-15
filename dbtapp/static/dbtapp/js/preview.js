@@ -3,7 +3,6 @@ function initPreview (imageSet) {
 		//imageSet = sortSlideShow(imageSet.images);
 		$("#preview").css("opacity", "1");
     	runSlideShow(imageSet);
-		
     });
 }
 

@@ -153,7 +153,6 @@ $(document).ready(function sortImages() {
                     }
             });
 
-
 		}
 		
 	});
@@ -169,9 +168,7 @@ function postLogoForm(e){
 	    cache: false,
 	    processData: false,
 	    contentType: false,
-	    success: function() {
-	        window.location.reload();
-	    }
+	    success: function() {}
     });
     return false;
 
