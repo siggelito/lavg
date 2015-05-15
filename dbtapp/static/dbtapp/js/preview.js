@@ -1,20 +1,18 @@
 function initPreview (imageSet) {	
     $("#preview-button").delay(1000).on("click", function() {
-		//imageSet = sortSlideShow(imageSet.images);
+		//imageSet = sortSlideShow(imageSet);
 		$("#preview").css("opacity", "1");
     	runSlideShow(imageSet);
     });
+	
+	$("#closeButton").on("click", function() {
+		
+		$("#preview").css("opacity", "0");
+	});
 }
 
 
 function runSlideShow(video) {
-	
-	$("#closeButton").on("click", function() {
-		$("#preview").css("opacity", "0");
-
-	});
-	
-	
 	
 	//Set up additional animationelements
 	for (var i = 0; i < video.images.length; i++) {
@@ -30,13 +28,12 @@ function runSlideShow(video) {
 	var next;
 	// loopa igenom alla bilder
 	for (var i = 0; i < video.images.length; i++) {
-	
 		
 		// animera fram nästa bild
 		if(i == 0) { // om första bild
 			intro = video.intro;
 			first = video.images[0];
-
+			
 			first.transition(intro, first, timeline, first.transitionLength);
 			first.effect(first, timeline, first.effectLength); 
 		} 

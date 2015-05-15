@@ -14,8 +14,7 @@
 </div>
 
 <script>
-
-var companyName = {{video.name}}
+//var companyName = {{video.name}};
 var postURL = "{% url 'dbtapp:videoEdit' video.pk %}";
 var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
 </script>
@@ -70,8 +69,11 @@ var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
 				
 				<ul id="slideshow">			
 					<li>
+						<img src="http://d20tdhwx2i89n1.cloudfront.net/image/upload/t_next_gen_article_large_940/gcufqu3gsksc64ejuhul.jpg" />
+						<!--
 						<p id="video-text">iPhone<p>
 						<p id="company-text">Apple<p>
+						-->
 					</li>
 					{% if images %}
 						{% for image in images %}
@@ -81,8 +83,11 @@ var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
 						{% endfor %}
 					{% endif %}
 					<li>
+						<img src="http://d20tdhwx2i89n1.cloudfront.net/image/upload/t_next_gen_article_large_940/gcufqu3gsksc64ejuhul.jpg" />
+						<!--
 						<p id="video-text">Slutbildstext<p>
 						<p id="contact-text">mail till codemill<p>
+						-->
 					</li>
 				</ul>
 			</div>

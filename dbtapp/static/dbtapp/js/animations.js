@@ -4,6 +4,7 @@ function simpleTransition(current, next, timeline, transitionLength) {
 		$(next.parent).css("left", "800px");
 		$(next.parent).css("opacity", "1");
 
+		/*
 		var div = document.createElement("div");
 		next.parent.appendChild(div);
 		div.style.width = "50px";
@@ -12,6 +13,7 @@ function simpleTransition(current, next, timeline, transitionLength) {
 		div.style.position = "absolute";
 		div.style.left = "100px";
 		div.style.top = "100px";
+		*/
 	}),null);
 	// animera tillbaka bilden som nu är synlig
 	timeline.add(TweenLite.to($(next.parent), 2, {left:0}));
@@ -19,17 +21,8 @@ function simpleTransition(current, next, timeline, transitionLength) {
 	timeline.add(TweenLite.delayedCall(0,function () {
 		$(current.parent).css("opacity", "0");
 	}),null);
-		
-	$("#closeButton").on("click", function() {
-		
-		$("#preview").css("opacity", "0");
-		
-		$(current.parent).css("opacity", "0");
-		
-		$(next.parent).css("opacity", "0");
-		
-		timeline.kill();
-	});
+	
+	killTimeline(timeline, current, next);
 }
 
 
@@ -58,6 +51,8 @@ function endAnimation(last, outro, timeline, transitionLength) {
 function fadeTransition(current, next, timeline, transitionLength) {
 	timeline.add(TweenLite.to($(next.parent), transitionLength, {opacity: 1}));
 	timeline.add(TweenLite.to($(current.parent), transitionLength, {opacity: 0}));
+	
+	killTimeline(timeline, current, next);
 }
 
 function splitTransition(current, next, timeline, transitionLength) {
@@ -82,9 +77,14 @@ function splitTransition(current, next, timeline, transitionLength) {
 		$(current.parent).css("opacity", "0");
 		
 	}),null);
-
-
+	
+	
+	killTimeline(timeline, current, next);
+	
+	
 }
+
+
 function splitTransSetup(video, i) {
 
 	var div = document.createElement("div");
@@ -158,7 +158,11 @@ function shrinkTransition(current, next, timeline, transitionLength) {
 		$(current.parent).css("opacity", "0");
 		
 	}),null);
+	
+	killTimeline(timeline, current, next);
+	
 }
+
 function shrinkTransSetup(video, i) {
 	var div = document.createElement("div");
 	div.className = "shrink";
@@ -178,20 +182,6 @@ function shrinkTransSetup(video, i) {
 		next.parent.appendChild(div);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -345,4 +335,41 @@ function restoreAni1(imageSet){
 	
 	imageSet.shift();
 	imageSet.pop();
+}
+
+
+/* Timeline stoppas när stängknappen på previewfönster trycks */
+function killTimeline(timeline, current, next) {
+	$("#closeButton").on("click", function() {
+		
+		$("#preview").css("opacity", "0");
+		
+		$(current.parent).css("opacity", "0");
+		$(next.parent).css("opacity", "0");
+		
+		timeline.kill();
+		
+	});
+}
+
+
+/* Timeline stoppas när stängknappen på previewfönster trycks */
+function killTimelineWithImage(timeline, current, next) {
+	$("#closeButton").on("click", function() {
+		
+		$("#preview").css("opacity", "0");
+		
+		$(current.parent).css("opacity", "0");
+		$(next.parent).css("opacity", "0");
+
+		if(current.image != null) {
+			$(current.image).css("opacity", "0");
+		}
+		if(next.image != null) {
+			$(next.image).css("opacity", "0");
+		}
+		
+		timeline.kill();
+		
+	});
 }

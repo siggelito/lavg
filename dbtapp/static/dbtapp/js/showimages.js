@@ -82,6 +82,12 @@ var previousIndex = 0;
 
 
 function sortSlideShow(imageSet) {	
+
+    var video = {
+        images: [],
+        intro: null,
+        outro: null
+    };
 	
 	if(previousIndex < imagePositions.newPos.length) {
 		sortFromIndex = imagePositions.newPos.length - previousIndex - 1;
@@ -111,6 +117,7 @@ function sortSlideShow(imageSet) {
 		
 		previewReordered = false;
 	}
+	
 	return imageSet;
 }
 
@@ -148,9 +155,9 @@ $(document).ready(function sortImages() {
                         'newPos': ui.item.index(), // from form
                         'imgId': $(ui.item).attr('rel')
                         },
-                 success: function(){
-                     //$('#message').html("<h2>Contact Form Submitted!</h2>") 
-                    }
+                success: function(){
+                    window.location.reload();
+                }
             });
 
 		}
