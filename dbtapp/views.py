@@ -28,20 +28,6 @@ def videoList(request):
         {'video_list': video_list},
     )
 
-# def videoNew(request):
-#     if request.method == 'POST':
-#         form = VideoForm(request.POST)
-#         if form.is_valid():
-#             model = form.save()
-#             return redirect('dbtapp:videoStep', pk=model.pk, imgtype=1)
-#     else:
-#         form = VideoForm()
-#     return render(
-#         request,
-#         'dbtapp/videoNew.html',
-#         {'form': form},
-#     )
-
 def videoUpdate(request, pk):
     #import pdb; pdb.set_trace()
     try:
