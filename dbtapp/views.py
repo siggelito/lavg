@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
@@ -9,6 +10,7 @@ from django import forms
 from django.forms.formsets import formset_factory
 import json
 from subprocess import Popen, PIPE, STDOUT
+
 
 from .models import Photo, Video
 from .forms import PhotoForm, VideoForm, PosForm, LogoForm
@@ -26,21 +28,42 @@ def videoList(request):
         {'video_list': video_list},
     )
 
-def newVideo(request):
-    if request.method == 'POST':
-        form = VideoForm(request.POST)
-        if form.is_valid():
-            model = form.save()
-            form = PhotoForm()
-            return redirect('dbtapp:videoStep', pk=model.pk, imgtype=1)
+# def videoNew(request):
+#     if request.method == 'POST':
+#         form = VideoForm(request.POST)
+#         if form.is_valid():
+#             model = form.save()
+#             return redirect('dbtapp:videoStep', pk=model.pk, imgtype=1)
+#     else:
+#         form = VideoForm()
+#     return render(
+#         request,
+#         'dbtapp/videoNew.html',
+#         {'form': form},
+#     )
 
+def videoUpdate(request, pk):
+    #import pdb; pdb.set_trace()
+    try:
+        instance = Video.objects.get(pk=pk)
+    except Video.DoesNotExist:
+        instance = None
+    form = VideoForm(request.POST or None, instance=instance)
+    if form.is_valid():
+        model = form.save()
+        return redirect('dbtapp:videoStep', pk=model.pk, imgtype=1)
+    if pk is not None:
+        return render(
+            request,
+            'dbtapp/videoNew.html',
+            {'form': form, 'videoKey': pk},
+        )
     else:
-        form = VideoForm()
-    return render(
-        request,
-        'dbtapp/newVideo.html',
-        {'form': form},
-    )
+        return render(
+            request,
+            'dbtapp/videoNew.html',
+            {'form': form,'videoKey': None},
+        )
 
 def videoRemove(request, pk):
     video = Video.objects.get(pk=pk)
@@ -72,7 +95,6 @@ def videoStep(request, pk, imgtype):
                 photos.append(photo)
                 photo.save()
                 count = count + 1
-
     return render (
         request,
         'dbtapp/step'+imgtype+'.html',

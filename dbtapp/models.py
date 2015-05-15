@@ -17,7 +17,7 @@ class Photo(models.Model):
     video = models.ForeignKey(Video, null=True, blank=True, default = None)
     photoFile = models.ImageField()
     order = models.IntegerField()
-    photoType = models.IntegerField() 
+    photoType = models.IntegerField(null=True, blank=True, default = None) 
    
 # Receive the pre_delete signal and delete the file associated with the model instance.
 from django.db.models.signals import pre_delete

@@ -6,8 +6,9 @@ from dbtapp import views
 urlpatterns = [
      url(r'^$', views.index, name='index'),
      url(r'^video/list/$', views.videoList, name='videoList'),
-     url(r'^video/new/$', views.newVideo, name='videoNew'),
-     url(r'^video/(?P<pk>\d+)/$', views.videoStep),
+     #url(r'^video/new/$', views.videoNew, name='videoNew'),
+     #url(r'^video/(?P<pk>\d+)/$', views.videoUpdate, name='videoUpdate'),
+     url(r'^video/(?:(?P<pk>\d+)/)?$', views.videoUpdate, name='videoUpdate'),
      url(r'^video/(?P<pk>\d+)/type/(?P<imgtype>[1-3]{1})/$', views.videoStep, name='videoStep'),
      url(r'^video/(?P<pk>\d+)/edit/$', views.videoEdit, name='videoEdit'),
      url(r'^video/remove/(?P<pk>\d+)/$', views.videoRemove, name='videoRemove'),

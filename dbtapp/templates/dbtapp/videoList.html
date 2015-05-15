@@ -28,7 +28,7 @@
     {% for video in video_list %}
     <div class="row spacing-list-group-item">
         <div class="col-xs-12 col-sm-12 col-md-7 col-md-offset-2 text-left">
-            <a class="list-group-item" href="{% url 'dbtapp:videoStep' video.pk 1 %}">{{ video.video_name }} - {{ video.company_name }} </a>
+            <a class="list-group-item" href="{% url 'dbtapp:videoUpdate' video.pk %}">{{ video.video_name }} - {{ video.company_name }} </a>
         </div>
         <div class="col-md-2">
             <a href="{% url 'dbtapp:videoRemove' video.pk %}" class="btn btn-primary delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
@@ -44,14 +44,11 @@
     </div>
 </div>
 
-
-
-
 {% endif %}
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-5 col-md-offset-2 text-left">
         <div class="spacing"></div>
-        <a href="{% url 'dbtapp:videoNew' %}" class="btn btn-primary">Börja skapa film!</a>
+        <a href="{% url 'dbtapp:videoUpdate' %}" class="btn btn-primary">Börja skapa film!</a>
     </div>
 </div>
 {% endblock %}
