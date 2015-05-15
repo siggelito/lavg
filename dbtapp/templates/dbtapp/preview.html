@@ -1,8 +1,5 @@
 {% extends "dbtapp/base.html" %}
 {% load staticfiles %}
-<script>
-var companyName = {{video.name}}
-</script>
 {% block head %}
 <!--Stegnummer och beskrivning-->
 <div class="content" id="header">
@@ -15,19 +12,25 @@ var companyName = {{video.name}}
 		</div>
 	</div>
 </div>
+
 <script>
+
+var companyName = {{video.name}}
 var postURL = "{% url 'dbtapp:videoEdit' video.pk %}";
 var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
 </script>
+
 <script type="text/javascript" src="{% static 'dbtapp/js/WearProtection.js' %}"></script>
+
+
 <a id="preview-button" href="#preview" class="btn btn-warning">Preview</a>
 {% endblock %}
 
 {% block content %}
-<!-- Ladda upp logga -->
-
 <div class="row">
 	<div class="col-xs-12 col-sm-12 col-md-12 text-left">
+		<!-- Ladda upp logga -->
+		<!--
 		<div id="logo-box">
 			<img id="logo-img" src="{{ logo.photoFile.url }}">
 			<p><b>Choose a logo:</b></p>
@@ -36,6 +39,7 @@ var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
 				<p>{{ logoForm.photoFile }}</p>
 			</form>
 		</div>
+		-->
 
 		<!-- Bildserie -->
 		<ul id="images" class="list-group row">
@@ -63,64 +67,88 @@ var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
 
 			<div id="slideshow-container">
 				<a id="closeButton" href="#" title="Close">X</a>
+				
 				<ul id="slideshow">			
 					<li>
 						<p id="video-text">iPhone<p>
-							<p id="company-text">Apple<p>
-							</li>
-							{% if images %}
-							{% for image in images %}
+						<p id="company-text">Apple<p>
+					</li>
+					{% if images %}
+						{% for image in images %}
 							<li rel="{{ image.pk }}">
 								<img src="{{ image.photoFile.url }}" rel="{{ image.order }}">
 							</li>
-							{% endfor %}
-							{% endif %}
-							<li>
-								<p id="video-text">Slutbildstext<p>
-									<p id="contact-text">mail till codemill<p>
-									</li>
-								</ul>
-							</div>
+						{% endfor %}
+					{% endif %}
+					<li>
+						<p id="video-text">Slutbildstext<p>
+						<p id="contact-text">mail till codemill<p>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="container-fluid">
+			<div class="row top-buffer">
+
+				<div class="col-xs-6 col-sm-6 col-md-1 text-left">
+					<!-- Härifrån ska man kunna ta sig bakåt i stegen. -->
+					<a href="{% url 'dbtapp:videoNew'%}"><span id="navigationArrow" tabindex=3 class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
+				</div>
+
+				<div class="col-md-10 text-center ">
+					<!-- Här ska tidslinjen in -->
+
+					<div id="hlineLeft" class="hline"></div>
+					<div id="hlineRight" class="hline"></div>
+
+					<div class="round-button">
+						<div class="round-button-circle" id="round-button-circle1">
+							<a href="{% url 'dbtapp:videoNew'%}" class="round-button">1</a>
 						</div>
+					</div>
 
-						<div class="container-fluid">
-							<div class="row  top-buffer">
-
-								<div class="col-xs-6 col-sm-6 col-md-1 text-left">
-									<!-- Härifrån ska man kunna ta sig bakåt i stegen. -->
-									<a href="{% url 'dbtapp:videoNew'%}"><span id="navigationArrow" class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
-								</div>
-
-								<div class="col-md-10 text-center ">
-									<!-- Här ska tidslinjen in -->
-
-									<div id="hlineLeft" class="hline"></div>
-									<div id="hlineRight" class="hline"></div>
-
-									<div class="round-button"><div class="round-button-circle" id="round-button-circle1"><a href="{% url 'dbtapp:videoNew'%}" class="round-button">1</a></div></div>
-
-									<div class="round-button"><div class="round-button-circle currentPagePink" id="round-button-circle2"><a href="#" class="round-button">2</a></div></div>
-
-									<div class="round-button"><div class="round-button-circle" id="round-button-circle3"><a href="#" class="round-button">3</a></div></div>
-									<div class="round-button"><div class="round-button-circle" id="round-button-circle4"><a href="#" class="round-button">4</a></div></div>
-									<div class="round-button"><div class="round-button-circle" id="round-button-circle5"><a href="#" class="round-button">5</a></div></div>
-
-								</div>
-
-
-								<div class="col-xs-6 col-sm-6 col-md-1 text-right">
-									<span id="navigationArrow" class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-
-									<!--<input type="submit" value="Nästa" />-->
-								</div>
-							</div>
+					<div class="round-button">
+						<div class="round-button-circle currentPagePink" id="round-button-circle2">
+							<a href="#" class="round-button">2</a>
 						</div>
+					</div>
 
-						<!--Static animation-->
+					<div class="round-button">
+						<div class="round-button-circle" id="round-button-circle3">
+							<a href="#" class="round-button">3</a>
+						</div>
+					</div>
+					
+					<div class="round-button">
+						<div class="round-button-circle" id="round-button-circle4">
+							<a href="#" class="round-button">4</a>
+						</div>
+					</div>
+					
+					<div class="round-button">
+						<div class="round-button-circle" id="round-button-circle5">
+							<a href="#" class="round-button">5</a>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col-xs-6 col-sm-6 col-md-1 text-right">
+					<a id="navigationArrow" class="glyphicon glyphicon-menu-right" tabindex=2 aria-hidden="true"></a>
+					<!--<input type="submit" value="Nästa" />-->
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+	<!--Static animation-->
 	<!--<div id="videoCont">
 		<div id="lay1" class="videoLayer"></div>
 		<div id="lay2" class="videoLayer"></div>
 		<div id="lay3" class="videoLayer"></div>
 	</div>-->
-	{% endblock %}
+{% endblock %}
 
