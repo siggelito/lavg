@@ -35,13 +35,12 @@ CSS för de olika stegen - VIKTIGT - skriv inte över styleBase.css
 }
 /*
 #stepNumber {
-	font-size: 300%;
-    display: inline-block;
-    padding:0;
-	margin:0 auto;
+	font-size: 125%;
 	vertical-align: middle;
-}
-*/ 
+	padding:0;
+	margin:0 auto;
+}*/
+
 
 #description {
 	display: inline-block;
@@ -211,17 +210,21 @@ footer {
 	margin-left:50px;
 	margin-right:40px;*/
 
+  	background-color: #FF9900;
+
+
 	/* Border skiljer från style.css */
-	border:solid;
+	/*border:solid;
 	border-color: #454545;
 	border-radius: 6%;
-	padding:0%;
+	padding:0%;*/
 }
 
 /*Används denna?*/
 #addFileWrapper:hover {
-	border-color:#454545 !important;
+	/*border-color:#454545 !important;*/
   	color:  #FF9900;
+  	background-color: #ED712C;
 }
 
 #input {
@@ -339,12 +342,18 @@ footer {
 	top: 0px;
 }
 
+
 .glyphicon-plus	{
+	color: #FFFFFF;
 	font-size: 300% !important; 
 	position:absolute;
 	margin:0;
 	margin-top: 29%;
 	margin-left: 32%;
+}
+
+.glyphicon-plus:hover	{
+	color: #FF9900 !important;
 }
 
 a {
@@ -401,6 +410,13 @@ a:hover {
 .list-group-item{
 	border-style: none;
 	height: 40px;
+}
+
+/*Nytt för steg 5*/
+#playVideo{
+	width: 300px;
+	height: 250px;
+	background-color:gray;
 }
 
 
