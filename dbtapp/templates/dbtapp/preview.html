@@ -10,12 +10,6 @@ Utvecklingsmiljö
 <span class="glyphicon glyphicon-question-sign sign" aria-hidden="true"></span>
 {% endblock %}
 
-<script>
-//var companyName = {{video.name}};
-var postURL = "{% url 'dbtapp:videoEdit' video.pk %}";
-var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
-</script>
-
 {% block content %}
 <!-- Hanna ska fixa flacering av knappen -->
 
@@ -72,8 +66,8 @@ var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
 				<ul id="slideshow">			
 					<li>
 						<div class="slideshow-parent" style="position:relative; background-color:#fff;  width:100%; height:100%;">
-							<h1 id="video-text">iPhone<h1>
-							<h3 id="company-text">Apple<h3>
+							<h1 id="video-text">{{video.video_name}}<h1>
+							<h3 id="company-text">{{video.company_name}}<h3>
 						</div>
 						
 					</li>

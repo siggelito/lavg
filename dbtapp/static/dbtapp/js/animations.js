@@ -9,14 +9,14 @@ function simpleTransition(current, next, timeline, transitionLength) {
 	div.style.position = "absolute";
 	div.style.left = "100px";
 	div.style.top = "100px";
-
+	var orgPos = next.parent.style.left;
 	timeline.add(TweenLite.delayedCall(0,function () {
 		$(next.parent).css("left", "800px");
 		$(next.parent).css("opacity", "1");
 		next.parent.appendChild(div);
 	}),null);
 	// animera tillbaka bilden som nu är synlig
-	timeline.add(TweenLite.to($(next.parent), 2, {left:0}));
+	timeline.add(TweenLite.to($(next.parent), 2, {left:orgPos}));
 	// dölj den gamla bilden
 	timeline.add(TweenLite.delayedCall(0,function () {
 		$(current.parent).css("opacity", "0");
@@ -25,6 +25,35 @@ function simpleTransition(current, next, timeline, transitionLength) {
 	
 	killTimeline(timeline, current, next);
 }
+
+function fadeTransition(current, next, timeline, transitionLength) {
+	// animera tillbaka bilden som nu är synlig
+	timeline.add(TweenLite.to($(next.parent), 2, {opacity:1,ease:Linear.easeNone}));
+	// dölj den gamla bilden
+	timeline.add(TweenLite.delayedCall(0,function () {
+		$(current.parent).css("opacity", "0");
+	}),null);
+	
+	//killTimeline(timeline, current, next);
+}
+
+function panorama(current, timeline, transitionLength) {
+	// lägg nästa bild utanför
+	timeline.add(TweenLite.delayedCall(0,function () {
+		$(current.parent).css("-moz-transform", "scale(1.2)");
+		$(current.parent).css("left", "80px");
+	}),null);
+	// animera tillbaka bilden som nu är synlig
+	timeline.add(TweenLite.to($(current.parent), transitionLength, {left:-80,ease:Linear.easeNone}));
+	// dölj den gamla bilden
+	
+	//killTimeline(timeline, current, next);
+}
+function panoramaSetup(parent) {
+	$(parent).css("-moz-transform", "scale(1.2)");
+	$(parent).css("left", "80px");
+}
+
 
 
 function startAnimation(first, timeline, transitionLength) {
@@ -45,13 +74,14 @@ function endAnimation(last, outro, timeline, transitionLength) {
 
 }
 
+/*
 function fadeTransition(current, next, timeline, transitionLength) {
 	timeline.add(TweenLite.to($(next.parent), transitionLength, {opacity: 1}));
 	timeline.add(TweenLite.to($(current.parent), transitionLength, {opacity: 0}));
 	
 	killTimeline(timeline, current, next);
 }
-
+*/
 function splitTransition(current, next, timeline, transitionLength) {
 	
 	timeline.add(TweenLite.delayedCall(0, function () {

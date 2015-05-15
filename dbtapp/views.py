@@ -84,7 +84,7 @@ def videoStep(request, pk, imgtype):
     return render (
         request,
         'dbtapp/step'+imgtype+'.html',
-        {'images': photos, 'videoKey': pk, 'form': PhotoForm(), 'imgtype': imgtype},
+        {'images': photos, 'video': video, 'form': PhotoForm(), 'imgtype': imgtype},
     )
 
 def videoEdit(request, pk):

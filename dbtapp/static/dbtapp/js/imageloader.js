@@ -41,14 +41,15 @@ $(window).load(function(){
                 transition: function(current, next, timeline, transitionLength){
                     simpleTransition(current, next, timeline, transitionLength);
                 },
-                transitionSetup: function(video, i){
+                transitionSetup: function(parent){
+                    panoramaSetup(parent)
                     //shrinkTransSetup(video, i);
                 },
                 effect: function(current, timeline, effectLength){
-                    //simpleTransition(current, timeline, effectLength);
+                    panorama(current, timeline, effectLength);
                 },
                 transitionLength: 2, //(Math.floor((Math.random() * 4) + 2) * 1000)
-                effectLength: 2,
+                effectLength: 5,
                 image: images[i],
                 parent: list[i+1]
             };
