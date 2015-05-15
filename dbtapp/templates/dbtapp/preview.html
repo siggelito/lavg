@@ -1,26 +1,20 @@
-{% extends "dbtapp/base.html" %}
+{% extends "dbtapp/stepBase.html" %}
 {% load staticfiles %}
-{% block head %}
-<!--Stegnummer och beskrivning-->
-<div class="content" id="header">
-	<div class="row">
-		<div class="col-xs-12 col-sm-12 col-md-1 col-md-offset-2 text-center">
-			<h1 id="head-number">5</h1>
-		</div>
-		<div class="col-xs-12 col-sm-12 col-md-6 text-left">
-			<h2 id="description"> Utvecklingsmiljö <span class="glyphicon glyphicon-question-sign sign" aria-hidden="true"></span></h2>
-		</div>
-	</div>
-</div>
+
+{% block headerNumber %}
+5
+{% endblock %}
+
+{% block headerText %}
+Utvecklingsmiljö
+<span class="glyphicon glyphicon-question-sign sign" aria-hidden="true"></span>
+{% endblock %}
 
 <script>
 //var companyName = {{video.name}};
 var postURL = "{% url 'dbtapp:videoEdit' video.pk %}";
 var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
 </script>
-
-<script type="text/javascript" src="{% static 'dbtapp/js/WearProtection.js' %}"></script>
-{% endblock %}
 
 {% block content %}
 <!-- Hanna ska fixa flacering av knappen -->
@@ -77,7 +71,7 @@ var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
 				<a id="closeButton" href="#" title="Close">X</a>
 				<ul id="slideshow">			
 					<li>
-						<div class="slideshow-parent" style="position:relative; background-color:#fff;">
+						<div class="slideshow-parent" style="position:relative; background-color:#fff;  width:100%; height:100%;">
 							<h1 id="video-text">iPhone<h1>
 							<h3 id="company-text">Apple<h3>
 						</div>
@@ -86,14 +80,14 @@ var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
 					{% if images %}
 						{% for image in images %}
 							<li rel="{{ image.pk }}">
-								<div class="slideshow-parent" style="position:relative; background-color:#fff;">
+								<div class="slideshow-parent" style="position:relative; background-color:#fff;  width:100%; height:100%;">
 									<img src="{{ image.photoFile.url }}" rel="{{ image.order }}" style="position:absolute;">
 								</div>
 							</li>
 						{% endfor %}
 					{% endif %}
 					<li>
-						<div class="slideshow-parent" style="position:relative; background-color:#fff;">
+						<div class="slideshow-parent" style="position:relative; background-color:#fff; width:100%; height:100%;">
 							<p id="video-text">Slutbildstext<p>
 							<p id="contact-text">mail till codemill<p>
 						</div>

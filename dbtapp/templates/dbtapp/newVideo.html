@@ -1,21 +1,12 @@
 {% extends "dbtapp/base.html" %}
 
-{% block head %}
-<!--Stegnummer och beskrivning-->
+{% block headerNumber %}
+1
+{% endblock %}
 
-
-<div class="content" id="header">
-
-	<div class="row">
-		<div class="col-xs-12 col-sm-12 col-md-1 col-md-offset-2 text-center">
-			<h1 id="head-number">1</h1>
-		</div>
-
-		<div class="col-xs-12 col-sm-12 col-md-6 text-left">
-			<h2 id="description"> Börja med att namnge din film och skriv in förstagsnamnet. <span class="glyphicon glyphicon-question-sign sign" aria-hidden="true"></span></h2> 
-		</div>
-	</div>
-</div>
+{% block headerText %}
+Börja med att namnge din film och skriv in förstagsnamnet. 
+<span class="glyphicon glyphicon-question-sign sign" aria-hidden="true"></span>
 {% endblock %}
 
 {% block content %}
@@ -40,6 +31,7 @@
 			</p>
 		</div>
 	</div>
+	<input type="submit" value="Create">
 </form>
 {% endblock %}
 

@@ -68,7 +68,9 @@ def videoStep(request, pk, imgtype):
         if 'photoFile' in request.FILES:
             count = len(photos) 
             for afile in request.FILES.getlist('photoFile'):
-                photos.append(Photo(video=video, photoFile=afile, order=count, photoType=imgtype).save())
+                photo = Photo(video=video, photoFile=afile, order=count, photoType=imgtype)
+                photos.append(photo)
+                photo.save()
                 count = count + 1
 
     return render (
