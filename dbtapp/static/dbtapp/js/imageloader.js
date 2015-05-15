@@ -23,7 +23,7 @@ $(document).ready(function(){
             transition: function(first, timeline, transitionLength){
                 startAnimation(first, timeline, transitionLength);
             },
-            transitionLength: 1,
+            transitionLength: 2,
             effectLengt: 2, 
             parent: list[0]
         } 
@@ -33,7 +33,10 @@ $(document).ready(function(){
             $(images[i]).zIndex = i+1;
             var imgSettings = {
                 transition: function(current, next, timeline, transitionLength){
-                    simpleTransition(current, next, timeline, transitionLength);
+                    splitTransition(current, next, timeline, transitionLength);
+                },
+                transitionSetup: function(video, i){
+                    splitTransSetup(video, i);
                 },
                 effect: function(current, timeline, effectLength){
                     //simpleTransition(current, timeline, effectLength);

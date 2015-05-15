@@ -3,10 +3,8 @@ function initPreview (imageSet) {
 		//imageSet = sortSlideShow(imageSet.images);
 		$("#preview").css("opacity", "1");
     	runSlideShow(imageSet);
-		
     });
 }
-
 
 
 function runSlideShow(video) {
@@ -15,6 +13,13 @@ function runSlideShow(video) {
 		$("#preview").css("opacity", "0");
 
 	});
+	
+	
+	
+	//Set up additional animationelements
+	for (var i = 0; i < video.images.length; i++) {
+		video.images[i].transitionSetup(video, i);
+	} 
 
 	var timeline = new TimelineLite();
 	// Animera fram första sidan
@@ -25,6 +30,8 @@ function runSlideShow(video) {
 	var next;
 	// loopa igenom alla bilder
 	for (var i = 0; i < video.images.length; i++) {
+	
+		
 		// animera fram nästa bild
 		if(i == 0) { // om första bild
 			intro = video.intro;
