@@ -15,7 +15,6 @@ page.onError = function (msg, trace) {
 		console.log('  ', item.file, ':', item.line);
 	});
 };
-
 page.onResourceReceived = function(resource) {
 	if (resource.url == url) {
 		status_code = resource.status;
@@ -68,4 +67,3 @@ if (system.args.length < 3 || system.args.length > 5) {
     });
 }
 */
-

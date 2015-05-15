@@ -3,7 +3,6 @@ function showImages(imageObject, index) {
 	var imageUl = document.getElementById('images');
 	var image = imageObject.image;
 	/*var images = $('#images li img');
-
 	for (var i = 0; i < images.length; i++) {
 		
 		var size = getNewSize(images[i]);
@@ -83,6 +82,12 @@ var previousIndex = 0;
 
 
 function sortSlideShow(imageSet) {	
+
+    var video = {
+        images: [],
+        intro: null,
+        outro: null
+    };
 	
 	if(previousIndex < imagePositions.newPos.length) {
 		sortFromIndex = imagePositions.newPos.length - previousIndex - 1;
@@ -112,6 +117,7 @@ function sortSlideShow(imageSet) {
 		
 		previewReordered = false;
 	}
+	
 	return imageSet;
 }
 
@@ -149,11 +155,10 @@ $(document).ready(function sortImages() {
                         'newPos': ui.item.index(), // from form
                         'imgId': $(ui.item).attr('rel')
                         },
-                 success: function(){
-                     //$('#message').html("<h2>Contact Form Submitted!</h2>") 
-                    }
+                success: function(){
+                    window.location.reload();
+                }
             });
-
 
 		}
 		
@@ -170,9 +175,7 @@ function postLogoForm(e){
 	    cache: false,
 	    processData: false,
 	    contentType: false,
-	    success: function() {
-	        
-	    }
+	    success: function() {}
     });
     return false;
 

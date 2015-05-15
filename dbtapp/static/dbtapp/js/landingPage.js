@@ -26,10 +26,13 @@ $(window).scroll(function(){
 
   if (scroll > 0 ) {
     $(".navbar").addClass('scrolled');
+    $("#brand").addClass('scrolledBrand');
+
   }
 
   if (scroll <= 0 ) {
     $(".navbar").removeClass('scrolled');
+    $("#brand").removeClass('scrolledBrand');
  }
 
 });

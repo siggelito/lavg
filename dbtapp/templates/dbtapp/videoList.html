@@ -1,29 +1,57 @@
 {% extends "dbtapp/base.html" %}
 {% load staticfiles %}
-	
+
 {% block head %}
-	LAVG
+<div class="content" id="header">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-2 text-left">
+            <h1>Bibliotek</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2 text-left">
+            <h2 id="description"> Här kan du se alla dina tidigare filmer. Klicka på en film för att fortsätta redigera.</h2> 
+        </div>
+
+    </div>
+    <div class="spacing"></div>
+</div>
 {% endblock %}
 
-{% block content %}
-    {% if video_list %}
-        <div class="list-group clearfix">
-        {% for video in video_list %}
-            
-            <div class="col-md-10">
-                <a class="list-group-item" href="{% url 'dbtapp:videoEdit' video.pk %}">{{ video.video_name }} - {{ video.company_name }} </a>
-            </div>
-            <div class="col-md-2">
-                <a href="{% url 'dbtapp:videoRemove' video.pk %}" class="btn btn-default">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remove
-                </a>
-            </div>
-            
 
-        {% endfor %}
+{% block content %}
+<!--<div class="spacing"></div>-->
+
+{% if video_list %}  
+<div class="list-group clearfix"> 
+    {% for video in video_list %}
+    <div class="row spacing-list-group-item">
+        <div class="col-xs-12 col-sm-12 col-md-7 col-md-offset-2 text-left">
+            <a class="list-group-item" href="{% url 'dbtapp:videoEdit' video.pk %}">{{ video.video_name }} - {{ video.company_name }} </a>
         </div>
-    {% else %}
-        <p>No videos are available.</p>
-    {% endif %}
-    <div class="col-lg-11"><a href="{% url 'dbtapp:videoNew' %}" class="btn btn-default">New Video</a></div>
+        <div class="col-md-2">
+            <a href="{% url 'dbtapp:videoRemove' video.pk %}" class="btn btn-primary delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% else %}
+<div class="row spacing-list-group-item">
+        <div class="col-xs-12 col-sm-12 col-md-7 col-md-offset-2 text-left">
+            <h3>No videos are available.</h3>
+    </div>
+</div>
+
+
+
+
+{% endif %}
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-5 col-md-offset-2 text-left">
+        <div class="spacing"></div>
+        <a href="{% url 'dbtapp:videoNew' %}" class="btn btn-primary">Börja skapa film!</a>
+    </div>
+</div>
 {% endblock %}

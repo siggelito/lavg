@@ -1,102 +1,115 @@
 {% extends "dbtapp/base.html" %}
 {% load staticfiles %}
-<script>
-	var companyName = {{video.name}}
-</script>
 {% block head %}
 <!--Stegnummer och beskrivning-->
-	<script>
-		var postURL = "{% url 'dbtapp:videoEdit' video.pk %}";
-		var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
-	</script>
-	<script type="text/javascript" src="{% static 'dbtapp/js/WearProtection.js' %}"></script>
-
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6">
-			    <h3>Utvecklingsmiljö</h3>
-			</div>
-			<div class="col-md-6"><span class="pull-right">
-			    <a id="preview-button" href="#preview" class="btn btn-warning">Preview</a>
-			    <a href="{% url 'dbtapp:videoList' %}" class="btn btn-default">To list</a>
-			</span></div>
+<div class="content" id="header">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-1 col-md-offset-2 text-center">
+			<h1>2</h1>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-6 text-left">
+			<h2 id="description"> Ladda upp 1-3 bilder på när produkten används. <span class="glyphicon glyphicon-question-sign sign" aria-hidden="true"></span></h2>
 		</div>
 	</div>
-	
+</div>
+
+<script>
+//var companyName = {{video.name}};
+var postURL = "{% url 'dbtapp:videoEdit' video.pk %}";
+var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
+</script>
+
+<script type="text/javascript" src="{% static 'dbtapp/js/WearProtection.js' %}"></script>
 {% endblock %}
 
 {% block content %}
-<!-- Ladda upp logga -->
-	<div id="logo-box">
-		<img id="logo-img" src="{{ logo.photoFile.url }}">
-		<p><b>Choose a logo:</b></p>
-		<form id="logo-form" action="{% url 'dbtapp:logoPost' video.pk %}" method="post" enctype="multipart/form-data">
-		    {% csrf_token %}
-		    <p>{{ logoForm.photoFile }}</p>
-		</form>
+<!-- Hanna ska fixa flacering av knappen -->
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 text-left">
+			<a id="preview-button" href="#preview" class="btn btn-primary">Preview</a>
+		</div>
 	</div>
 
-	<!-- Bildserie -->
-	<ul id="images" class="list-group row">
-		{% if images %}
-			{% for image in images %}
+
+
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 text-left">
+			<!-- Ladda upp logga -->
+			<!--
+			<div id="logo-box">
+				<img id="logo-img" src="{{ logo.photoFile.url }}">
+				<p><b>Choose a logo:</b></p>
+				<form id="logo-form" action="{% url 'dbtapp:logoPost' video.pk %}" method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					<p>{{ logoForm.photoFile }}</p>
+				</form>
+			</div>
+
+			-->
+			<div class="spacing"></div>
+			<!-- Bildserie -->
+			<ul id="images" class="list-group row">
+				{% if images %}
+				{% for image in images %}
 				<li rel="{{ image.pk }}" class="list-group-item col-xs-1">
 					<div class="image-wrapper">
 						<img src="{{ image.photoFile.url }}" rel="{{ image.order }}">
 					</div>
 				</li>
-			{% endfor %}
-		{% endif %}
-		<!-- Ladda upp bild -->
-		<div id="addFileWrapper" >
-			<form action="{% url 'dbtapp:videoEdit' video.pk %}" class="form-class clearfix" method="post" enctype="multipart/form-data">
-				{% csrf_token %}
-				{{ form.photoFile }}
-			</form>
-		</div>
-	</ul>
-
-	<!-- Preview-knapp -->
-	<div id="preview" class="modalDialog">
-		
-		<div id="slideshow-container">
-			<a id="closeButton" href="#" title="Close">X</a>
-			<ul id="slideshow">			
-				<li>
-					<div class="clearfix">
-						<h1 id="video-text">iPhone<h1>
-						<h3 id="company-text">Apple<h3>
-					</div>
-					
-				</li>
-				{% if images %}
-					{% for image in images %}
-						<li rel="{{ image.pk }}">
-							<div class="clearfix">
-								<img src="{{ image.photoFile.url }}" rel="{{ image.order }}">
-							</div>
-						</li>
-					{% endfor %}
+				{% endfor %}
 				{% endif %}
-				<li>
-					<div class="clearfix">
-						<p id="video-text">Slutbildstext<p>
-						<p id="contact-text">mail till codemill<p>
-					</div>
-				</li>
+				<!-- Ladda upp bild-->
+				<div id="addFileWrapper" >
+					<span class="glyphicon glyphicon-plus"></span>
+					<form action="{% url 'dbtapp:videoEdit' video.pk %}" class="form-class clearfix" method="post" enctype="multipart/form-data">		
+						{% csrf_token %}
+						{{ form.photoFile }}
+					</form>
+				</div>
 			</ul>
-		</div>
+
+			<!-- Preview-knapp -->
+		<div id="preview" class="modalDialog">
+			
+			<div id="slideshow-container">
+				<a id="closeButton" href="#" title="Close">X</a>
+				<ul id="slideshow">			
+					<li>
+						<div class="slideshow-parent" style="position:relative; background-color:#fff;">
+							<h1 id="video-text">iPhone<h1>
+							<h3 id="company-text">Apple<h3>
+						</div>
+						
+					</li>
+					{% if images %}
+						{% for image in images %}
+							<li rel="{{ image.pk }}">
+								<div class="slideshow-parent" style="position:relative; background-color:#fff;">
+									<img src="{{ image.photoFile.url }}" rel="{{ image.order }}" style="position:absolute;">
+								</div>
+							</li>
+						{% endfor %}
+					{% endif %}
+					<li>
+						<div class="slideshow-parent" style="position:relative; background-color:#fff;">
+							<p id="video-text">Slutbildstext<p>
+							<p id="contact-text">mail till codemill<p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>		
 	</div>
-	
-	<!-- Ta bort/ha kvar? -->
-	
 {% endblock %}
 
-{% block navigation %}
-	<div class="col-md-6">
-	    <a id ="navigationArrow" href="{% url 'dbtapp:videoStep' video.pk 3 %}"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
-	</div>
-	<div class="col-md-6"><span class="pull-right">
-	    <a id ="navigationArrow" href=""><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
-	</span></div>
+
+{% block leftNav %}
+<a href="{% url 'dbtapp:videoNew'%}"><span id="navigationArrow" tabindex=3 class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
 {% endblock %}
+
+{% block rightNav %}
+<a href="{% url 'dbtapp:videoNew'%}"><span id="navigationArrow" tabindex=3 class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
+{% endblock %}
+

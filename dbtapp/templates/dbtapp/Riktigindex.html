@@ -36,7 +36,7 @@
 					</button>
 
 					<!-- Även denna ska scrollas rätt... kolla er på det..-->
-					<a class="navbar-brand" href="#page-top">Skapa din video!</a>
+					<a class="navbar-brand" id="brand" href="#page-top">MillVid</a>
 				</div>
 
 				<div class="collapse navbar-collapse navbar-right" id="myNavbar">
@@ -74,7 +74,7 @@
 
 			<div class="col-md-8 text-right">
 				<h1>SKAPA EN EGEN PRODUKTVIDEO PÅ NÅGRA MINUTER!</h1>
-				<a href="{% url 'dbtapp:videoList' %}" class="btn btn-primary btn-xl page-scroll">Börja skapa film!</a>
+				<a href="{% url 'dbtapp:videoNew' %}" class="btn btn-primary btn-xl page-scroll">Börja skapa film!</a>
 			</div>
 
 		</div>
@@ -102,7 +102,8 @@
 
 		<div class="col-md-1 col-sm-1 text-center">
 			<div class="icon">
-				<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+				<span class="glyphicon glyphicon-triangle-right right" aria-hidden="true"></span>
+				<span class="glyphicon glyphicon-triangle-bottom down" aria-hidden="true"></span>
 			</div>
 		</div>
 
@@ -113,7 +114,8 @@
 
 		<div class="col-md-1 col-sm-1 text-center">
 			<div class="icon">
-				<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+				<span class="glyphicon glyphicon-triangle-right right" aria-hidden="true"></span>
+				<span class="glyphicon glyphicon-triangle-bottom down" aria-hidden="true"></span>
 			</div>
 		</div>
 
@@ -139,7 +141,7 @@
 
 	<div class="row">
 
-		<div class="col-md-8 col-md-offset-2 text-center">
+		<div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 text-center">
 			<p>Inom datavetenskap – speciellt programmering – avser text en datamängd som återges med skrivbara tecken och några få styrtecken som radbyte och tabulator. Motsatsen är ofta binära data, som lagras i en form som inte lika enkelt kan presenteras på en skärm eller ett skrivarpapper.</p>
 		</div>
 
@@ -168,7 +170,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12 text-center">
-			<a href="{% url 'dbtapp:videoList' %}" class="btn btn-primary btn-xl page-scroll">Börja skapa film!</a>
+			<a href="{% url 'dbtapp:videoNew' %}" class="btn btn-primary btn-xl page-scroll">Börja skapa film!</a>
 		</div>
 	</div>
 </section>

@@ -12,7 +12,8 @@ Stylesheet som Base.html och alla de olika stegen använder sig av. Om CSS för 
 h1	{
 	font-family: 'Roboto Condensed', sans-serif !important;
 	font-weight: 700;
-	font-size: 60px;
+	font-size: 80px;
+  margin-top: 0px;
 }
 
 h2{
@@ -42,12 +43,18 @@ body {
 body {
     font-family: 'Open sans', Arial, sans-serif;
     font-weight: 300;
+    font-size: 15px;
 }
 
 nav.navbar.navbar-default{
   margin-bottom: 0px;
   border:none !important;
   font-size: 16px;
+}
+
+/*Tar bort prickade linjen runt länkar när man klickar*/
+a:hover, a:active, a:focus {
+  outline: 0;
 }
 
 .navbar-fixed-top {
@@ -72,10 +79,11 @@ nav.navbar.navbar-default{
 .bgDark{
   background-color: #2B2B2B;
   color: #fff;
+  padding: 100px 0px;
 }
 
-section {
-  padding: 100px 0;
+.step-content {
+  padding: 10px 0;
   display: block;
 }
 

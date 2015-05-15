@@ -1,4 +1,10 @@
 $(window).load(function(){
+
+    var navList = $(".round-button .round-button-circle");
+    var pageNr = parseInt(document.getElementById('head-number').textContent.replace(/(\r\n|\n|\r)/gm,""));
+
+    $(navList[pageNr-1]).addClass("currentPagePink");
+
     var video = {
         images: [],
         intro: null,
@@ -23,7 +29,7 @@ $(window).load(function(){
             transition: function(first, timeline, transitionLength){
                 startAnimation(first, timeline, transitionLength);
             },
-            transitionLength: 1,
+            transitionLength: 2,
             effectLengt: 2, 
             parent: list[0]
         } 
@@ -34,6 +40,9 @@ $(window).load(function(){
             var imgSettings = {
                 transition: function(current, next, timeline, transitionLength){
                     simpleTransition(current, next, timeline, transitionLength);
+                },
+                transitionSetup: function(video, i){
+                    //shrinkTransSetup(video, i);
                 },
                 effect: function(current, timeline, effectLength){
                     //simpleTransition(current, timeline, effectLength);
@@ -99,13 +108,9 @@ $(window).load(function(){
     /*
     function handleLogoFile (e) {
         if (e.target.files.length > 0) {
-
             sourceLogo = URL.createObjectURL(e.target.files[0]);
-
             var imageElement = document.getElementById('logo-image');
-
             if( imageElement != null) {
-
                 loadSingleImage(sourceLogo, function (image) {
                     imageElement.src = image.src;
                 });
@@ -119,73 +124,57 @@ $(window).load(function(){
             }
         };
     };
-
     function handleFiles(e) {
         
         if (sources.length != 0) {
             offset = offset + sources.length;
             sources = [];
         }
-
         for (var i = 0; i < e.target.files.length; i++) {
             
             sources[i] = URL.createObjectURL(e.target.files[i]);
-
             var layers = [
                 document.createElement('canvas'),
                 document.createElement('canvas')
             ];
-
             layers[0].className = "layer";
             layers[0].style.zIndex = 1;
-
             layers[1].className = "layer";
             layers[1].style.zIndex = 2;
-
             var settings = {
                 transition: function(current, next){
                     simpleTransition(current, next);
                 },
                 duration: 2000 //(Math.floor((Math.random() * 4) + 2) * 1000)
             };
-
             var layerContent = {
                 layers: layers,
                 settings: settings
             }; 
-
             imageSet[offset + i] = layerContent;
-
             var element = document.createElement("li");
             element.appendChild(layerContent.layers[0]);
             element.appendChild(layerContent.layers[1]);
             slideshow.appendChild(element);
         }
-
         loadImages(sources, function(images) {
             for (var i = 0; i < images.length; i++) {
                 
                 imageSet[offset + i].image = images[i];
-
                 var layerOne = imageSet[offset + i].layers[0];
                 var layerTwo = imageSet[offset + i].layers[1];
                 var image = imageSet[offset + i].image;
-
                 layerOne.width = layerOne.scrollWidth;
                 layerOne.height = layerOne.scrollHeight;
-
                 layerTwo.width = layerTwo.scrollWidth;
                 layerTwo.height = layerTwo.scrollHeight;
-
                 var size = calcSize(layerOne, image);
-
                 var context = layerOne.getContext('2d');
                 context.drawImage(image, size.paddingLeft, size.paddingTop, size.width, size.height); //, paddingLeft, paddingTop, width, height  
 				
 				$(imageSet[offset + i].layers).hide();
                 
                 oneLoadedFile(imageSet[offset + i], offset + i);
-
                 
             };
             doneLoadingFiles(imageSet);
@@ -250,3 +239,4 @@ function loadSingleImage(source, callback) {
     };
     image.src = source;
 }
+

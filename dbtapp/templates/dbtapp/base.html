@@ -5,7 +5,6 @@
 	{% load staticfiles %}
 
 	<!--Behövs denna?-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
 	
 	<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/css/bootstrap.min.css' %}" />
@@ -21,17 +20,16 @@
 	<!-- Google font -->
 	<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
 
-	
-
 	<!-- CSS för base.html -->
 	<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/styleBase.css' %}" />
 
 	<!-- CSS för de olika stegen - VIKTIGT - skriv inte över styleBase.css -->
 	<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/stylesheetSteps.css' %}" />
-	<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/style.css' %}" />
 
 	<!-- CSS för tidslinjen-->
 	<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/timelineStylesheet.css' %}" />
+
+	<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/style.css' %}" />
 
 </head>
 
@@ -49,7 +47,7 @@
 					<!-- Även denna ska scrollas rätt... kolla er på det..-->
 
 					<!-- Här ska navigenringen till startsidan ändras men hur? -->
-					<a class="navbar-brand" href="#page-top">Skapa din video!</a>
+					<a class="navbar-brand" href="{% url 'dbtapp:index'%}">MillVid</a>
 				</div>
 
 				<div class="collapse navbar-collapse navbar-right" id="myNavbar">
@@ -61,16 +59,67 @@
 		</nav>
 	</header>
 
-	<section>
+	<section class="step-content">
 		<div class="container" id="container-main">
 			<div class="page-header">
 				{% block head %}{% endblock %}
 			</div>
 			{% block content %}{% endblock %}
 			<!--Submitknapp (högerpil)-->
-			<div class="container">
-				<div class="row">
-					{% block navigation %}{% endblock %}
+
+			<div class="container-fluid">
+				<div class="row top-buffer">
+
+					<div class="col-xs-6 col-sm-6 col-md-1 text-left">
+						<!-- Härifrån ska man kunna ta sig bakåt i stegen. -->
+						{% block leftNav %}{% endblock %}
+						
+					</div>
+
+					<div class="col-md-10 text-center ">
+						<!-- Tidslinje -->
+
+						<div id="hlineLeft" class="hline"></div>
+						<div id="hlineRight" class="hline"></div>
+
+						<div class="round-button">
+							<div class="round-button-circle" id="round-button-circle1">
+								<a href="{% url 'dbtapp:videoNew'%}" class="round-button">1</a>
+							</div>
+						</div>
+
+						<div class="round-button">
+							<div class="round-button-circle" id="round-button-circle2">
+								<a href="#" class="round-button">2</a>
+							</div>
+						</div>
+
+						<div class="round-button">
+							<div class="round-button-circle" id="round-button-circle3">
+								<a href="#" class="round-button">3</a>
+							</div>
+						</div>
+						
+						<div class="round-button">
+							<div class="round-button-circle" id="round-button-circle4">
+								<a href="#" class="round-button">4</a>
+							</div>
+						</div>
+						
+						<div class="round-button">
+							<div class="round-button-circle" id="round-button-circle5">
+								<a href="#" class="round-button">5</a>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-xs-6 col-sm-6 col-md-1 text-right">
+						{% block rightNav %}{% endblock %}
+						
+						<!--<input type="submit" value="Nästa" />-->
+					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -88,4 +137,3 @@
 	</section>
 </body>
 </html>
-

@@ -105,8 +105,8 @@ def videoEdit(request, pk):
             if request.is_ajax():
                 #import pdb; pdb.set_trace()
                 #import os; print(os.path.join(os.path.dirname( __file__ ))
-                print("AJAX!!!")
-                print("Old position: " + request.POST['oldPos'] + " New position: " + request.POST['newPos'] + " pk: " + request.POST['imgId'])
+                #print("AJAX!!!")
+                #print("Old position: " + request.POST['oldPos'] + " New position: " + request.POST['newPos'] + " pk: " + request.POST['imgId'])
                 oldPos = int(request.POST['oldPos'])
                 newPos = int(request.POST['newPos'])
                 key = request.POST['imgId']
