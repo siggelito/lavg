@@ -10,11 +10,6 @@ function initPreview (imageSet) {
 
 function runSlideShow(video) {
 	
-	$("#closeButton").on("click", function() {
-		$("#preview").css("opacity", "0");
-		timeline.kill();
-	});
-	
 	var timeline = new TimelineLite();
 	// Animera fram första sidan
 	video.intro.transition(video.intro, timeline, video.intro.transitionLength);
