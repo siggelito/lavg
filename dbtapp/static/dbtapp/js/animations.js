@@ -21,59 +21,162 @@ function simpleTransition(current, next, timeline, transitionLength) {
 	}),null);
 }
 
-function fadeTransition(current, next, timeline, transitionLength) {
-	timeline.add(TweenLite.to($(next.parent), transitionLength, {opacity: 1}));
-	timeline.add(TweenLite.to($(current.parent), transitionLength, {opacity: 0}));
-}
-
-function circleTransition(current, next, timeline, transitionLength) {
-
-	timeline.add(TweenLite.delayedCall(2,function () {
-
-		$(next.parent).css("opacity", "1");
-		//$(next.image).css("opacity", "0");
-		
-	}),null);
-	//timeline.add(TweenLite.to($(next.parent), transitionLength, {delay: 1, opacity: 1}));
-
-	//timeline.add(TweenLite.to($(".shrink"), 4, {width:"5px", height:"5px"}));
-
-	//timeline.add(TweenLite.to($("#test"), 2, {width:"50px", height:"50px"}));
-	//timeline.add(TweenLite.to($(current.parent), 0.1, {opacity: 0}));
-	
-	
-	
-	timeline.add(TweenLite.delayedCall(1,function () {
-		
-		//$(next.image).css("opacity", "1");
-
-		//restore shrink
-		$(".shrink").css("width", "50%");
-		$(".shrink").css("height", "50%");
-		
-	}),null);
-	//timeline.add(TweenLite.to($(".hejd"), transitionLength, {delay: 2, x: 0}));
-	
-	
-}
 
 function startAnimation(first, timeline, transitionLength) {
 	timeline.add(TweenLite.delayedCall(0,function () {
 		$(first.parent).css("opacity", "1");
 	}),null);
+	timeline.add(TweenLite.to($(first.parent), 2, {opacity: 1}));
 }
 
+
 function endAnimation(last, outro, timeline, transitionLength) {
+	
+	//timeline.add(TweenLite.to($(last.parent), 0.5, {opacity: 0}));
+	//timeline.add(TweenLite.to($(outro.parent), 0.5, {opacity: 1}));
+	
 	timeline.add(TweenLite.delayedCall(0,function () {
 		$(last.parent).css("opacity", "0");
 		$(outro.parent).css("opacity", "1");
 	}),null);
 	
+	timeline.add(TweenLite.to($(outro.parent), 1, {delay: 2, opacity: 0}));
+
+}
+
+function fadeTransition(current, next, timeline, transitionLength) {
+	timeline.add(TweenLite.to($(next.parent), transitionLength, {opacity: 1}));
+	timeline.add(TweenLite.to($(current.parent), transitionLength, {opacity: 0}));
+}
+
+function splitTransition(current, next, timeline, transitionLength) {
 	
-	timeline.add(TweenLite.delayedCall(1,function () {
-		$(outro.parent).css("opacity", "0");
+	timeline.add(TweenLite.delayedCall(0, function () {
+		$(current.image).css("opacity", "1");
+		$(next.image).css("opacity", "0");
+		$(next.parent).css("opacity", "1");
+	}),null);
+
+	timeline.add(TweenLite.to($(".first"), transitionLength, {width:"25%", height:"100%"}));
+	timeline.add(TweenLite.to($(".second"), transitionLength, {delay: -1.75, width:"25%", height:"100%"}));
+	timeline.add(TweenLite.to($(".third"), transitionLength, {delay: -1.75, width:"25%", height:"100%"}));
+	timeline.add(TweenLite.to($(".fourth"), transitionLength, {delay: -1.75, width:"31%", height:"100%"}));
+	//timeline.add(TweenMax.to(TweenMax.to($(".second"), transitionLength, {height: "100%", left: "+=100%"})));
+	
+	timeline.add(TweenLite.delayedCall(0, function () {
+		$(".first").css("height", "0%");
+		$(".second").css("height", "0%");
+		$(".third").css("height", "0%");
+		$(".fourth").css("height", "0%");
+		$(current.parent).css("opacity", "0");
+		
+	}),null);
+
+
+}
+function splitTransSetup(video, i) {
+
+	var div = document.createElement("div");
+	div.className = "first";
+	div.style.width = "25%";
+	div.style.height = "0%";
+	div.style.backgroundColor = "#ff3";
+	div.style.position = "absolute";
+	div.style.left = "0%";
+	div.style.top = "0%";
+
+	var div2 = document.createElement("div");
+	div2.className = "second";
+	div2.style.width = "25%";
+	div2.style.height = "0%";
+	div2.style.backgroundColor = "#ff3";
+	div2.style.position = "absolute";
+	div2.style.left = "19%";
+	div2.style.top = "0%";
+	div2.style.backgroundPosition = "25% 0%";
+
+	var div3 = document.createElement("div");
+	div3.className = "third";
+	div3.style.width = "25%";
+	div3.style.height = "0%";
+	div3.style.backgroundColor = "#ff3";
+	div3.style.position = "absolute";
+	div3.style.left = "44%";
+	div3.style.top = "0%";
+	div3.style.backgroundPosition = "58% 0%";
+	
+	var div4 = document.createElement("div");
+	div4.className = "fourth";
+	div4.style.width = "31%";
+	div4.style.height = "0%";
+	div4.style.backgroundColor = "#ff3";
+	div4.style.position = "absolute";
+	div4.style.right = "0%";
+	div4.style.top = "0%";
+	div4.style.backgroundPosition = "100% 0%";	
+	
+		
+	current = video.images[i];
+	div.style.backgroundImage = "url('" + current.image.getAttribute("src") + "')";
+	current.parent.appendChild(div);
+
+	div2.style.backgroundImage = "url('" + current.image.getAttribute("src") + "')";
+	current.parent.appendChild(div2);
+		
+	div3.style.backgroundImage = "url('" + current.image.getAttribute("src") + "')";
+	current.parent.appendChild(div3);
+		
+	div4.style.backgroundImage = "url('" + current.image.getAttribute("src") + "')";
+	current.parent.appendChild(div4);
+
+}
+
+
+function shrinkTransition(current, next, timeline, transitionLength) {
+	
+	timeline.add(TweenLite.delayedCall(0,function () {
+		$(next.parent).css("opacity", "1");
+	}),null);
+
+	timeline.add(TweenLite.to($(".shrink"), transitionLength, {width:"0%", height:"0%"}));
+
+	timeline.add(TweenLite.delayedCall(0, function () {
+		//restore shrink
+		$(".shrink").css("width", "100%");
+		$(".shrink").css("height", "100%");
+		$(current.parent).css("opacity", "0");
+		
 	}),null);
 }
+function shrinkTransSetup(video, i) {
+	var div = document.createElement("div");
+	div.className = "shrink";
+	div.style.width = "100%";
+	div.style.height = "100%";
+	div.style.backgroundColor = "#ff3";
+	div.style.position = "absolute";
+	div.style.left = "50%";
+	div.style.top = "50%";
+	div.style.transform = "translate(-50%, -50%)";
+	div.style.backgroundPosition = "center";
+	
+	if (i > 0 && i < video.images.length) {
+		current = video.images[i-1];
+		next = video.images[i];
+		div.style.backgroundImage = "url('" + current.image.getAttribute("src") + "')";
+		next.parent.appendChild(div);
+	}
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
