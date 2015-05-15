@@ -3,6 +3,6 @@ function doneLoadingFiles (imageSet) {
 }
 
 function oneLoadedFile (imageObject, index) {
-	showImages(imageObject, index);
+	//showImages(imageObject, index);
 
 }

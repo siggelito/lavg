@@ -64,9 +64,15 @@
 	<section>
 		<div class="container" id="container-main">
 			<div class="page-header">
-				<h1>{% block head %}{% endblock %}</h1>
+				{% block head %}{% endblock %}
 			</div>
 			{% block content %}{% endblock %}
+			<!--Submitknapp (högerpil)-->
+			<div class="container">
+				<div class="row">
+					{% block navigation %}{% endblock %}
+				</div>
+			</div>
 		</div>
 	</section>
 	<section class="bgDark" id="contact">

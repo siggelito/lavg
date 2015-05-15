@@ -1,23 +1,27 @@
 function simpleTransition(current, next, timeline, transitionLength) {
 	// lägg nästa bild utanför
+
+	var div = document.createElement("div");
+	
+	div.style.width = "50px";
+	div.style.height = "50px";
+	div.style.backgroundColor = "#ff3";
+	div.style.position = "absolute";
+	div.style.left = "100px";
+	div.style.top = "100px";
+
 	timeline.add(TweenLite.delayedCall(0,function () {
 		$(next.parent).css("left", "800px");
 		$(next.parent).css("opacity", "1");
-
-		var div = document.createElement("div");
 		next.parent.appendChild(div);
-		div.style.width = "50px";
-		div.style.height = "50px";
-		div.style.backgroundColor = "#ff3";
-		div.style.position = "absolute";
-		div.style.left = "100px";
-		div.style.top = "100px";
+		
 	}),null);
 	// animera tillbaka bilden som nu är synlig
 	timeline.add(TweenLite.to($(next.parent), 2, {left:0}));
 	// dölj den gamla bilden
 	timeline.add(TweenLite.delayedCall(0,function () {
 		$(current.parent).css("opacity", "0");
+		next.parent.removeChild(div);
 	}),null);
 }
 
@@ -28,9 +32,13 @@ function startAnimation(first, timeline, transitionLength) {
 }
 
 function endAnimation(last, outro, timeline, transitionLength) {
-	timeline.add(TweenLite.delayedCall(0,function () {
+	/*timeline.add(TweenLite.delayedCall(0,function () {
 		$(last.parent).css("opacity", "0");
 		$(outro.parent).css("opacity", "1");
+	}),null);*/
+	timeline.add(TweenLite.to($(outro.parent), transitionLength, {opacity:1}));
+	timeline.add(TweenLite.delayedCall(0,function () {
+		$(last.parent).css("opacity", "0");
 	}),null);
 }
 

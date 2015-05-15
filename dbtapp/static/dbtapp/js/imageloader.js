@@ -1,4 +1,4 @@
-$(document).ready(function(){ 
+$(window).load(function(){
     var video = {
         images: [],
         intro: null,
@@ -17,8 +17,8 @@ $(document).ready(function(){
     var offset = 0;
 
     function initializeVideo () {
-        var list = $('#preview ul li');
-        var images = $('#preview ul li img');
+        var list = $('#preview ul li div');
+        var images = $('#preview ul li div img');
         video.intro = {
             transition: function(first, timeline, transitionLength){
                 startAnimation(first, timeline, transitionLength);
@@ -50,9 +50,12 @@ $(document).ready(function(){
 
             images[i].width = size.width;
             images[i].height = size.height;
-            $(images[i]).css( "margin-top", size.paddingTop, "margin-left", size.paddingLeft );
+            //$(images[i]).css( "top", size.paddingTop, "left", size.paddingLeft );
             //layers[0].style.top = size.paddingTop + "px";
             //layers[0].style.left = size.paddingLeft;
+            images[i].setAttribute("style", "top:" + size.paddingTop.toString() + "px");
+            images[i].setAttribute("style", "margin-top:" + size.paddingTop.toString() + "px");
+            images[i].setAttribute("style", "left:" + size.paddingLeft.toString() + "px");
 
             
             $(list[i+1]).css("opacity", "0");
@@ -77,6 +80,20 @@ $(document).ready(function(){
 
     initializeVideo();
 
+    var images = $('#images li div img');
+
+    for (var i = 0; i < images.length; i++) {
+        
+        var size = calcSize(images[i].parentNode,images[i]);
+        images[i].width = size.width;
+        images[i].height = size.height;
+        images[i].top = size.paddingTop;
+        images[i].left = size.paddingLeft;
+        $(images[i]).css({top: size.paddingTop, left: size.paddingLeft});
+        images[i].setAttribute("style", "margin-top:" + size.paddingTop.toString() + "px");
+        images[i].setAttribute("style", "margin-left:" + size.paddingLeft.toString() + "px");
+    
+    }
     
 
     /*
@@ -178,24 +195,29 @@ $(document).ready(function(){
     
 }) 
 
-function calcSize( canvas, image ) {
-    var imageRatioW = ( image.naturalWidth / image.naturalHeight );
-    var imageRatioH = ( image.naturalHeight / image.naturalWidth );
+function calcSize( parent, image ) {
+    var imgWidth = image.offsetWidth;
+    var imgHeight = image.offsetHeight;
+    var parentWidth = parent.offsetWidth;
+    var parentHeight = parent.offsetHeight;
 
-    var widthScalingFactor = ( imageRatioW * canvas.scrollHeight ) / image.naturalWidth;
-    var heightScalingFactor = ( imageRatioH * canvas.scrollWidth ) / image.naturalHeight;
+    var imageRatioW = ( imgWidth / imgHeight );
+    var imageRatioH = ( imgHeight / imgWidth );
+
+    var widthScalingFactor = ( imageRatioW * parent.offsetHeight ) / imgWidth;
+    var heightScalingFactor = ( imageRatioH * parent.offsetWidth ) / imgHeight;
     
 
     if (widthScalingFactor > heightScalingFactor) {
-        var width = image.naturalWidth * widthScalingFactor;
-        var height = image.naturalHeight * widthScalingFactor;
+        var width = imgWidth * widthScalingFactor;
+        var height = imgHeight * widthScalingFactor;
     } else{
-        var width = image.naturalWidth * heightScalingFactor;
-        var height = image.naturalHeight * heightScalingFactor;
+        var width = imgWidth * heightScalingFactor;
+        var height = imgHeight * heightScalingFactor;
     };
 
-    var paddingLeft = ( (canvas.scrollWidth - width) / 2 );
-    var paddingTop =( (canvas.scrollHeight - height) / 2 );
+    var paddingLeft = ( (parentWidth - width) / 2 );
+    var paddingTop =( (parentHeight - height) / 2 );
 
     return {width: width, height: height, paddingLeft: paddingLeft, paddingTop: paddingTop};
 }
@@ -228,18 +250,3 @@ function loadSingleImage(source, callback) {
     };
     image.src = source;
 }
-
-
-$(window).load(function(){
-    var images = $('#images li img');
-
-    for (var i = 0; i < images.length; i++) {
-		
-		var size = getNewSize(images[i]);
-        images[i].width = size.width;
-        images[i].height = size.height;
-        images[i].setAttribute("style", "margin-top:" + size.paddingTop.toString() + "px");
-        images[i].setAttribute("style", "margin-left:" + size.paddingLeft.toString() + "px");
-    
-    }
-});

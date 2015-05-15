@@ -5,22 +5,24 @@
 </script>
 {% block head %}
 <!--Stegnummer och beskrivning-->
-<div class="content" id="header">
-  	<div class="row">
-		<div class="col-md-1 col-md-offset-3 text-right">
-    		 <h1>2</h1>
-    	</div>
-    	<div class="col-md-5 text-left">
-   			 <h2 id="description"> Ladda upp 1-3 bilder på när produkten används.</h2>
-	   </div>
-	</div>
-</div>
 	<script>
 		var postURL = "{% url 'dbtapp:videoEdit' video.pk %}";
 		var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
 	</script>
 	<script type="text/javascript" src="{% static 'dbtapp/js/WearProtection.js' %}"></script>
-	<a id="preview-button" href="#preview" class="btn btn-warning">Preview</a>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+			    <h3>Utvecklingsmiljö</h3>
+			</div>
+			<div class="col-md-6"><span class="pull-right">
+			    <a id="preview-button" href="#preview" class="btn btn-warning">Preview</a>
+			    <a href="{% url 'dbtapp:videoList' %}" class="btn btn-default">To list</a>
+			</span></div>
+		</div>
+	</div>
+	
 {% endblock %}
 
 {% block content %}
@@ -61,42 +63,40 @@
 			<a id="closeButton" href="#" title="Close">X</a>
 			<ul id="slideshow">			
 				<li>
-					<p id="video-text">iPhone<p>
-					<p id="company-text">Apple<p>
+					<div class="clearfix">
+						<h1 id="video-text">iPhone<h1>
+						<h3 id="company-text">Apple<h3>
+					</div>
+					
 				</li>
 				{% if images %}
 					{% for image in images %}
 						<li rel="{{ image.pk }}">
-							<img src="{{ image.photoFile.url }}" rel="{{ image.order }}">
+							<div class="clearfix">
+								<img src="{{ image.photoFile.url }}" rel="{{ image.order }}">
+							</div>
 						</li>
 					{% endfor %}
 				{% endif %}
 				<li>
-					<p id="video-text">Slutbildstext<p>
-					<p id="contact-text">mail till codemill<p>
+					<div class="clearfix">
+						<p id="video-text">Slutbildstext<p>
+						<p id="contact-text">mail till codemill<p>
+					</div>
 				</li>
 			</ul>
 		</div>
 	</div>
-
-	<!--Submitknapp (högerpil)-->
-	<div class="container">
-		<div class="row">
-				<div class="col-lg-4 col-md-offset-9">
-					<a id ="navigationArrow" href=""><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
-			</div>
-		</div>
-	</div>
 	
 	<!-- Ta bort/ha kvar? -->
-	<a href="{% url 'dbtapp:videoList' %}" class="btn btn-default">back</a>
 	
-	
-	<!--Static animation-->
-	<!--<div id="videoCont">
-		<div id="lay1" class="videoLayer"></div>
-		<div id="lay2" class="videoLayer"></div>
-		<div id="lay3" class="videoLayer"></div>
-	</div>-->
+{% endblock %}
 
+{% block navigation %}
+	<div class="col-md-6">
+	    <a id ="navigationArrow" href="{% url 'dbtapp:videoStep' video.pk 3 %}"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
+	</div>
+	<div class="col-md-6"><span class="pull-right">
+	    <a id ="navigationArrow" href=""><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
+	</span></div>
 {% endblock %}

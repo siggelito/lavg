@@ -32,7 +32,7 @@ def newVideo(request):
         if form.is_valid():
             model = form.save()
             form = PhotoForm()
-            return redirect('dbtapp:videoEdit', pk=model.pk)
+            return redirect('dbtapp:videoStep', pk=model.pk, imgtype=1)
 
     else:
         form = VideoForm()
@@ -53,7 +53,29 @@ def videoRemove(request, pk):
     video.delete()
     return redirect('dbtapp:videoList')
 
+def getSortedPhotos(video):
+    photos = Photo.objects.filter(video = video)
+    orderedPhotos = [None] * len(photos)
+    for photo in photos:
+        orderedPhotos[photo.order] = photo
+    return orderedPhotos
 
+def videoStep(request, pk, imgtype):
+    video = Video.objects.get(pk=pk)
+    photos = getSortedPhotos(video=video)
+    #import pdb; pdb.set_trace()
+    if request.method == 'POST':
+        if 'photoFile' in request.FILES:
+            count = len(photos) 
+            for afile in request.FILES.getlist('photoFile'):
+                photos.append(Photo(video=video, photoFile=afile, order=count, photoType=imgtype).save())
+                count = count + 1
+
+    return render (
+        request,
+        'dbtapp/step'+imgtype+'.html',
+        {'images': photos, 'videoKey': pk, 'form': PhotoForm(), 'imgtype': imgtype},
+    )
 
 def videoEdit(request, pk):
     video = Video.objects.get(pk=pk)
@@ -64,7 +86,6 @@ def videoEdit(request, pk):
     if request.method == 'POST':
         #form = PhotoForm(request.POST, request.FILES)
         #import pdb; pdb.set_trace()
-        #print(len(form.files('photoFile')))
         count = len(photos)    
         if 'photoFile' in request.FILES:
             print(request.FILES)
