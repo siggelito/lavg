@@ -1,0 +1,23 @@
+{% extends "dbtapp/stepBase.html" %}
+
+{% block headerNumber %}
+2
+{% endblock %}
+
+{% block headerText %}
+Ladda upp 1-3 bilder på när produkten används.
+{% endblock %}
+
+{% block leftNav %}
+	<a href="{% url 'dbtapp:videoUpdate' video.pk %}">
+		<span id="navigationArrow" tabindex=3 class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+	</a>
+{% endblock %}
+
+{% block rightNav %}
+	<a href="{% url 'dbtapp:videoStep' video.pk 2 %}">
+		<span id="navigationArrow" tabindex=3 class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+	</a>
+{% endblock %}
+
+

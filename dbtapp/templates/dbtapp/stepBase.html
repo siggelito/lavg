@@ -1,0 +1,90 @@
+{% extends "dbtapp/base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <!-- Bildserie -->
+    <ul id="images" class="list-group row">
+        {% if images %}
+            {% for image in images %}
+                <li rel="{{ image.pk }}" class="col-xs-1 list-type-{{image.photoType}}">
+                    <div class="image-wrapper">
+                        <img id="image" src="{{ image.photoFile.url }}" rel="{{ image.order }}">
+                    </div>
+                </li>
+            {% endfor %}
+        {% endif %}
+        <!-- Ladda upp bild -->
+        <div id="addFileWrapper" >
+            <span class="glyphicon glyphicon-plus"></span>
+            <form action="{% url 'dbtapp:videoStep' video.pk imgtype %}" class="form-class clearfix" method="post" enctype="multipart/form-data">       
+                {% csrf_token %}
+                {{ form.photoFile }}
+            </form>
+        </div>
+    </ul>
+
+    <script>
+        //var companyName = {{video.name}};
+        var postURL = "{% url 'dbtapp:videoEdit' video.pk %}";
+        var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
+    </script>
+{% endblock %}
+
+{% block navigation %}
+    <div class="container-fluid">
+        <div class="row top-buffer">
+
+            <div class="col-xs-6 col-sm-6 col-md-1 text-left">
+                <!-- Härifrån ska man kunna ta sig bakåt i stegen. -->
+                {% block leftNav %}{% endblock %}
+                
+            </div>
+
+            <div class="col-md-10 text-center ">
+                <!-- Tidslinje -->
+
+                <div id="hlineLeft" class="hline"></div>
+                <div id="hlineRight" class="hline"></div>
+
+                <div class="round-button">
+                    <div class="round-button-circle" id="round-button-circle1">
+                        <a href="{% url 'dbtapp:videoUpdate'%}" class="round-button">1</a>
+                    </div>
+                </div>
+
+                <div class="round-button">
+                    <div class="round-button-circle" id="round-button-circle2">
+                        <a href="#" class="round-button">2</a>
+                    </div>
+                </div>
+
+                <div class="round-button">
+                    <div class="round-button-circle" id="round-button-circle3">
+                        <a href="#" class="round-button">3</a>
+                    </div>
+                </div>
+                
+                <div class="round-button">
+                    <div class="round-button-circle" id="round-button-circle4">
+                        <a href="#" class="round-button">4</a>
+                    </div>
+                </div>
+                
+                <div class="round-button">
+                    <div class="round-button-circle" id="round-button-circle5">
+                        <a href="#" class="round-button">5</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-1 text-right">
+                {% block rightNav %}{% endblock %}
+                
+                <!--<input type="submit" value="Nästa" />-->
+            </div>
+            
+        </div>
+    </div>
+{% endblock %}
