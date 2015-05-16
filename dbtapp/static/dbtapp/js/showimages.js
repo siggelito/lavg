@@ -74,7 +74,7 @@ function openImageSetting(elem) {
 	newObject.style.listStyleType = "none";
 	newObject.style.padding = "0px";
 	newObject.style.overflow = "hidden";
-	
+	/*
 	newObject.onclick = function() {cardClickedAgain(newObject, elem, newImage);};
 
 
@@ -89,6 +89,7 @@ function openImageSetting(elem) {
 	        $(newImage).velocity({ width: size.width+"px", height: size.height+"px",marginLeft: size.paddingLeft, marginTop: size.paddingTop}, {queue:false, duration: 500});
 		})
 		.velocity({translateX: "-50%", translateY: "-50%"}, 500);
+	*/
 }
 
 function cardClickedAgain(elem, old, image) {
@@ -98,7 +99,7 @@ function cardClickedAgain(elem, old, image) {
 	var elemHeight = old.clientHeight;
 
 	var size = getSize(image, elemWidth, elemHeight);
-
+/*
 	$(elem).transition({
 			width: elemWidth + "px",
 			height: elemHeight + "px"
@@ -108,7 +109,7 @@ function cardClickedAgain(elem, old, image) {
 //			$(elem).velocity({ top: top + (elemHeight/2) + "px", left: left + (elemWidth/2) + "px" }, {queue:false, duration: 500});
 //    		$(image).velocity({ width: size.width+"px", height: size.height+"px",marginLeft: size.paddingLeft, marginTop: size.paddingTop}, {queue:false, duration: 500});
 		});
-
+*/
 	/*
 	$(elem)
 		.velocity({ top: top + (elemHeight/2) + "px", left: left + (elemWidth/2) + "px" }, 1000)
