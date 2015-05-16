@@ -59,12 +59,15 @@ function openImageSetting(elem) {
 
 	var parent = elem.parentNode;
 	var newObject = elem.cloneNode(true);
-	parent.appendChild(newObject);
+	parent.parentNode.appendChild(newObject);
 	var newImage = $(newObject).find('#image');
 
 
 	var left = elem.offsetLeft;
 	var top = elem.offsetTop;
+
+	var width = $(elem).width();
+	var height = $(elem).height();
 
 	newObject.style.zIndex = "100";
 	newObject.style.position = "absolute";
@@ -73,56 +76,46 @@ function openImageSetting(elem) {
 	newObject.style.margin = "0px";
 	newObject.style.listStyleType = "none";
 	newObject.style.padding = "0px";
-	newObject.style.overflow = "hidden";
-	/*
-	newObject.onclick = function() {cardClickedAgain(newObject, elem, newImage);};
+	newObject.style.backgroundColor = "#fff";
+	//newObject.style.overflow = "hidden";
+	
+	
 
 
 	elem.style.opacity = "0";
 
 	//document.body.appendChild(newObject);
-	var size = getSize(image, 500, 300);
+	var windowWidth = 500;
+	var windowHeight = 300;
+	var size = getSize(image, windowWidth, windowHeight);
 
-	$(newObject)
-		.animate({ boxShadow: "3px 5px 25px 1px #555" }, 500, function() {
-	        $(newObject).velocity({ top: "50%", left: "50%", width: "500px", height: "300px", border: "0px"}, {queue:false, duration: 500});
-	        $(newImage).velocity({ width: size.width+"px", height: size.height+"px",marginLeft: size.paddingLeft, marginTop: size.paddingTop}, {queue:false, duration: 500});
-		})
-		.velocity({translateX: "-50%", translateY: "-50%"}, 500);
-	*/
+	var timeline = new TimelineLite({onReverseComplete:cardClickedAgain, onReverseCompleteParams:[newObject, elem, parent]});
+	
+	timeline.add(TweenLite.to(newObject, 0.5, {boxShadow:"3px 5px 25px 1px #555"}));
+	timeline.add(TweenLite.to(newObject, 0.5, { 
+		top: "50%", 
+		left: "50%", 
+		width: "500px", 
+		height: "300px", 
+		marginLeft: "-"+(windowWidth/2)+"px",
+		marginTop: "-"+(windowHeight/1.5)+"px"
+	}), 0);
+	timeline.add(TweenLite.to(newImage, 0.5, { 
+		width: size.width+"px", 
+		height: size.height+"px",
+		marginLeft: size.paddingLeft, 
+		marginTop: size.paddingTop
+	}), 0);
+
+	newObject.onclick = function() {
+		timeline.reverse();
+	};
 }
 
-function cardClickedAgain(elem, old, image) {
-	var left = old.offsetLeft;
-	var top = old.offsetTop + 10;
-	var elemWidth = old.clientWidth;
-	var elemHeight = old.clientHeight;
-
-	var size = getSize(image, elemWidth, elemHeight);
-/*
-	$(elem).transition({
-			width: elemWidth + "px",
-			height: elemHeight + "px"
-		}, 1000, function  () {
-			TweenLite.to(elem, 500, {top: top + (elemHeight/2), left: left + (elemWidth/2),ease:Linear.easeNone})
-			TweenLite.to(image, 500, { width: size.width, height: size.height,marginLeft: size.paddingLeft, marginTop: size.paddingTop,ease:Linear.easeNone})
-//			$(elem).velocity({ top: top + (elemHeight/2) + "px", left: left + (elemWidth/2) + "px" }, {queue:false, duration: 500});
-//    		$(image).velocity({ width: size.width+"px", height: size.height+"px",marginLeft: size.paddingLeft, marginTop: size.paddingTop}, {queue:false, duration: 500});
-		});
-*/
-	/*
-	$(elem)
-		.velocity({ top: top + (elemHeight/2) + "px", left: left + (elemWidth/2) + "px" }, 1000)
-		.animate({ boxShadow: "0px 2px 2px 2px #A5A5A5" }, 500)
-		.css( "border", "10px 0px 10px 0px" );
-
-	$(elem)
-		.queue( function(next){ 
-			document.body.removeChild(elem); 
-			old.style.opacity = "1";
-			next(); 
-		});
-	*/
+function cardClickedAgain(newObj, oldObj, parent) {
+	newObj.style.opacity = "0";
+	oldObj.style.opacity = "1";
+	newObj.parentNode.removeChild(newObj);
 }
 
 
@@ -195,22 +188,26 @@ $(document).ready(function sortImages() {
 		//Spara index där den släpps
 		stop: function(event, ui) {
 			imagePositions.newPos.unshift(ui.item.index());
-			//alert("stop: " + ui.item.index() + " oldPos: " + imagePositions.oldPos[0] + " rel: " + $(ui.item).attr('rel'));
-			
-            $.ajax({
-                 type:"POST",
-                 url:postURL,
-                 dataType: "json",
-                 csrfmiddlewaretoken: '{{ csrf_token }}',
-                 data: {
-                        'oldPos': imagePositions.oldPos[0], // from form
-                        'newPos': ui.item.index(), // from form
-                        'imgId': $(ui.item).attr('rel')
-                        },
-                success: function(){
-                    window.location.reload();
-                }
-            });
+			var oldPos = imagePositions.oldPos[0];
+			var newPos = ui.item.index()
+
+			if (oldPos != newPos) {
+				$.ajax({
+					type:"POST",
+					url:postURL,
+					dataType: "json",
+					csrfmiddlewaretoken: '{{ csrf_token }}',
+					data: {
+	                        'oldPos': imagePositions.oldPos[0], // from form
+	                        'newPos': ui.item.index(), // from form
+	                        'imgId': $(ui.item).attr('rel')
+	                        },
+	                success: function(){
+	                    window.location.reload();
+	                }
+	            });
+			}
+            
 		}
 	});
 	$("#images li").on('click',function(e){
