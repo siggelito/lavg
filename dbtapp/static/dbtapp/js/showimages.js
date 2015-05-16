@@ -51,6 +51,12 @@ function getSize( image, width, height ) {
     return {width: width, height: height, paddingLeft: paddingLeft, paddingTop: paddingTop};
 }
 
+function GetElementInsideContainer(containerID, childID) {
+    var elm = document.getElementById(childID);
+    var parent = elm ? elm.parentNode : {};
+    return (parent.id && parent.id === containerID) ? elm : {};
+}
+
 
 function openImageSetting(elem) {
 	var image = $(elem).find('#image')[0];
@@ -60,8 +66,29 @@ function openImageSetting(elem) {
 	var parent = elem.parentNode;
 	var newObject = elem.cloneNode(true);
 	parent.parentNode.appendChild(newObject);
-	var newImage = $(newObject).find('#image');
+	var newImage = null; //$(newObject).find('.image');
+	var settings = null; // = $(newObject).find('.settings');
+	var settingsCloseButton = null;
 
+	var childs = newObject.childNodes;
+	for (var i = 0; i < childs.length; i++) {
+		if (childs[i].className == "image-wrapper") {
+			var wrapperChilds = childs[i].childNodes;
+			for (var j = 0; j < wrapperChilds.length; j++) {
+				if (wrapperChilds[j].className == "image") {
+					newImage = wrapperChilds[j];
+					break;
+				}
+
+			}
+	    }  
+	    if (childs[i].className == "settings") {
+			settings = childs[i];
+	    }   
+	    if (childs[i].className == "close-btn-settings") {  
+	    	settingsCloseButton = childs[i];
+	    }   
+	}
 
 	var left = elem.offsetLeft;
 	var top = elem.offsetTop;
@@ -73,10 +100,11 @@ function openImageSetting(elem) {
 	newObject.style.position = "absolute";
 	newObject.style.left = left + "px";
 	newObject.style.top = top + "px";
-	newObject.style.margin = "0px";
 	newObject.style.listStyleType = "none";
 	newObject.style.padding = "0px";
 	newObject.style.backgroundColor = "#fff";
+	settings.style.zIndex = "1";
+	settings.style.top = "-10px";
 	//newObject.style.overflow = "hidden";
 	
 	
@@ -87,12 +115,12 @@ function openImageSetting(elem) {
 	//document.body.appendChild(newObject);
 	var windowWidth = 500;
 	var windowHeight = 300;
-	var size = getSize(image, windowWidth, windowHeight);
+	var size = getSize(newImage, windowWidth, windowHeight);
 
 	var timeline = new TimelineLite({onReverseComplete:cardClickedAgain, onReverseCompleteParams:[newObject, elem, parent]});
 	
-	timeline.add(TweenLite.to(newObject, 0.5, {boxShadow:"3px 5px 25px 1px #555"}));
 	timeline.add(TweenLite.to(newObject, 0.5, { 
+		boxShadow: "3px 5px 25px 1px #555",
 		top: "50%", 
 		left: "50%", 
 		width: "500px", 
@@ -106,8 +134,16 @@ function openImageSetting(elem) {
 		marginLeft: size.paddingLeft, 
 		marginTop: size.paddingTop
 	}), 0);
-
-	newObject.onclick = function() {
+	timeline.add(TweenLite.to(settings, 0.5, { 
+		height: windowHeight+"px",
+	}), 0);
+	timeline.add(TweenLite.to(settings, 0.5, { 
+		left: windowWidth, 
+		display: "block",
+		width: "50%"
+	}));
+	settingsCloseButton.style.display = "block";
+	settingsCloseButton.onclick = function() {
 		timeline.reverse();
 	};
 }
