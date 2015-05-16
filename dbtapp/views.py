@@ -89,10 +89,7 @@ def videoStep(request, pk, imgtype):
 
 def videoEdit(request, pk):
     video = Video.objects.get(pk=pk)
-    photos = Photo.objects.filter(video = video)
-    orderedPhotos = [None] * len(photos)
-    for photo in photos:
-        orderedPhotos[photo.order] = photo
+    photos = getSortedPhotos(video=video)
     if request.method == 'POST':
         #form = PhotoForm(request.POST, request.FILES)
         #import pdb; pdb.set_trace()
@@ -100,16 +97,14 @@ def videoEdit(request, pk):
         if 'photoFile' in request.FILES:
             print(request.FILES)
             for afile in request.FILES.getlist('photoFile'):
-                Photo(video=video, photoFile=afile, order=count).save()
+                photo = Photo(video=video, photoFile=afile, order=count)
+                photos.append(photo)
+                photo.save()
                 count = count + 1
-            photos = Photo.objects.filter(video = video)
-            orderedPhotos = [None] * len(photos)
-            for photo in photos:
-                orderedPhotos[photo.order] = photo
             return render(
                 request,
                 'dbtapp/preview.html',
-                {'images': orderedPhotos, 'video': video, 'form': PhotoForm(), 'logoForm': LogoForm(), 'logo': video.logo},
+                {'images': photos, 'video': video, 'form': PhotoForm(), 'logoForm': LogoForm(), 'logo': video.logo},
             )
         else:
             if request.is_ajax():
@@ -123,8 +118,8 @@ def videoEdit(request, pk):
                 #import pdb; pdb.set_trace()
                 if ((oldPos is not None) and (newPos is not None)):
 
-                    orderedPhotos[oldPos].order = newPos
-                    orderedPhotos[oldPos].save()
+                    photos[oldPos].order = newPos
+                    photos[oldPos].save()
 
                     if oldPos < newPos:
                         #import pdb; pdb.set_trace()
@@ -132,19 +127,17 @@ def videoEdit(request, pk):
                         maxVal = newPos
                         xr = xrange(minVal+1,maxVal+1)
                         for i in xr:
-                            orderedPhotos[i].order = i - 1
-                            orderedPhotos[i].save()
+                            photos[i].order = i - 1
+                            photos[i].save()
                     else:
                         #import pdb; pdb.set_trace()
                         minVal = newPos
                         maxVal = oldPos
                         xr = xrange(minVal,maxVal)
                         for i in xr:
-                            orderedPhotos[i].order = i + 1
-                            orderedPhotos[i].save()
+                            photos[i].order = i + 1
+                            photos[i].save()
                     return HttpResponse('')
-
-                
     else:
         form = PhotoForm()
         logoForm = LogoForm()
@@ -152,7 +145,7 @@ def videoEdit(request, pk):
         return render(
             request,
             'dbtapp/preview.html',
-            {'images': orderedPhotos, 'video': video, 'form': form, 'logoForm': logoForm, 'logo': video.logo},
+            {'images': photos, 'video': video, 'form': form, 'logoForm': logoForm, 'logo': video.logo},
         )
 
 def logoPost(request, pk):
