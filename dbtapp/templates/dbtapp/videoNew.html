@@ -10,8 +10,8 @@ Börja med att namnge din film och skriv in förstagsnamnet.
 {% endblock %}
 
 {% block content %}
-{% if video != None %}
-<form action="{% url 'dbtapp:videoUpdate' video.pk %}" method="post" enctype="multipart/form-data" id ="form">
+{% if videoKey != None %}
+<form action="{% url 'dbtapp:videoUpdate' videoKey %}" method="post" enctype="multipart/form-data" id ="form">
 {% else %}
 <form action="{% url 'dbtapp:videoUpdate' %}" method="post" enctype="multipart/form-data" id ="form">
 {% endif %}
