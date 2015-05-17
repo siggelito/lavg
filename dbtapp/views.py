@@ -62,6 +62,21 @@ def videoRemove(request, pk):
     video.delete()
     return redirect('dbtapp:videoList')
 
+def photoRemove(request, videoId, imgtype, photoId):
+    video = Video.objects.get(pk=videoId)
+    if video is not None:
+        photos = getSortedPhotos(video)
+        found = False
+        for i in xrange(0,len(photos)):
+            p = photos[i]
+            if p.pk == int(photoId):
+                p.delete()
+                found = True
+            elif found:
+                p.order = i-1
+                p.save()
+    return redirect('dbtapp:videoStep', pk = videoId, imgtype = imgtype)
+
 def getSortedPhotos(video):
     photos = Photo.objects.filter(video = video)
     orderedPhotos = [None] * len(photos)

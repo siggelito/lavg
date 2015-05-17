@@ -153,6 +153,7 @@ function openImageSetting(elem) {
 	settingsCloseButton.style.display = "block";
 	settingsCloseButton.onclick = function() {
 		$(settings).children().fadeOut();
+		$(settingsCloseButton).hide();
 		timeline.reverse();
 	};
 }
@@ -274,4 +275,16 @@ function postLogoForm(e){
     });
     return false;
 
+}
+
+function RemoveImage (url) {
+	$.ajax({ 
+	    type: 'POST', 
+	    url: url, 
+	    cache: false,
+	    processData: false,
+	    contentType: false,
+	    success: function() {}
+    });
+    return false;
 }

@@ -18,7 +18,8 @@
                         <div class="settings-content">
                             <p>I'm sorry..</p>
                             <p>There are currently no settings implemented.</p>
-                            <p>Not even a single one of them.</p>
+                            <p>All you can do here is to remove this picture.</p>
+                            <a class="btn btn-default" href="{% url 'dbtapp:photoRemove' video.pk imgtype image.pk %}">Remove</a>
                         </div>
                     </div>
                     <a class="close-btn-settings" href="#" title="Close">X</a>
