@@ -69,10 +69,12 @@ function openImageSetting(elem) {
 	var newImage = null; //$(newObject).find('.image');
 	var settings = null; // = $(newObject).find('.settings');
 	var settingsCloseButton = null;
+	var imageWrapper = null;
 
 	var childs = newObject.childNodes;
 	for (var i = 0; i < childs.length; i++) {
 		if (childs[i].className == "image-wrapper") {
+			imageWrapper = childs[i];
 			var wrapperChilds = childs[i].childNodes;
 			for (var j = 0; j < wrapperChilds.length; j++) {
 				if (wrapperChilds[j].className == "image") {
@@ -96,37 +98,38 @@ function openImageSetting(elem) {
 	var width = $(elem).width();
 	var height = $(elem).height();
 
-	newObject.style.zIndex = "100";
 	newObject.style.position = "absolute";
 	newObject.style.left = left + "px";
 	newObject.style.top = top + "px";
 	newObject.style.listStyleType = "none";
 	newObject.style.padding = "0px";
-	newObject.style.backgroundColor = "#fff";
-	settings.style.zIndex = "1";
-	settings.style.top = "-10px";
-	//newObject.style.overflow = "hidden";
-	
-	
+//	settings.style.top = "-10px";
+//	settings.style.height = (height+20)+"px";
+//	settings.style.left = width+"px";
 
-
+	// hide old element
 	elem.style.opacity = "0";
 
 	//document.body.appendChild(newObject);
-	var windowWidth = 500;
+	var windowWidth = 700;
 	var windowHeight = 300;
-	var size = getSize(newImage, windowWidth, windowHeight);
+	var size = getSize(newImage, (windowWidth*0.7), (windowHeight));
+	//settings.style.left = width+"px"; 
 
-	var timeline = new TimelineLite({onReverseComplete:cardClickedAgain, onReverseCompleteParams:[newObject, elem, parent]});
+	var timeline = new TimelineLite({onReverseComplete:AfterClosedSettings, onReverseCompleteParams:[newObject, elem, parent]});
 	
 	timeline.add(TweenLite.to(newObject, 0.5, { 
+		borderWidth: 0,
 		boxShadow: "3px 5px 25px 1px #555",
 		top: "50%", 
 		left: "50%", 
-		width: "500px", 
-		height: "300px", 
+		width: windowWidth, 
+		height: windowHeight, 
 		marginLeft: "-"+(windowWidth/2)+"px",
 		marginTop: "-"+(windowHeight/1.5)+"px"
+	}), 0);
+	timeline.add(TweenLite.to(imageWrapper, 0.5, { 
+		width: "70%"
 	}), 0);
 	timeline.add(TweenLite.to(newImage, 0.5, { 
 		width: size.width+"px", 
@@ -134,21 +137,23 @@ function openImageSetting(elem) {
 		marginLeft: size.paddingLeft, 
 		marginTop: size.paddingTop
 	}), 0);
-	timeline.add(TweenLite.to(settings, 0.5, { 
-		height: windowHeight+"px",
-	}), 0);
-	timeline.add(TweenLite.to(settings, 0.5, { 
-		left: windowWidth, 
+	timeline.add(TweenLite.to(settings, 0.1, { 
 		display: "block",
-		width: "50%"
-	}));
+		width: "30%"
+	}), 0);
+	timeline.add(TweenLite.delayedCall(0,function () {
+		$(settings).children().fadeIn();
+	}),null);
+
+
 	settingsCloseButton.style.display = "block";
 	settingsCloseButton.onclick = function() {
+		$(settings).children().fadeOut();
 		timeline.reverse();
 	};
 }
 
-function cardClickedAgain(newObj, oldObj, parent) {
+function AfterClosedSettings(newObj, oldObj, parent) {
 	newObj.style.opacity = "0";
 	oldObj.style.opacity = "1";
 	newObj.parentNode.removeChild(newObj);

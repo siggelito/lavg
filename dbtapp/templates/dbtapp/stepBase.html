@@ -11,8 +11,10 @@
                     <div class="image-wrapper">
                         <img class="image" src="{{ image.photoFile.url }}" rel="{{ image.order }}">
                     </div>
-                    <div class="settings" style="display:none;width:100%;height:50px;position:absolute;top:0;left:0;z-Index:0;">
-                        <p style="z-Index: 0;">Settings</p>
+                    <div class="settings">
+                        <div class="settings-header background-type-{{image.photoType}}">
+                            <p>Settings</p>
+                        </div>
                     </div>
                     <a class="close-btn-settings" href="#" title="Close">X</a>
                 </li>

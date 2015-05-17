@@ -125,24 +125,35 @@ body {
 	overflow: hidden;
 }
 
-#slideshow li canvas {
-	width: 100%;
-	height: 100%;
-}
-
 .list-type-1 {
 	border-top: 10px solid #EC6568;
-	border-bottom: 10px solid #EC6568;
 }
 .list-type-2 {
 	border-top: 10px solid #ED712C;
-	border-bottom: 10px solid #ED712C;
 }
 .list-type-3 {
 	border-top: 10px solid #FFCC00;
-	border-bottom: 10px solid #FFCC00;
 }
 
+.settings-header {
+	height: 20%; 
+	padding: 5%;
+}
+
+.settings-header p{
+	font-size: 20px;
+	color: #fff;
+}
+
+.background-type-1 {
+	background-color: #EC6568;
+}
+.background-type-2 {
+	background-color: #ED712C;
+}
+.background-type-3 {
+	background-color: #FFCC00;
+}
 
 #images li {
 	display:inline-block;
@@ -151,17 +162,44 @@ body {
 	margin-bottom: 10px;
 	height: 100px;
 	padding:0px;
+	position: relative;
+
 }
-
-
+.close-btn-settings {
+	color: black;
+	position:absolute;
+	right:-10px;
+	top:-20px;
+	z-index: 10;
+	opacity: 1;
+	padding:2px 8px;	
+	border:2px solid black;
+	border-radius: 15px 15px;
+	background:white;
+	display: none;
+}
 
 .image-wrapper {
 	overflow: hidden;
 	width: 100%;
 	height: 100%;
 	position: relative;
+	background-color: #fff;
 }
 
+.settings {
+	/*padding: 20px 10px;*/
+	/*box-shadow: 3px 5px 25px 1px #555;*/
+	background-color: #fff;
+	width: 0%;
+	height: 100%;
+	position:absolute;
+	top:0;
+	right:0;
+	z-index:0;
+	/*display: none;*/
+	overflow: hidden;
+}
 
 
 /*Vad gör denna?*/
@@ -258,26 +296,7 @@ body {
 	background:white;
 }
 
-.close-btn-settings {
-	color: black;
-	position:absolute;
-	right:-10px;
-	top:-20px;
-	z-index: 10;
-	opacity: 1;
-	padding:2px 8px;	
-	border:2px solid black;
-	border-radius: 15px 15px;
-	background:white;
-	display: none;
-}
 
-.settings {
-	padding: 20px 10px;
-	box-shadow: 3px 5px 25px 1px #555;
-	background-color: #fff;
-	z-index: -1;
-}
 
 #logo-image {
 	position: absolute;
