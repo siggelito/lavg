@@ -80,6 +80,7 @@ a:hover, a:active, a:focus {
   background-color: #2B2B2B;
   color: #fff;
   padding: 100px 0px;
+  overflow: hidden;
 }
 
 .step-content {
