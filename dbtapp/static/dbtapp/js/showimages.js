@@ -70,6 +70,7 @@ function openImageSetting(elem) {
 	var settings = null; // = $(newObject).find('.settings');
 	var settingsCloseButton = null;
 	var imageWrapper = null;
+	var settingsContent = null;
 
 	var childs = newObject.childNodes;
 	for (var i = 0; i < childs.length; i++) {
@@ -86,6 +87,14 @@ function openImageSetting(elem) {
 	    }  
 	    if (childs[i].className == "settings") {
 			settings = childs[i];
+			var settingsChilds = childs[i].childNodes;
+			for (var j = 0; j < settingsChilds.length; j++) {
+				if (settingsChilds[j].className == "settings-content") {
+					settingsContent = settingsChilds[j];
+					break;
+				}
+
+			}
 	    }   
 	    if (childs[i].className == "close-btn-settings") {  
 	    	settingsCloseButton = childs[i];
@@ -103,18 +112,13 @@ function openImageSetting(elem) {
 	newObject.style.top = top + "px";
 	newObject.style.listStyleType = "none";
 	newObject.style.padding = "0px";
-//	settings.style.top = "-10px";
-//	settings.style.height = (height+20)+"px";
-//	settings.style.left = width+"px";
-
+	$(settingsContent).hide();
 	// hide old element
 	elem.style.opacity = "0";
 
-	//document.body.appendChild(newObject);
 	var windowWidth = 700;
 	var windowHeight = 300;
 	var size = getSize(newImage, (windowWidth*0.7), (windowHeight));
-	//settings.style.left = width+"px"; 
 
 	var timeline = new TimelineLite({onReverseComplete:AfterClosedSettings, onReverseCompleteParams:[newObject, elem, parent]});
 	
