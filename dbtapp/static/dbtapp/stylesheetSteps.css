@@ -402,6 +402,42 @@ a:hover {
 	border-style: none;
 }
 
+#controls {
+	width: 800px;
+	background-color: rgba(255, 255, 255, 0);
+	opacity: 0;
+}
+#pause{
+	margin:1% 45%;
+	outline: 0;
+}
+#sliderWrapper{
+	width: 800px;
+	margin:-2% auto;
+	padding-top:0.5%;
+}
+#slider{
+  width: 800px;
+  margin:2% auto;
+  height: 2px;
+  background-color: #ED712C !important;
+  background: #ED712C;
+}
+#slider span{
+	background-color: #ED712C;
+}
+.ui-slider-horizontal .ui-state-default {
+	background: #ED712C;
+	text-decoration: none;
+	/*background: white url(http://stackoverflow.com/content/img/so/vote-arrow-down.png) no-repeat scroll 50% 50%;}*/
+}
+.ui-slider-horizontal {
+	background: #ED712C;
+	text-decoration: none;
+}
+
+
+
 
 /*Nytt för steg 5*/
 #playVideo{
