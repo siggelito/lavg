@@ -9,21 +9,27 @@ function initPreview (imageSet) {
 		
 		$("#preview").css("opacity", "0");
 	});
+	
 }
 
 
 function runSlideShow(video) {
 	
-
+	var timeline = new TimelineMax();
+	
+	initControls(timeline);
+	
 	//Set up additional animationelements
 	for (var i = 0; i < video.images.length; i++) {
 		video.images[i].parent.style.opacity = 0;
 		video.intro.parent.style.opacity = 0;
 		video.outro.parent.style.opacity = 0;
-		video.images[i].transitionSetup(video.images[i].parent);
+
+		video.images[i].transitionSetup(video.images[i-1], video.images[i], video.images[i+1]);	
+		video.images[i].effectSetup(video.images[i]/*.parent*/);
+	
 	} 
 
-	var timeline = new TimelineLite();
 	// Animera fram första sidan
 	video.intro.transition(video.intro, timeline, video.intro.transitionLength);
 	//vänta ett tag
