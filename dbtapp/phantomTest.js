@@ -7,9 +7,9 @@ function () {
 		page.render("/dev/stdout", {format: "png"});
 	}, 25);
 	
-	setTimeout (function () {
+/*	setTimeout (function () {
 		clearInterval(refreshIntervalId);
-	}, 5000);
+	}, 5000);*/
 });
 
 /*

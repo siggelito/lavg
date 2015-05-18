@@ -195,7 +195,7 @@ def phantomjs(request):
     #celery
     
     phantomProcess = Popen([command, phantomjs_script], stdout=PIPE, stderr=STDOUT)
-    import pdb; pdb.set_trace()
+    #import pdb; pdb.set_trace()
     command2 = 'ffmpeg -y -c:v png -f image2pipe -r 25 -t 1 -i -c:v libx264 -pix_fmt yuv420p -movflags +faststart testmovie.mp4'.split(" ")
 
     ffmpegProcess = Popen(command2, stdin=phantomProcess.communicate(), stdout=PIPE, stderr=STDOUT)
