@@ -198,7 +198,7 @@ def phantomjs(request):
     #import pdb; pdb.set_trace()
     command2 = 'ffmpeg -y -c:v png -f image2pipe -r 25 -t 1 -i -c:v libx264 -pix_fmt yuv420p -movflags +faststart testmovie.mp4'.split(" ")
 
-    ffmpegProcess = Popen(command2, stdin=phantomProcess.communicate(), stdout=PIPE, stderr=STDOUT)
+    ffmpegProcess = Popen(command2, stdin=phantomProcess.communicate(), stdout=PIPE, stderr=phantomProcess.kill())
     
     #returnFile = File(open(fileName, 'r'))
     #response = HttpResponse(returnFile, mimetype='application/force-download')
