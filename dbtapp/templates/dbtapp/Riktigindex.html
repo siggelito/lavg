@@ -13,7 +13,6 @@
 
 		{% load staticfiles %}
 		<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/css/bootstrap.min.css' %}" />
-
 		<!-- eget CSS -->
 		<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/stylesheet1.css' %}" />
 
@@ -22,6 +21,7 @@
 		<script type="text/javascript" src="{% static 'dbtapp/js/bootstrap.min.js' %}"></script>
 		<script type="text/javascript" src="{% static 'dbtapp/js/landingPage.js' %}"></script>
 		<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:700,300,400' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>
 	</head>
 
 	<!-- Page top -->
@@ -32,7 +32,7 @@
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>                        
+						<span class="icon-bar"></span>
 					</button>
 
 					<!-- Även denna ska scrollas rätt... kolla er på det..-->
@@ -50,142 +50,168 @@
 				</div>
 			</div>
 		</nav>
-		<!--Kod för inloggning under de olika stegen? spara tills vidare...-->
-      <!-- <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    </ul> -->
 
+		<header>
+			<div class="big-header">
 
+				<div class="row" id="startchange">
+					<div class="col-md-4 text-left" id="triangle-div"> 
+						<div class="triangle-header" id="triangle-one"></div>
+						<div class="triangle-header" id="triangle-two"></div>
+					</div>
 
+					<div class="col-md-8 text-right">
+						<h1>SKAPA EN EGEN PRODUKTVIDEO PÅ NÅGRA MINUTER!</h1>
+						<a href="{% url 'dbtapp:videoUpdate' %}" class="btn btn-primary btn-xl page-scroll">Börja skapa film!</a>
+					</div>
 
-    <header>
-    	<div class="big-header">
+				</div>
 
-    		<div class="row" id="startchange">
+			</div>
+		</header>
 
-				<div class="col-md-4 text-left" id="triangle-div"> <!-- i och med att padding tagits bort så kan man 
-				skrolla lite år andra hållet
-				- fel och bör undersökas. -->
+		<!-- Step by step -->
+		<section id="step">
 
-				<div class="triangle-header" id="triangle-one"></div>
-				<div class="triangle-header" id="triangle-two"></div>
+			<div class="row">
+
+				<div class="col-md-12 text-center">
+					<h2 class="section-heading">Några få enkla steg</h2>
+				</div>
+
 			</div>
 
-			<div class="col-md-8 text-right">
-				<h1>SKAPA EN EGEN PRODUKTVIDEO PÅ NÅGRA MINUTER!</h1>
-				<a href="{% url 'dbtapp:videoUpdate' %}" class="btn btn-primary btn-xl page-scroll">Börja skapa film!</a>
+			<div class="row">
+
+				<div class="col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2  text-center">
+					<h3> Namnge projektet</h3>
+					<p>Välj ett projektnamn och skriv in ditt företagsnamn - denna information används sedan i filmen. </p>
+				</div>
+
+				<div class="col-md-1 col-sm-1 text-center">
+					<div class="icon">
+						<span class="glyphicon glyphicon-triangle-right right" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-triangle-bottom down" aria-hidden="true"></span>
+					</div>
+				</div>
+
+				<div class="col-md-2 col-sm-2 text-center">
+					<h3> Ladda upp <br>bilder</h3>
+					<p>Få guidning under tre steg om vilka bilder du ska ladda upp för att skapa en så bra film som möjligt. </p>
+				</div>
+
+				<div class="col-md-1 col-sm-1 text-center">
+					<div class="icon">
+						<span class="glyphicon glyphicon-triangle-right right" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-triangle-bottom down" aria-hidden="true"></span>
+					</div>
+				</div>
+
+				<div class="col-md-2 col-sm-2 text-center">
+					<h3> Redigera och använd</h3>
+					<p>Ändra övergånger, visningstid och andra inställningar innan du laddar hem eller delar din film.</p>
+				</div>
+
+			</div>
+		</section>
+
+
+		<!-- About -->
+		<section class="bgOrange" id="about">
+
+			<div class="row">
+
+				<div class="col-md-12 text-center">
+					<h2>Ett verktyg bara för dig!</h2>
+				</div>
+
 			</div>
 
-		</div>
+			<div class="row">
+				<div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 text-center">
+					<p>Med hjälp av MillVid kan du med några enkla steg skapa din alldeles egna produktfilm, helt utan tidigare erfarenhet. MillVid är ett enkelt verktyg som ska passa alla, vare sig kunskapsnivå eller bransch. Vid framtagningen av detta verktyg tog vi dig som företagare i åtanke. Alla ska ha chansen att skapa och använda en produktvideo för att höja status av sin produkt.<br>
 
-	</div>
-</header>
+					Skapa din video, visa upp den i din webbshop och hemsida, eller varför inte dela filmen direkt till dina följare på facebook och instagram? Ge det ett försök redan nu, och skapa värdefullt marknadsföringsmaterial för just dig!</p>
+					</div>
+				</div>
+			</section>
 
-<!-- Step by step -->
-<section id="step">
+			<!-- Inspiration -->
+			<section id="inspiration">
 
-	<div class="row">
-
-		<div class="col-md-12 text-center">
-			<h2 class="section-heading">Några enkla steg</h2>
-		</div>
-
-	</div>
-
-	<div class="row">
-
-		<div class="col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2  text-center">
-			<h3> Namnge projektet</h3>
-			<p>Lite försklaring om steget här....</p>
-		</div>
-
-		<div class="col-md-1 col-sm-1 text-center">
-			<div class="icon">
-				<span class="glyphicon glyphicon-triangle-right right" aria-hidden="true"></span>
-				<span class="glyphicon glyphicon-triangle-bottom down" aria-hidden="true"></span>
-			</div>
-		</div>
-
-		<div class="col-md-2 col-sm-2 text-center">
-			<h3> Ladda upp bilder</h3>
-			<p>Lite försklaring om steget här....</p>
-		</div>
-
-		<div class="col-md-1 col-sm-1 text-center">
-			<div class="icon">
-				<span class="glyphicon glyphicon-triangle-right right" aria-hidden="true"></span>
-				<span class="glyphicon glyphicon-triangle-bottom down" aria-hidden="true"></span>
-			</div>
-		</div>
-
-		<div class="col-md-2 col-sm-2 text-center">
-			<h3> Redigera och använd</h3>
-			<p>Lite försklaring om steget här....</p>
-		</div>
-
-	</div>
-</section>
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<h2>Inspireras av andra</h2>
+					</div>
+				</div>
 
 
-<!-- About -->
-<section class="bgOrange" id="about">
 
-	<div class="row">
 
-		<div class="col-md-12 text-center">
-			<h2>Om detta verktyg!</h2>
-		</div>
 
-	</div>
+				<div class="row">
+					<div class="col-md-4" id="inspiration">
+						<iframe src="https://www.youtube.com/embed/09R8_2nJtjg?rel=0&amp;controls=0&amp;showinfo=0" allowfullscreen></iframe>
+					</div>
+					<div class="col-md-4" id="inspiration">
+						<iframe src="https://www.youtube.com/embed/lp-EO5I60KA?rel=0&amp;controls=0&amp;showinfo=0" allowfullscreen></iframe>
+					</div>
+					<div class="col-md-4" id="inspiration">
+						<iframe  src="https://www.youtube.com/embed/MGmxL68o1LE?rel=0&amp;controls=0&amp;showinfo=0" allowfullscreen></iframe>
+					</div>
+				</div>
 
-	<div class="row">
 
-		<div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 text-center">
-			<p>Inom datavetenskap – speciellt programmering – avser text en datamängd som återges med skrivbara tecken och några få styrtecken som radbyte och tabulator. Motsatsen är ofta binära data, som lagras i en form som inte lika enkelt kan presenteras på en skärm eller ett skrivarpapper.</p>
-		</div>
 
-	</div>
+				<div class="row">
+					<div class="col-md-4" id="inspiration">
+						<iframe src="https://www.youtube.com/embed/CS9OO0S5w2k?rel=0&amp;controls=0&amp;showinfo=0" allowfullscreen></iframe>
+					</div>
+					<div class="col-md-4" id="inspiration">
+						<iframe src="https://www.youtube.com/embed/4fk2prKnYnI?rel=0&amp;controls=0&amp;showinfo=0" allowfullscreen></iframe>
+					</div>
+					<div class="col-md-4" id="inspiration">
+						<iframe src="https://www.youtube.com/embed/Tm88QAI8I5A?rel=0&amp;controls=0&amp;showinfo=0" allowfullscreen></iframe>
+					</div>
+				</div>
 
-</section>
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<div class="spacing"></div>
+						<a href="{% url 'dbtapp:videoUpdate' %}" class="btn btn-primary btn-xl page-scroll">Börja skapa film!</a>
+					</div>
+				</div>
+			</section>
 
-<!-- Inspiration -->
-<section id="inspiration">
+			<!-- Contact -->
+			<section class="bgDark" id="contact">
 
-	<div class="row">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+						<h5>Om ni har några frågor eller synpunkter, kontakta oss gärna.</h5>
+					</div>
+				</div>
 
-		<div class="col-md-12 text-center">
-			<h2>Inspireras av andra</h2>
-		</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4 text-center">
+						<table style="width:100%">
+							<tr>
+								<td><p><a href="mailto:hanna_soderstrom@live.se?Subject=Hello" target="_top">Hanna Söderström</a></p></td>
+								<td><p><a href="mailto:Jan.nylen92@gmail.com?Subject=Hello" target="_top">Jan Nyhlén</a></p></td> 
+							</tr>
+							<tr>
+								<td><p><a href="mailto:mattias.edin92@gmail.com?Subject=Hello" target="_top">Mattias Edin</a></p></td>
+								<td><p><a href="mailto:karro.jonzen@hotmail.com?Subject=Hello" target="_top">Karolina Jonzén</a></p></td>
+							</tr>
+							<tr>
+								<td><p><a href="mailto:micke_wahlstrom@hotmail.com?Subject=Hello" target="_top">Mikeal Wahlström</a></p></td> 
+								<td><p><a href="mailto:sandraingerhage@gmail.com?Subject=Hello" target="_top">Sandra Ingerhage</a></p></td>
+							</tr>
 
-		
-	</div>
+						</table>
 
-	<div class="row">
-
-		<div class="col-md-8 col-md-offset-2 text-center">
-			<p>Här kommer ca sex stycken exempelfilmer att visas. </p>
-		</div>
-
-	</div>
-	<div class="row">
-		<div class="col-md-12 text-center">
-			<a href="{% url 'dbtapp:videoUpdate' %}" class="btn btn-primary btn-xl page-scroll">Börja skapa film!</a>
-		</div>
-	</div>
-</section>
-
-<!-- Contact -->
-<section class="bgDark" id="contact">
-
-	<div class="row">
-		<div class="col-lg-12 text-center">
-			<h5>Kontakta oss</h5>
-			<p>Mailadress</p>
-			<p>Telefonnummer</p>
-			<p>Andra uppgifter som behövs</p>
-		</div>
-	</div>
-</section>
-</body>
-</html>
+					</div>
+				</div>
+			</section>
+		</body>
+		</html>

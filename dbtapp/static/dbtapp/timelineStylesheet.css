@@ -33,36 +33,36 @@
 
 
  
- /*centreras med left: 50% och sedan dras ett pixel antal bort från varje div för att centrera*/
+ /*centreras med left: 50% och sedan dras ett pixelantal bort från varje div för att centrera*/
 
   #round-button-circle1 { 
-    top: 0px;;
-	left:50%;
+    top: 0px;
+    left:50%;
     margin-left:-210px;
   }
 
   #round-button-circle2 {
-    top: 0px;;
-	left:50%;
+    top: 0px;
+    left:50%;
     margin-left:-80px;
   }
 
   #round-button-circle3 {     
-    top: 0px;;
-	left:50%;
+    top: 0px;
+    left:50%;
     margin-left: -30px;
     /*z-index: -1;*/
   }
 
   #round-button-circle4 { 
-    top: 0px;;
-	left:50%;
+    top: 0px;
+    left:50%;
     margin-left: 20px;
   }
 
   #round-button-circle5 { 
-    top: 0px;;
-	left:50%;
+    top: 0px;
+    left:50%;
     margin-left:+150px;
   }
 

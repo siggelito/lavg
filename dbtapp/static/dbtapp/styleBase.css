@@ -1,10 +1,7 @@
 /*
 
 
-Stylesheet som Base.html och alla de olika stegen använder sig av. Om CSS för utseende av innehåll is tegen ska ändras och ej vara globala, 
-ändra i stylesheetSteps.css
-
-/ Hanna
+Stylesheet som Base.html och alla de olika stegen använder sig av.
 
 
 */
@@ -15,6 +12,8 @@ h1	{
 	font-size: 80px;
   margin-top: 0px;
 }
+
+
 
 h2{
   margin-bottom: 30px;
@@ -50,6 +49,12 @@ nav.navbar.navbar-default{
   margin-bottom: 0px;
   border:none !important;
   font-size: 16px;
+}
+
+#brand{
+  font-family: 'Rochester', cursive;
+  font-size: 2em;
+  color: #FFCC00;
 }
 
 /*Tar bort prickade linjen runt länkar när man klickar*/
@@ -88,7 +93,45 @@ a:hover, a:active, a:focus {
   display: block;
 }
 
+table{
+  font-size: 15px;
+}
 
+#mail{
+  color: #fff;
+}
+
+#mail:hover, #mail:focus{
+  color: #FF9900;
+  text-decoration: none;
+}
+
+/*markeringsfärg*/
+
+::selection {
+  background-color: #FFCC00;
+  color: #fff;
+}
+
+::-moz-selection {
+  background-color: #FFCC00;
+  color: #fff;
+}
+ 
+::-o-selection {
+  background-color: #FFCC00;
+  color: #fff;
+}
+   
+::-ms-selection {
+  background-color: #FFCC00;
+  color: #fff;
+}
+
+::-webkit-selection {
+  background-color: #FFCC00;
+  color: #fff;
+}
 
 
 

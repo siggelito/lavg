@@ -3,8 +3,24 @@ $(window).load(function(){
     var navList = $(".round-button .round-button-circle");
     var pageNr = parseInt(document.getElementById('head-number').textContent.replace(/(\r\n|\n|\r)/gm,""));
 
-    $(navList[pageNr-1]).addClass("currentPagePink");
-
+    switch(pageNr) {
+        case 1:
+        $(navList[pageNr-1]).addClass("currentPageOrange1");
+        break;
+        case 2:
+        $(navList[pageNr-1]).addClass("currentPagePink");
+        break;
+        case 3:
+        $(navList[pageNr-1]).addClass("currentPageOrange2");
+        break;    
+        case 4:
+        $(navList[pageNr-1]).addClass("currentPageYellow");
+        break;    
+        case 5:
+        $(navList[pageNr-1]).addClass("currentPageOrange1");
+        break;
+    } 
+    
     var video = {
         images: [],
         intro: null,
@@ -14,34 +30,34 @@ $(window).load(function(){
     var input = document.getElementById('input');
     var inputLogo = document.getElementById('input-logo');
     //input.addEventListener('change', handleFiles);
-	
-	if(inputLogo != null) {
-		inputLogo.addEventListener('change', postLogoForm);
-	}
-    var sources = [];
-    var sourceLogo;
-    var offset = 0;
 
-    function initializeVideo () {
-        var list = $('#preview ul li div');
-        var images = $('#preview ul li div img');
-        video.intro = {
-            transition: function(first, timeline, transitionLength){
-                startAnimation(first, timeline, transitionLength);
+    if(inputLogo != null) {
+      inputLogo.addEventListener('change', postLogoForm);
+  }
+  var sources = [];
+  var sourceLogo;
+  var offset = 0;
+
+  function initializeVideo () {
+    var list = $('#preview ul li div');
+    var images = $('#preview ul li div img');
+    video.intro = {
+        transition: function(first, timeline, transitionLength){
+            startAnimation(first, timeline, transitionLength);
+        },
+        transitionLength: 2,
+        effectLengt: 2, 
+        parent: list[0]
+    } 
+    $(list[0]).css("opacity", "0");
+    var i;
+    for(i = 0; i < images.length; i++) { 
+        $(images[i]).zIndex = i+1;
+        var imgSettings = {
+            transition: function(current, next, timeline, transitionLength){
+                simpleTransition(current, next, timeline, transitionLength);
             },
-            transitionLength: 2,
-            effectLengt: 2, 
-            parent: list[0]
-        } 
-        $(list[0]).css("opacity", "0");
-        var i;
-        for(i = 0; i < images.length; i++) { 
-            $(images[i]).zIndex = i+1;
-            var imgSettings = {
-                transition: function(current, next, timeline, transitionLength){
-                    simpleTransition(current, next, timeline, transitionLength);
-                },
-                transitionSetup: function(previous, current, next){
+            transitionSetup: function(previous, current, next){
                     //panoramaSetup(parent)
                     //shrinkTransistionSetup(previous, current, next);
                 },
@@ -88,8 +104,6 @@ $(window).load(function(){
         } 
         $(list[i+1]).css("opacity", "0");
 
-
-
         doneLoadingFiles(video);
     }
 
@@ -98,7 +112,7 @@ $(window).load(function(){
     var images = $('#images li div img');
 
     for (var i = 0; i < images.length; i++) {
-        
+
         var size = calcSize(images[i].parentNode,images[i]);
         images[i].width = size.width;
         images[i].height = size.height;
@@ -107,7 +121,6 @@ $(window).load(function(){
         $(images[i]).css({top: size.paddingTop, left: size.paddingLeft});
         images[i].setAttribute("style", "margin-top:" + size.paddingTop.toString() + "px");
         images[i].setAttribute("style", "margin-left:" + size.paddingLeft.toString() + "px");
-    
     }
     
 

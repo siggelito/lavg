@@ -3,100 +3,105 @@
 
 {% block content %}
 
-    <!-- Bildserie -->
-    <ul id="images" class="list-group row">
-        {% if images %}
+<!-- Bildserie -->
+<div class="row">
+    <div class="col-md-12">
+        <ul id="images" class="list-group">
+            {% if images %}
             {% for image in images %}
-                <li rel="{{ image.pk }}" class="col-xs-1 list-type-{{image.photoType}}">
-                    <div class="image-wrapper">
-                        <img class="image" src="{{ image.photoFile.url }}" rel="{{ image.order }}">
+            <li rel="{{ image.pk }}" class="col-xs-1 list-type-{{image.photoType}}">
+                <div class="image-wrapper">
+                    <img class="image" src="{{ image.photoFile.url }}" rel="{{ image.order }}">
+                </div>
+                <div class="settings">
+                    <div class="settings-header background-type-{{image.photoType}}">
+                        <p>Settings</p>
                     </div>
-                    <div class="settings">
-                        <div class="settings-header background-type-{{image.photoType}}">
-                            <p>Settings</p>
-                        </div>
-                        <div class="settings-content">
-                            <p>I'm sorry..</p>
-                            <p>There are currently no settings implemented.</p>
-                            <p>All you can do here is to remove this picture.</p>
-                            <a class="btn btn-default" href="{% url 'dbtapp:photoRemove' video.pk imgtype image.pk %}">Remove</a>
-                        </div>
+                    <div class="settings-content">
+                        <p>I'm sorry..</p>
+                        <p>There are currently no settings implemented.</p>
+                        <p>All you can do here is to remove this picture.</p>
+                        <a class="btn btn-default" href="{% url 'dbtapp:photoRemove' video.pk imgtype image.pk %}">Remove</a>
                     </div>
-                    <a class="close-btn-settings" href="#" title="Close">X</a>
-                </li>
+                </div>
+                <a class="close-btn-settings" href="#" title="Close">X</a>
+            </li>
             {% endfor %}
-        {% endif %}
-        <!-- Ladda upp bild -->
-        <div id="addFileWrapper" >
-            <span class="glyphicon glyphicon-plus"></span>
-            <form action="{% url 'dbtapp:videoStep' video.pk imgtype %}" class="form-class clearfix" method="post" enctype="multipart/form-data">       
-                {% csrf_token %}
-                {{ form.photoFile }}
-            </form>
-        </div>
-    </ul>
+            {% endif %}
 
-    <script>
-        //var companyName = {{video.name}};
-        var postURL = "{% url 'dbtapp:videoEdit' video.pk %}";
-        var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
-    </script>
+            <!-- Ladda upp bild -->
+            <div id="addFileWrapper" >
+                <span class="glyphicon glyphicon-plus"></span>
+                <form action="{% url 'dbtapp:videoStep' video.pk imgtype %}" class="form-class clearfix" method="post" enctype="multipart/form-data">       
+                    {% csrf_token %}
+                    {{ form.photoFile }}
+                </form>
+            </div>
+        </ul>
+
+    </div>
+</div>
+
+<script>
+    //var companyName = {{video.name}};
+    var postURL = "{% url 'dbtapp:videoEdit' video.pk %}";
+    var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
+</script>
+
 {% endblock %}
 
 {% block navigation %}
-    <div class="container-fluid">
-        <div class="row top-buffer">
+<div class="spacing"></div>
+<div class="row">
 
-            <div class="col-xs-6 col-sm-6 col-md-1 text-left">
-                <!-- Härifrån ska man kunna ta sig bakåt i stegen. -->
-                {% block leftNav %}{% endblock %}
-                
-            </div>
-
-            <div class="col-md-10 text-center ">
-                <!-- Tidslinje -->
-
-                <div id="hlineLeft" class="hline"></div>
-                <div id="hlineRight" class="hline"></div>
-
-                <div class="round-button">
-                    <div class="round-button-circle" id="round-button-circle1">
-                        <a href="{% url 'dbtapp:videoUpdate'%}" class="round-button">1</a>
-                    </div>
-                </div>
-
-                <div class="round-button">
-                    <div class="round-button-circle" id="round-button-circle2">
-                        <a href="#" class="round-button">2</a>
-                    </div>
-                </div>
-
-                <div class="round-button">
-                    <div class="round-button-circle" id="round-button-circle3">
-                        <a href="#" class="round-button">3</a>
-                    </div>
-                </div>
-                
-                <div class="round-button">
-                    <div class="round-button-circle" id="round-button-circle4">
-                        <a href="#" class="round-button">4</a>
-                    </div>
-                </div>
-                
-                <div class="round-button">
-                    <div class="round-button-circle" id="round-button-circle5">
-                        <a href="#" class="round-button">5</a>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-xs-6 col-sm-6 col-md-1 text-right">
-                {% block rightNav %}{% endblock %}
-                
-                <!--<input type="submit" value="Nästa" />-->
-            </div>
-            
-        </div>
+    <div class="col-xs-6 col-sm-6 col-md-1 text-left">
+        <!-- Härifrån ska man kunna ta sig bakåt i stegen. -->
+        {% block leftNav %}{% endblock %}
     </div>
+
+    <div class="col-md-10 text-center ">
+      
+        <!-- Tidslinje -->
+        <div id="hlineLeft" class="hline"></div>
+        <div id="hlineRight" class="hline"></div>
+
+        <div class="round-button">
+            <div class="round-button-circle" id="round-button-circle1">
+                <a href="{% url 'dbtapp:videoUpdate'%}" class="round-button">1</a>
+            </div>
+        </div>
+
+        <div class="round-button">
+            <div class="round-button-circle" id="round-button-circle2">
+                <a href="#" class="round-button">2</a>
+            </div>
+        </div>
+
+        <div class="round-button">
+            <div class="round-button-circle" id="round-button-circle3">
+                <a href="#" class="round-button">3</a>
+            </div>
+        </div>
+        
+        <div class="round-button">
+            <div class="round-button-circle" id="round-button-circle4">
+                <a href="#" class="round-button">4</a>
+            </div>
+        </div>
+        
+        <div class="round-button">
+            <div class="round-button-circle" id="round-button-circle5">
+                <a href="#" class="round-button">5</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-xs-6 col-sm-6 col-md-1 text-right">
+        {% block rightNav %}
+        {% endblock %}
+        
+        <!--<input type="submit" value="Nästa" />-->
+    </div>
+</div>
 {% endblock %}

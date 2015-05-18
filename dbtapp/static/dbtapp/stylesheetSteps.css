@@ -58,7 +58,7 @@ CSS för de olika stegen - VIKTIGT - skriv inte över styleBase.css
 }
 
 .glyphicon-menu-right, .glyphicon-menu-left	{
-	font-size: 320%;
+	font-size: 4em;
 }
 
 .glyphicon{
@@ -224,30 +224,28 @@ body {
 	position:relative;
 	width: 100px; 
 	height: 100px; 
-
-	/*Margin kan tas bort?*/
-	/*margin-top:50px;
-	margin-bottom:60px;
-	margin-left:50px;
-	margin-right:40px;*/
-
-  	background-color: #FF9900;
-
-
-	/* Border skiljer från style.css */
-	/*border:solid;
-
-	border:solid;
-	border-color: #454545;
-	border-radius: 6%;
-	padding:0%;*/
+	background-color: #FF9900;  /* Ska ändras beroende på sida.....
+	*/ 
 }
 
 /*Används denna?*/
 #addFileWrapper:hover {
-	/*border-color:#454545 !important;*/
-  	color:  #FF9900;
+  	color: #FF9900;
   	background-color: #ED712C;
+}
+
+
+/*Olika klasser för att sätta färg mha javascript i filen imageloader.js */
+.currentPageTwo{
+   background: #ED712C;
+  }
+
+  .currentPageThree {
+   background: #EC6568;
+  }
+
+  .currentPageFour {
+   background: #FFCC00;
 }
 
 #input {
@@ -308,8 +306,6 @@ body {
 	background:white;
 }
 
-
-
 #logo-image {
 	position: absolute;
 	top: 10px;
@@ -333,6 +329,7 @@ body {
 	position: relative;
 	
 }
+
 .videoLayer{	
 	width: 800px;
 	heigth: 480px;
@@ -358,7 +355,6 @@ body {
 	position: absolute;
 	top: 0px;
 }
-
 
 .glyphicon-plus	{
 	color: #FFFFFF;
@@ -466,8 +462,6 @@ a:hover {
 	background: #ED712C;
 	text-decoration: none;
 }
-
-
 
 
 /*Nytt för steg 5*/
