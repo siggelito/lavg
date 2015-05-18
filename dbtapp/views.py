@@ -193,28 +193,43 @@ def phantomjs(request):
     #fileName = './media/pictures/test.jpg'
     
     #celery
-    
-    phantomProcess = Popen([command, phantomjs_script], stdout=PIPE, stderr=STDOUT)
-    
-    command2 = 'ffmpeg'
-    command3 = '-y -c:v png -f image2pipe -r 25 -t 1 -i -c:v libx264 -pix_fmt yuv420p -movflags +faststart testmovie.mp4'.split(" ")
-
-    ffmpegProcess = Popen([command2,command3], stdin=phantomProcess, stdout=PIPE, stderr=phantomProcess.kill())
     #import pdb; pdb.set_trace()
-    #returnFile = File(open(fileName, 'r'))
-    #response = HttpResponse(returnFile, mimetype='application/force-download')
-    #response['Content-Disposition'] = 'attachment; filename=test.jpg'
+    phantomProcess = Popen([command, phantomjs_script], stdout=PIPE)
+    #import pdb; pdb.set_trace()
+    command2 = "ffmpeg"
+    command3 = ["-y", "-c:v", "png", "-f", "image2pipe", "-r", "25", "-t", "1", "-i", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-movflags", "+faststart", "testmovie.mp4"]
+    command4 = '-i testmovie.mp4'.split(" ")
+
+    # ffmpegProcess = Popen([command2,command3], stdin=phantomProcess, stdout=PIPE, stderr=None, shell=True)
+    # #import pdb; pdb.set_trace()
+    # #returnFile = File(open(fileName, 'r'))
+    # #response = HttpResponse(returnFile, mimetype='application/force-download')
+    # #response['Content-Disposition'] = 'attachment; filename=test.jpg'
     
-    #try:
-    #    output = process.communicate(timeout=30)
-#     except Exception as e:
-#         print("\t\tException: %s" % e)
-#         process.kill()
-#     
+    try:
+        #import pdb; pdb.set_trace()
+        #out,err = phantomProcess.communicate()
+        #print(phantomProcess.stdout)
+        #out,err = phantomProcess.communicate()
+        #import pdb; pdb.set_trace()
+        ffmpegProcess = Popen([command2,command3], stdin=phantomProcess.stdout, stdout=PIPE, stderr=STDOUT)
+        phantomProcess.communicate()
+        #print ffmpegProcess.communicate()[0]
+        #ffmpegProcess.communicate(input=phantomProcess)
+        #import pdb; pdb.set_trace()
+        # phantomProcess.stdout.close()
+        # out,err = phantomProcess.communicate()
+
+        # print(out)
+    except Exception as e:
+        print("\t\tException: %s" % e)
+        phantomProcess.kill()
+        #ffmpegProcess.kill()
+    
 #     phantom_output = ''
 #     for out_line in output.splitlines():
 #         phantom_output += out_line.decode('utf-8')
-#        
+# #        
 #     return HttpResponse('')
     return HttpResponse('<h1>sucsess!!!</h1>')
 
