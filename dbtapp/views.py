@@ -195,11 +195,12 @@ def phantomjs(request):
     #celery
     
     phantomProcess = Popen([command, phantomjs_script], stdout=PIPE, stderr=STDOUT)
-    #import pdb; pdb.set_trace()
-    command2 = 'ffmpeg -y -c:v png -f image2pipe -r 25 -t 1 -i -c:v libx264 -pix_fmt yuv420p -movflags +faststart testmovie.mp4'.split(" ")
-
-    ffmpegProcess = Popen(command2, stdin=phantomProcess.communicate(), stdout=PIPE, stderr=phantomProcess.kill())
     
+    command2 = 'ffmpeg'
+    command3 = '-y -c:v png -f image2pipe -r 25 -t 1 -i -c:v libx264 -pix_fmt yuv420p -movflags +faststart testmovie.mp4'.split(" ")
+
+    ffmpegProcess = Popen([command2,command3], stdin=phantomProcess, stdout=PIPE, stderr=phantomProcess.kill())
+    #import pdb; pdb.set_trace()
     #returnFile = File(open(fileName, 'r'))
     #response = HttpResponse(returnFile, mimetype='application/force-download')
     #response['Content-Disposition'] = 'attachment; filename=test.jpg'
