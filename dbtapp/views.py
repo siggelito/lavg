@@ -212,7 +212,7 @@ def phantomjs(request):
 #     for out_line in output.splitlines():
 #         phantom_output += out_line.decode('utf-8')
 #        
-    return HttpResponse('')
+#     return HttpResponse('')
     #return response
 
 def phantomjswithpk(request, pk):
