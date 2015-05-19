@@ -200,12 +200,6 @@ function sortSlideShow(imageSet) {
 			//Om nya positionen är efter gamla positionen
 			if(imagePositions.newPos[i] > imagePositions.oldPos[i]) {	
 			
-				//Sätt korrekt zIndex
-				
-				alert('oldpos:' + imagePositions.oldPos[i] + ', newpos:' + imagePositions.newPos[i]);
-				imageSet.images[imagePositions.oldPos[i]].parent.style.zIndex = imagePositions.newPos[i]+1;
-				imageSet.images[imagePositions.newPos[i]].parent.style.zIndex = imagePositions.oldPos[i]+1;
-				
 				//Sätt in bild på ny position
 				imageSet.images.splice(imagePositions.newPos[i]+1, 0, imageSet.images[imagePositions.oldPos[i]]);
 				
@@ -215,14 +209,6 @@ function sortSlideShow(imageSet) {
 			}
 			//Om nya positionen är innan gamla positionen
 			else {
-				
-				//Sätt korrekt zIndex
-				
-				
-				alert('oldpos:' + imagePositions.oldPos[i] + ', newpos:' + imagePositions.newPos[i]);
-				imageSet.images[imagePositions.oldPos[i]].parent.style.zIndex = imagePositions.newPos[i]+1;
-				imageSet.images[imagePositions.newPos[i]].parent.style.zIndex = imagePositions.oldPos[i]+1;
-				
 				
 				//Sätt in bild på ny position
 				imageSet.images.splice(imagePositions.newPos[i], 0, imageSet.images[imagePositions.oldPos[i]]);
