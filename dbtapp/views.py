@@ -10,11 +10,13 @@ from django import forms
 from django.forms.formsets import formset_factory
 import json
 from subprocess import Popen, PIPE, STDOUT
+import os
 
 
 from .models import Photo, Video
 from .forms import PhotoForm, VideoForm, PosForm, LogoForm
 from django.core.files.base import File
+from django.conf.urls import url
 
 
 def index(request):
@@ -185,54 +187,59 @@ def logoPost(request, pk):
         return HttpResponse('<h1>loading...</h1>')
 
 
-def phantomjs(request):
-    command = 'phantomjs'
-    phantomjs_script = './dbtapp/phantomTest.js'
-    phantomProcess = Popen([command, phantomjs_script], stdout=PIPE)
 
-    command2 = "ffmpeg"
-    command3 = ["-y", "-c:v", "png", "-f", "image2pipe", "-r", "25", "-t", "1", "-i", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-movflags", "+faststart", "testmovie.mp4"]
-    command4 = '-i testmovie.mp4'.split(" ")
-    cmd = "ffmpeg -y -c:v png -f image2pipe -r 25 -t 5 -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart testmovie2.mp4"
-
+def videoRender(request, pk):
+    video = Video.objects.get(pk=pk)
+    photos = getSortedPhotos(video=video)
+    #import pdb; pdb.set_trace()
     
+    return render (
+        request,
+        'dbtapp/videoRender.html',
+        {'images': photos, 'video': video},
+    )
+    
+def phantomjs(request):
+    phantomjsCommand = 'phantomjs'
+    phantomjsScript = './dbtapp/phantomjsTest.js'
+    
+    ffmpegCommand = "ffmpeg -y -c:v png -f image2pipe -r 25 -t 5 -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart testmovie2.mp4"
+
+    phantomProcess = Popen([phantomjsCommand, phantomjsScript], stdout=PIPE)
+    ffmpegProcess = Popen(ffmpegCommand, stdin=phantomProcess.stdout, stdout=None, stderr=STDOUT, shell=True)
+
     try:
-
-        ffmpegProcess = Popen(cmd, stdin=phantomProcess.stdout, stdout=None, stderr=STDOUT, shell=True)
         ffmpegProcess.communicate()
-
-        # print(out)
     except Exception as e:
         print("\t\tException: %s" % e)
         phantomProcess.kill()
-        #ffmpegProcess.kill()
-    
-#     phantom_output = ''
-#     for out_line in output.splitlines():
-#         phantom_output += out_line.decode('utf-8')
-# #        
-#     return HttpResponse('')
-    return HttpResponse('<h1>sucsess!!!</h1>')
+        ffmpegProcess.kill()
+        
+        
+        
+    return HttpResponse('<h1>success!!!</h1>')
 
-def phantomjswithpk(request, pk):
-    command = "phantomjs"
-    phantomjs_script = './dbtapp/phantomTest.js'
-    url = (request.url)
-    fileName = './media/' + pk + '/picture/test.jpg'
-    process = Popen([command, phantomjs_script, url, fileName])
+
+def phantomjspk(request, pk):
+    phantomjsCommand = 'phantomjs'
+    phantomjsScript = './dbtapp/phantomjsRenderVideo.js'
     
-    #returnFile = File(open(fileName, 'r'))
-    #response = HttpResponse(returnFile, mimetype='application/force-download')
-    #response['Content-Disposition'] = 'attachment; filename=test.jpg'
+    ffmpegCommand = "ffmpeg -y -c:v png -f image2pipe -r 25 -t 5 -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart testmovie2.mp4"
     
-    #try:
-    #    output = process.communicate(timeout=30)
-    #except Exception as e:
-    #    print("\t\tException: %s" % e)
-    #    process.kill()
-    
-    #phantom_output = ''
-    #for out_line in output.splitlines():
-    #   phantom_output += out_line.decode('utf-8')
-       
+    renderUrl = reverse('dbtapp:videoRender', kwargs={'pk': pk})
+
+    print(renderUrl)
+
+    phantomProcess = Popen([phantomjsCommand, phantomjsScript, renderUrl], stdout=PIPE)
+    ffmpegProcess = Popen(ffmpegCommand, stdin=phantomProcess.stdout, stdout=None, stderr=STDOUT, shell=True)
+
+    try:
+        ffmpegProcess.communicate(timeout=30)
+    except Exception as e:
+        print("\t\tException: %s" % e)
+        phantomProcess.kill()
+        ffmpegProcess.kill()
+        
+        
+        
     return HttpResponse('')
