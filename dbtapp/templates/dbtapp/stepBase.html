@@ -38,7 +38,7 @@
                         {% csrf_token %}
                         {% load widget_tweaks %}
                         <p>Enter description here:</p>
-                        {% render_field image.description class+="form-control" tabindex=1 %}
+                        {{ image.description }}
                     </form>
                 </div>
                 <!-- close settings -->
@@ -77,9 +77,9 @@
             </li>
             {% if images %}
                 {% for image in images %}
-                    <li rel="{{ image.pk }}">
+                    <li rel="{{ image.instance.pk }}">
                         <div class="slideshow-parent">
-                            <img src="{{ image.photoFile.url }}" rel="{{ image.order }}" style="position:absolute;">
+                            <img src="{{ image.instance.photoFile.url }}" rel="{{ image.instance.order }}" style="position:absolute;">
                         </div>
                     </li>
                 {% endfor %}

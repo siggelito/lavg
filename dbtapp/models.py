@@ -18,7 +18,7 @@ class Photo(models.Model):
     photoFile = models.ImageField()
     order = models.IntegerField()
     photoType = models.IntegerField(null=True, blank=True, default = None) 
-    description = models.CharField(max_length=100, null=True, blank=True, default=None)
+    description = models.CharField(max_length=100, blank=True, default=None)
     # """
     # Description: Model Description
     # """

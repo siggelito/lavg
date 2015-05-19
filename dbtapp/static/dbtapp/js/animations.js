@@ -12,7 +12,7 @@ function startAnimation(first, timeline, transitionLength) {
 	timeline.add(TweenLite.delayedCall(0,function () {
 		$(first.parent).css("opacity", "1");
 	}),null);
-	timeline.add(TweenLite.to($(first.parent), 2*25, {opacity: 1}));
+	timeline.add(TweenLite.to($(first.parent), 2, {opacity: 1}));
 }
 
 function endAnimation(last, outro, timeline, transitionLength) {
@@ -21,7 +21,7 @@ function endAnimation(last, outro, timeline, transitionLength) {
 		$(last.parent).css("opacity", "0");
 	}),null);
 	
-	timeline.add(TweenLite.to($(outro.parent), 1*25, {delay: 2, opacity: 0}));
+	timeline.add(TweenLite.to($(outro.parent), 1, {delay: 2, opacity: 0}));
 
 }
 
@@ -93,7 +93,7 @@ function simpleTransition(current, next, timeline, transitionLength) {
 		next.parent.appendChild(div);
 	}),null);*/
 	// animera tillbaka bilden som nu är synlig
-	timeline.add(TweenLite.to($(next.parent), 2*25, {left:"10%", ease:Linear.easeNone}));
+	timeline.add(TweenLite.to($(next.parent), 2, {left:"10%", ease:Linear.easeNone}));
 	timeline.add(TweenLite.to($(current.parent), 0.01, {opacity:0}));
 	// dölj den gamla bilden
 	/*timeline.add(TweenLite.delayedCall(0,function () {

@@ -9,7 +9,7 @@ class PhotoForm(forms.ModelForm):
     imgId = forms.IntegerField()
     class Meta:
     	model = Photo
-    	fields = ('photoFile',)
+    	fields = ('photoFile','description')
     	widgets = {'photoFile': forms.FileInput(attrs={'id': 'input', 'multiple': 'true', 'onchange': 'this.form.submit();'}),}
 
 class VideoForm(forms.ModelForm):
