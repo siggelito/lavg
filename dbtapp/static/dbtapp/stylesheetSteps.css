@@ -123,6 +123,13 @@ body {
     overflow: hidden;
 }
 
+.slideshow-parent{
+	position:relative; 
+	background-color:#fff;  
+	width:100%; 
+	height:100%;
+}
+
 #slideshow li {
 	position: absolute;
 	top: 0;
@@ -207,14 +214,14 @@ body {
 .close-btn-settings {
 	color: black;
 	position:absolute;
-	right:-15px;
-	top:-15px;
+	right:-5px;
+	top:-5px;
 	z-index: 10;
 	opacity: 1;
-	padding:2px 8px;	
-	border:2px solid black;
+	padding:7px 10px;	
+	/*border:2px solid black;
 	border-radius: 15px 15px;
-	background:white;
+	background:white;*/
 	display: none;
 }
 
@@ -348,15 +355,15 @@ body {
 
 #closeButton {
 	color: black;
+	font-size: 2em;
 	position:absolute;
-	right:-20px;
-	top:-20px;
-	opacity: 1;
+	right:-5px;
+	top:-5px;
 	z-index: 99999;
 	padding:7px 10px;	
-	border:2px solid black;
+	/*border:2px solid black;
 	border-radius: 30px 30px;
-	background:white;
+	background:white;*/
 }
 
 #logo-image {
@@ -466,8 +473,9 @@ a:hover {
   border-color: #FF9900;
 }
 
-.btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, 
-.btn-primary.active, .open>.dropdown-toggle.btn-primary {
+.btn-primary:hover, .btn-primary:focus, .btn-primary.focus, 
+.btn-primary:active, .btn-primary.active, 
+.open>.dropdown-toggle.btn-primary {
   color: #ffffff;
   background-color: #ED712C;
   border-color: #ED712C;
@@ -490,7 +498,14 @@ a:hover {
 #pause{
 	margin:1% 45%;
 	outline: 0;
+	line-height: 1;
+    position: relative;
+    text-align: left;
+    /*Kanske inte bästa lösningen??? */
+    top: -10px;
+	left: -360px;
 }
+
 #sliderWrapper{
 	width: 800px;
 	margin:-2% auto;
@@ -499,21 +514,35 @@ a:hover {
 #slider{
   width: 800px;
   margin:2% auto;
-  height: 2px;
-  background-color: #ED712C !important;
-  background: #ED712C;
+  height: 0.5em;
+  /*background-color: #ED712C !important;*/
+ /* background: #ED712C;*/
 }
+
+/* Background på fyrkant på slidern */
 #slider span{
 	background-color: #ED712C;
+	height: 1.5em;
+	width: 0.5em;
+	top: -0.5em;
+	margin-left: 0em;
+	margin-right: -0.5em;
+	border-style: none;
 }
+
+
 .ui-slider-horizontal .ui-state-default {
-	background: #ED712C;
+	background: white;
 	text-decoration: none;
 	/*background: white url(http://stackoverflow.com/content/img/so/vote-arrow-down.png) no-repeat scroll 50% 50%;}*/
 }
+
+
+/*Bakgrund på linje*/
 .ui-slider-horizontal {
-	background: #ED712C;
+	background: white;
 	text-decoration: none;
+	border-style: none;
 }
 
 

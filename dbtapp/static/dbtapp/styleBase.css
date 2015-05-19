@@ -60,6 +60,7 @@ nav.navbar.navbar-default{
 /*Tar bort prickade linjen runt länkar när man klickar*/
 a:hover, a:active, a:focus {
   outline: 0;
+  color: #FF9900;
 }
 
 .navbar-fixed-top {

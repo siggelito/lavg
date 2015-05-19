@@ -1,36 +1,46 @@
 $(window).load(function(){
 
     var navList = $(".round-button .round-button-circle");
-	if(document.getElementById('head-number') != null) {
-		var pageNr = parseInt(document.getElementById('head-number').textContent.replace(/(\r\n|\n|\r)/gm,""));
+    if(document.getElementById('head-number') != null) {
+      var pageNr = parseInt(document.getElementById('head-number').textContent.replace(/(\r\n|\n|\r)/gm,""));
+      var backgroundColor;
 
-		switch(pageNr) {
-			case 1:
-			$(navList[pageNr-1]).addClass("currentPageOrange1");
-			break;
-			case 2:
-			$(navList[pageNr-1]).addClass("currentPagePink");
-			break;
-			case 3:
-			$(navList[pageNr-1]).addClass("currentPageOrange2");
-			break;    
-			case 4:
-			$(navList[pageNr-1]).addClass("currentPageYellow");
-			break;    
-			case 5:
-			$(navList[pageNr-1]).addClass("currentPageOrange1");
-			break;
-		} 
-	}
-    
-    var video = {
-        images: [],
-        intro: null,
-        outro: null
-    };
-    var slideshow = document.getElementById('slideshow');
-    var input = document.getElementById('input');
-    var inputLogo = document.getElementById('input-logo');
+      switch(pageNr) {
+        case 1:
+        $(navList[pageNr-1]).addClass("currentPageOrange1");
+        backgroundColor = '#FF9900';
+        break;
+        case 2:
+        $(navList[pageNr-1]).addClass("currentPagePink");
+        backgroundColor = '#EC6568';
+        break;
+        case 3:
+        $(navList[pageNr-1]).addClass("currentPageOrange2");
+        backgroundColor = '#ED712C';
+
+        break;    
+        case 4:
+        $(navList[pageNr-1]).addClass("currentPageYellow");
+        backgroundColor = '#FFCC00';
+
+        break;    
+        case 5:
+        $(navList[pageNr-1]).addClass("currentPageOrange1");
+        backgroundColor = '#FF9900';
+        break;
+    } 
+
+    $('#addFileWrapper').css('background-color', backgroundColor);
+}
+
+var video = {
+    images: [],
+    intro: null,
+    outro: null
+};
+var slideshow = document.getElementById('slideshow');
+var input = document.getElementById('input');
+var inputLogo = document.getElementById('input-logo');
     //input.addEventListener('change', handleFiles);
 
     if(inputLogo != null) {

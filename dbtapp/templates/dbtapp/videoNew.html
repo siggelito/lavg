@@ -35,7 +35,6 @@ Börja med att namnge din film och skriv in förstagsnamnet.
 			</p>
 		</div>
 	</div>
-	<input type="submit" value="Next">
 </form>
 {% endblock %}
 
@@ -45,15 +44,16 @@ Börja med att namnge din film och skriv in förstagsnamnet.
 {% endblock %}
 
 {% block rightNav %}
-<a><span id="navigationArrow" tabindex=3 class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
-{% endblock %}
+<a><span id="submitButton" tabindex=3 class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
+
 <script>
-	$('#a.glyphicon').click(function(){ 
+	$('#submitButton').click(function(){ 
 		$('#form').submit();
 	});
-	$('a.glyphicon').keypress(function (e) {
+	$('#submitButton').keypress(function (e) {
 		if (e.which == 13) {
 			$('#form').submit();
 		}
 	});
 </script>
+{% endblock %}
