@@ -96,6 +96,13 @@ body {
 	margin-bottom: 10px;
 }
 
+#slideshow-container-render{
+	width: 1280px;
+	height: 720px;
+	margin: 0px;
+	position: relative;
+}
+
 #slideshow-container{
 	width: 800px;
 	height: 480px;

@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+	<title>DBT</title>
+	{% load staticfiles %}
+
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+	
+	<link rel="stylesheet prefetch" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+	
+	<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/css/bootstrap.min.css' %}" />
+	<script type="text/javascript" src="{% static 'dbtapp/js/jquery-1.11.2.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'dbtapp/js/jquery-ui.js' %}"></script>
+	<script type="text/javascript" src="{% static 'dbtapp/js/bootstrap.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'dbtapp/js/animations.js' %}"></script>
+	<script type="text/javascript" src="{% static 'dbtapp/js/loadFinished.js' %}"></script>
+	<script type="text/javascript" src="{% static 'dbtapp/js/imageloader.js' %}"></script>
+	<script type="text/javascript" src="{% static 'dbtapp/js/render.js' %}"></script>
+	<script type="text/javascript" src="{% static 'dbtapp/js/showimages.js' %}"></script>
+	
+	<!-- Google font -->
+	<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>
+
+	<!-- base.html -->
+	<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/styleBase.css' %}" />
+
+	<!-- styleBase.css -->
+	<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/stylesheetSteps.css' %}" />
+
+	<!-- tidslinjen-->
+	<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/timelineStylesheet.css' %}" />
+
+	
+	<script type="text/javascript" src="{% static 'dbtapp/js/WearProtection.js' %}"></script>
+</head>
+
+<body>
+	<div id="slideshow-container-render">
+		<ul id="slideshow">			
+			<li>
+				<div class="slideshow-parent" style="position:relative; background-color:#fff;  width:100%; height:100%;">
+					<h1 id="video-text">{{video.video_name}}</h1>
+					<h3 id="company-text">{{video.company_name}}</h3>
+				</div>
+				
+			</li>
+				{% if images %}
+					{% for image in images %}
+						<li rel="{{ image.pk }}">
+							<div class="slideshow-parent" style="position:relative; background-color:#fff;  width:100%; height:100%;">
+								<img src="{{ image.photoFile.url }}" rel="{{ image.order }}" style="position:absolute;">
+							</div>
+						</li>
+					{% endfor %}
+				{% endif %}
+			<li>
+				<div class="slideshow-parent" style="position:relative; background-color:#fff; width:100%; height:100%;">
+					<p id="video-text">Slutbildstext</p>
+					<p id="contact-text">mail till codemill</p>
+				</div>
+			</li>
+		</ul>
+	</div>	
+</body>

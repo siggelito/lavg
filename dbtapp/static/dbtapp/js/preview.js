@@ -6,10 +6,8 @@ function initPreview (imageSet) {
     });
 	
 	$("#closeButton").on("click", function() {
-		
 		$("#preview").css("opacity", "0");
 	});
-	
 }
 
 

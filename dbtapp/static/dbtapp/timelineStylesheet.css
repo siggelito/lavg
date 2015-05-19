@@ -3,14 +3,14 @@
     width:25px;
   }
 
-  /*"grund" klassen för cirklarna*/
+  /*"grund" klassen för cirklarna s*/
   .round-button-circle{
     position: absolute; 
-    width: 60px;
+    width: 45px;
     height:0;
-    padding-bottom: 60px;
-    border-radius: 45px;        
-    background: #E8E8E8;    
+    padding-bottom: 45px;
+    border-radius: 33.75px;        
+    background: #dbdbdb;    
     overflow: hidden;
     transition: background 0.5s;
     -webkit-transition: background 0.5s; /* Safari 3.1 to 6.0 */  
@@ -38,32 +38,32 @@
   #round-button-circle1 { 
     top: 0px;
     left:50%;
-    margin-left:-210px;
+    margin-left:-167.5px;
   }
 
   #round-button-circle2 {
     top: 0px;
     left:50%;
-    margin-left:-80px;
+    margin-left:-57.5px;
   }
 
   #round-button-circle3 {     
     top: 0px;
     left:50%;
-    margin-left: -30px;
+    margin-left: -22.5px;
     /*z-index: -1;*/
   }
 
   #round-button-circle4 { 
     top: 0px;
     left:50%;
-    margin-left: 20px;
+    margin-left: 12.5px;
   }
 
   #round-button-circle5 { 
     top: 0px;
     left:50%;
-    margin-left:+150px;
+    margin-left:+122.5px;
   }
 
   /*Hover för cirklarna, har flera olika för att i framtiden kunna ändra dom var för sig*/
@@ -108,9 +108,9 @@
   .round-button a {
     display:block;
     float:left;
-    width:60px;
-    padding-top:30px;
-    padding-bottom:30px;
+    width:45px;
+    padding-top: 22.5px;
+    padding-bottom:22.5px;
     line-height:1em;
     margin-top:-0.5em;
     
@@ -124,23 +124,23 @@
 
 /*Linjerna mellan cirklarna*/
   .hline {
-    width: 95px;
+    width: 100px;
     height:3px;
     background: #E8E8E8; 
   }
 
   #hlineLeft { 
     position: absolute;  
-    top: 30px;
+    top: 22.5px;
 	left:50%;
-    margin-left:-160px;
+    margin-left: -125px;
   }
 
   #hlineRight {
    position: absolute; 
-   top: 30px;
+   top: 22.5px;
 	left:50%;
-    margin-left: 70px;
+    margin-left: 55px;
  }
  
  .col-md-8 {

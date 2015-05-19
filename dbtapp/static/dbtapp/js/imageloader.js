@@ -1,25 +1,27 @@
 $(window).load(function(){
 
     var navList = $(".round-button .round-button-circle");
-    var pageNr = parseInt(document.getElementById('head-number').textContent.replace(/(\r\n|\n|\r)/gm,""));
+	if(document.getElementById('head-number') != null) {
+		var pageNr = parseInt(document.getElementById('head-number').textContent.replace(/(\r\n|\n|\r)/gm,""));
 
-    switch(pageNr) {
-        case 1:
-        $(navList[pageNr-1]).addClass("currentPageOrange1");
-        break;
-        case 2:
-        $(navList[pageNr-1]).addClass("currentPagePink");
-        break;
-        case 3:
-        $(navList[pageNr-1]).addClass("currentPageOrange2");
-        break;    
-        case 4:
-        $(navList[pageNr-1]).addClass("currentPageYellow");
-        break;    
-        case 5:
-        $(navList[pageNr-1]).addClass("currentPageOrange1");
-        break;
-    } 
+		switch(pageNr) {
+			case 1:
+			$(navList[pageNr-1]).addClass("currentPageOrange1");
+			break;
+			case 2:
+			$(navList[pageNr-1]).addClass("currentPagePink");
+			break;
+			case 3:
+			$(navList[pageNr-1]).addClass("currentPageOrange2");
+			break;    
+			case 4:
+			$(navList[pageNr-1]).addClass("currentPageYellow");
+			break;    
+			case 5:
+			$(navList[pageNr-1]).addClass("currentPageOrange1");
+			break;
+		} 
+	}
     
     var video = {
         images: [],

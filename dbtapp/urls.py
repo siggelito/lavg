@@ -14,8 +14,9 @@ urlpatterns = [
      url(r'^video/(?P<videoId>\d+)/type/(?P<imgtype>[1-3]{1})/remove/photo/(?P<photoId>\d+)/$', views.photoRemove, name='photoRemove'),
      url(r'^video/remove/(?P<pk>\d+)/$', views.videoRemove, name='videoRemove'),
      url(r'^phantomjs/$', views.phantomjs, name='phantomjs'),
-     url(r'^phantomjs/(?P<pk>\d+)/$', views.phantomjswithpk, name='phantomjspk'),
+     url(r'^phantomjs/(?P<pk>\d+)/$', views.phantomjspk, name='phantomjspk'),
      url(r'^video/(?P<pk>\d+)/logoPost$', views.logoPost, name='logoPost'),
+     url(r'^video/(?P<pk>\d+)/render', views.videoRender, name='videoRender'),
      #url(r'^riktigIndex/$', views.riktigIndex, name='riktigIndex')
 ]
 if settings.DEBUG:
