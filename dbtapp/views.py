@@ -97,10 +97,14 @@ def videoStep(request, pk, imgtype):
                 photos.append(photo)
                 photo.save()
                 count = count + 1
+    photoForms = [None] * len(photos)
+    for i in xrange(0,len(photos)):
+        photoForms[i] = PhotoForm(instance=photos[i])
+
     return render (
         request,
         'dbtapp/step'+imgtype+'.html',
-        {'images': photos, 'video': video, 'form': PhotoForm(), 'imgtype': imgtype},
+        {'images': photoForms, 'video': video, 'form': PhotoForm(), 'imgtype': imgtype},
     )
 
 def videoEdit(request, pk):
@@ -202,7 +206,7 @@ def phantomjs(request):
     phantomjsCommand = 'phantomjs'
     phantomjsScript = './dbtapp/phantomjsTest.js'
     
-    ffmpegCommand = "ffmpeg -y -c:v png -f image2pipe -r 25 -t 5 -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart testmovie2.mp4"
+    ffmpegCommand = "ffmpeg -y -c:v png -f image2pipe -r 25 -t 10 -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart testmovie2.mp4"
 
     phantomProcess = Popen([phantomjsCommand, phantomjsScript], stdout=PIPE)
     ffmpegProcess = Popen(ffmpegCommand, stdin=phantomProcess.stdout, stdout=None, stderr=STDOUT, shell=True)
@@ -211,10 +215,8 @@ def phantomjs(request):
         ffmpegProcess.communicate()
     except Exception as e:
         print("\t\tException: %s" % e)
-        phantomProcess.kill()
         ffmpegProcess.kill()
-        
-        
+    phantomProcess.kill()
         
     return HttpResponse('<h1>success!!!</h1>')
 
@@ -229,7 +231,7 @@ def phantomjspk(request, pk):
 
     print(path)
 
-    phantomProcess = Popen([phantomjsCommand, phantomjsScript, path], stdout=PIPE)
+    phantomProcess = Popen([phantomjsCommand, phantomjsScript], stdout=PIPE)
     ffmpegProcess = Popen(ffmpegCommand, stdin=phantomProcess.stdout, stdout=None, stderr=STDOUT, shell=True)
 
     try:

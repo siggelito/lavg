@@ -2,15 +2,15 @@ var page = require('webpage').create();
     system = require('system'),
     path;
 
-page.viewportSize = { width: 1280, height: 720 };
+//page.viewportSize = { width: 1280, height: 720 };
 
-var url = page.evaluate(
+/*var url = page.evaluate(
     function () {
         return document.URL;
     }
-);
-
-page.open(url + path,
+);*/
+path = system.args[2];
+page.open("http://127.0.0.1:8000/app/video/1/render",
 function () {
     var refreshIntervalId = setInterval(function () {
         page.render("/dev/stdout", {format: "png"});

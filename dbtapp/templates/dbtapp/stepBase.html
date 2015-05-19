@@ -15,12 +15,12 @@
         <ul id="images" class="list-group">
             {% if images %}
             {% for image in images %}
-            <li rel="{{ image.pk }}" class="col-xs-1 list-type-{{image.photoType}}">
+            <li rel="{{ image.pk }}" class="col-xs-1 list-type-{{image.instance.photoType}}">
                 <div class="image-wrapper">
-                    <img class="image" src="{{ image.photoFile.url }}" rel="{{ image.order }}">
+                    <img class="image" src="{{ image.instance.photoFile.url }}" rel="{{ image.instance.order }}">
                 </div>
                 <div class="settings">
-                    <div class="settings-header background-type-{{image.photoType}}">
+                    <div class="settings-header background-type-{{image.instance.photoType}}">
                         <p>Settings</p>
                     </div>
                     <div class="settings-content">
@@ -28,16 +28,18 @@
                         <p>There are currently no settings implemented.</p>
                         <p>All you can do here is to remove this picture.</p>
                         <div>
-                            <a class="btn btn-default" href="{% url 'dbtapp:photoRemove' video.pk imgtype image.pk %}">Remove</a>
+                            <a class="btn btn-default" href="{% url 'dbtapp:photoRemove' video.pk imgtype image.instance.pk %}">Remove</a>
                             <button class="btn btn-default" onclick="" >Save</button>
                         </div>
                     </div>
                 </div>
                 <div class="image-text-content"> 
-                    <div>
+                    <form action="{% url 'dbtapp:videoStep' video.pk imgtype %}" class="form-class" method="post" enctype="multipart/form-data">       
+                        {% csrf_token %}
+                        {% load widget_tweaks %}
                         <p>Enter description here:</p>
-                       <input type="text" class="form-control" name="description"> 
-                    </div>
+                        {% render_field image.description class+="form-control" tabindex=1 %}
+                    </form>
                 </div>
                 <!-- close settings -->
                 <a class="close-btn-settings" href="#" title="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
@@ -69,6 +71,7 @@
                 <div class="slideshow-parent">
                     <h1 id="video-text">{{video.video_name}}</h1>
                     <h3 id="company-text">{{video.company_name}}</h3>
+                    
                 </div>
                 
             </li>
