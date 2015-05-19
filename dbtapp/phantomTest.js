@@ -2,20 +2,20 @@ var page = require('webpage').create();
 //page.viewportSize = { width: 640, height: 480 };
 
 page.open('http://31.media.tumblr.com/323247f4fdf2cc14831bb7980bb432af/tumblr_njy5ihohLL1re3kvuo1_400.gif', 
-//setTimeout(function() {
-    function () {
-        var refreshIntervalId = setInterval(function () {
-            page.render("/dev/stdout", {format: "png"});
-            //page.renderStdout();
-        }, 25);
-        
-        setTimeout (function () {
-            clearInterval(refreshIntervalId);
-            phantom.exit()
-        }, 20000);
-    });
 
-//}, 10000);
+function () {
+    var refreshIntervalId = setInterval(function () {
+        page.render("/dev/stdout", {format: "png"});
+        //page.renderStdout();
+    }, 5);
+    
+/*        setTimeout (function () {
+        clearInterval(refreshIntervalId);
+        phantom.exit()
+    }, 20000);*/
+});
+
+
 
 /*
 page.onError = function (msg, trace) {

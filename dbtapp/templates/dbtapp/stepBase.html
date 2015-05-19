@@ -21,7 +21,16 @@
                         <p>I'm sorry..</p>
                         <p>There are currently no settings implemented.</p>
                         <p>All you can do here is to remove this picture.</p>
-                        <a class="btn btn-default" href="{% url 'dbtapp:photoRemove' video.pk imgtype image.pk %}">Remove</a>
+                        <div>
+                            <a class="btn btn-default" href="{% url 'dbtapp:photoRemove' video.pk imgtype image.pk %}">Remove</a>
+                            <button class="btn btn-default" onclick="" >Save</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-text-content"> 
+                    <div>
+                        <p>Enter description here:</p>
+                       <input type="text" class="form-control" name="description"> 
                     </div>
                 </div>
                 <a class="close-btn-settings" href="#" title="Close">X</a>

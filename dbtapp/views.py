@@ -188,37 +188,18 @@ def logoPost(request, pk):
 def phantomjs(request):
     command = 'phantomjs'
     phantomjs_script = './dbtapp/phantomTest.js'
-    
-    #url = ('https://www.google.se')
-    #fileName = './media/pictures/test.jpg'
-    
-    #celery
-    #import pdb; pdb.set_trace()
     phantomProcess = Popen([command, phantomjs_script], stdout=PIPE)
-    #import pdb; pdb.set_trace()
+
     command2 = "ffmpeg"
     command3 = ["-y", "-c:v", "png", "-f", "image2pipe", "-r", "25", "-t", "1", "-i", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-movflags", "+faststart", "testmovie.mp4"]
     command4 = '-i testmovie.mp4'.split(" ")
+    cmd = "ffmpeg -y -c:v png -f image2pipe -r 25 -t 5 -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart testmovie2.mp4"
 
-    # ffmpegProcess = Popen([command2,command3], stdin=phantomProcess, stdout=PIPE, stderr=None, shell=True)
-    # #import pdb; pdb.set_trace()
-    # #returnFile = File(open(fileName, 'r'))
-    # #response = HttpResponse(returnFile, mimetype='application/force-download')
-    # #response['Content-Disposition'] = 'attachment; filename=test.jpg'
     
     try:
-        #import pdb; pdb.set_trace()
-        #out,err = phantomProcess.communicate()
-        #print(phantomProcess.stdout)
-        #out,err = phantomProcess.communicate()
-        #import pdb; pdb.set_trace()
-        ffmpegProcess = Popen([command2,command3], stdin=phantomProcess.stdout, stdout=PIPE, stderr=STDOUT)
-        phantomProcess.communicate()
-        #print ffmpegProcess.communicate()[0]
-        #ffmpegProcess.communicate(input=phantomProcess)
-        #import pdb; pdb.set_trace()
-        # phantomProcess.stdout.close()
-        # out,err = phantomProcess.communicate()
+
+        ffmpegProcess = Popen(cmd, stdin=phantomProcess.stdout, stdout=None, stderr=STDOUT, shell=True)
+        ffmpegProcess.communicate()
 
         # print(out)
     except Exception as e:

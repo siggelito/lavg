@@ -71,6 +71,7 @@ function openImageSetting(elem) {
 	var settingsCloseButton = null;
 	var imageWrapper = null;
 	var settingsContent = null;
+	var inputTextField = null;
 
 	var childs = newObject.childNodes;
 	for (var i = 0; i < childs.length; i++) {
@@ -95,10 +96,14 @@ function openImageSetting(elem) {
 				}
 
 			}
-	    }   
+	    }  
+	    if (childs[i].className == "image-text-content") {  
+	    	inputTextField = childs[i];
+	    } 
 	    if (childs[i].className == "close-btn-settings") {  
 	    	settingsCloseButton = childs[i];
-	    }   
+	    } 
+
 	}
 
 	var left = elem.offsetLeft;
@@ -112,28 +117,31 @@ function openImageSetting(elem) {
 	newObject.style.top = top + "px";
 	newObject.style.listStyleType = "none";
 	newObject.style.padding = "0px";
+	newObject.style.zIndex = "100";
 	$(settingsContent).hide();
+	$(inputTextField).children().hide();
 	// hide old element
 	elem.style.opacity = "0";
 
 	var windowWidth = 700;
-	var windowHeight = 300;
-	var size = getSize(newImage, (windowWidth*0.7), (windowHeight));
+	var windowHeight = 400;
+	var size = getSize(newImage, (windowWidth*0.7), (windowHeight*0.8));
 
 	var timeline = new TimelineLite({onReverseComplete:AfterClosedSettings, onReverseCompleteParams:[newObject, elem, parent]});
 	
 	timeline.add(TweenLite.to(newObject, 0.5, { 
 		borderWidth: 0,
-		boxShadow: "3px 5px 25px 1px #555",
+		boxShadow: "3px 5px 25px 1px #353535",
 		top: "50%", 
 		left: "50%", 
 		width: windowWidth, 
 		height: windowHeight, 
 		marginLeft: "-"+(windowWidth/2)+"px",
-		marginTop: "-"+(windowHeight/1.5)+"px"
+		marginTop: "-"+(windowHeight/2)+"px",
 	}), 0);
 	timeline.add(TweenLite.to(imageWrapper, 0.5, { 
-		width: "70%"
+		width: "70%",
+		height: "80%"
 	}), 0);
 	timeline.add(TweenLite.to(newImage, 0.5, { 
 		width: size.width+"px", 
@@ -143,16 +151,25 @@ function openImageSetting(elem) {
 	}), 0);
 	timeline.add(TweenLite.to(settings, 0.1, { 
 		display: "block",
-		width: "30%"
+		width: "30%",
+
+	}), 0);
+	timeline.add(TweenLite.to(inputTextField, 0.5, { 
+		display: "table-cell",
+		height: "20%"
 	}), 0);
 	timeline.add(TweenLite.delayedCall(0,function () {
 		$(settings).children().fadeIn();
+		$(inputTextField).children().fadeIn();
 	}),null);
+
+	
 
 
 	settingsCloseButton.style.display = "block";
 	settingsCloseButton.onclick = function() {
 		$(settings).children().fadeOut();
+		$(inputTextField).children().fadeOut();
 		$(settingsCloseButton).hide();
 		timeline.reverse();
 	};

@@ -3,7 +3,7 @@ from django.forms import Field
 from django.utils.translation import ugettext_lazy
 
 Field.default_error_messages = {
-	'required': ugettext_lazy("Hoppsan, detta fylldes inte i!")}
+    'required': ugettext_lazy("Hoppsan, detta fylldes inte i!")}
 
 class Logo(models.Model):
     photoFile = models.ImageField()
@@ -18,6 +18,11 @@ class Photo(models.Model):
     photoFile = models.ImageField()
     order = models.IntegerField()
     photoType = models.IntegerField(null=True, blank=True, default = None) 
+    description = models.CharField(max_length=100, null=True, blank=True, default=None)
+    # """
+    # Description: Model Description
+    # """
+    # pass
    
 # Receive the pre_delete signal and delete the file associated with the model instance.
 from django.db.models.signals import pre_delete

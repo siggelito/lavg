@@ -143,8 +143,8 @@ body {
 }
 
 .settings-header {
-	height: 20%; 
-	padding: 5%;
+	height: 15%; 
+	padding: 10px;
 }
 
 .settings-header p{
@@ -153,9 +153,27 @@ body {
 }
 
 .settings-content {
-	padding: 5%;
-	height: 80%;
+	padding: 10px;
+	height: 85%;
+	position: relative;
 }
+
+.settings-content div {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 10px;
+	float: center;
+}
+
+.settings-content div a{ 
+	width: 48%;
+}
+
+.settings-content div button{
+	width: 48%;
+} 
 
 .background-type-1 {
 	background-color: #EC6568;
@@ -211,6 +229,33 @@ body {
 	z-index:10;
 	/*display: none;*/
 	overflow: hidden;
+}
+
+.image-text-content {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 70%;
+	height: 0%;
+	padding: 10px;
+	overflow: hidden;
+	display: none;
+	background-color: #fff;
+}
+
+.image-text-content div {
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+
+
+.image-text-content div input{
+	width: 100%;
+	padding-left: 10px;
+	left: 0;
+	bottom: 0;
+	position: absolute;
 }
 
 
