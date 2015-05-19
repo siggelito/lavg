@@ -96,10 +96,14 @@ def videoStep(request, pk, imgtype):
                 photos.append(photo)
                 photo.save()
                 count = count + 1
+    photoForms = [None] * len(photos)
+    for i in xrange(0,len(photos)):
+        photoForms[i] = PhotoForm(instance=photos[i])
+
     return render (
         request,
         'dbtapp/step'+imgtype+'.html',
-        {'images': photos, 'video': video, 'form': PhotoForm(), 'imgtype': imgtype},
+        {'images': photoForms, 'video': video, 'form': PhotoForm(), 'imgtype': imgtype},
     )
 
 def videoEdit(request, pk):

@@ -195,6 +195,8 @@ body {
 	position: relative;
 
 }
+
+
 .close-btn-settings {
 	color: black;
 	position:absolute;
@@ -243,14 +245,13 @@ body {
 	background-color: #fff;
 }
 
-.image-text-content div {
+.image-text-content form {
 	position: relative;
 	height: 100%;
 	width: 100%;
 }
 
-
-.image-text-content div input{
+.image-text-content form input{
 	width: 100%;
 	padding-left: 10px;
 	left: 0;
