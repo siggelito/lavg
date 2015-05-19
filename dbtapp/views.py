@@ -233,7 +233,7 @@ def phantomjspk(request, pk):
     ffmpegProcess = Popen(ffmpegCommand, stdin=phantomProcess.stdout, stdout=None, stderr=STDOUT, shell=True)
 
     try:
-        ffmpegProcess.communicate(timeout=30)
+        ffmpegProcess.communicate()
     except Exception as e:
         print("\t\tException: %s" % e)
         phantomProcess.kill()
