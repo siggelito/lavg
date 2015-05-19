@@ -39,8 +39,8 @@ $(window).load(function(){
   var offset = 0;
 
   function initializeVideo () {
-    var list = $('#preview ul li div');
-    var images = $('#preview ul li div img');
+    var list = $('#slideshow li div');
+    var images = $('#slideshow li div img');
     video.intro = {
         transition: function(first, timeline, transitionLength){
             startAnimation(first, timeline, transitionLength);
