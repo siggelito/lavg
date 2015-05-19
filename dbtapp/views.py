@@ -225,11 +225,11 @@ def phantomjspk(request, pk):
     
     ffmpegCommand = "ffmpeg -y -c:v png -f image2pipe -r 25 -t 5 -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart testmovie2.mp4"
     
-    renderUrl = reverse('dbtapp:videoRender', kwargs={'pk': pk})
+    path = reverse('dbtapp:videoRender', kwargs={'pk': pk})
 
-    print(renderUrl)
+    print(path)
 
-    phantomProcess = Popen([phantomjsCommand, phantomjsScript, renderUrl], stdout=PIPE)
+    phantomProcess = Popen([phantomjsCommand, phantomjsScript, path], stdout=PIPE)
     ffmpegProcess = Popen(ffmpegCommand, stdin=phantomProcess.stdout, stdout=None, stderr=STDOUT, shell=True)
 
     try:
