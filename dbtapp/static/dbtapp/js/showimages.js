@@ -190,12 +190,6 @@ var previousIndex = 0;
 
 
 function sortSlideShow(imageSet) {	
-
-    var video = {
-        images: [],
-        intro: null,
-        outro: null
-    };
 	
 	if(previousIndex < imagePositions.newPos.length) {
 		sortFromIndex = imagePositions.newPos.length - previousIndex - 1;
@@ -206,20 +200,35 @@ function sortSlideShow(imageSet) {
 			//Om nya positionen är efter gamla positionen
 			if(imagePositions.newPos[i] > imagePositions.oldPos[i]) {	
 			
+				//Sätt korrekt zIndex
+				
+				alert('oldpos:' + imagePositions.oldPos[i] + ', newpos:' + imagePositions.newPos[i]);
+				imageSet.images[imagePositions.oldPos[i]].parent.style.zIndex = imagePositions.newPos[i]+1;
+				imageSet.images[imagePositions.newPos[i]].parent.style.zIndex = imagePositions.oldPos[i]+1;
+				
 				//Sätt in bild på ny position
-				imageSet.splice(imagePositions.newPos[i]+1, 0, imageSet[imagePositions.oldPos[i]]);
+				imageSet.images.splice(imagePositions.newPos[i]+1, 0, imageSet.images[imagePositions.oldPos[i]]);
+				
 				
 				//ta bort gamla bilden på sitt vanliga index
-				imageSet.splice(imagePositions.oldPos[i], 1);
+				imageSet.images.splice(imagePositions.oldPos[i], 1);
 			}
 			//Om nya positionen är innan gamla positionen
 			else {
 				
+				//Sätt korrekt zIndex
+				
+				
+				alert('oldpos:' + imagePositions.oldPos[i] + ', newpos:' + imagePositions.newPos[i]);
+				imageSet.images[imagePositions.oldPos[i]].parent.style.zIndex = imagePositions.newPos[i]+1;
+				imageSet.images[imagePositions.newPos[i]].parent.style.zIndex = imagePositions.oldPos[i]+1;
+				
+				
 				//Sätt in bild på ny position
-				imageSet.splice(imagePositions.newPos[i], 0, imageSet[imagePositions.oldPos[i]]);
+				imageSet.images.splice(imagePositions.newPos[i], 0, imageSet.images[imagePositions.oldPos[i]]);
 				
 				//ta bort gamla bilden på sitt index som är 1 större
-				imageSet.splice(imagePositions.oldPos[i]+1, 1);
+				imageSet.images.splice(imagePositions.oldPos[i]+1, 1);
 			}
 		}
 		
@@ -265,12 +274,9 @@ $(document).ready(function sortImages() {
 	                        'newPos': ui.item.index(), // from form
 	                        'imgId': $(ui.item).attr('rel')
 	                        },
-	                success: function(){
-	                    window.location.reload();
-	                }
+	                success: function(){}
 	            });
-			}
-            
+			}            
 		}
 	});
 	$("#images li").on('click',function(e){
