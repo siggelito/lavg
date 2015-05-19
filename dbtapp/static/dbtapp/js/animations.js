@@ -16,12 +16,12 @@ function startAnimation(first, timeline, transitionLength) {
 }
 
 function endAnimation(last, outro, timeline, transitionLength) {
-	timeline.add(TweenLite.to($(outro.parent), transitionLength, {opacity:1}));
+	timeline.add(TweenLite.to($(outro.parent), transitionLength, {opacity:0}));
 	timeline.add(TweenLite.delayedCall(0,function () {
 		$(last.parent).css("opacity", "0");
 	}),null);
 	
-	timeline.add(TweenLite.to($(outro.parent), 1, {delay: 2, opacity: 0}));
+	timeline.add(TweenLite.to($(outro.parent), 1, {opacity: 1}), "-="+transitionLength);
 
 }
 
@@ -30,7 +30,7 @@ function panoramaEffect(current, timeline, transitionLength) {
 	// lägg nästa bild utanför
 	timeline.add(TweenLite.delayedCall(0,function () {
 		$(current.parent).css("-moz-transform", "scale(1.2)");
-		$(current.parent).css("left", "80px");
+		$(current.parent).css("left", "10%");
 	}),null);
 	// animera tillbaka bilden som nu är synlig
 	timeline.add(TweenLite.to($(current.parent), transitionLength, {left:"-10%",ease:Linear.easeNone}));
@@ -39,8 +39,8 @@ function panoramaEffect(current, timeline, transitionLength) {
 	killTimeline(timeline);
 }
 function panoramaEffSetup(parent) {
-	$(parent).css("-moz-transform", "scale(1.2)");
-	$(parent).css("left", "10%");
+	$(parent.parent).css("-moz-transform", "scale(1.2)");
+	$(parent.parent).css("left", "10%");
 }
 
 function plainEffect(current, timeline, effectLength) {
@@ -107,7 +107,7 @@ function simpleTransition(current, next, timeline, transitionLength) {
 function fadeTransition(current, next, timeline, transitionLength) {
 	// animera tillbaka bilden som nu är synlig
 	timeline.add(TweenLite.to($(next.parent), transitionLength, {opacity:1,ease:Linear.easeNone}));
-	timeline.add(TweenLite.to($(current.parent), transitionLength, {delay: -transitionLength, opacity:1,ease:Linear.easeNone}));
+	timeline.add(TweenLite.to($(current.parent), transitionLength, {opacity:0,ease:Linear.easeNone}), "-="+transitionLength);
 	// dölj den gamla bilden
 	/*timeline.add(TweenLite.delayedCall(0,function () {
 		$(current.parent).css("opacity", "0");
