@@ -238,7 +238,8 @@ def phantomjspk(request, pk):
         print("\t\tException: %s" % e)
         phantomProcess.kill()
         ffmpegProcess.kill()
+        return HttpResponse('<h1>Exception!</h1>')
         
         
         
-    return HttpResponse('')
+    return HttpResponse('<h1>Success!</h1>')
