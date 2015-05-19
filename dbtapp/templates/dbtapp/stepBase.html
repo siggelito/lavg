@@ -2,6 +2,12 @@
 {% load staticfiles %}
 
 {% block content %}
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 text-left">
+        <a id="preview-button" href="#preview" class="btn btn-primary">Preview</a>
+    </div>
+</div>
+
 
 <!-- Bildserie -->
 <div class="row">
@@ -48,6 +54,45 @@
             </div>
         </ul>
 
+    </div>
+</div>
+
+<div id="preview" class="modalDialog">
+            
+    <div id="slideshow-container">
+        <a id="closeButton" href="#" title="Close">X</a>
+        <ul id="slideshow">         
+            <li>
+                <div class="slideshow-parent" style="position:relative; background-color:#fff;  width:100%; height:100%;">
+                    <h1 id="video-text">{{video.video_name}}</h1>
+                    <h3 id="company-text">{{video.company_name}}</h3>
+                </div>
+                
+            </li>
+            {% if images %}
+                {% for image in images %}
+                    <li rel="{{ image.pk }}">
+                        <div class="slideshow-parent" style="position:relative; background-color:#fff;  width:100%; height:100%;">
+                            <img src="{{ image.photoFile.url }}" rel="{{ image.order }}" style="position:absolute;">
+                        </div>
+                    </li>
+                {% endfor %}
+            {% endif %}
+            <li>
+                <div class="slideshow-parent" style="position:relative; background-color:#fff; width:100%; height:100%;">
+                    <p id="video-text">Slutbildstext</p>
+                    <p id="contact-text">mail till codemill</p>
+                </div>
+            </li>
+        </ul>
+        <div id="controls">
+            <div id="sliderWrapper">
+                <div id="slider"></div>
+                
+                <button id="pause" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-pause"></span></button>
+
+            </div>
+        </div> 
     </div>
 </div>
 
