@@ -10,10 +10,7 @@ Utvecklingsmiljö
 <span class="glyphicon glyphicon-question-sign sign" aria-hidden="true"></span>
 {% endblock %}
 
-{% block content %}
-<!-- Hanna ska fixa flacering av knappen -->
-
-	
+{% block content %}	
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 text-left">
         <a id="preview-button" href="#preview" class="btn btn-primary">Preview</a>
@@ -21,10 +18,11 @@ Utvecklingsmiljö
 </div>
 
 	<div id="slideshow-container">
-		<a id="closeButton" href="#" title="Close">X</a>
+		<!-- close preview-->
+		<a id="closeButton" href="#" title="Close">STOPP - ska denna vara här?</a>
 		<ul id="slideshow">			
 			<li>
-				<div class="slideshow-parent" style="position:relative; background-color:#fff;  width:100%; height:100%;">
+				<div class="slideshow-parent">
 					<h1 id="video-text">{{video.video_name}}</h1>
 					<h3 id="company-text">{{video.company_name}}</h3>
 				</div>
@@ -33,14 +31,14 @@ Utvecklingsmiljö
 				{% if images %}
 					{% for image in images %}
 						<li rel="{{ image.pk }}">
-							<div class="slideshow-parent" style="position:relative; background-color:#fff;  width:100%; height:100%;">
+							<div class="slideshow-parent">
 								<img src="{{ image.photoFile.url }}" rel="{{ image.order }}" style="position:absolute;">
 							</div>
 						</li>
 					{% endfor %}
 				{% endif %}
 			<li>
-				<div class="slideshow-parent" style="position:relative; background-color:#fff; width:100%; height:100%;">
+				<div class="slideshow-parent">
 					<p id="video-text">Slutbildstext</p>
 					<p id="contact-text">mail till codemill</p>
 				</div>
