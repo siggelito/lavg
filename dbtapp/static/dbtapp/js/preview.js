@@ -1,8 +1,7 @@
 function initPreview (imageSet) {	
     $("#preview-button").delay(1000).on("click", function() {
-		//imageSet = sortSlideShow(imageSet);
 		$("#preview").css("opacity", "1");
-    	runSlideShow(imageSet);
+    	runSlideShow(sortSlideShow(imageSet));
     });
 	
 	$("#closeButton").on("click", function() {

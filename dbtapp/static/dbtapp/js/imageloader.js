@@ -64,7 +64,7 @@ var inputLogo = document.getElementById('input-logo');
     $(list[0]).css("opacity", "0");
     var i;
     for(i = 0; i < images.length; i++) { 
-        $(images[i]).zIndex = i+1;
+        list[i+1].style.zIndex = i+1;
         var imgSettings = {
             transition: function(current, next, timeline, transitionLength){
                 simpleTransition(current, next, timeline, transitionLength);
