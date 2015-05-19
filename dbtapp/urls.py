@@ -12,6 +12,7 @@ urlpatterns = [
      url(r'^video/(?P<pk>\d+)/type/(?P<imgtype>[1-3]{1})/$', views.videoStep, name='videoStep'),
      url(r'^video/(?P<pk>\d+)/edit/$', views.videoEdit, name='videoEdit'),
      url(r'^video/(?P<videoId>\d+)/type/(?P<imgtype>[1-3]{1})/remove/photo/(?P<photoId>\d+)/$', views.photoRemove, name='photoRemove'),
+     url(r'^video/(?P<videoId>\d+)/photo/(?P<photoId>\d+)/add/desciption/$', views.photoDescriptionPost, name='photoDescriptionPost'),
      url(r'^video/remove/(?P<pk>\d+)/$', views.videoRemove, name='videoRemove'),
      url(r'^phantomjs/$', views.phantomjs, name='phantomjs'),
      url(r'^phantomjs/(?P<pk>\d+)/$', views.phantomjspk, name='phantomjspk'),

@@ -121,7 +121,7 @@ var inputLogo = document.getElementById('input-logo');
 
     initializeVideo();
 
-    var images = $('#images li div img');
+    var images = $('#images li form div img');
 
     for (var i = 0; i < images.length; i++) {
 

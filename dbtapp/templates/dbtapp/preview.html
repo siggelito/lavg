@@ -91,7 +91,13 @@ Utvecklingsmiljö
 			</ul>
 		</div>
 	</div>
-			
+
+
+<script>
+    //var companyName = {{video.name}};
+    var postURL = "{% url 'dbtapp:videoEdit' video.pk %}";
+    var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
+</script>
 	
 {% endblock %}
 

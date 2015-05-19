@@ -13,7 +13,7 @@ from subprocess import Popen, PIPE, STDOUT
 
 
 from .models import Photo, Video
-from .forms import PhotoForm, VideoForm, PosForm, LogoForm
+from .forms import *
 from django.core.files.base import File
 from django.conf.urls import url
 
@@ -97,14 +97,14 @@ def videoStep(request, pk, imgtype):
                 photos.append(photo)
                 photo.save()
                 count = count + 1
-    photoForms = [None] * len(photos)
+    settingsForms = [None] * len(photos)
     for i in xrange(0,len(photos)):
-        photoForms[i] = PhotoForm(instance=photos[i])
+        settingsForms[i] = SettingsPhotoForm(instance=photos[i])
 
     return render (
         request,
         'dbtapp/step'+imgtype+'.html',
-        {'images': photoForms, 'video': video, 'form': PhotoForm(), 'imgtype': imgtype},
+        {'settings': settingsForms, 'video': video, 'form': PhotoForm(), 'imgtype': imgtype},
     )
 
 def videoEdit(request, pk):
@@ -189,6 +189,27 @@ def logoPost(request, pk):
         print("loading page... (not good)")
         return HttpResponse('<h1>loading...</h1>')
 
+def photoDescriptionPost(request, videoId, photoId):
+    if request.method == 'POST':
+        instance = Photo.objects.get(pk=photoId)
+        form = SettingsPhotoForm(request.POST, instance=instance)
+        if form.is_valid():
+            model = form.save()
+
+            response_data = {}
+            response_data['result'] = 'Create post successful!'
+            response_data['photo_pk'] = model.pk
+            response_data['description'] = model.description
+
+            return HttpResponse(
+                json.dumps(response_data),
+                content_type="application/json"
+            )
+    else:
+        return HttpResponse(
+            json.dumps({"nothing to see": "this isn't happening"}),
+            content_type="application/json"
+        )
 
 
 def videoRender(request, pk):

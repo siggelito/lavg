@@ -207,7 +207,14 @@ body {
 	height: 100px;
 	padding:0px;
 	position: relative;
+	
 
+}
+
+#images li form { 
+	width: 100%;
+	height: 100%;
+	position: relative;
 }
 
 
@@ -259,13 +266,13 @@ body {
 	background-color: #fff;
 }
 
-.image-text-content form {
+.image-text-content div {
 	position: relative;
 	height: 100%;
 	width: 100%;
 }
 
-.image-text-content form input{
+.image-text-content div input{
 	width: 100%;
 	padding-left: 10px;
 	left: 0;
