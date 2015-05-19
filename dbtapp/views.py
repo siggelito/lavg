@@ -10,7 +10,6 @@ from django import forms
 from django.forms.formsets import formset_factory
 import json
 from subprocess import Popen, PIPE, STDOUT
-import os
 
 
 from .models import Photo, Video

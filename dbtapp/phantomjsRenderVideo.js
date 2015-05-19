@@ -1,24 +1,20 @@
 var page = require('webpage').create();
     system = require('system'),
     path;
-//page.viewportSize = { width: 640, height: 480 };
+
+page.viewportSize = { width: 1280, height: 720 };
+
 var url = page.evaluate(
     function () {
         return document.URL;
     }
 );
 
-page.open(url + path), 
-
+page.open(url + path,
 function () {
     var refreshIntervalId = setInterval(function () {
         page.render("/dev/stdout", {format: "png"});
     }, 5);
-    
-/*        setTimeout (function () {
-        clearInterval(refreshIntervalId);
-        phantom.exit()
-    }, 20000);*/
 });
 
 
