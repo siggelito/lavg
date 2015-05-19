@@ -64,21 +64,21 @@ var inputLogo = document.getElementById('input-logo');
     $(list[0]).css("opacity", "0");
     var i;
     for(i = 0; i < images.length; i++) { 
-        list[i+1].style.zIndex = i+1;
+        //$(images[i]).zIndex = i+1;
         var imgSettings = {
             transition: function(current, next, timeline, transitionLength){
-                simpleTransition(current, next, timeline, transitionLength);
+                splitTransition(current, next, timeline, transitionLength);
             },
             transitionSetup: function(previous, current, next){
                     //panoramaSetup(parent)
-                    //shrinkTransistionSetup(previous, current, next);
+                    splitTransSetup(previous, current, next);
                 },
                 effect: function(current, timeline, effectLength){
-                    panoramaEffect(current, timeline, effectLength);
+                    plainEffect(current, timeline, effectLength);
                     
                 },
                 effectSetup: function(current){
-                    panoramaEffSetup(current);
+                    plainEffSetup(current);
 
                 },
                 transitionLength: 1, //(Math.floor((Math.random() * 4) + 2) * 1000)
