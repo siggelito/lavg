@@ -11,15 +11,19 @@ function initPreview (imageSet) {
 			$(this).html("<span class='glyphicon glyphicon-pause'></span>");
 		}
 		else{
-			timeline.paused(!timeline.paused());
-		
 			if (!timeline.paused()) {
+				timeline.pause();
 				$(this).html("<span class='glyphicon glyphicon-pause'></span>");
 			}
 			else{
+				timeline.play();
 				$(this).html("<span class='glyphicon glyphicon-play'></span>");
 			}
 		}
+	});
+
+	$("#repeat").on("click", function() {
+		timeline.restart();
 	});
 	
 	$("#repeat").delay(1000).on("click", function() {

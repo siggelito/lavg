@@ -103,10 +103,15 @@ body {
 }
 
 #slideshow-container{
+<<<<<<< HEAD
 	/*width: 800px;
 	height: 480px;*/
 	width: 400px;
 	height: 300px;
+=======
+	width: 400px;
+	height: 240px;
+>>>>>>> ce1d1eb85a3721266961a4f3f8fd20c4113443d6
 	margin: 0px auto;
 	position: relative;
 	font-size: 20px;
@@ -208,14 +213,17 @@ body {
 	width: 100%;
 	padding: 10px;
 	float: center;
+	height: 20%;
 }
 
 .settings-content div a{ 
 	width: 48%;
+	height: 100%;
 }
 
-.settings-content div button{
+.settings-content div input{
 	width: 48%;
+	height: 100%;
 } 
 
 .background-type-1 {
@@ -289,7 +297,7 @@ body {
 	bottom: 0;
 	width: 70%;
 	height: 0%;
-	padding: 10px;
+	padding: 10px 0px 10px 10px;
 	overflow: hidden;
 	display: none;
 	background-color: #fff;

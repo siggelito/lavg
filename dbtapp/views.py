@@ -189,24 +189,32 @@ def videoEdit(request, pk):
 
 def logoPost(request, pk):
     if request.method == 'POST':
-        #import pdb; pdb.set_trace()
+        import pdb; pdb.set_trace()
         form = LogoForm(request.POST, request.FILES)
         if form.is_valid():
+            model = form.save()
+
             video = Video.objects.get(pk=pk)
-            if video is not None:
-                model = form.save()
-                if video.logo is not None:
-                    video.logo.delete()
-                video.logo = model
-                video.save() 
-                print("logo insert sucsess!!!")
-                return HttpResponse('<h1>sucsess!!!</h1>')
-            print("video does not exist")
-        print("form not valid....")
-        return HttpResponse('<h1>Not Valid post...</h1>')
+            if video.logo is not None:
+                video.logo.delete()
+            video.logo = model
+            video.save() 
+
+            response_data = {}
+            response_data['result'] = 'Create post successful!'
+            response_data['logo_pk'] = model.pk
+            response_data['video_pk'] = video.pk
+            response_data['video_name'] = video.video_name
+
+            return HttpResponse(
+                json.dumps(response_data),
+                content_type="application/json"
+            )
     else:
-        print("loading page... (not good)")
-        return HttpResponse('<h1>loading...</h1>')
+        return HttpResponse(
+            json.dumps({"nothing to see": "this isn't happening"}),
+            content_type="application/json"
+        )
 
 def photoDescriptionPost(request, videoId, photoId):
     if request.method == 'POST':

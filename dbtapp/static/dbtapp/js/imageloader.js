@@ -166,6 +166,33 @@ function calcSize( parent, image ) {
     return {width: width, height: height, paddingLeft: paddingLeft, paddingTop: paddingTop};
 }
 
+function getSize( image, width, height ) {
+    var imgWidth = $(image).width();
+    var imgHeight = $(image).height();
+    var parentWidth = width;
+    var parentHeight = height;
+
+    var imageRatioW = ( imgWidth / imgHeight );
+    var imageRatioH = ( imgHeight / imgWidth );
+
+    var widthScalingFactor = ( imageRatioW * parentHeight ) / imgWidth;
+    var heightScalingFactor = ( imageRatioH * parentWidth ) / imgHeight;
+    
+
+    if (widthScalingFactor > heightScalingFactor) {
+        var width = imgWidth * widthScalingFactor;
+        var height = imgHeight * widthScalingFactor;
+    } else{
+        var width = imgWidth * heightScalingFactor;
+        var height = imgHeight * heightScalingFactor;
+    };
+
+    var paddingLeft = ( (parentWidth - width) / 2 );
+    var paddingTop =( (parentHeight - height) / 2 );
+
+    return {width: width, height: height, paddingLeft: paddingLeft, paddingTop: paddingTop};
+}
+
 function loadImages(sources, callback) {
     var images = [];
     var loadedImages = 0;

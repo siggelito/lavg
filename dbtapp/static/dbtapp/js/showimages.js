@@ -1,63 +1,3 @@
-function showImages(imageObject, index) {
-	var nrOfPics = $('#images li').length;
-	var imageUl = document.getElementById('images');
-	var image = imageObject.image;
-	/*var images = $('#images li img');
-	for (var i = 0; i < images.length; i++) {
-		
-		var size = getNewSize(images[i]);
-		images[i].width = size.width;
-		images[i].height = size.height;
-		images[i].setAttribute("style", "margin-top:" + size.paddingTop.toString() + "px");
-		images[i].setAttribute("style", "margin-left:" + size.paddingLeft.toString() + "px");
-	}*/
-	if(index >= nrOfPics) {
-		//var element = document.createElement('li');
-		//element.appendChild(image);
-		//var addFileDiv = document.getElementById('addFileWrapper');
-		//imageUl.insertBefore(element,addFileDiv);
-		
-		image.addEventListener('click', function () {
-			openImageSetting(imageObject, index);
-		});
-		
-	}
-}
-
-function getSize( image, width, height ) {
-    var imgWidth = $(image).width();
-    var imgHeight = $(image).height();
-    var parentWidth = width;
-    var parentHeight = height;
-
-    var imageRatioW = ( imgWidth / imgHeight );
-    var imageRatioH = ( imgHeight / imgWidth );
-
-    var widthScalingFactor = ( imageRatioW * parentHeight ) / imgWidth;
-    var heightScalingFactor = ( imageRatioH * parentWidth ) / imgHeight;
-    
-
-    if (widthScalingFactor > heightScalingFactor) {
-        var width = imgWidth * widthScalingFactor;
-        var height = imgHeight * widthScalingFactor;
-    } else{
-        var width = imgWidth * heightScalingFactor;
-        var height = imgHeight * heightScalingFactor;
-    };
-
-    var paddingLeft = ( (parentWidth - width) / 2 );
-    var paddingTop =( (parentHeight - height) / 2 );
-
-    return {width: width, height: height, paddingLeft: paddingLeft, paddingTop: paddingTop};
-}
-
-function GetElementInsideContainer(containerID, childID) {
-    var elm = document.getElementById(childID);
-    var parent = elm ? elm.parentNode : {};
-    return (parent.id && parent.id === containerID) ? elm : {};
-}
-
-
 function openImageSetting(elem) {
 	var image = $(elem).find('#image')[0];
 	var wrapper = $(elem).find('.image-wrapper');
@@ -280,7 +220,17 @@ $(document).ready(function sortImages() {
 
 });
 
-function postLogoForm(e){
+function postLogoForm(input){
+
+	if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#logo-img').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
 	var str = postLogoURL;
 	var data = new FormData($('#logo-form').get(0));
 	$.ajax({ 
@@ -290,7 +240,25 @@ function postLogoForm(e){
 	    cache: false,
 	    processData: false,
 	    contentType: false,
-	    success: function() {}
+	    success : function(json) {
+            console.log(json); // log the returned json to the console
+            console.log("success"); // another sanity check
+/*            var imgList = $('#images li'); //document.getElementById("images").childNodes;
+            for (var i = 0; i < imgList.length; i++) {
+            	var itemPK = parseInt($(imgList[i]).attr('rel'));
+            	var photoPK = json.photo_pk;
+            	if (itemPK == photoPK) {
+            		var elem = $(imgList[i]).find('#post-description-text');
+            		$(elem).val(json.description);
+            		break;
+            	}
+            }*/
+        },
+        error : function(xhr,errmsg,err) {
+            $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+            console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+        }
     });
     return false;
 }
