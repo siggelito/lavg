@@ -67,18 +67,18 @@ var inputLogo = document.getElementById('input-logo');
         //$(images[i]).zIndex = i+1;
         var imgSettings = {
             transition: function(current, next, timeline, transitionLength){
-                splitTransition(current, next, timeline, transitionLength);
+                simpleTransition(current, next, timeline, transitionLength);
             },
             transitionSetup: function(previous, current, next){
                     //panoramaSetup(parent)
-                    splitTransSetup(previous, current, next);
+                    //splitTransSetup(previous, current, next);
                 },
                 effect: function(current, timeline, effectLength){
-                    plainEffect(current, timeline, effectLength);
+                    //plainEffect(current, timeline, effectLength);
                     
                 },
                 effectSetup: function(current){
-                    plainEffSetup(current);
+                    //plainEffSetup(current);
 
                 },
                 transitionLength: 1, //(Math.floor((Math.random() * 4) + 2) * 1000)
