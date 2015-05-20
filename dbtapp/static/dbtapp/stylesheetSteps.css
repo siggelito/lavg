@@ -95,8 +95,8 @@ body {
 }
 
 #slideshow-container-render{
-	width: 1280px;
-	height: 720px;
+	width: 640px;
+	height: 480px;
 	margin: 0px;
 	position: relative;
 }
