@@ -12,110 +12,115 @@ Utvecklingsmiljö
 
 {% block content %}	
 <div class="row">
-	
 
-<div id="slideshow-container">
+	<div id="slideshow-container">
 
-	<!--Gammalt kryss i högra hörnet. vad ks avi göra med det?-->
-	<!--<a id="closeButton" href="#" title="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>-->
+		<!--Gammalt kryss i högra hörnet. vad ks avi göra med det?-->
+		<!--<a id="closeButton" href="#" title="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>-->
 
-	<ul id="slideshow">			
-		<li>
-			<div id="intro" class="slideshow-parent" style="position:relative; background-color:#fff;  width:100%; height:100%;">
-				<h2 id="video-text-intro">{{video.video_name}}</h2>
-				<h2 id="company-text-intro">{{video.company_name}}</h2>
-			</div>
-		</li>
+		<ul id="slideshow">			
+			<li>
+				<div id="intro" class="slideshow-parent" style="position:relative; background-color:#fff;  width:100%; height:100%;">
+					<h2 id="video-text-intro">{{video.video_name}}</h2>
+					<h2 id="company-text-intro">{{video.company_name}}</h2>
+				</div>
+			</li>
 
-		{% if settings %}
-		{% for form in settings %}
-		<li rel="{{ form.instance.pk }}">
-			<div class="slideshow-parent">
-				<img src="{{ form.instance.photoFile.url }}" rel="{{ form.instance.order }}" style="position:absolute;">
-			</div>
-		</li>
-		{% endfor %}
-		{% endif %}
 
-		<li>
-			<div id="outro" class="slideshow-parent" style="position:relative; background-color:#fff; width:100%; height:100%;">
-				<h2 id="video-text-outro">{{video.video_name}}</h2>
-				<h2 id="company-text-outro">{{video.company_name}}</h2>
-			</div>
-		</li>
-	</ul>
-	
-</div>
-<div id="controls">
+			{% if settings %}
+			{% for form in settings %}
+			<li rel="{{ form.instance.pk }}">
+				<div class="slideshow-parent">
+					<img src="{{ form.instance.photoFile.url }}" rel="{{ form.instance.order }}" style="position:absolute;">
+				</div>
+			</li>
+			{% endfor %}
+			{% endif %}
+
+			<li>
+				<div id="outro" class="slideshow-parent" style="position:relative; background-color:#fff; width:100%; height:100%;">
+					<h2 id="video-text-outro">{{video.video_name}}</h2>
+					<h2 id="company-text-outro">{{video.company_name}}</h2>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<div id="controls">
 		<div id="sliderWrapper">
 			<div id="slider"></div>
-			<button id="pause" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-play"></span></button>
+			<button id="pause" type="button" class="btn btn-primary controll-button"><span class="glyphicon glyphicon-play"></span></button>
+			<button id="repeat" type="button" class="btn btn-primary  controll-button"><span class="glyphicon glyphicon-repeat"></span></button>
 		</div>
+
 	</div>
 </div>
+
 <!--<div class="row">
 	<div class="col-xs-12 col-sm-12 col-md-12 text-left">
 		<div id="logo-box">
 			<img id="logo-img" src="{{ logo.photoFile.url }}">
-			<p><b>Choose a logo:</b></p>
+			<p><b>Ladda upp logga:</b></p>
 			<form id="logo-form" action="{% url 'dbtapp:logoPost' video.pk %}" method="post" enctype="multipart/form-data">
 				{% csrf_token %}
 				<p>{{ logoForm.photoFile }}</p>
 			</form>
 		</div>-->
 
-<!-- Bildserie -->
-<div class="row">
-    <div class="col-md-12">
-        <ul id="images" class="list-group">
-            {% if settings %}
-            {% for form in settings %}
-            <li rel="{{ form.instance.pk }}" class="col-xs-1 list-type-{{form.instance.photoType}}">
-                <form class="post-settings-form" action="{% url 'dbtapp:photoDescriptionPost' video.pk form.instance.pk%}" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {% load widget_tweaks %}
-                    <div class="image-wrapper">
-                        <img class="image" src="{{ form.instance.photoFile.url }}" rel="{{ form.instance.order }}">
-                    </div>
-                    <div class="settings">
-                        <div class="settings-header background-type-{{form.instance.photoType}}">
-                            <p>Settings</p>
-                        </div>
-                        <div class="settings-content">
-                            <p>I'm sorry..</p>
-                            <p>There are currently no settings implemented.</p>
-                            <p>All you can do here is to remove this picture.</p>
-                            <div>
-                                <a class="btn btn-default" href="{% url 'dbtapp:photoRemoveEdit' video.pk form.instance.pk %}">Remove</a>
-                                <input type="submit" class="btn btn-default">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="image-text-content"> 
-                        <div>
-                            <p>Enter description here:</p>
-                            {% render_field form.description class+="form-control" tabindex=1 %}
-                        </div>
-                        
-                    </div>
-                    <div class="close-btn-settings" href="#" title="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
-                </form>
-                <!-- close settings -->
-                
-            </li>
-            {% endfor %}
-            {% endif %}
-        </ul>
+		<!-- Bildserie -->
+<div class="spacing"></div>
+		<div class="row">
+			<div class="col-md-12">
+				<ul id="images" class="list-group">
+					{% if settings %}
+					{% for form in settings %}
+					<li rel="{{ form.instance.pk }}" class="col-xs-1 list-type-{{form.instance.photoType}}">
+						<form class="post-settings-form" action="{% url 'dbtapp:photoDescriptionPost' video.pk form.instance.pk%}" method="post" enctype="multipart/form-data">
+							{% csrf_token %}
+							{% load widget_tweaks %}
+							<div class="image-wrapper">
+								<img class="image" src="{{ form.instance.photoFile.url }}" rel="{{ form.instance.order }}">
+							</div>
+							<div class="settings">
+								<div class="settings-header background-type-{{form.instance.photoType}}">
+									<p>Inställningar</p>
+								</div>
+								<div class="settings-content">
+									<p>I'm sorry..</p>
+									<p>There are currently no settings implemented.</p>
+									<p>All you can do here is to remove this picture.</p>
+									<div>
+										<a class="btn btn-default" href="{% url 'dbtapp:photoRemoveEdit' video.pk form.instance.pk %}">Remove</a>
+										<input type="submit" class="btn btn-default">
+									</div>
+								</div>
+							</div>
+							<div class="image-text-content"> 
+								<div>
+									<p>Enter description here:</p>
+									{% render_field form.description class+="form-control" tabindex=1 %}
+								</div>
 
-    </div>
-</div>
+							</div>
+							<div class="close-btn-settings" href="#" title="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+						</form>
+						<!-- close settings -->
+
+					</li>
+					{% endfor %}
+					{% endif %}
+				</ul>
+
+			</div>
+		</div>
 
 
-<script>
+		<script>
 //var companyName = {{video.name}};
 var postURL = "{% url 'dbtapp:videoEdit' video.pk %}";
 var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
 </script>
+
 
 {% endblock %}
 

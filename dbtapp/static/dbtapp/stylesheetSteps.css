@@ -483,29 +483,24 @@ a:hover {
 	background-color: rgba(255, 255, 255, 0);
 }
 
-#pause{
-	margin:1% 45%;
+.controll-button{
+	margin:0;
 	outline: 0;
 	line-height: 1;
     position: relative;
     text-align: left;
-    /*Kanske inte bästa lösningen??? */
-    top: 3px;
-	left: -360px;
 }
-/* Det enda detta påverka är pauseknappens placering....
+
 #sliderWrapper{
-	width: 800px;
 	margin:-2% auto;
 	padding-top:0.5%;
+	padding-bottom: 40px;
 }
 
 #slider{
-  width: 800px;
-  margin:2% auto;
+  margin:25px 0 10px 0;
   height: 0.5em;
 }
-*/
 
 /* Background på fyrkant på slidern */
 #slider span{
@@ -547,10 +542,7 @@ a:hover {
 }
 
 .ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
-    border-bottom-right-radius: 2px;
-    border-bottom-left-radius: 2px;
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
+    border-radius: 2px;
 } 
 
 
