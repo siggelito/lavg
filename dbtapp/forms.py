@@ -31,7 +31,7 @@ class LogoForm(forms.ModelForm):
         model = Logo
         fields = ('photoFile',)
         widgets = {
-            'photoFile': forms.FileInput(attrs={'id': 'input-logo'}),
+            'photoFile': forms.FileInput(attrs={'id': 'input-logo','onchange': 'postLogoForm(this);'}),
         }
 
 class SettingsPhotoForm(forms.ModelForm):

@@ -40,6 +40,14 @@ Utvecklingsmiljö
 		</div>-->
 
 		<!-- Bildserie -->
+<div id="logo-box">
+	<img id="logo-img" src="{{ logo.photoFile.url }}">
+	<p><b>Ladda upp logga:</b></p>
+	<form id="logo-form" action="{% url 'dbtapp:logoPost' video.pk %}" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		<p>{{ logoForm.photoFile }}</p>
+	</form>
+</div>
 <div class="spacing"></div>
 		<div class="row">
 			<div class="col-md-12">
@@ -63,7 +71,7 @@ Utvecklingsmiljö
 									<p>All you can do here is to remove this picture.</p>
 									<div>
 										<a class="btn btn-default" href="{% url 'dbtapp:photoRemoveEdit' video.pk form.instance.pk %}">Remove</a>
-										<input type="submit" class="btn btn-default">
+										<input type="submit" value="Save" class="btn btn-default">
 									</div>
 								</div>
 							</div>
