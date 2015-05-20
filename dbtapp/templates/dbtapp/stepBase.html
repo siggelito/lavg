@@ -71,31 +71,7 @@
 
         <!-- ändra här för kryss i preview på alla steg -->
         <a id="closeButton" href="#" title="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-        <ul id="slideshow">         
-            <li>
-                <div id="intro" class="slideshow-parent">
-                    <h2 id="video-text-intro">{{video.video_name}}</h2>
-                    <h2 id="company-text-intro">{{video.company_name}}</h2>
-                    
-                </div>
-                
-            </li>
-            {% if settings %}
-                {% for form in settings %}
-                    <li rel="{{ form.instance.pk }}">
-                        <div class="slideshow-parent">
-                            <img src="{{ form.instance.photoFile.url }}" rel="{{ form.instance.order }}" style="position:absolute;">
-                        </div>
-                    </li>
-                {% endfor %}
-            {% endif %}
-            <li>
-                <div id="outro" class="slideshow-parent">
-                    <h2 id="video-text-outro">Slutbildstext</h2>
-                    <h2 id="company-text-outro">mail till codemill</h2>
-                </div>
-            </li>
-        </ul>
+        {% include 'dbtapp/_videoPartial.html' %}
         <div id="controls">
             <div id="sliderWrapper">
                 <div id="slider"></div>

@@ -241,7 +241,7 @@ def videoRender(request, pk):
     return render (
         request,
         'dbtapp/videoRender.html',
-        {'images': photos, 'video': video},
+        {'settings': generateSettings(photos), 'video': video},
     )
     
 
