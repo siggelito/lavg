@@ -43,3 +43,4 @@ class SettingsPhotoForm(forms.ModelForm):
                 attrs={'id': 'post-description-text', 'required': True, 'placeholder': 'Write here...'}
             ),
         }
+

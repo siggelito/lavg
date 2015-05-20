@@ -1,11 +1,11 @@
 function initPreview (imageSet) {	
 	runSlideShow(imageSet);
 }
-
+var timeline = new TimelineMax();
 
 function runSlideShow(video) {
 	
-	var timeline = new TimelineMax();
+	
 	
 	initControls(timeline);
 	

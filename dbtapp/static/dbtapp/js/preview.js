@@ -13,7 +13,6 @@ function initPreview (imageSet) {
 function runSlideShow(video) {
 	
 	var timeline = new TimelineMax();
-	
 	initControls(timeline);
 	
 	//Set up additional animationelements
