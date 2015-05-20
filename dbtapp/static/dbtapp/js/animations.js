@@ -17,7 +17,7 @@ function startAnimation(first, timeline, transitionLength) {
 	timeline.add(TweenLite.to($("#company-text-intro"), 0.01, {opacity: 0}));
 	timeline.add(TweenLite.to($(".compNameCont"), 0.01, {opacity: 0}));
 	timeline.add(TweenLite.to($(".compLogo"), 0.01, {opacity: 0}));
-	timeline.add(TweenLite.to($("#video-text-intro"), 0.01, {scale: 0}));
+	//timeline.add(TweenLite.to($("#video-text-intro"), 0.01, {scale: 0}));
 	timeline.add(TweenLite.to($("#video-text-intro"), 0.01, {opacity: 1}));
 	timeline.add(TweenLite.to($(first.parent), 0.01, {opacity:1}));
 	
@@ -25,7 +25,7 @@ function startAnimation(first, timeline, transitionLength) {
 	timeline.add(TweenLite.to($(first.parent), 0.5, {}));
 	
 	//Line
-	timeline.add(TweenLite.to($("#video-text-intro"), 0.5, {scale: 2, ease:Linear.easeNone}));
+	//timeline.add(TweenLite.to($("#video-text-intro"), 0.5, {scale: 1, ease:Linear.easeNone}));
 	timeline.add(TweenLite.to($(".lineL"), 0.8, {width:"50%"}));
 	timeline.add(TweenLite.to($(".lineR"), 0.8, {delay: -0.8, width:"51%", left: "-=50%"}));
 	
@@ -51,7 +51,7 @@ function startAnimation(first, timeline, transitionLength) {
 	timeline.add(TweenLite.to($(".lineL"), 0.8, {width:"0%"}));
 	timeline.add(TweenLite.to($(".lineR"), 0.8, {delay: -0.8, width:"0%", left: "+=50%"}));
 
-	timeline.add(TweenLite.to($("#video-text-intro"), 0.01, {scale: 0}));
+	//timeline.add(TweenLite.to($("#video-text-intro"), 0.01, {scale: 0}));
 	
 }
 function startAnimationSetup(first) {
@@ -94,8 +94,8 @@ function startAnimationSetup(first) {
 	compLogo.className = "compLogo";
 	compLogo.style.textAlign = "center";
 	compLogo.style.position = "absolute";
-	compLogo.style.width = "50px";
-	compLogo.style.height = "50px";
+	compLogo.style.width = "10%";
+	compLogo.style.height = "10%";
 	compLogo.style.top = "65%";
 	compLogo.style.left = "46.875%";
 	compLogo.style.backgroundColor = "red";	
@@ -222,17 +222,15 @@ function plainEffect(current, timeline, effectLength) {
 function plainEffSetup(current) {
 	if (current.image != undefined) {
 
+		var size = calcSize(current.parent, current.image);
+		
 		var div5 = document.createElement("div");
 		div5.className = "backgroundEff";
-		div5.style.width = "100%";
-		div5.style.height = "100%";
+		div5.style.width = size.width + "px";
+		div5.style.height = size.height + "px";
 		div5.style.position = "absolute";
-		div5.style.left = "50%";
-		div5.style.top = "50%";
-		div5.style.transform = "translate(-50%, -50%)";
-		div5.style.backgroundPosition = "center";
-		div5.style.backgroundSize="800px 480px";
-		div5.style.backgroundColor = "red";
+		div5.style.backgroundPosition = "0px 0px";
+		div5.style.backgroundSize = size.width + "px " + size.height + "px";
 		div5.style.opacity="0";
 		div5.style.backgroundImage = "url('" + current.image.getAttribute("src") + "')";		
 		current.parent.appendChild(div5);
@@ -303,7 +301,7 @@ function splitTransition(current, next, timeline, transitionLength) {
 	
 	timeline.add(TweenLite.to($(".background"), 0.001, {opacity: 0}));
 	timeline.add(TweenLite.to($(current.parent), 0.001, {opacity: 0}));
-	timeline.add(TweenLite.to($(next.image), 0.001, {opacity: 1}));
+	//timeline.add(TweenLite.to($(next.image), 0.001, {opacity: 1}));
 	timeline.add(TweenLite.to($(".first"), 0.001, {width:"25%", height:"0%"}));
 	timeline.add(TweenLite.to($(".second"), 0.001, {width:"25%", height:"0%"}));
 	timeline.add(TweenLite.to($(".third"), 0.001, {width:"25%", height:"0%"}));
@@ -315,6 +313,9 @@ function splitTransition(current, next, timeline, transitionLength) {
 	
 }
 function splitTransSetup(previous, current, next) {
+	
+	var size = calcSize(current.parent, current.image);
+	
 	var div = document.createElement("div");
 	div.className = "first";
 	div.style.width = "25%";
@@ -322,7 +323,7 @@ function splitTransSetup(previous, current, next) {
 	div.style.position = "absolute";
 	div.style.left = "0%";
 	div.style.top = "0%";
-	div.style.backgroundSize="800px 480px";
+	div.style.backgroundSize = size.width + "px " + size.height + "px";
 	div.style.backgroundPosition = "0px 0px";
 	div.style.backgroundImage = "url('" + current.image.getAttribute("src") + "')";
 	
@@ -333,8 +334,8 @@ function splitTransSetup(previous, current, next) {
 	div2.style.position = "absolute";
 	div2.style.left = "25%";
 	div2.style.top = "0%";
-	div2.style.backgroundSize="800px 480px";
-	div2.style.backgroundPosition = "600px 0px";
+	div2.style.backgroundSize = size.width + "px " + size.height + "px";
+	div2.style.backgroundPosition = (size.width*0.75) + "px " + "0px";
 	div2.style.backgroundImage = "url('" + current.image.getAttribute("src") + "')";
 	
 	var div3 = document.createElement("div");
@@ -344,8 +345,8 @@ function splitTransSetup(previous, current, next) {
 	div3.style.position = "absolute";
 	div3.style.left = "50%";
 	div3.style.top = "0%";
-	div3.style.backgroundSize="800px 480px";
-	div3.style.backgroundPosition = "400px 0px";
+	div3.style.backgroundSize = size.width + "px " + size.height + "px";
+	div3.style.backgroundPosition = (size.width*0.5) + "px " + "0px";
 	div3.style.backgroundImage = "url('" + current.image.getAttribute("src") + "')";
 	
 	var div4 = document.createElement("div");
@@ -355,8 +356,8 @@ function splitTransSetup(previous, current, next) {
 	div4.style.position = "absolute";
 	div4.style.left = "75%";
 	div4.style.top = "0%";
-	div4.style.backgroundSize="800px 480px";
-	div4.style.backgroundPosition = "200px 0px";
+	div4.style.backgroundSize = size.width + "px " + size.height + "px";
+	div4.style.backgroundPosition = (size.width*0.25) + "px " + "0px";
 	div4.style.backgroundImage = "url('" + current.image.getAttribute("src") + "')";
 	
 	if (previous != undefined) {
@@ -370,7 +371,7 @@ function splitTransSetup(previous, current, next) {
 		div5.style.top = "50%";
 		div5.style.transform = "translate(-50%, -50%)";
 		div5.style.backgroundPosition = "center";
-		div5.style.backgroundSize="800px 480px";
+		div5.style.backgroundSize = size.width + "px " + size.height + "px";
 		div5.style.backgroundColor = "red";
 		div5.style.backgroundImage = "url('" + previous.image.getAttribute("src") + "')";	
 		

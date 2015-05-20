@@ -102,8 +102,10 @@ body {
 }
 
 #slideshow-container{
-	width: 800px;
-	height: 480px;
+	/*width: 800px;
+	height: 480px;*/
+	width: 400px;
+	height: 240px;
 	margin: 50px auto;
 	position: relative;
 }
@@ -127,7 +129,30 @@ body {
 	width:100%; 
 	height:100%;
 }
-
+.videoLayer{	
+	/*width: 800px;
+	heigth: 480px;*/
+	width: 400px;
+	height: 240px;
+}
+#intro, #outro{
+	text-align: center;
+	padding-top: 20%;
+}
+#outro{
+	text-align: center;
+	padding-top: 10%; 
+}
+#video-text-intro{
+	/*font-size: 300%;*/
+}
+#video-text-outro{
+	margin-top: 10%;
+	font-size:100%;
+}
+#company-text-outro{
+	margin-top: 5%;
+}
 #slideshow li {
 	position: absolute;
 	top: 0;
@@ -387,19 +412,6 @@ body {
 	width: 70px;
 }
 
-#videoCont{
-	width: 800px;
-	height: 480px;
-	background-color: rgba(240, 240, 240, 1);
-	position: relative;
-	
-}
-
-.videoLayer{	
-	width: 800px;
-	heigth: 480px;
-}
-
 #lay1{
 	z-index: 1;
 	height: 480px;
@@ -496,7 +508,7 @@ a:hover {
 }
 
 #controls {
-	width: 800px;
+	width: 400px;
 	background-color: rgba(255, 255, 255, 0);
 }
 #pause{
@@ -510,13 +522,8 @@ a:hover {
 	left: -360px;
 }
 
-#sliderWrapper{
-	width: 800px;
-	margin:-2% auto;
-	padding-top:0.5%;
-}
 #slider{
-  width: 800px;
+  width: 400px;
   margin:2% auto;
   height: 0.5em;
   /*background-color: #ED712C !important;*/
@@ -532,20 +539,6 @@ a:hover {
 	margin-left: 0em;
 	margin-right: -0.5em;
 	border-style: none;
-}
-#intro, #outro{
-	text-align: center;
-	padding-top: 20%; 
-}
-#outro{
-	text-align: center;
-	padding-top: 10%; 
-}
-#video-text-outro{
-	margin-top: 10%;
-}
-#company-text-outro{
-	margin-top: 5%;
 }
 
 .ui-slider-horizontal .ui-state-default {
