@@ -104,7 +104,7 @@ body {
 #slideshow-container{
 	width: 800px;
 	height: 480px;
-	margin: 50px auto;
+	margin: 0px auto;
 	position: relative;
 }
 
@@ -479,6 +479,7 @@ a:hover {
 
 #controls {
 	width: 800px;
+	margin: 0px auto;
 	background-color: rgba(255, 255, 255, 0);
 }
 

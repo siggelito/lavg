@@ -11,10 +11,14 @@ Utvecklingsmiljö
 {% endblock %}
 
 {% block content %}	
+<div class="row">
+	
+
 <div id="slideshow-container">
 
 	<!--Gammalt kryss i högra hörnet. vad ks avi göra med det?-->
 	<!--<a id="closeButton" href="#" title="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>-->
+
 	<ul id="slideshow">			
 		<li>
 			<div id="intro" class="slideshow-parent" style="position:relative; background-color:#fff;  width:100%; height:100%;">
@@ -40,14 +44,15 @@ Utvecklingsmiljö
 			</div>
 		</li>
 	</ul>
-	<div id="controls">
+	
+</div>
+<div id="controls">
 		<div id="sliderWrapper">
 			<div id="slider"></div>
 			<button id="pause" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-play"></span></button>
 		</div>
 	</div>
 </div>
-
 <!--<div class="row">
 	<div class="col-xs-12 col-sm-12 col-md-12 text-left">
 		<div id="logo-box">
