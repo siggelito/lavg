@@ -1,6 +1,6 @@
-
-function initPreview (imageSet, timeline) {	
-	var timeline = new TimelineMax();
+var timeline = new TimelineMax();
+function initPreview (imageSet) {	
+	
 	runSlideShow(imageSet, timeline);
 }
 

@@ -9,7 +9,7 @@ def renderVideo(url,pk, video_name):
     phantomjsCommand = 'phantomjs'
     phantomjsScript = 'dbtapp/phantomjsRenderVideo.js'
     
-    ffmpegCommand = "ffmpeg -y -c:v png -f image2pipe -r 25 -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart media/videos/"+str(pk)+"-"+video_name+".mp4"
+    ffmpegCommand = "ffmpeg -y -c:v png -f image2pipe -r 60 -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart media/videos/"+str(pk)+"-"+video_name+".mp4"
     print(ffmpegCommand)
     ffmpegCommand = ffmpegCommand.split(' ')
 
