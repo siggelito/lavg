@@ -73,9 +73,9 @@
         <a id="closeButton" href="#" title="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
         <ul id="slideshow">         
             <li>
-                <div class="slideshow-parent">
-                    <h1 id="video-text">{{video.video_name}}</h1>
-                    <h3 id="company-text">{{video.company_name}}</h3>
+                <div id="intro" class="slideshow-parent">
+                    <h2 id="video-text-intro">{{video.video_name}}</h2>
+                    <h2 id="company-text-intro">{{video.company_name}}</h2>
                     
                 </div>
                 
@@ -90,9 +90,9 @@
                 {% endfor %}
             {% endif %}
             <li>
-                <div class="slideshow-parent">
-                    <p id="video-text">Slutbildstext</p>
-                    <p id="contact-text">mail till codemill</p>
+                <div id="outro" class="slideshow-parent">
+                    <h2 id="video-text-outro">Slutbildstext</h2>
+                    <h2 id="company-text-outro">mail till codemill</h2>
                 </div>
             </li>
         </ul>

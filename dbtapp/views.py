@@ -78,12 +78,34 @@ def photoRemove(request, videoId, imgtype, photoId):
                 p.save()
     return redirect('dbtapp:videoStep', pk = videoId, imgtype = imgtype)
 
+def photoRemoveEdit(request, videoId, photoId):
+    video = Video.objects.get(pk=videoId)
+    if video is not None:
+        photos = getSortedPhotos(video)
+        found = False
+        for i in xrange(0,len(photos)):
+            p = photos[i]
+            if p.pk == int(photoId):
+                p.delete()
+                found = True
+            elif found:
+                p.order = i-1
+                p.save()
+    return redirect('dbtapp:videoEdit', pk = videoId)
+
+
 def getSortedPhotos(video):
     photos = Photo.objects.filter(video = video)
     orderedPhotos = [None] * len(photos)
     for photo in photos:
         orderedPhotos[photo.order] = photo
     return orderedPhotos
+
+def generateSettings(photos):
+    settingsForms = [None] * len(photos)
+    for i in range(0,len(photos)):
+        settingsForms[i] = SettingsPhotoForm(instance=photos[i])
+    return settingsForms
 
 def videoStep(request, pk, imgtype):
     video = Video.objects.get(pk=pk)
@@ -97,10 +119,7 @@ def videoStep(request, pk, imgtype):
                 photos.append(photo)
                 photo.save()
                 count = count + 1
-    settingsForms = [None] * len(photos)
-    for i in range(0,len(photos)):
-        settingsForms[i] = SettingsPhotoForm(instance=photos[i])
-
+    settingsForms = generateSettings(photos)
     return render (
         request,
         'dbtapp/step'+imgtype+'.html',
@@ -124,7 +143,7 @@ def videoEdit(request, pk):
             return render(
                 request,
                 'dbtapp/preview.html',
-                {'images': photos, 'video': video, 'form': PhotoForm(), 'logoForm': LogoForm(), 'logo': video.logo},
+                {'images': generateSettings(photos), 'video': video, 'form': PhotoForm(), 'logoForm': LogoForm(), 'logo': video.logo},
             )
         else:
             if request.is_ajax():
@@ -165,7 +184,7 @@ def videoEdit(request, pk):
         return render(
             request,
             'dbtapp/preview.html',
-            {'images': photos, 'video': video, 'form': form, 'logoForm': logoForm, 'logo': video.logo},
+            {'settings': generateSettings(photos), 'video': video, 'form': form, 'logoForm': logoForm, 'logo': video.logo},
         )
 
 def logoPost(request, pk):

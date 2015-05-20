@@ -23,11 +23,11 @@ Utvecklingsmiljö
 			</div>
 		</li>
 
-		{% if images %}
-		{% for image in images %}
-		<li rel="{{ image.pk }}">
+		{% if settings %}
+		{% for form in settings %}
+		<li rel="{{ form.instance.pk }}">
 			<div class="slideshow-parent">
-				<img src="{{ image.photoFile.url }}" rel="{{ image.order }}" style="position:absolute;">
+				<img src="{{ form.instance.photoFile.url }}" rel="{{ form.instance.order }}" style="position:absolute;">
 			</div>
 		</li>
 		{% endfor %}
@@ -61,20 +61,48 @@ Utvecklingsmiljö
 
 <!-- Bildserie -->
 <div class="row">
-	<div class="col-sx-12 col-sm-12 col-md-12 text-left">
-		<div class="spacing"></div>
-		<ul id="images" class="list-group">
-			{% if images %}
-			{% for image in images %}
-			<li rel="{{ image.pk }}" class="list-group-item col-xs-1">
-				<div class="image-wrapper">
-					<img src="{{ image.photoFile.url }}" rel="{{ image.order }}">
-				</div>
-			</li>
-			{% endfor %}
-			{% endif %}
-		</ul>
-	</div>
+    <div class="col-md-12">
+        <ul id="images" class="list-group">
+            {% if settings %}
+            {% for form in settings %}
+            <li rel="{{ form.instance.pk }}" class="col-xs-1 list-type-{{form.instance.photoType}}">
+                <form class="post-settings-form" action="{% url 'dbtapp:photoDescriptionPost' video.pk form.instance.pk%}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% load widget_tweaks %}
+                    <div class="image-wrapper">
+                        <img class="image" src="{{ form.instance.photoFile.url }}" rel="{{ form.instance.order }}">
+                    </div>
+                    <div class="settings">
+                        <div class="settings-header background-type-{{form.instance.photoType}}">
+                            <p>Settings</p>
+                        </div>
+                        <div class="settings-content">
+                            <p>I'm sorry..</p>
+                            <p>There are currently no settings implemented.</p>
+                            <p>All you can do here is to remove this picture.</p>
+                            <div>
+                                <a class="btn btn-default" href="{% url 'dbtapp:photoRemoveEdit' video.pk form.instance.pk %}">Remove</a>
+                                <input type="submit" class="btn btn-default">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-text-content"> 
+                        <div>
+                            <p>Enter description here:</p>
+                            {% render_field form.description class+="form-control" tabindex=1 %}
+                        </div>
+                        
+                    </div>
+                    <div class="close-btn-settings" href="#" title="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+                </form>
+                <!-- close settings -->
+                
+            </li>
+            {% endfor %}
+            {% endif %}
+        </ul>
+
+    </div>
 </div>
 
 
