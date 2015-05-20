@@ -72,12 +72,12 @@ $(window).load(function(){
                     //splitTransSetup(previous, current, next);
                 },
                 effect: function(current, timeline, effectLength){
-                    panoramaEffect(current, timeline, effectLength);
-                    
+                    //plainEffect(current, timeline, effectLength);
+                    panoramaEffect(current, timeline, effectLength);                    
                 },
                 effectSetup: function(current){
+                    //plainEffSetup(current);
                     panoramaEffSetup(current);
-
                 },
                 transitionLength: 1, //(Math.floor((Math.random() * 4) + 2) * 1000)
                 effectLength: 5,
