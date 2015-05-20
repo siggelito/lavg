@@ -99,19 +99,21 @@ body {
 	height: 480px;
 	margin: 0px;
 	position: relative;
+	font-size: 32px;
 }
 
 #slideshow-container{
 	/*width: 800px;
 	height: 480px;*/
 	width: 400px;
-	height: 240px;
+	height: 300px;
 	margin: 0px auto;
 	position: relative;
+	font-size: 20px;
 }
 
 #slideshow{
-    background-color:#F5F5F5;
+    background-color:#fff;
     -moz-box-shadow:0 0 10px #111;
     -webkit-box-shadow:0 0 10px #111;
     box-shadow:0 0 10px #111;
@@ -120,39 +122,42 @@ body {
     height: 100%;
     position: relative;
     list-style-type: none;
-    padding: 0px;
     overflow: hidden;
 }
-
 .slideshow-parent{
 	position:relative; 
 	background-color:#fff;  
 	width:100%; 
 	height:100%;
 }
-.videoLayer{	
-	/*width: 800px;
-	heigth: 480px;*/
-	width: 400px;
-	height: 240px;
-}
 #intro, #outro{
 	text-align: center;
-	padding-top: 20%;
+}
+#video-text-intro{
+	opacity: 0;
+	font-size: 200%;
+	margin-top: 20%;
+}
+#company-text-intro{
+	opacity: 0;
+	font-size: 150%;
 }
 #outro{
 	text-align: center;
 	padding-top: 10%; 
 }
-#video-text-intro{
-	/*font-size: 300%;*/
-}
 #video-text-outro{
 	margin-top: 10%;
-	font-size:100%;
+	opacity: 0;
+	font-size: 200%;
 }
 #company-text-outro{
 	margin-top: 5%;
+	opacity: 0;
+	font-size: 150%;
+}
+.description{
+	display: none;
 }
 #slideshow li {
 	position: absolute;
@@ -394,40 +399,6 @@ body {
 	width: 70px;
 }
 
-#videoCont{
-	width: 800px;
-	height: 480px;
-	background-color: rgba(240, 240, 240, 1);
-	position: relative;
-}
-
-.videoLayer{	
-	width: 800px;
-	heigth: 480px;
-}
-
-
-#lay1{
-	z-index: 1;
-	height: 480px;
-	position: absolute;
-	top: 0px;
-}
-
-#lay2{
-	z-index: 2;
-	height: 480px;
-	position: absolute;
-	top: 0px;
-}
-
-#lay3{
-	z-index: 3;
-	height: 480px;
-	position: absolute;
-	top: 0px;
-}
-
 .glyphicon-plus	{
 	color: #FFFFFF;
 	font-size: 300% !important; 
@@ -537,20 +508,7 @@ a:hover {
 }
 
 
-#intro, #outro{
-	text-align: center;
-	padding-top: 20%; 
-}
-#outro{
-	text-align: center;
-	padding-top: 10%; 
-}
-#video-text-outro{
-	margin-top: 10%;
-}
-#company-text-outro{
-	margin-top: 5%;
-}
+
 
 .ui-slider-horizontal .ui-state-default {
 	background: white;

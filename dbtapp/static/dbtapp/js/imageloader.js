@@ -66,19 +66,19 @@ $(window).load(function(){
             // create imagesettings for each image
             video.images[i] = {
                 transition: function(current, next, timeline, transitionLength){
-                    fadeTransition(current, next, timeline, transitionLength);
+                    simpleTransition(current, next, timeline, transitionLength);
                 },
                 transitionSetup: function(previous, current, next){
                     //panoramaSetup(parent)
-                    fadeTransSetup(previous, current, next);
+                    //simpleTransSetup(previous, current, next);
                 },
                 effect: function(current, timeline, effectLength){
-                    //plainEffect(current, timeline, effectLength);
-                    panoramaEffect(current, timeline, effectLength);                    
+                    panoramaTextEffect(current, timeline, effectLength);
+                    //panoramaEffect(current, timeline, effectLength);                    
                 },
                 effectSetup: function(current){
-                    //plainEffSetup(current);
-                    panoramaEffSetup(current);
+                    panoramaTextEffSetup(current);
+                    //panoramaEffSetup(current);
                 },
                 transitionLength: 1, //(Math.floor((Math.random() * 4) + 2) * 1000)
                 effectLength: 5,

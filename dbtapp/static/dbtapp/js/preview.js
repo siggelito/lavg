@@ -22,10 +22,12 @@ function initPreview (imageSet) {
 		}
 	});
 	
+	$("#repeat").delay(1000).on("click", function() {
+		timeline.restart();
+    });
 	
 	$("#preview-button").delay(1000).on("click", function() {
 		$("#preview").css("opacity", "1");
-    	runSlideShow(sortSlideShow(imageSet), timeline);
     });
 	
 	$("#closeButton").on("click", function() {

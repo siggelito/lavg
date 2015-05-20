@@ -17,7 +17,7 @@ function startAnimation(first, timeline, transitionLength) {
 	timeline.add(TweenLite.to($("#company-text-intro"), 0.01, {opacity: 0}));
 	timeline.add(TweenLite.to($(".compNameCont"), 0.01, {opacity: 0}));
 	timeline.add(TweenLite.to($(".compLogo"), 0.01, {opacity: 0}));
-	//timeline.add(TweenLite.to($("#video-text-intro"), 0.01, {scale: 0}));
+	timeline.add(TweenLite.to($("#video-text-intro"), 0.01, {scale: 0}));
 	timeline.add(TweenLite.to($("#video-text-intro"), 0.01, {opacity: 1}));
 	timeline.add(TweenLite.to($(first.parent), 0.01, {opacity:1}));
 	
@@ -25,13 +25,13 @@ function startAnimation(first, timeline, transitionLength) {
 	timeline.add(TweenLite.to($(first.parent), 0.5, {}));
 	
 	//Line
-	//timeline.add(TweenLite.to($("#video-text-intro"), 0.5, {scale: 1, ease:Linear.easeNone}));
+	timeline.add(TweenLite.to($("#video-text-intro"), 0.5, {scale: 1, ease:Linear.easeNone}));
 	timeline.add(TweenLite.to($(".lineL"), 0.8, {width:"50%"}));
 	timeline.add(TweenLite.to($(".lineR"), 0.8, {delay: -0.8, width:"51%", left: "-=50%"}));
 	
 	//Company name
-	timeline.add(TweenLite.to($(".compNameCont"), 1, {opacity:1, top: "55%"}));
-	timeline.add(TweenLite.to($(".compLogo"), 1, {opacity:1, top: "70%"}));
+	timeline.add(TweenLite.to($(".compNameCont"), 1, {opacity:1, top: "20%"}));
+	timeline.add(TweenLite.to($(".compLogo"), 1, {delay: -0.2, opacity:1, top: "34%"}));
 	
 	//timeline.add(TweenLite.to($(".compNameCont"), 1, {rotation: -90, transformOrigin:"60% 60%"}));
 	
@@ -39,23 +39,23 @@ function startAnimation(first, timeline, transitionLength) {
 	timeline.add(TweenLite.to($(first.parent), transitionLength, {}));
 	
 	//Erase
-	timeline.add(TweenLite.to($(".lineL"), 0.5, {top:"30%"}));
-	timeline.add(TweenLite.to($(".lineR"), 0.5, {delay: -0.5, top:"30%"}));
+	timeline.add(TweenLite.to($(".lineL"), 0.6, {top:"0%"}));
+	timeline.add(TweenLite.to($(".lineR"), 0.6, {delay: -0.6, top:"0%"}));
 	timeline.add(TweenLite.to($("#video-text-intro"), 0.5, {delay: -0.5, opacity: 0}));
-	timeline.add(TweenLite.to($(".lineL"), 0.8, {top:"80%"}));
-	timeline.add(TweenLite.to($(".lineR"), 0.8, {delay: -0.8, top:"80%"}));
+	timeline.add(TweenLite.to($(".lineL"), 0.8, {top:"50%"}));
+	timeline.add(TweenLite.to($(".lineR"), 0.8, {delay: -0.8, top:"50%"}));
 	timeline.add(TweenLite.to($(".compNameCont"), 0.5, {delay: -0.5, opacity: 0}));
 	timeline.add(TweenLite.to($(".compLogo"), 0.5, {delay: -0.3, opacity: 0}));
 	
 	//Line
-	timeline.add(TweenLite.to($(".lineL"), 0.8, {width:"0%"}));
-	timeline.add(TweenLite.to($(".lineR"), 0.8, {delay: -0.8, width:"0%", left: "+=50%"}));
+	timeline.add(TweenLite.to($(".lineL"), 0.6, {width:"0%"}));
+	timeline.add(TweenLite.to($(".lineR"), 0.6, {delay: -0.6, width:"0%", left: "+=50%"}));
 
-	//timeline.add(TweenLite.to($("#video-text-intro"), 0.01, {scale: 0}));
+	timeline.add(TweenLite.to($("#video-text-intro"), 0.01, {scale: 0}));
 	
 }
 function startAnimationSetup(first) {
-	
+
 	$(".compNameCont").remove();
 	$(".compLogo").remove();
 	$(".lineL").remove();
@@ -67,7 +67,7 @@ function startAnimationSetup(first) {
 	lineL.style.height = "1%";
 	lineL.style.position = "absolute";
 	lineL.style.left = "50%";
-	lineL.style.top = "50%";
+	lineL.style.top = "15%";
 	lineL.style.backgroundColor = "rgba(0, 0, 0, 1)";	
 	first.parent.appendChild(lineL);
 	
@@ -77,27 +77,31 @@ function startAnimationSetup(first) {
 	lineR.style.height = "1%";
 	lineR.style.position = "absolute";
 	lineR.style.left = "50%";
-	lineR.style.top = "50%";
+	lineR.style.top = "15%";
 	lineR.style.backgroundColor = "rgba(0, 0, 0, 1)";	
 	first.parent.appendChild(lineR);
 
 	var compNameCont = document.createElement("div");
 	compNameCont.className = "compNameCont";
-	compNameCont.innerHTML = "<h2>" + $("#company-text-intro").html() + "</h2>";
+	compNameCont.style.fontSize = "150%";
 	compNameCont.style.textAlign = "center";
 	compNameCont.style.position = "absolute";
+	compNameCont.style.fontFamily = $("h2").css("font-family");
+	compNameCont.style.fontWeight = $("h2").css("font-weight");
+	compNameCont.innerHTML = $("#company-text-intro").html();
 	compNameCont.style.width = "100%";
-	compNameCont.style.top = "50%";
+	compNameCont.style.top = "15%";
 	first.parent.appendChild(compNameCont);
 	
 	var compLogo = document.createElement("div");
 	compLogo.className = "compLogo";
 	compLogo.style.textAlign = "center";
 	compLogo.style.position = "absolute";
-	compLogo.style.width = "10%";
-	compLogo.style.height = "10%";
-	compLogo.style.top = "65%";
-	compLogo.style.left = "46.875%";
+	compLogo.style.width = (first.parent.clientWidth/10) + "px";
+	compLogo.style.height = (first.parent.clientWidth/10) + "px";
+	compLogo.style.top = "30%";
+	var leftPos = (first.parent.clientWidth/2) - (($(compLogo).width())/2);
+	compLogo.style.left = leftPos + "px";
 	compLogo.style.backgroundColor = "red";	
 	first.parent.appendChild(compLogo);
 	
@@ -109,7 +113,6 @@ function endAnimation(last, outro, timeline, transitionLength) {
 	//Setup
 	timeline.add(TweenLite.to($(last.parent), 0.01, {opacity:0}));
 	timeline.add(TweenLite.to($("#video-text-outro"), 0.01, {opacity: 0}));
-	timeline.add(TweenLite.to($("#video-text-outro"), 0.01, {scale: 2}));
 	timeline.add(TweenLite.to($("#company-text-outro"), 0.01, {opacity: 0}));
 	timeline.add(TweenLite.to($(".compLogoE"), 0.01, {opacity: 0}));
 	timeline.add(TweenLite.to($(outro.parent), 0.01, {opacity:1}));
@@ -159,12 +162,16 @@ function endAnimationSetup(last) {
 	compLogoE.className = "compLogoE";
 	compLogoE.style.textAlign = "center";
 	compLogoE.style.position = "absolute";
-	compLogoE.style.width = "50px";
-	compLogoE.style.height = "50px";
-	compLogoE.style.top = "65%";
-	compLogoE.style.left = "46.875%";
+	compLogoE.style.width = (last.parent.clientWidth/10) + "px";
+	compLogoE.style.height = (last.parent.clientWidth/10) + "px";
+	compLogoE.style.top = "66%";
+	var leftPos = (last.parent.clientWidth/2) - (($(compLogoE).width())/2);
+	compLogoE.style.left = leftPos + "px";
 	compLogoE.style.backgroundColor = "red";	
 	last.parent.appendChild(compLogoE);
+	
+	
+	
 }
 
 /* Effects */
@@ -189,25 +196,36 @@ function panoramaTextEffect(current, timeline, transitionLength) {
 	// lägg nästa bild utanför
 	timeline.add(TweenLite.delayedCall(0,function () {
 		$(current.parent).css("-moz-transform", "scale(1.2)");
-		$(current.parent).css("left", "80px");
+		$(current.parent).css("left", "10%");
 	}),null);
+	
+	timeline.add(TweenLite.to($(".picPanoramaText"), 0.01, {width:"0%"}));
+	timeline.add(TweenLite.to($(".picPanoramaText"), 0.01, {opacity: 1}));
+	
 	// animera tillbaka bilden som nu är synlig
 	timeline.add(TweenLite.to($(current.parent), transitionLength, {left:"-10%",ease:Linear.easeNone}));
-	// dölj den gamla bilden
-	
+	timeline.add(TweenLite.to($(".picPanoramaText"), (transitionLength/3), {delay: -transitionLength, width:"100%", ease:Linear.easeNone}));
+	timeline.add(TweenLite.to($(".picPanoramaText"), (transitionLength/3), {delay: -(transitionLength/3), width:"0%", left: "+=100%", ease:Linear.easeNone}));
+
+	timeline.add(TweenLite.to($(".picPanoramaText"), 0.01, {left: "0%"}));
+	timeline.add(TweenLite.to($(".picPanoramaText"), 0.01, {opacity: 0}));
+
 	killTimeline(timeline);
 }
-function panoramaTextEffSetup(current, picText) {
-	var picTextCont = document.createElement("div");
-	picTextCont.className = "picText";
-	picTextCont.innerHTML = "<h2>" + picText + "</h2>";
-	picTextCont.style.textAlign = "center";
-	picTextCont.style.position = "absolute";
-	picTextCont.style.width = "50%";
-	picTextCont.style.top = "50%";
-	picTextCont.style.left = "10%";
-	picTextCont.style.backgroundColor = "#ff3";
-	current.parent.appendChild(picTextCont);
+function panoramaTextEffSetup(current) {
+	if ((current.description.innerHTML) !== "None") {
+		//alert((current.description.innerHTML).localeCompare("none"));
+		var picTextCont = document.createElement("div");
+		picTextCont.className = "picPanoramaText";
+		picTextCont.innerHTML =  current.description.innerHTML;
+		picTextCont.style.textAlign = "center";
+		picTextCont.style.position = "absolute";
+		picTextCont.style.width = "0%";
+		picTextCont.style.top = "80%";
+		picTextCont.style.left = "0%";
+		picTextCont.style.backgroundColor = "#ff3";
+		current.parent.appendChild(picTextCont);
+	}
 }
 
 function plainEffect(current, timeline, effectLength) {
@@ -222,19 +240,20 @@ function plainEffect(current, timeline, effectLength) {
 function plainEffSetup(current) {
 	if (current.image != undefined) {
 
-		var size = calcSize(current.parent, current.image);
-		
 		var div5 = document.createElement("div");
 		div5.className = "backgroundEff";
-		div5.style.width = size.width + "px";
-		div5.style.height = size.height + "px";
+		div5.style.width = current.parent.clientWidth + "px";
+		div5.style.height = current.parent.clientHeight + "px";
 		div5.style.position = "absolute";
 		div5.style.backgroundPosition = "0px 0px";
-		div5.style.backgroundSize = size.width + "px " + size.height + "px";
+		div5.style.backgroundSize = current.parent.clientWidth + "px " + current.parent.clientHeight + "px";
 		div5.style.opacity="0";
 		div5.style.backgroundImage = "url('" + current.image.getAttribute("src") + "')";		
 		current.parent.appendChild(div5);
 	}
+	
+	//Text
+
 }
 
 /* Transisions */
@@ -314,16 +333,13 @@ function splitTransition(current, next, timeline, transitionLength) {
 }
 function splitTransSetup(previous, current, next) {
 	
-	var size = calcSize(current.parent, current.image);
-	
 	var div = document.createElement("div");
 	div.className = "first";
 	div.style.width = "25%";
-	div.style.height = "0%";
 	div.style.position = "absolute";
 	div.style.left = "0%";
 	div.style.top = "0%";
-	div.style.backgroundSize = size.width + "px " + size.height + "px";
+	div.style.backgroundSize = current.parent.clientWidth + "px " + current.parent.clientHeight + "px";
 	div.style.backgroundPosition = "0px 0px";
 	div.style.backgroundImage = "url('" + current.image.getAttribute("src") + "')";
 	
@@ -334,8 +350,8 @@ function splitTransSetup(previous, current, next) {
 	div2.style.position = "absolute";
 	div2.style.left = "25%";
 	div2.style.top = "0%";
-	div2.style.backgroundSize = size.width + "px " + size.height + "px";
-	div2.style.backgroundPosition = (size.width*0.75) + "px " + "0px";
+	div2.style.backgroundSize = current.parent.clientWidth + "px " + current.parent.clientHeight + "px";
+	div2.style.backgroundPosition = (current.parent.clientWidth*0.75) + "px " + "0px";
 	div2.style.backgroundImage = "url('" + current.image.getAttribute("src") + "')";
 	
 	var div3 = document.createElement("div");
@@ -345,8 +361,8 @@ function splitTransSetup(previous, current, next) {
 	div3.style.position = "absolute";
 	div3.style.left = "50%";
 	div3.style.top = "0%";
-	div3.style.backgroundSize = size.width + "px " + size.height + "px";
-	div3.style.backgroundPosition = (size.width*0.5) + "px " + "0px";
+	div3.style.backgroundSize = current.parent.clientWidth + "px " + current.parent.clientHeight + "px";
+	div3.style.backgroundPosition = (current.parent.clientWidth*0.5) + "px " + "0px";
 	div3.style.backgroundImage = "url('" + current.image.getAttribute("src") + "')";
 	
 	var div4 = document.createElement("div");
@@ -356,8 +372,8 @@ function splitTransSetup(previous, current, next) {
 	div4.style.position = "absolute";
 	div4.style.left = "75%";
 	div4.style.top = "0%";
-	div4.style.backgroundSize = size.width + "px " + size.height + "px";
-	div4.style.backgroundPosition = (size.width*0.25) + "px " + "0px";
+	div4.style.backgroundSize = current.parent.clientWidth + "px " + current.parent.clientHeight + "px";
+	div4.style.backgroundPosition = (current.parent.clientWidth*0.25) + "px " + "0px";
 	div4.style.backgroundImage = "url('" + current.image.getAttribute("src") + "')";
 	
 	if (previous != undefined) {
@@ -370,8 +386,8 @@ function splitTransSetup(previous, current, next) {
 		div5.style.left = "50%";
 		div5.style.top = "50%";
 		div5.style.transform = "translate(-50%, -50%)";
-		div5.style.backgroundPosition = "center";
-		div5.style.backgroundSize = size.width + "px " + size.height + "px";
+		div5.style.backgroundPosition = "0px 0px";
+		div5.style.backgroundSize = current.parent.clientWidth + "px " + current.parent.clientHeight + "px";
 		div5.style.backgroundColor = "red";
 		div5.style.backgroundImage = "url('" + previous.image.getAttribute("src") + "')";	
 		
@@ -408,7 +424,7 @@ function shrinkTransSetup(previous, current, next) {
 	div.style.top = "50%";
 	div.style.transform = "translate(-50%, -50%)";
 	div.style.backgroundPosition = "center";
-	div.style.backgroundSize="800px 480px";
+	div.style.backgroundSize = current.parent.clientWidth + "px " + current.parent.clientHeight + "px";
 	div.style.backgroundImage = "url('" + current.image.getAttribute("src") + "')";
 	
 	if (previous != undefined) {
@@ -422,8 +438,7 @@ function shrinkTransSetup(previous, current, next) {
 		div2.style.top = "50%";
 		div2.style.transform = "translate(-50%, -50%)";
 		div2.style.backgroundPosition = "center";
-		div2.style.backgroundSize="800px 480px";
-		div2.style.backgroundColor = "red";
+		div2.style.backgroundSize = current.parent.clientWidth + "px " + current.parent.clientHeight + "px";
 		div2.style.backgroundImage = "url('" + previous.image.getAttribute("src") + "')";	
 		
 		current.parent.appendChild(div2);

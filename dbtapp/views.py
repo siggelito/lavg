@@ -68,7 +68,7 @@ def photoRemove(request, videoId, imgtype, photoId):
     if video is not None:
         photos = getSortedPhotos(video)
         found = False
-        for i in xrange(0,len(photos)):
+        for i in range(0,len(photos)):
             p = photos[i]
             if p.pk == int(photoId):
                 p.delete()
@@ -83,7 +83,7 @@ def photoRemoveEdit(request, videoId, photoId):
     if video is not None:
         photos = getSortedPhotos(video)
         found = False
-        for i in xrange(0,len(photos)):
+        for i in range(0,len(photos)):
             p = photos[i]
             if p.pk == int(photoId):
                 p.delete()
