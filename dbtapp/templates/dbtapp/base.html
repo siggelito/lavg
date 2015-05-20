@@ -17,6 +17,7 @@
 	<script type="text/javascript" src="{% static 'dbtapp/js/loadFinished.js' %}"></script>
 	<script type="text/javascript" src="{% static 'dbtapp/js/imageloader.js' %}"></script>
 	<script type="text/javascript" src="{% static 'dbtapp/js/preview.js' %}"></script>
+	<script type="text/javascript" src="{% static 'dbtapp/js/runSlideShow.js' %}"></script>
 	<script type="text/javascript" src="{% static 'dbtapp/js/showimages.js' %}"></script>
 	
 	<!-- Font Awesome -->
@@ -24,7 +25,7 @@
 	
 	<!-- Google font -->
 	<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Rochester|Amatic+SC' rel='stylesheet' type='text/css'>
 
 
 	<!-- CSS för base.html -->
@@ -70,7 +71,7 @@
 			<div class="page-header">
 				<div class="content" id="header">
 				  	<div class="row">
-						<div class="col-md-1 col-md-offset-3 text-right vcenter">
+						<div class="col-md-1 col-md-offset-3 text-right vcenter heightHeaderNumber ">
 				    		 <h1 id="head-number">{% block headerNumber %}{% endblock %}</h1>
 				    	</div>
 				    	<div class="col-md-5 text-left vcenter">

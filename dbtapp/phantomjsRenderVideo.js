@@ -16,8 +16,8 @@ setTimeout( function () {
         return timeline.totalDuration();
     });
     var currentTime = 0;
-    var frames = totalTime * 25;
-    var frameStep = 1 / 25;
+    var frames = totalTime * 60;
+    var frameStep = 1 / 60;
     for (var i = 0; i < frames; i++) {
         currentTime = frameStep * i;
         page.evaluate( function (currentTime) {

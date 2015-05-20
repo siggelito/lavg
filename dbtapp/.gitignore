@@ -4,3 +4,5 @@
 /urls.pyc
 /views.pyc
 /forms.pyc
+/__pycache__
+/tasks.pyc

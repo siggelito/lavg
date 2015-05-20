@@ -41,6 +41,7 @@ $(window).load(function(){
     function initializeVideo () {
         var list = $('#slideshow li div');
         var images = $('#slideshow li div img');
+        var texts = $('#slideshow li div .description');
 
         // create intro screen
         video.intro = {
@@ -65,24 +66,25 @@ $(window).load(function(){
             // create imagesettings for each image
             video.images[i] = {
                 transition: function(current, next, timeline, transitionLength){
-                    splitTransition(current, next, timeline, transitionLength);
+                    fadeTransition(current, next, timeline, transitionLength);
                 },
                 transitionSetup: function(previous, current, next){
                     //panoramaSetup(parent)
-                    splitTransSetup(previous, current, next);
+                    fadeTransSetup(previous, current, next);
                 },
                 effect: function(current, timeline, effectLength){
-                    plainEffect(current, timeline, effectLength);
-                    
+                    //plainEffect(current, timeline, effectLength);
+                    panoramaEffect(current, timeline, effectLength);                    
                 },
                 effectSetup: function(current){
-                    plainEffSetup(current);
-
+                    //plainEffSetup(current);
+                    panoramaEffSetup(current);
                 },
                 transitionLength: 1, //(Math.floor((Math.random() * 4) + 2) * 1000)
                 effectLength: 5,
                 image: images[i],
-                parent: list[i+1]
+                parent: list[i+1],
+                description: texts[i]
             };
             
             var size = calcSize(slideshow, images[i]);
