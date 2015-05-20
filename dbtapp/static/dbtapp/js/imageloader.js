@@ -41,6 +41,7 @@ $(window).load(function(){
     function initializeVideo () {
         var list = $('#slideshow li div');
         var images = $('#slideshow li div img');
+        var texts = $('#slideshow li div .description');
 
         // create intro screen
         video.intro = {
@@ -82,7 +83,8 @@ $(window).load(function(){
                 transitionLength: 1, //(Math.floor((Math.random() * 4) + 2) * 1000)
                 effectLength: 5,
                 image: images[i],
-                parent: list[i+1]
+                parent: list[i+1],
+                description: texts[i]
             };
             
             var size = calcSize(slideshow, images[i]);
