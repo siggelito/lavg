@@ -225,50 +225,55 @@ def videoRender(request, pk):
         {'images': photos, 'video': video},
     )
     
-def phantomjs(request):
-    phantomjsCommand = 'phantomjs'
-    phantomjsScript = './dbtapp/phantomjsTest.js'
-    
-    ffmpegCommand = "ffmpeg -y -c:v png -f image2pipe -r 25 -t 10 -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart testmovie2.mp4"
 
-    phantomProcess = Popen([phantomjsCommand, phantomjsScript], stdout=PIPE)
-    ffmpegProcess = Popen(ffmpegCommand, stdin=phantomProcess.stdout, stdout=None, stderr=STDOUT, shell=True)
-
-    try:
-        ffmpegProcess.communicate()
-    except Exception as e:
-        print("\t\tException: %s" % e)
-        ffmpegProcess.kill()
-    phantomProcess.kill()
-        
-    return HttpResponse('<h1>success!!!</h1>')
-
+# import threading
+# import time
+# from celery import Celery
+# from tasks import add
+# from multiprocessing import Process, Queue
+from dbtapp.tasks import renderVideo
 
 def phantomjspk(request, pk):
-    video = Video.objects.get(pk=pk)
-    phantomjsCommand = 'phantomjs'
-    phantomjsScript = 'dbtapp/phantomjsRenderVideo.js'
-    
-    ffmpegCommand = "ffmpeg -y -c:v png -f image2pipe -r 25 -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart media/videos/"+str(video.pk)+"-"+video.video_name+".mp4"
-    print(ffmpegCommand)
-    ffmpegCommand = ffmpegCommand.split(' ')
+
     path = reverse('dbtapp:videoRender', kwargs={'pk': pk})
     url = request.build_absolute_uri(path)
-    print(url)
-    #import pdb; pdb.set_trace()
-    phantomProcess = Popen([phantomjsCommand, phantomjsScript, url], stdout=PIPE)
-    ffmpegProcess = Popen(ffmpegCommand, stdin=phantomProcess.stdout, stdout=None, stderr=STDOUT, shell=False)
+    video = Video.objects.get(pk=pk)
+    renderVideo.delay(url, pk, video.video_name)
 
-    try:
-        #(out, error) = 
-        ffmpegProcess.communicate()
-        #print(out, error)
-    except Exception as e:
-        print("\t\tException: %s" % e)
-        phantomProcess.kill()
-        ffmpegProcess.kill()
-        return HttpResponse('<h1>Exception!</h1>')
-        
-        
-        
-    return HttpResponse('<h1>Success!</h1>')
+    # queue = Queue()
+    # p = Process(target=renderVideo, args=(request, pk))
+    # p.start()
+    # p.join() # this blocks until the process terminates
+    # result = queue.get()
+    # print result
+    # app = Celery('tasks', broker='amqp://guest@localhost//')
+    # _thread = threading.Thread(target=renderVideo(request,pk))
+    # import pdb; pdb.set_trace()
+    # _thread.setDaemon(True)
+    # _thread.start()
+    return HttpResponse('<h1>Sucsess</h1>')
+
+# #@app.task
+# def renderVideo(request,pk):
+#     video = Video.objects.get(pk=pk)
+#     phantomjsCommand = 'phantomjs'
+#     phantomjsScript = 'dbtapp/phantomjsRenderVideo.js'
+    
+#     ffmpegCommand = "ffmpeg -y -c:v png -f image2pipe -r 25 -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart media/videos/"+str(video.pk)+"-"+video.video_name+".mp4"
+#     print(ffmpegCommand)
+#     ffmpegCommand = ffmpegCommand.split(' ')
+#     path = reverse('dbtapp:videoRender', kwargs={'pk': pk})
+#     url = request.build_absolute_uri(path)
+#     print(url)
+#     #import pdb; pdb.set_trace()
+#     phantomProcess = Popen([phantomjsCommand, phantomjsScript, url], stdout=PIPE)
+#     ffmpegProcess = Popen(ffmpegCommand, stdin=phantomProcess.stdout, stdout=None, stderr=STDOUT, shell=False)
+
+#     try:
+#         #(out, error) = 
+#         ffmpegProcess.communicate()
+#         #print(out, error)
+#     except Exception as e:
+#         print("\t\tException: %s" % e)
+#         phantomProcess.kill()
+#         ffmpegProcess.kill()
