@@ -4,13 +4,17 @@ from django.forms.models import modelformset_factory
 
 class PhotoForm(forms.ModelForm):
     """Image upload form."""
-    oldPos = forms.IntegerField()
-    newPos = forms.IntegerField()
-    imgId = forms.IntegerField()
+    oldPos = forms.IntegerField(required=False)
+    newPos = forms.IntegerField(required=False)
+    imgId = forms.IntegerField(required=False)
     class Meta:
     	model = Photo
     	fields = ('photoFile','description')
-    	widgets = {'photoFile': forms.FileInput(attrs={'id': 'input', 'multiple': 'true', 'onchange': 'this.form.submit();'}),}
+    	widgets = {
+            'photoFile': forms.FileInput(
+                attrs={'id': 'input', 'multiple': 'true', 'onchange': 'this.form.submit();'}
+            ),
+        }
 
 class VideoForm(forms.ModelForm):
     """Video Create form."""
@@ -19,7 +23,6 @@ class VideoForm(forms.ModelForm):
     	fields = ('company_name','video_name')
 
 class PosForm(forms.ModelForm):
-    """Video Create form."""
     oldPos = forms.IntegerField()
     newPos = forms.IntegerField()
 
@@ -30,3 +33,14 @@ class LogoForm(forms.ModelForm):
         widgets = {
             'photoFile': forms.FileInput(attrs={'id': 'input-logo'}),
         }
+
+class SettingsPhotoForm(forms.ModelForm):
+    class Meta:
+        model = Photo
+        fields = ('description',)
+        widgets = {
+            'description': forms.TextInput(
+                attrs={'id': 'post-description-text', 'required': True, 'placeholder': 'Write here...'}
+            ),
+        }
+

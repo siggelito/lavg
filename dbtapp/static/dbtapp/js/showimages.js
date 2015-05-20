@@ -73,7 +73,16 @@ function openImageSetting(elem) {
 	var settingsContent = null;
 	var inputTextField = null;
 
-	var childs = newObject.childNodes;
+	var form = newObject.childNodes[1];
+
+	$(form).on('submit', function(event){
+	    event.preventDefault();
+	    console.log("form submitted!")  // sanity check
+	    console.log($(event.target).get(0));
+	    postSettingsForm(event.target);
+	});
+
+	var childs = form.childNodes;
 	for (var i = 0; i < childs.length; i++) {
 		if (childs[i].className == "image-wrapper") {
 			imageWrapper = childs[i];
@@ -268,6 +277,7 @@ $(document).ready(function sortImages() {
 	$("#images li").on('click',function(e){
         openImageSetting(e.currentTarget);
 	});
+
 });
 
 function postLogoForm(e){
@@ -283,8 +293,39 @@ function postLogoForm(e){
 	    success: function() {}
     });
     return false;
-
 }
+
+function postSettingsForm(form) {
+    console.log("create post is working!") // sanity check
+    $.ajax({
+        url : form.action, // the endpoint
+        type : "POST", // http method
+        data : $(form).serialize(),
+        dataType: "json",
+		csrfmiddlewaretoken: '{{ csrf_token }}',//{
+        success : function(json) {
+            console.log(json); // log the returned json to the console
+            console.log("success"); // another sanity check
+            var imgList = $('#images li'); //document.getElementById("images").childNodes;
+            for (var i = 0; i < imgList.length; i++) {
+            	var itemPK = parseInt($(imgList[i]).attr('rel'));
+            	var photoPK = json.photo_pk;
+            	if (itemPK == photoPK) {
+            		var elem = $(imgList[i]).find('#post-description-text');
+            		$(elem).val(json.description);
+            		break;
+            	}
+            }
+        },
+
+        // handle a non-successful response
+        error : function(xhr,errmsg,err) {
+            $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+            console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+        }
+    });
+};
 
 function RemoveImage (url) {
 	$.ajax({ 

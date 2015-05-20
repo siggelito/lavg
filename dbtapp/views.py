@@ -13,7 +13,7 @@ from subprocess import Popen, PIPE, STDOUT
 
 
 from .models import Photo, Video
-from .forms import PhotoForm, VideoForm, PosForm, LogoForm
+from .forms import *
 from django.core.files.base import File
 from django.conf.urls import url
 
@@ -78,12 +78,34 @@ def photoRemove(request, videoId, imgtype, photoId):
                 p.save()
     return redirect('dbtapp:videoStep', pk = videoId, imgtype = imgtype)
 
+def photoRemoveEdit(request, videoId, photoId):
+    video = Video.objects.get(pk=videoId)
+    if video is not None:
+        photos = getSortedPhotos(video)
+        found = False
+        for i in xrange(0,len(photos)):
+            p = photos[i]
+            if p.pk == int(photoId):
+                p.delete()
+                found = True
+            elif found:
+                p.order = i-1
+                p.save()
+    return redirect('dbtapp:videoEdit', pk = videoId)
+
+
 def getSortedPhotos(video):
     photos = Photo.objects.filter(video = video)
     orderedPhotos = [None] * len(photos)
     for photo in photos:
         orderedPhotos[photo.order] = photo
     return orderedPhotos
+
+def generateSettings(photos):
+    settingsForms = [None] * len(photos)
+    for i in range(0,len(photos)):
+        settingsForms[i] = SettingsPhotoForm(instance=photos[i])
+    return settingsForms
 
 def videoStep(request, pk, imgtype):
     video = Video.objects.get(pk=pk)
@@ -97,14 +119,11 @@ def videoStep(request, pk, imgtype):
                 photos.append(photo)
                 photo.save()
                 count = count + 1
-    photoForms = [None] * len(photos)
-    for i in xrange(0,len(photos)):
-        photoForms[i] = PhotoForm(instance=photos[i])
-
+    settingsForms = generateSettings(photos)
     return render (
         request,
         'dbtapp/step'+imgtype+'.html',
-        {'images': photoForms, 'video': video, 'form': PhotoForm(), 'imgtype': imgtype},
+        {'settings': settingsForms, 'video': video, 'form': PhotoForm(), 'imgtype': imgtype},
     )
 
 def videoEdit(request, pk):
@@ -124,7 +143,7 @@ def videoEdit(request, pk):
             return render(
                 request,
                 'dbtapp/preview.html',
-                {'images': photos, 'video': video, 'form': PhotoForm(), 'logoForm': LogoForm(), 'logo': video.logo},
+                {'images': generateSettings(photos), 'video': video, 'form': PhotoForm(), 'logoForm': LogoForm(), 'logo': video.logo},
             )
         else:
             if request.is_ajax():
@@ -165,7 +184,7 @@ def videoEdit(request, pk):
         return render(
             request,
             'dbtapp/preview.html',
-            {'images': photos, 'video': video, 'form': form, 'logoForm': logoForm, 'logo': video.logo},
+            {'settings': generateSettings(photos), 'video': video, 'form': form, 'logoForm': logoForm, 'logo': video.logo},
         )
 
 def logoPost(request, pk):
@@ -189,6 +208,29 @@ def logoPost(request, pk):
         print("loading page... (not good)")
         return HttpResponse('<h1>loading...</h1>')
 
+def photoDescriptionPost(request, videoId, photoId):
+    if request.method == 'POST':
+        instance = Photo.objects.get(pk=photoId)
+        form = SettingsPhotoForm(request.POST, instance=instance)
+        if form.is_valid():
+            model = form.save()
+
+            response_data = {}
+            response_data['result'] = 'Create post successful!'
+            response_data['photo_pk'] = model.pk
+            response_data['description'] = model.description
+
+            return HttpResponse(
+                json.dumps(response_data),
+                content_type="application/json"
+            )
+    else:
+        return HttpResponse(
+            json.dumps({"nothing to see": "this isn't happening"}),
+            content_type="application/json"
+        )
+
+
 
 
 def videoRender(request, pk):
@@ -202,46 +244,55 @@ def videoRender(request, pk):
         {'images': photos, 'video': video},
     )
     
-def phantomjs(request):
-    phantomjsCommand = 'phantomjs'
-    phantomjsScript = './dbtapp/phantomjsTest.js'
-    
-    ffmpegCommand = "ffmpeg -y -c:v png -f image2pipe -r 25 -t 10 -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart testmovie2.mp4"
 
-    phantomProcess = Popen([phantomjsCommand, phantomjsScript], stdout=PIPE)
-    ffmpegProcess = Popen(ffmpegCommand, stdin=phantomProcess.stdout, stdout=None, stderr=STDOUT, shell=True)
-
-    try:
-        ffmpegProcess.communicate()
-    except Exception as e:
-        print("\t\tException: %s" % e)
-        ffmpegProcess.kill()
-    phantomProcess.kill()
-        
-    return HttpResponse('<h1>success!!!</h1>')
-
+# import threading
+# import time
+# from celery import Celery
+# from tasks import add
+# from multiprocessing import Process, Queue
+from dbtapp.tasks import renderVideo
 
 def phantomjspk(request, pk):
-    phantomjsCommand = 'phantomjs'
-    phantomjsScript = './dbtapp/phantomjsRenderVideo.js'
-    
-    ffmpegCommand = "ffmpeg -y -c:v png -f image2pipe -r 25 -t 5 -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart testmovie2.mp4"
-    
+
     path = reverse('dbtapp:videoRender', kwargs={'pk': pk})
+    url = request.build_absolute_uri(path)
+    video = Video.objects.get(pk=pk)
+    renderVideo.delay(url, pk, video.video_name)  # @UndefinedVariable
 
-    print(path)
+    # queue = Queue()
+    # p = Process(target=renderVideo, args=(request, pk))
+    # p.start()
+    # p.join() # this blocks until the process terminates
+    # result = queue.get()
+    # print result
+    # app = Celery('tasks', broker='amqp://guest@localhost//')
+    # _thread = threading.Thread(target=renderVideo(request,pk))
+    # import pdb; pdb.set_trace()
+    # _thread.setDaemon(True)
+    # _thread.start()
+    return HttpResponse('<h1>Sucsess</h1>')
 
-    phantomProcess = Popen([phantomjsCommand, phantomjsScript], stdout=PIPE)
-    ffmpegProcess = Popen(ffmpegCommand, stdin=phantomProcess.stdout, stdout=None, stderr=STDOUT, shell=True)
+# #@app.task
+# def renderVideo(request,pk):
+#     video = Video.objects.get(pk=pk)
+#     phantomjsCommand = 'phantomjs'
+#     phantomjsScript = 'dbtapp/phantomjsRenderVideo.js'
+    
+#     ffmpegCommand = "ffmpeg -y -c:v png -f image2pipe -r 25 -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart media/videos/"+str(video.pk)+"-"+video.video_name+".mp4"
+#     print(ffmpegCommand)
+#     ffmpegCommand = ffmpegCommand.split(' ')
+#     path = reverse('dbtapp:videoRender', kwargs={'pk': pk})
+#     url = request.build_absolute_uri(path)
+#     print(url)
+#     #import pdb; pdb.set_trace()
+#     phantomProcess = Popen([phantomjsCommand, phantomjsScript, url], stdout=PIPE)
+#     ffmpegProcess = Popen(ffmpegCommand, stdin=phantomProcess.stdout, stdout=None, stderr=STDOUT, shell=False)
 
-    try:
-        ffmpegProcess.communicate()
-    except Exception as e:
-        print("\t\tException: %s" % e)
-        phantomProcess.kill()
-        ffmpegProcess.kill()
-        return HttpResponse('<h1>Exception!</h1>')
-        
-        
-        
-    return HttpResponse('<h1>Success!</h1>')
+#     try:
+#         #(out, error) = 
+#         ffmpegProcess.communicate()
+#         #print(out, error)
+#     except Exception as e:
+#         print("\t\tException: %s" % e)
+#         phantomProcess.kill()
+#         ffmpegProcess.kill()

@@ -70,15 +70,37 @@
 			<div class="page-header">
 				<div class="content" id="header">
 				  	<div class="row">
-						<div class="col-md-1 col-md-offset-3 text-right">
+						<div class="col-md-1 col-md-offset-3 text-right vcenter">
 				    		 <h1 id="head-number">{% block headerNumber %}{% endblock %}</h1>
 				    	</div>
-				    	<div class="col-md-5 text-left">
+				    	<div class="col-md-5 text-left vcenter">
 				   			 <h2 id="description"> {% block headerText %}{% endblock %}</h2>
 					   </div>
 					</div>
 				</div>
 			</div>
+
+			<!-- Animerar stegnumret och stegbeskrivningen -->
+			<script>
+			$(document).ready(function()	{
+					$("#description")
+					.animate(
+						{ opacity: 1 },
+						{ queue: false, duration: 'slow' }
+						);
+					$("#description")
+					.animate(
+						{ 'margin-left': 0 },
+						{ queue: false, duration: 'slow' }
+						);
+				$("#head-number")
+					.animate(
+						{ opacity: 1 },
+						{ queue: false, duration: 'slow' }
+						);
+			});
+			</script>
+
 			
 			{% block content %}{% endblock %}
 			<!--Submitknapp (högerpil)-->
