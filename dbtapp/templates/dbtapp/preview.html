@@ -11,96 +11,80 @@ Utvecklingsmiljö
 {% endblock %}
 
 {% block content %}	
-<!--<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-        <a id="preview-button" href="#preview" class="btn btn-primary">Preview</a>
-    </div>
-</div>-->
+<div id="slideshow-container">
 
-	<div id="slideshow-container">
-		<!-- close preview-->
-		<a id="closeButton" href="#" title="Close"></a>
-		<ul id="slideshow">			
-			<li>
-				<div id="intro" class="slideshow-parent" style="position:relative; background-color:#fff;  width:100%; height:100%;">
-					<h2 id="video-text-intro">{{video.video_name}}</h2>
-					<h2 id="company-text-intro">{{video.company_name}}</h2>
-				</div>
-				
-			</li>
-				{% if images %}
-					{% for image in images %}
-						<li rel="{{ image.pk }}">
-							<div class="slideshow-parent">
-								<img src="{{ image.photoFile.url }}" rel="{{ image.order }}" style="position:absolute;">
-							</div>
-						</li>
-					{% endfor %}
-				{% endif %}
-			<li>
-				<div id="outro" class="slideshow-parent" style="position:relative; background-color:#fff; width:100%; height:100%;">
-					<h2 id="video-text-outro">{{video.video_name}}</h2>
-					<h2 id="company-text-outro">{{video.company_name}}</h2>
-				</div>
-			</li>
-		</ul>
-		<div id="controls">
-			<div id="sliderWrapper">
-				<div id="slider"></div>
-				
-				<button id="pause" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-play"></span></button>
-
+	<!--Gammalt kryss i högra hörnet. vad ks avi göra med det?-->
+	<!--<a id="closeButton" href="#" title="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>-->
+	<ul id="slideshow">			
+		<li>
+			<div id="intro" class="slideshow-parent" style="position:relative; background-color:#fff;  width:100%; height:100%;">
+				<h2 id="video-text-intro">{{video.video_name}}</h2>
+				<h2 id="company-text-intro">{{video.company_name}}</h2>
 			</div>
-		</div>
-	</div>	
+		</li>
 
-	<div class="row">
-		<div class="col-xs-12 col-sm-12 col-md-12 text-left">
-			<!-- Ladda upp logga -->
-			<!--
-			<div id="logo-box">
-				<img id="logo-img" src="{{ logo.photoFile.url }}">
-				<p><b>Choose a logo:</b></p>
-				<form id="logo-form" action="{% url 'dbtapp:logoPost' video.pk %}" method="post" enctype="multipart/form-data">
-					{% csrf_token %}
-					<p>{{ logoForm.photoFile }}</p>
-				</form>
+		{% if images %}
+		{% for image in images %}
+		<li rel="{{ image.pk }}">
+			<div class="slideshow-parent">
+				<img src="{{ image.photoFile.url }}" rel="{{ image.order }}" style="position:absolute;">
 			</div>
+		</li>
+		{% endfor %}
+		{% endif %}
 
-			-->
-			<div class="spacing"></div>
-			<!-- Bildserie -->
-			<ul id="images" class="list-group row">
-				{% if images %}
-				{% for image in images %}
-				<li rel="{{ image.pk }}" class="list-group-item col-xs-1">
-					<div class="image-wrapper">
-						<img src="{{ image.photoFile.url }}" rel="{{ image.order }}">
-					</div>
-				</li>
-				{% endfor %}
-				{% endif %}
-				<!-- Ladda upp bild-->
-				<div id="addFileWrapper" >
-					<span class="glyphicon glyphicon-plus"></span>
-					<form action="{% url 'dbtapp:videoEdit' video.pk %}" class="form-class clearfix" method="post" enctype="multipart/form-data">		
-						{% csrf_token %}
-						{{ form.photoFile }}
-					</form>
-				</div>
-			</ul>
+		<li>
+			<div id="outro" class="slideshow-parent" style="position:relative; background-color:#fff; width:100%; height:100%;">
+				<h2 id="video-text-outro">{{video.video_name}}</h2>
+				<h2 id="company-text-outro">{{video.company_name}}</h2>
+			</div>
+		</li>
+	</ul>
+	<div id="controls">
+		<div id="sliderWrapper">
+			<div id="slider"></div>
+			<button id="pause" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-play"></span></button>
 		</div>
 	</div>
+</div>
+
+<!--<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-12 text-left">
+		<div id="logo-box">
+			<img id="logo-img" src="{{ logo.photoFile.url }}">
+			<p><b>Choose a logo:</b></p>
+			<form id="logo-form" action="{% url 'dbtapp:logoPost' video.pk %}" method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				<p>{{ logoForm.photoFile }}</p>
+			</form>
+		</div>-->
+
+<!-- Bildserie -->
+<div class="row">
+	<div class="col-sx-12 col-sm-12 col-md-12 text-left">
+		<div class="spacing"></div>
+		<ul id="images" class="list-group">
+			{% if images %}
+			{% for image in images %}
+			<li rel="{{ image.pk }}" class="list-group-item col-xs-1">
+				<div class="image-wrapper">
+					<img src="{{ image.photoFile.url }}" rel="{{ image.order }}">
+				</div>
+			</li>
+			{% endfor %}
+			{% endif %}
+		</ul>
+	</div>
+</div>
 
 
 <script>
-    //var companyName = {{video.name}};
-    var postURL = "{% url 'dbtapp:videoEdit' video.pk %}";
-    var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
+//var companyName = {{video.name}};
+var postURL = "{% url 'dbtapp:videoEdit' video.pk %}";
+var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
 </script>
-	
-{% endblock %}
 
+{% endblock %}
 
 {% block leftNav %}
 <a href="{% url 'dbtapp:videoStep' video.pk 3%}"><span id="navigationArrow" tabindex=3 class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
