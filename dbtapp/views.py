@@ -98,7 +98,7 @@ def videoStep(request, pk, imgtype):
                 photo.save()
                 count = count + 1
     settingsForms = [None] * len(photos)
-    for i in xrange(0,len(photos)):
+    for i in range(0,len(photos)):
         settingsForms[i] = SettingsPhotoForm(instance=photos[i])
 
     return render (

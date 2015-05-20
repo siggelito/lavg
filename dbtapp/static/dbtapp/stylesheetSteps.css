@@ -500,7 +500,6 @@ a:hover {
 #controls {
 	width: 800px;
 	background-color: rgba(255, 255, 255, 0);
-	opacity: 0;
 }
 #pause{
 	margin:1% 45%;
@@ -536,7 +535,20 @@ a:hover {
 	margin-right: -0.5em;
 	border-style: none;
 }
-
+#intro, #outro{
+	text-align: center;
+	padding-top: 20%; 
+}
+#outro{
+	text-align: center;
+	padding-top: 10%; 
+}
+#video-text-outro{
+	margin-top: 10%;
+}
+#company-text-outro{
+	margin-top: 5%;
+}
 
 .ui-slider-horizontal .ui-state-default {
 	background: white;

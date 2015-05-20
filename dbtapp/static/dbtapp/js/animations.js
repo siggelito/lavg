@@ -9,20 +9,162 @@
 
 /* Intro, outro*/
 function startAnimation(first, timeline, transitionLength) {
-	timeline.add(TweenLite.delayedCall(0,function () {
+	/*timeline.add(TweenLite.delayedCall(0,function () {
 		$(first.parent).css("opacity", "1");
-	}),null);
-	timeline.add(TweenLite.to($(first.parent), 2, {opacity: 1}));
+	}),null);*/
+	
+	//Setup
+	timeline.add(TweenLite.to($("#company-text-intro"), 0.01, {opacity: 0}));
+	timeline.add(TweenLite.to($(".compNameCont"), 0.01, {opacity: 0}));
+	timeline.add(TweenLite.to($(".compLogo"), 0.01, {opacity: 0}));
+	timeline.add(TweenLite.to($("#video-text-intro"), 0.01, {scale: 0}));
+	timeline.add(TweenLite.to($("#video-text-intro"), 0.01, {opacity: 1}));
+	timeline.add(TweenLite.to($(first.parent), 0.01, {opacity:1}));
+	
+	//Stanan
+	timeline.add(TweenLite.to($(first.parent), 0.5, {}));
+	
+	//Line
+	timeline.add(TweenLite.to($("#video-text-intro"), 0.5, {scale: 2, ease:Linear.easeNone}));
+	timeline.add(TweenLite.to($(".lineL"), 0.8, {width:"50%"}));
+	timeline.add(TweenLite.to($(".lineR"), 0.8, {delay: -0.8, width:"51%", left: "-=50%"}));
+	
+	//Company name
+	timeline.add(TweenLite.to($(".compNameCont"), 1, {opacity:1, top: "55%"}));
+	timeline.add(TweenLite.to($(".compLogo"), 1, {opacity:1, top: "70%"}));
+	
+	//timeline.add(TweenLite.to($(".compNameCont"), 1, {rotation: -90, transformOrigin:"60% 60%"}));
+	
+	//Stanan
+	timeline.add(TweenLite.to($(first.parent), transitionLength, {}));
+	
+	//Erase
+	timeline.add(TweenLite.to($(".lineL"), 0.5, {top:"30%"}));
+	timeline.add(TweenLite.to($(".lineR"), 0.5, {delay: -0.5, top:"30%"}));
+	timeline.add(TweenLite.to($("#video-text-intro"), 0.5, {delay: -0.5, opacity: 0}));
+	timeline.add(TweenLite.to($(".lineL"), 0.8, {top:"80%"}));
+	timeline.add(TweenLite.to($(".lineR"), 0.8, {delay: -0.8, top:"80%"}));
+	timeline.add(TweenLite.to($(".compNameCont"), 0.5, {delay: -0.5, opacity: 0}));
+	timeline.add(TweenLite.to($(".compLogo"), 0.5, {delay: -0.3, opacity: 0}));
+	
+	//Line
+	timeline.add(TweenLite.to($(".lineL"), 0.8, {width:"0%"}));
+	timeline.add(TweenLite.to($(".lineR"), 0.8, {delay: -0.8, width:"0%", left: "+=50%"}));
+
+	timeline.add(TweenLite.to($("#video-text-intro"), 0.01, {scale: 0}));
+	
+}
+function startAnimationSetup(first) {
+	
+	$(".compNameCont").remove();
+	$(".compLogo").remove();
+	$(".lineL").remove();
+	$(".lineR").remove();
+
+	var lineL = document.createElement("div");
+	lineL.className = "lineL";
+	lineL.style.width = "0%";
+	lineL.style.height = "1%";
+	lineL.style.position = "absolute";
+	lineL.style.left = "50%";
+	lineL.style.top = "50%";
+	lineL.style.backgroundColor = "rgba(0, 0, 0, 1)";	
+	first.parent.appendChild(lineL);
+	
+	var lineR = document.createElement("div");
+	lineR.className = "lineR";
+	lineR.style.width = "0%";
+	lineR.style.height = "1%";
+	lineR.style.position = "absolute";
+	lineR.style.left = "50%";
+	lineR.style.top = "50%";
+	lineR.style.backgroundColor = "rgba(0, 0, 0, 1)";	
+	first.parent.appendChild(lineR);
+
+	var compNameCont = document.createElement("div");
+	compNameCont.className = "compNameCont";
+	compNameCont.innerHTML = "<h2>" + $("#company-text-intro").html() + "</h2>";
+	compNameCont.style.textAlign = "center";
+	compNameCont.style.position = "absolute";
+	compNameCont.style.width = "100%";
+	compNameCont.style.top = "50%";
+	first.parent.appendChild(compNameCont);
+	
+	var compLogo = document.createElement("div");
+	compLogo.className = "compLogo";
+	compLogo.style.textAlign = "center";
+	compLogo.style.position = "absolute";
+	compLogo.style.width = "50px";
+	compLogo.style.height = "50px";
+	compLogo.style.top = "65%";
+	compLogo.style.left = "46.875%";
+	compLogo.style.backgroundColor = "red";	
+	first.parent.appendChild(compLogo);
+	
 }
 
 function endAnimation(last, outro, timeline, transitionLength) {
-	timeline.add(TweenLite.to($(outro.parent), transitionLength, {opacity:0}));
-	timeline.add(TweenLite.delayedCall(0,function () {
-		$(last.parent).css("opacity", "0");
-	}),null);
-	
-	timeline.add(TweenLite.to($(outro.parent), 1, {opacity: 1}), "-="+transitionLength);
 
+	
+	//Setup
+	timeline.add(TweenLite.to($(last.parent), 0.01, {opacity:0}));
+	timeline.add(TweenLite.to($("#video-text-outro"), 0.01, {opacity: 0}));
+	timeline.add(TweenLite.to($("#video-text-outro"), 0.01, {scale: 2}));
+	timeline.add(TweenLite.to($("#company-text-outro"), 0.01, {opacity: 0}));
+	timeline.add(TweenLite.to($(".compLogoE"), 0.01, {opacity: 0}));
+	timeline.add(TweenLite.to($(outro.parent), 0.01, {opacity:1}));
+
+	//Write
+	timeline.add(TweenLite.to($(".lineLE"), 0.8, {width:"50%"}));
+	timeline.add(TweenLite.to($(".lineRE"), 0.8, {delay: -0.8, width:"51%", left: "-=50%"}));
+	timeline.add(TweenLite.to($(".lineLE"), 0.8, {top:"25%"}));
+	timeline.add(TweenLite.to($(".lineRE"), 0.8, {delay: -0.8, top:"25%"}));
+	timeline.add(TweenLite.to($(".compLogoE"), 0.5, {delay: -0.7, opacity: 1}));
+	timeline.add(TweenLite.to($("#company-text-outro"), 0.5, {delay: -0.6, opacity: 1}));
+	timeline.add(TweenLite.to($("#video-text-outro"), 0.5, {delay: -0.3, opacity: 1}));
+	
+	//Line
+	timeline.add(TweenLite.to($(".lineLE"), 0.5, {width:"0%"}));
+	timeline.add(TweenLite.to($(".lineRE"), 0.5, {delay: -0.5, width:"0%", left: "+=50%"}));
+
+
+	timeline.add(TweenLite.to($(outro.parent), transitionLength, {delay: 2, opacity: 0}));
+}
+function endAnimationSetup(last) {
+	$(".lineLE").remove();
+	$(".lineRE").remove();
+	$(".compLogoE").remove();
+
+	var lineLE = document.createElement("div");
+	lineLE.className = "lineLE";
+	lineLE.style.width = "0%";
+	lineLE.style.height = "1%";
+	lineLE.style.position = "absolute";
+	lineLE.style.left = "50%";
+	lineLE.style.top = "78%";
+	lineLE.style.backgroundColor = "rgba(0, 0, 0, 1)";	
+	last.parent.appendChild(lineLE);
+	
+	var lineRE = document.createElement("div");
+	lineRE.className = "lineRE";
+	lineRE.style.width = "0%";
+	lineRE.style.height = "1%";
+	lineRE.style.position = "absolute";
+	lineRE.style.left = "50%";
+	lineRE.style.top = "78%";
+	lineRE.style.backgroundColor = "rgba(0, 0, 0, 1)";	
+	last.parent.appendChild(lineRE);
+	
+	var compLogoE = document.createElement("div");
+	compLogoE.className = "compLogoE";
+	compLogoE.style.textAlign = "center";
+	compLogoE.style.position = "absolute";
+	compLogoE.style.width = "50px";
+	compLogoE.style.height = "50px";
+	compLogoE.style.top = "65%";
+	compLogoE.style.left = "46.875%";
+	compLogoE.style.backgroundColor = "red";	
+	last.parent.appendChild(compLogoE);
 }
 
 /* Effects */
@@ -41,6 +183,31 @@ function panoramaEffect(current, timeline, transitionLength) {
 function panoramaEffSetup(parent) {
 	$(parent.parent).css("-moz-transform", "scale(1.2)");
 	$(parent.parent).css("left", "10%");
+}
+
+function panoramaTextEffect(current, timeline, transitionLength) {
+	// lägg nästa bild utanför
+	timeline.add(TweenLite.delayedCall(0,function () {
+		$(current.parent).css("-moz-transform", "scale(1.2)");
+		$(current.parent).css("left", "80px");
+	}),null);
+	// animera tillbaka bilden som nu är synlig
+	timeline.add(TweenLite.to($(current.parent), transitionLength, {left:"-10%",ease:Linear.easeNone}));
+	// dölj den gamla bilden
+	
+	killTimeline(timeline);
+}
+function panoramaTextEffSetup(current, picText) {
+	var picTextCont = document.createElement("div");
+	picTextCont.className = "picText";
+	picTextCont.innerHTML = "<h2>" + picText + "</h2>";
+	picTextCont.style.textAlign = "center";
+	picTextCont.style.position = "absolute";
+	picTextCont.style.width = "50%";
+	picTextCont.style.top = "50%";
+	picTextCont.style.left = "10%";
+	picTextCont.style.backgroundColor = "#ff3";
+	current.parent.appendChild(picTextCont);
 }
 
 function plainEffect(current, timeline, effectLength) {
@@ -129,10 +296,10 @@ function splitTransition(current, next, timeline, transitionLength) {
 	timeline.add(TweenLite.to($(next.image), 0.001, {opacity: 0}));
 	timeline.add(TweenLite.to($(".background"), 0.001, {opacity: 1}));
 	
-	timeline.add(TweenLite.to($(".first"), 2.5, {width:"25%", height:"100%", ease:Linear.easeNone}));
-	timeline.add(TweenLite.to($(".second"), 1.5, {delay: -2, width:"25%", height:"100%", ease:Linear.easeNone}));
-	timeline.add(TweenLite.to($(".third"), 1.5, {delay: -1.5, width:"25%", height:"100%", ease:Linear.easeNone}));
-	timeline.add(TweenLite.to($(".fourth"), 2, {delay: -1.5, width:"25%", height:"100%", ease:Linear.easeNone}));
+	timeline.add(TweenLite.to($(".first"), 1.5, {width:"25%", height:"100%", ease:Linear.easeNone}));
+	timeline.add(TweenLite.to($(".second"), 0.8, {delay: -1, width:"25%", height:"100%", ease:Linear.easeNone}));
+	timeline.add(TweenLite.to($(".third"), 0.8, {delay: -0.8, width:"25%", height:"100%", ease:Linear.easeNone}));
+	timeline.add(TweenLite.to($(".fourth"), 1, {delay: -1, width:"25%", height:"100%", ease:Linear.easeNone}));
 	
 	timeline.add(TweenLite.to($(".background"), 0.001, {opacity: 0}));
 	timeline.add(TweenLite.to($(current.parent), 0.001, {opacity: 0}));
@@ -299,19 +466,6 @@ function killTimelineWithImage(timeline, current, next) {
 }
 
 function initControls(timeline){
-	
-	$("#pause").on("click", function() {
-
-		timeline.paused(!timeline.paused());
-		
-		if (!timeline.paused()) {
-			$(this).html("<span class='glyphicon glyphicon-pause'></span>");
-		}
-		else{
-			$(this).html("<span class='glyphicon glyphicon-play'></span>");
-		}
-	
-	});
 
 	timeline.eventCallback("onUpdate", updateSlider);
 
@@ -334,12 +488,5 @@ function initControls(timeline){
 	
 	timeline.progress(1)
 	
-	$("#slideshow-container").on({
-		'mouseenter':function(){
-			$("#controls").fadeTo(500, 1);
-		},'mouseleave':function(){
-			$("#controls").fadeTo(500, 0);
-		}
-	});
 }
 
