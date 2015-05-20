@@ -4,9 +4,10 @@
 {% block content %}
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-        <a id="preview-button" href="#preview" class="btn btn-primary">Preview</a>
+        <a id="preview-button" href="#preview" class="btn btn-primary">Förhandsvisa</a>
     </div>
 </div>
+<div class="spacing"></div>
 
 
 <!-- Bildserie -->
@@ -24,21 +25,21 @@
                     </div>
                     <div class="settings">
                         <div class="settings-header background-type-{{form.instance.photoType}}">
-                            <p>Settings</p>
+                            <p>Inställningar</p>
                         </div>
                         <div class="settings-content">
                             <p>I'm sorry..</p>
                             <p>There are currently no settings implemented.</p>
                             <p>All you can do here is to remove this picture.</p>
                             <div>
-                                <a class="btn btn-default" href="{% url 'dbtapp:photoRemove' video.pk imgtype form.instance.pk %}">Remove</a>
-                                <input type="submit" class="btn btn-default">
+                                <a class="btn btn-primary" href="{% url 'dbtapp:photoRemove' video.pk imgtype form.instance.pk %}">Delete</a>
+                                <input type="submit" class="btn btn-primary">
                             </div>
                         </div>
                     </div>
                     <div class="image-text-content"> 
                         <div>
-                            <p>Enter description here:</p>
+                            <p>Ange bildtext:</p>
                             {% render_field form.description class+="form-control" tabindex=1 %}
                         </div>
                         
@@ -70,31 +71,7 @@
 
         <!-- ändra här för kryss i preview på alla steg -->
         <a id="closeButton" href="#" title="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-        <ul id="slideshow">         
-            <li>
-                <div class="slideshow-parent">
-                    <h1 id="video-text">{{video.video_name}}</h1>
-                    <h3 id="company-text">{{video.company_name}}</h3>
-                    
-                </div>
-                
-            </li>
-            {% if settings %}
-                {% for form in settings %}
-                    <li rel="{{ form.instance.pk }}">
-                        <div class="slideshow-parent">
-                            <img src="{{ form.instance.photoFile.url }}" rel="{{ form.instance.order }}" style="position:absolute;">
-                        </div>
-                    </li>
-                {% endfor %}
-            {% endif %}
-            <li>
-                <div class="slideshow-parent">
-                    <p id="video-text">Slutbildstext</p>
-                    <p id="contact-text">mail till codemill</p>
-                </div>
-            </li>
-        </ul>
+        {% include 'dbtapp/_videoPartial.html' %}
         <div id="controls">
             <div id="sliderWrapper">
                 <div id="slider"></div>

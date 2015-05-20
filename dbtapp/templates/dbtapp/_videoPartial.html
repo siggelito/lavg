@@ -1,0 +1,26 @@
+<ul id="slideshow">			
+	<li>
+		<div id="intro" class="slideshow-parent" style="position:relative; background-color:#fff;  width:100%; height:100%;">
+			<h2 id="video-text-intro">{{video.video_name}}</h2>
+			<h2 id="company-text-intro">{{video.company_name}}</h2>
+		</div>
+	</li>
+
+	{% if settings %}
+	{% for form in settings %}
+	<li rel="{{ form.instance.pk }}">
+		<div class="slideshow-parent">
+			<img src="{{ form.instance.photoFile.url }}" rel="{{ form.instance.order }}" style="position:absolute;">
+			<p class="description">{{ form.instance.description }}</p>
+		</div>
+	</li>
+	{% endfor %}
+	{% endif %}
+
+	<li>
+		<div id="outro" class="slideshow-parent" style="position:relative; background-color:#fff; width:100%; height:100%;">
+			<h2 id="video-text-outro">{{video.video_name}}</h2>
+			<h2 id="company-text-outro">{{video.company_name}}</h2>
+		</div>
+	</li>
+</ul>

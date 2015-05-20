@@ -95,8 +95,8 @@ body {
 }
 
 #slideshow-container-render{
-	width: 1280px;
-	height: 720px;
+	width: 640px;
+	height: 480px;
 	margin: 0px;
 	position: relative;
 }
@@ -104,15 +104,16 @@ body {
 #slideshow-container{
 	width: 800px;
 	height: 480px;
-	margin: 50px auto;
+	margin: 0px auto;
 	position: relative;
 }
 
 #slideshow{
     background-color:#F5F5F5;
-    -moz-box-shadow:0 0 22px #111;
-    -webkit-box-shadow:0 0 22px #111;
-    box-shadow:0 0 22px #111;
+    -moz-box-shadow:0 0 10px #111;
+    -webkit-box-shadow:0 0 10px #111;
+    box-shadow:0 0 10px #111;
+
     width: 100%;
     height: 100%;
     position: relative;
@@ -289,28 +290,13 @@ body {
 	position:relative;
 	width: 100px; 
 	height: 100px; 
-	background-color: #FF9900;  /* Ska ändras beroende på sida.....
-	*/ 
+/*	background-color: #FF9900;*/
 }
 
 /*Används denna?*/
 #addFileWrapper:hover {
   	color: #FF9900;
   	background-color: #ED712C;
-}
-
-
-/*Olika klasser för att sätta färg mha javascript i filen imageloader.js */
-.currentPageTwo{
-   background: #ED712C;
-  }
-
-  .currentPageThree {
-   background: #EC6568;
-  }
-
-  .currentPageFour {
-   background: #FFCC00;
 }
 
 #input {
@@ -336,7 +322,6 @@ body {
 }
 
 /* Modal preview window */
-
 .modalDialog {
 	position: fixed;
 	font-family: Arial, Helvetica, sans-serif;
@@ -365,10 +350,7 @@ body {
 	right:-5px;
 	top:-5px;
 	z-index: 99999;
-	padding:7px 10px;	
-	/*border:2px solid black;
-	border-radius: 30px 30px;
-	background:white;*/
+	padding:7px 10px;
 }
 
 #logo-image {
@@ -392,7 +374,6 @@ body {
 	height: 480px;
 	background-color: rgba(240, 240, 240, 1);
 	position: relative;
-	
 }
 
 .videoLayer{	
@@ -459,13 +440,13 @@ a:hover {
 }
 
 /*Knappen default */
-
 .btn{
-	border-radius: 5px;
+	border-radius: 2px;
   	line-height: 1.7;
 	font-family: 'Roboto Condensed', sans-serif;
 	font-weight: 300;
 	font-size: 19px;
+	box-shadow: 1px 1px 0 0 #ED712C;
 }
 
 .delete{
@@ -484,6 +465,7 @@ a:hover {
   color: #ffffff;
   background-color: #ED712C;
   border-color: #ED712C;
+  box-shadow: 1px 1px 0 0 #ED712C;
 }
 
 .spacing-list-group-item{
@@ -497,42 +479,40 @@ a:hover {
 
 #controls {
 	width: 800px;
+	margin: 0px auto;
 	background-color: rgba(255, 255, 255, 0);
 }
-#pause{
-	margin:1% 45%;
+
+.controll-button{
+	margin:0;
 	outline: 0;
 	line-height: 1;
     position: relative;
     text-align: left;
-    /*Kanske inte bästa lösningen??? */
-    top: -10px;
-	left: -360px;
 }
 
 #sliderWrapper{
-	width: 800px;
 	margin:-2% auto;
 	padding-top:0.5%;
+	padding-bottom: 40px;
 }
+
 #slider{
-  width: 800px;
-  margin:2% auto;
+  margin:25px 0 10px 0;
   height: 0.5em;
-  /*background-color: #ED712C !important;*/
- /* background: #ED712C;*/
 }
 
 /* Background på fyrkant på slidern */
 #slider span{
 	background-color: #ED712C;
-	height: 1.5em;
+	height: 1em;
 	width: 0.5em;
-	top: -0.5em;
+	top: -0.2em;
 	margin-left: 0em;
 	margin-right: -0.5em;
 	border-style: none;
 }
+
 #intro, #outro{
 	text-align: center;
 	padding-top: 20%; 
@@ -551,16 +531,19 @@ a:hover {
 .ui-slider-horizontal .ui-state-default {
 	background: white;
 	text-decoration: none;
-	/*background: white url(http://stackoverflow.com/content/img/so/vote-arrow-down.png) no-repeat scroll 50% 50%;}*/
 }
-
 
 /*Bakgrund på linje*/
 .ui-slider-horizontal {
-	background: white;
+	background: #dbdbdb;
 	text-decoration: none;
 	border-style: none;
+	height: 0.5em;
 }
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+    border-radius: 2px;
+} 
 
 
 /*Nytt för steg 5*/
@@ -570,11 +553,9 @@ a:hover {
 	background-color:gray;
 }
 
-
 a.list-group-item{
 	font-size: 18px;
 }
-
 
 @media (max-width: 768px){
   #timeline	{

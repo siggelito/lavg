@@ -274,7 +274,7 @@ function simpleTransition(current, next, timeline, transitionLength) {
 function fadeTransition(current, next, timeline, transitionLength) {
 	// animera tillbaka bilden som nu är synlig
 	timeline.add(TweenLite.to($(next.parent), transitionLength, {opacity:1,ease:Linear.easeNone}));
-	timeline.add(TweenLite.to($(current.parent), transitionLength, {opacity:0,ease:Linear.easeNone}), "-="+transitionLength);
+	timeline.add(TweenLite.to($(current.parent), transitionLength, {opacity:0,ease:Linear.easeNone}), ("-="+transitionLength));
 	// dölj den gamla bilden
 	/*timeline.add(TweenLite.delayedCall(0,function () {
 		$(current.parent).css("opacity", "0");
@@ -286,7 +286,7 @@ function fadeTransition(current, next, timeline, transitionLength) {
 function fadePanoramaTransition(current, next, timeline, transitionLength) {
 	timeline.add(TweenLite.to($(next.parent), 0.01, {scale:1.2, left:"10%"}));
 	timeline.add(TweenLite.to($(next.parent), transitionLength, {opacity:1,ease:Linear.easeNone}));
-	timeline.add(TweenLite.to($(current.parent), transitionLength, {delay: -transitionLength, opacity:1,ease:Linear.easeNone}));
+	timeline.add(TweenLite.to($(current.parent), transitionLength, {opacity:0,ease:Linear.easeNone}), ("-="+transitionLength));
 }
 
 function splitTransition(current, next, timeline, transitionLength) {
