@@ -1,6 +1,6 @@
 {% extends "dbtapp/base.html" %}
 {% load staticfiles %}
-
+<!--
 {% block head %}
 <div class="content" id="header">
     <div class="row">
@@ -18,10 +18,13 @@
     <div class="spacing"></div>
 </div>
 {% endblock %}
+-->
 
+{% block headerNumber %}
+Videobibliotek
+{% endblock %}
 
 {% block content %}
-<!--<div class="spacing"></div>-->
 
 {% if video_list %}  
 <div class="list-group clearfix"> 

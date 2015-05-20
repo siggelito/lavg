@@ -1,7 +1,30 @@
 function initPreview (imageSet) {	
-    $("#preview-button").delay(1000).on("click", function() {
+	var timeline = new TimelineMax();
+	var timelineInitiated = 0;
+	$("#pause").on("click", function() {
+
+		if (timelineInitiated == 0) {
+			$("#preview").css("opacity", "1");
+			runSlideShow(sortSlideShow(imageSet), timeline);
+			timelineInitiated = 1;
+			$(this).html("<span class='glyphicon glyphicon-pause'></span>");
+		}
+		else{
+			timeline.paused(!timeline.paused());
+		
+			if (!timeline.paused()) {
+				$(this).html("<span class='glyphicon glyphicon-pause'></span>");
+			}
+			else{
+				$(this).html("<span class='glyphicon glyphicon-play'></span>");
+			}
+		}
+	});
+	
+	
+	$("#preview-button").delay(1000).on("click", function() {
 		$("#preview").css("opacity", "1");
-    	runSlideShow(sortSlideShow(imageSet));
+    	runSlideShow(sortSlideShow(imageSet), timeline);
     });
 	
 	$("#closeButton").on("click", function() {
@@ -10,10 +33,13 @@ function initPreview (imageSet) {
 }
 
 
-function runSlideShow(video) {
-	
-	var timeline = new TimelineMax();
+
+function runSlideShow(video, timeline) {
+
 	initControls(timeline);
+	
+	//Set up intro
+	video.intro.transitionSetup(video.intro);
 	
 	//Set up additional animationelements
 	for (var i = 0; i < video.images.length; i++) {
@@ -24,7 +50,10 @@ function runSlideShow(video) {
 		video.images[i].transitionSetup(video.images[i-1], video.images[i], video.images[i+1]);	
 		video.images[i].effectSetup(video.images[i]/*.parent*/);
 	
-	} 
+	}
+	
+	//Set up outro
+	video.outro.transitionSetup(video.outro);
 
 	// Animera fram första sidan
 	video.intro.transition(video.intro, timeline, video.intro.transitionLength);

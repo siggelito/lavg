@@ -47,6 +47,9 @@ $(window).load(function(){
             transition: function(first, timeline, transitionLength){
                 startAnimation(first, timeline, transitionLength);
             },
+            transitionSetup: function(first){
+                startAnimationSetup(first);
+            },
             transitionLength: 2,
             effectLengt: 2, 
             parent: list[0]
@@ -108,6 +111,9 @@ $(window).load(function(){
             transition: function(last, outro, timeline, transitionLength){
                 endAnimation(last, outro, timeline, transitionLength);
             },
+            transitionSetup: function(last){
+                endAnimationSetup(last);
+             },
             transitionLength: 1,
             effectLengt: 2,
             parent: list[i+1]
