@@ -492,24 +492,21 @@ a:hover {
 }
 
 #sliderWrapper{
-	margin:-2% auto;
-	padding-top:0.5%;
 	padding-bottom: 40px;
 }
 
 #slider{
-  margin:25px 0 10px 0;
-  height: 0.5em;
+  margin:10px 0 10px 0;
+  height: 5px;
+  margin-right: 0px;
 }
 
 /* Background på fyrkant på slidern */
 #slider span{
 	background-color: #ED712C;
-	height: 1em;
-	width: 0.5em;
-	top: -0.2em;
-	margin-left: 0em;
-	margin-right: -0.5em;
+	height: 16px;
+	width: 6px;
+	top: -5px;
 	border-style: none;
 }
 
@@ -531,6 +528,7 @@ a:hover {
 .ui-slider-horizontal .ui-state-default {
 	background: white;
 	text-decoration: none;
+	margin-left: -0.3em;
 }
 
 /*Bakgrund på linje*/
@@ -538,7 +536,6 @@ a:hover {
 	background: #dbdbdb;
 	text-decoration: none;
 	border-style: none;
-	height: 0.5em;
 }
 
 .ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
