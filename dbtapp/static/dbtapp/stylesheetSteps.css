@@ -3,6 +3,21 @@ CSS för de olika stegen - VIKTIGT - skriv inte över styleBase.css
 / Hanna
 */
 
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+#description {
+	opacity:0;
+	margin-left: 2.5%;
+}
+
+
+#head-number	{
+	opacity: 0;
+}
 
 #circle	{
 	background-color:red;
@@ -16,23 +31,6 @@ CSS för de olika stegen - VIKTIGT - skriv inte över styleBase.css
 #divider {
 	background-color: #FF9900;
     padding-top: 3%;
-}
-
-/*
-#stepNumber {
-	font-size: 125%;
-	vertical-align: middle;
-	padding:0;
-	margin:0 auto;
-}*/
-
-
-#description {
-	display: inline-block;
-	padding:0;
-	margin:0 auto;
-	line-height: auto;
-	vertical-align: middle;
 }
 
 .control-label	{

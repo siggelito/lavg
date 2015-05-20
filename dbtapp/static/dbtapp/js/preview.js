@@ -33,6 +33,7 @@ function initPreview (imageSet) {
 }
 
 
+
 function runSlideShow(video, timeline) {
 
 	initControls(timeline);
