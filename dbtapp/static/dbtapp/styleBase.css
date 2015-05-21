@@ -55,10 +55,22 @@ nav.navbar.navbar-default{
   color: #FFCC00;
 }
 
+
+a{
+  color: #fff;
+}
+
+a:focus{
+  color: #fff;
+  text-decoration: none;
+}
+
 /*Tar bort prickade linjen runt länkar när man klickar*/
 a:hover, a:active, a:focus {
   outline: 0;
-  color: #FF9900;
+  color: #FF9900;  
+  text-decoration: none;
+
 }
 
 .navbar-fixed-top {

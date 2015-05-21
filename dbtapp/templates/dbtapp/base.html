@@ -4,7 +4,6 @@
 	<title>DBT</title>
 	{% load staticfiles %}
 
-	<!--Behövs denna?-->
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
 	
 	<link rel="stylesheet prefetch" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
@@ -23,9 +22,11 @@
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	
-	<!-- Google font -->
-	<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Rochester|Amatic+SC' rel='stylesheet' type='text/css'>
+	<!-- Google font som finns på servern-->
+	<link href="{% static 'dbtapp/fonts/Rochester-Regular.ttf' %}" rel='stylesheet' type='text/css'>
+	<link href="{% static 'dbtapp/fonts/RobotoCondensed-Bold.ttf' %}" rel='stylesheet' type='text/css'>
+	<link href="{% static 'dbtapp/fonts/RobotoCondensed-Regular.ttf' %}" rel='stylesheet' type='text/css'>
+	<link href="{% static 'dbtapp/fonts/RobotoCondensed-Light.ttf' %}" rel='stylesheet' type='text/css'>
 
 
 	<!-- CSS för base.html -->
@@ -133,7 +134,7 @@
 							<td><p><a id="mail" href="mailto:karro.jonzen@hotmail.com?Subject=Hello" target="_top">Karolina Jonzén</a></p></td>
 						</tr>
 						<tr>
-							<td><p><a id="mail" href="mailto:micke_wahlstrom@hotmail.com?Subject=Hello" target="_top">Mikeal Wahlström</a></p></td> 
+							<td><p><a id="mail" href="mailto:micke_wahlstrom@hotmail.com?Subject=Hello" target="_top">Mikael Wahlström</a></p></td> 
 							<td><p><a id="mail" href="mailto:sandraingerhage@gmail.com?Subject=Hello" target="_top">Sandra Ingerhage</a></p></td>
 						</tr>
 					</table>
