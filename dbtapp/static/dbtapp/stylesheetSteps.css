@@ -264,6 +264,18 @@ body {
 	display: none;
 }
 
+.close-btn-settings:hover, .close-btn-settings:focus, #hover-white:hover {
+  	color: #FFF;
+  	cursor:pointer !important;
+  	cursor:hand !important;
+  }
+
+#hover-white:hover, #hover-white:focus, #hover-white:active {
+  	color: #FFF;
+  	cursor:pointer !important;
+  	cursor:hand !important;
+  }
+
 .image-wrapper {
 	overflow: hidden;
 	width: 100%;

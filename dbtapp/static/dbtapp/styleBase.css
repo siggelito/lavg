@@ -6,6 +6,7 @@ Stylesheet som Base.html och alla de olika stegen använder sig av.
 
 */
 
+
 h1	{
 	font-family: 'Roboto Condensed', sans-serif !important;
 	font-weight: 700;
@@ -55,10 +56,22 @@ nav.navbar.navbar-default{
   color: #FFCC00;
 }
 
+
+a{
+  color: #fff;
+}
+
+a:focus{
+  color: #fff;
+  text-decoration: none;
+}
+
 /*Tar bort prickade linjen runt länkar när man klickar*/
 a:hover, a:active, a:focus {
   outline: 0;
-  color: #FF9900;
+  color: #FF9900;  
+  text-decoration: none;
+
 }
 
 .navbar-fixed-top {
