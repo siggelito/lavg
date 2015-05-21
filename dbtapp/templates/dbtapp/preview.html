@@ -78,23 +78,22 @@ Färg 2: <input id="colInputTest2" type="text" name="fname"><br>
 									<p>Inställningar</p>
 								</div>
 								<div class="settings-content">
-									<p>I'm sorry..</p>
-									<p>There are currently no settings implemented.</p>
-									<p>All you can do here is to remove this picture.</p>
+									<p>Ta bort bilden permanent: </p> <a class="btn btn-primary delete" href="{% url 'dbtapp:photoRemoveEdit' video.pk form.instance.pk %}"><span class="glyphicon glyphicon-trash" id="hover-white" aria-hidden="true"></span></a> 
 									<div>
-										<a class="btn btn-default" href="{% url 'dbtapp:photoRemoveEdit' video.pk form.instance.pk %}">Remove</a>
-										<input type="submit" value="Save" class="btn btn-default">
+										<!-- EJ IPLEMENTERAD ÄN -->
+										<button class="btn btn-primary" href="#" title="Close">Avbryt</button>
+                               			<input type="submit" value="Save" class="btn btn-primary">
 									</div>
 								</div>
 							</div>
 							<div class="image-text-content"> 
 								<div>
-									<p>Enter description here:</p>
+									<p>Ange bildtext:</p>
 									{% render_field form.description class+="form-control" tabindex=1 %}
 								</div>
 
 							</div>
-							<div class="close-btn-settings" href="#" title="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+							<div class="close-btn-settings" href="#" title="Close"><span class="glyphicon glyphicon-remove" id="hover-white" aria-hidden="true"></span></div>
 						</form>
 						<!-- close settings -->
 
