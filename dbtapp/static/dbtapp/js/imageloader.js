@@ -43,16 +43,33 @@ function imageloader(){
         $('#addFileWrapper').css('background-color', backgroundColor);
     }
 
-    // create video object
-    var video = {
-        images: [],
-        intro: null,
-        outro: null
-    };
-    var slideshow = document.getElementById('slideshow');
+    
 
-    function initializeVideo () {
-        var list = $('#slideshow li div');
+
+    initializeVideo();
+    var images = $('#images li form div img');
+
+    for (var i = 0; i < images.length; i++) {
+        var size = calcSize(images[i].parentNode,images[i]);
+        images[i].style.width = size.width + "px";
+        images[i].style.height = size.height + "px";
+        images[i].style.marginTop = size.paddingTop + "px";
+        images[i].style.marginLeft = size.paddingLeft + "px";
+    }    
+}
+
+function initializeVideo () {
+
+        // create video object
+        var video = {
+            images: [],
+            intro: null,
+            outro: null
+        };
+        var slideshow = document.getElementById('slideshow');
+
+
+        var list = $('#slideshow li .slideshow-parent');
         var images = $('#slideshow li div img');
         var texts = $('#slideshow li div .description');
 
@@ -139,18 +156,6 @@ function imageloader(){
         doneLoadingFiles(video);
 
     }
-    initializeVideo();
-
-    var images = $('#images li form div img');
-
-    for (var i = 0; i < images.length; i++) {
-        var size = calcSize(images[i].parentNode,images[i]);
-        images[i].style.width = size.width + "px";
-        images[i].style.height = size.height + "px";
-        images[i].style.marginTop = size.paddingTop + "px";
-        images[i].style.marginLeft = size.paddingLeft + "px";
-    }    
-}
 
 function calcSize( parent, image ) {
     var imgWidth = image.offsetWidth;
@@ -206,7 +211,7 @@ function getSize( image, width, height ) {
     return {width: width, height: height, paddingLeft: paddingLeft, paddingTop: paddingTop};
 }
 
-function loadImages(sources, callback) {
+/*function loadImages(sources, callback) {
     var images = [];
     var loadedImages = 0;
     var numImages = 0;
@@ -233,5 +238,5 @@ function loadSingleImage(source, callback) {
         callback(image);
     };
     image.src = source;
-}
+}*/
 

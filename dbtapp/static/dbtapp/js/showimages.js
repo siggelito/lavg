@@ -284,6 +284,18 @@ function postSettingsForm(form) {
             		break;
             	}
             }
+
+            var list = $('#slideshow li');
+            for (var i = 1; i < list.length-1; i++) {
+            	var itemPK = parseInt($(list[i]).attr('rel'));
+            	var photoPK = json.photo_pk;
+            	if (itemPK == photoPK) {
+            		var elem = $(list[i]).find('.description');
+            		$(elem).html(json.description);
+            		break;
+            	}
+            }
+
         },
 
         // handle a non-successful response

@@ -267,7 +267,6 @@ def phantomjspk(request, pk):
     url = request.build_absolute_uri(path)
 
     url_video = request.build_absolute_uri()
-    print(url_video)
     url_list = url_video.split("/")
     url_video = "http://"+url_list[2]+"/"
     video = Video.objects.get(pk=pk)
@@ -284,7 +283,7 @@ def phantomjspk(request, pk):
     # import pdb; pdb.set_trace()
     # _thread.setDaemon(True)
     # _thread.start()
-    return HttpResponse('<h1>Sucsess</h1>')
+    return redirect('dbtapp:videoList')
 
 # #@app.task
 # def renderVideo(request,pk):

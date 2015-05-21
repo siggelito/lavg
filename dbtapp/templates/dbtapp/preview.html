@@ -117,10 +117,10 @@ var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
 {% endblock %}
 
 {% block leftNav %}
-<a href="{% url 'dbtapp:videoStep' video.pk 3%}"><span id="navigationArrow" tabindex=3 class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
+<a href="{% url 'dbtapp:videoStep' video.pk 3%}"><span id="navigationArrow" tabindex=4 class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
 {% endblock %}
 
 {% block rightNav %}
-<a href="{% url 'dbtapp:videoList' %}"><span id="navigationArrow" tabindex=3 class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
+<a href="{% url 'dbtapp:phantomjspk' video.pk %}"><span id="navigationArrow" tabindex=3 class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span></a>
 {% endblock %}
 

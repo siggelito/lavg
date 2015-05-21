@@ -7,8 +7,9 @@ from dbtapp.models import Video
 @shared_task
 def renderVideo(url,url_video, pk, video_name):
     
-    video = Video.objects.get(pk=pk);
-    
+    video = Video.objects.get(pk=pk)
+    video.video_url = ""
+    video.save()
     phantomjsCommand = 'phantomjs'
     phantomjsScript = 'dbtapp/phantomjsRenderVideo.js'
     
@@ -23,11 +24,12 @@ def renderVideo(url,url_video, pk, video_name):
     try:
         #(out, error) = 
         ffmpegProcess.communicate()
+        video.video_url = url_video + "media/videos/" + str(pk) + "-" + video_name + ".mp4"
+        video.save()
         #print(out, error)
     except Exception as e:
         print("\t\tException: %s" % e)
         phantomProcess.kill()
         ffmpegProcess.kill()
 
-    video.video_url = url_video + "media/videos/" + str(pk) + "-" + video_name + ".mp4"
-    video.save()
+    
