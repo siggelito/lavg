@@ -31,8 +31,7 @@
                         <div class="settings-content">
                             <p>Ta bort bilden permanent.<a class="btn btn-primary delete" href="{% url 'dbtapp:photoRemove' video.pk imgtype form.instance.pk %}"><span class="glyphicon glyphicon-trash" id="hover-white" aria-hidden="true"></span></a></p>
                             <div>
-                                <!-- EJ FUNGERANDE! -->
-                                <a class="btn btn-primary" href="#">Avbryt</a>
+                                <button class="btn btn-primary settings-cancel">Avbryt</button>
 
                                 <input type="submit" value="Save" class="btn btn-primary">
                             </div>

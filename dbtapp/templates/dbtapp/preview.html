@@ -80,8 +80,8 @@ Färg 2: <input id="colInputTest2" type="text" name="fname"><br>
 								<div class="settings-content">
 									<p>Ta bort bilden permanent: </p> <a class="btn btn-primary delete" href="{% url 'dbtapp:photoRemoveEdit' video.pk form.instance.pk %}"><span class="glyphicon glyphicon-trash" id="hover-white" aria-hidden="true"></span></a> 
 									<div>
-										<!-- EJ IPLEMENTERAD ÄN -->
-										<button class="btn btn-primary" href="#" title="Close">Avbryt</button>
+										<button class="btn btn-primary settings-cancel">Avbryt</button>
+
                                			<input type="submit" value="Save" class="btn btn-primary">
 									</div>
 								</div>

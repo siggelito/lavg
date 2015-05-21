@@ -12,6 +12,7 @@ function openImageSetting(elem) {
 	var imageWrapper = null;
 	var settingsContent = null;
 	var inputTextField = null;
+	var settingsCancel = null;
 
 	var form = newObject.childNodes[1];
 
@@ -41,6 +42,7 @@ function openImageSetting(elem) {
 			for (var j = 0; j < settingsChilds.length; j++) {
 				if (settingsChilds[j].className == "settings-content") {
 					settingsContent = settingsChilds[j];
+					settingsCancel = $(settingsChilds[j]).find(".settings-cancel");
 					break;
 				}
 
@@ -114,7 +116,12 @@ function openImageSetting(elem) {
 
 	
 
-
+	$(settingsCancel).on("click", function () {
+		$(settings).children().fadeOut();
+		$(inputTextField).children().fadeOut();
+		$(settingsCloseButton).hide();
+		timeline.reverse();
+	});
 	settingsCloseButton.style.display = "block";
 	settingsCloseButton.onclick = function() {
 		$(settings).children().fadeOut();
