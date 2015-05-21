@@ -121,6 +121,6 @@ var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"
 {% endblock %}
 
 {% block rightNav %}
-<a href="#"><span id="navigationArrow" tabindex=3 class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
+<a href="{% url 'dbtapp:videoList' %}"><span id="navigationArrow" tabindex=3 class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
 {% endblock %}
 
