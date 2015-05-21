@@ -22,7 +22,7 @@ def index(request):
     return render(request, 'dbtapp/Riktigindex.html')
 
 def videoList(request):
-    video_list = Video.objects.all()
+    video_list = Video.objects.order_by('-pk')
     return render(
         request,
         'dbtapp/videoList.html',
