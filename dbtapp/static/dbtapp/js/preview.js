@@ -31,6 +31,7 @@ function initPreview (imageSet) {
 		timeline = null;
 		//imageSet = null;
 		initializeVideo();
+		runSlideShow(sortSlideShow(imageSet), timeline);
 	});
 	
 /*	$("#repeat").delay(1000).on("click", function() {
