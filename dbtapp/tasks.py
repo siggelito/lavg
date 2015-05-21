@@ -5,7 +5,7 @@ from subprocess import Popen, PIPE, STDOUT
 from dbtapp.models import Video
 
 @shared_task
-def renderVideo(url, pk, video_name):
+def renderVideo(url,url_video, pk, video_name):
     
     video = Video.objects.get(pk=pk);
     
@@ -29,5 +29,5 @@ def renderVideo(url, pk, video_name):
         phantomProcess.kill()
         ffmpegProcess.kill()
 
-    video.video_url = url + "media/videos/" + str(pk) + "-" + video_name + ".mp4"
+    video.video_url = url_video + "media/videos/" + str(pk) + "-" + video_name + ".mp4"
     video.save()

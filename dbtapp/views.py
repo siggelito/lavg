@@ -263,9 +263,15 @@ from dbtapp.tasks import renderVideo
 def phantomjspk(request, pk):
 
     path = reverse('dbtapp:videoRender', kwargs={'pk': pk})
+    
     url = request.build_absolute_uri(path)
+
+    url_video = request.build_absolute_uri()
+    print(url_video)
+    url_list = url_video.split("/")
+    url_video = "http://"+url_list[2]+"/"
     video = Video.objects.get(pk=pk)
-    renderVideo.delay(url, pk, video.video_name)  # @UndefinedVariable
+    renderVideo.delay(url,url_video, pk, video.video_name)  # @UndefinedVariable
 
     # queue = Queue()
     # p = Process(target=renderVideo, args=(request, pk))

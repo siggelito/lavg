@@ -1,12 +1,16 @@
-$(window).load(function(){
+$(window).load(function  () {
+    imageloader();
+}); 
+
+function imageloader(){
     
     /*TEST*/
     $("#test").on("click", function() {
         $("#colorCode1").html($("#colInputTest").val());
-	});
+    });
     $("#test2").on("click", function() {
         $("#colorCode2").html($("#colInputTest2").val());
-	});
+    });
     
 
     var navList = $(".round-button .round-button-circle");
@@ -146,7 +150,7 @@ $(window).load(function(){
         images[i].style.marginTop = size.paddingTop + "px";
         images[i].style.marginLeft = size.paddingLeft + "px";
     }    
-}); 
+}
 
 function calcSize( parent, image ) {
     var imgWidth = image.offsetWidth;
