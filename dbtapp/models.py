@@ -1,6 +1,7 @@
 from django.db import models
 from django.forms import Field
 from django.utils.translation import ugettext_lazy
+from celery.worker.strategy import default
 
 Field.default_error_messages = {
     'required': ugettext_lazy("Hoppsan, detta fylldes inte i!")}
@@ -11,6 +12,7 @@ class Logo(models.Model):
 class Video(models.Model):
     company_name = models.CharField(max_length=100, default = None)
     video_name = models.CharField(max_length=100, default = None)
+    video_url = models.CharField(max_length=500, default = "")
     logo = models.ForeignKey(Logo, null=True, blank=True, default = None)
     
 class Photo(models.Model):
