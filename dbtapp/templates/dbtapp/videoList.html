@@ -35,6 +35,9 @@ Videobibliotek
         </div>
         <div class="col-md-2">
             <a href="{% url 'dbtapp:videoRemove' video.pk %}" class="btn btn-primary delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+			{% if video.video_url %}
+			<a href={{ video.video_url }} class="btn btn-primary download"><span class="glyphicon glyphicon-save" aria-hidden="true"></span></a>
+			{% endif %}
         </div>
     </div>
     {% endfor %}
