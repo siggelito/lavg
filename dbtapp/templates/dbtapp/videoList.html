@@ -1,5 +1,6 @@
 {% extends "dbtapp/base.html" %}
 {% load staticfiles %}
+
 <!--
 {% block head %}
 <div class="content" id="header">
@@ -25,6 +26,12 @@ Videobibliotek
 {% endblock %}
 
 {% block content %}
+
+<script>
+	setTimeout(function(){
+		location.reload(true)
+	}, 1000 * 30);
+</script>
 
 {% if video_list %}  
 <div class="list-group clearfix"> 
