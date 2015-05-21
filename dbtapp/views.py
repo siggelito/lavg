@@ -29,7 +29,7 @@ def videoList(request):
         {'video_list': video_list},
     )
 
-def videoUpdate(request, pk):
+def videoUpdate(request, pk=-1):
     #import pdb; pdb.set_trace()
     try:
         instance = Video.objects.get(pk=pk)
