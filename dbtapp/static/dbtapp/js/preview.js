@@ -1,4 +1,4 @@
-
+var first = true;
 var timeline = null;
 function initPreview (imageSet) {	
 	timeline = new TimelineMax();
@@ -6,7 +6,11 @@ function initPreview (imageSet) {
 	var previewButton = document.getElementById("preview-button");
 	if (previewButton == null) {
 		$("#preview").css("opacity", "1");
-		runSlideShow(sortSlideShow(imageSet), timeline);
+		if (first) {
+			runSlideShow(sortSlideShow(imageSet), timeline);
+			first= false;
+		}
+		
 	}
 	
 	$("#pause").html("<span class='glyphicon glyphicon-pause'></span>");
