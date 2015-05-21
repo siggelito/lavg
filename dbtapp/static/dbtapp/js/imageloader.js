@@ -1,4 +1,13 @@
 $(window).load(function(){
+    
+    /*TEST*/
+    $("#test").on("click", function() {
+        $("#colorCode1").html($("#colInputTest").val());
+	});
+    $("#test2").on("click", function() {
+        $("#colorCode2").html($("#colInputTest2").val());
+	});
+    
 
     var navList = $(".round-button .round-button-circle");
         if(document.getElementById('head-number') != null) {

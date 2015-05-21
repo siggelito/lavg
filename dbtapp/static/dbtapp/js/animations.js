@@ -97,18 +97,30 @@ function startAnimationSetup(first) {
 	compLogo.className = "compLogo";
 	compLogo.style.textAlign = "center";
 	compLogo.style.position = "absolute";
-	compLogo.style.width = (first.parent.clientWidth/10) + "px";
-	compLogo.style.height = (first.parent.clientWidth/10) + "px";
+	compLogo.style.width = (first.parent.clientWidth/8) + "px";
+	compLogo.style.height = (first.parent.clientWidth/8) + "px";
 	compLogo.style.top = "30%";
 	var leftPos = (first.parent.clientWidth/2) - (($(compLogo).width())/2);
 	compLogo.style.left = leftPos + "px";
-	compLogo.style.backgroundColor = "red";	
+	compLogo.style.backgroundSize = ($(compLogo).width()) + "px " + ($(compLogo).width()) + "px";
+	compLogo.style.backgroundPosition = "0px 0px";
+	compLogo.style.backgroundImage = "url('" + $("#logo-img").attr("src") + "')";
 	first.parent.appendChild(compLogo);
+	
+	if ($("#colInputTest").val() !== "") {
+		first.parent.style.backgroundColor = $("#colInputTest").val();
+		$("#slideshow").css("background-color",$("#colInputTest").val());
+	}
+	if ($("#colInputTest2").val() !== "") {
+		first.parent.style.color = $("#colInputTest2").val();
+		lineL.style.backgroundColor = $("#colInputTest2").val();
+		lineR.style.backgroundColor = $("#colInputTest2").val();
+	}
 	
 }
 
 function endAnimation(last, outro, timeline, transitionLength) {
-
+	
 	
 	//Setup
 	timeline.add(TweenLite.to($(last.parent), 0.01, {opacity:0}));
@@ -162,15 +174,25 @@ function endAnimationSetup(last) {
 	compLogoE.className = "compLogoE";
 	compLogoE.style.textAlign = "center";
 	compLogoE.style.position = "absolute";
-	compLogoE.style.width = (last.parent.clientWidth/10) + "px";
-	compLogoE.style.height = (last.parent.clientWidth/10) + "px";
+	compLogoE.style.width = (last.parent.clientWidth/8) + "px";
+	compLogoE.style.height = (last.parent.clientWidth/8) + "px";
 	compLogoE.style.top = "66%";
 	var leftPos = (last.parent.clientWidth/2) - (($(compLogoE).width())/2);
 	compLogoE.style.left = leftPos + "px";
-	compLogoE.style.backgroundColor = "red";	
+	compLogoE.style.backgroundSize = ($(compLogoE).width()) + "px " + ($(compLogoE).width()) + "px";
+	compLogoE.style.backgroundPosition = "0px 0px";
+	compLogoE.style.backgroundImage = "url('" + $("#logo-img").attr("src") + "')";
 	last.parent.appendChild(compLogoE);
 	
-	
+	if ($("#colInputTest").val() !== "") {
+		last.parent.style.backgroundColor = $("#colInputTest").val();
+		$("#slideshow").css("background-color",$("#colInputTest").val());
+	}
+	if ($("#colInputTest2").val() !== "") {
+		last.parent.style.color = $("#colInputTest2").val();
+		lineLE.style.backgroundColor = $("#colInputTest2").val();
+		lineRE.style.backgroundColor = $("#colInputTest2").val();
+	}
 	
 }
 
@@ -223,7 +245,15 @@ function panoramaTextEffSetup(current) {
 		picTextCont.style.width = "0%";
 		picTextCont.style.top = "80%";
 		picTextCont.style.left = "0%";
-		picTextCont.style.backgroundColor = "#ff3";
+		picTextCont.style.opacity = "0";
+		picTextCont.style.backgroundColor = "#fff";
+		if ($("#colInputTest").val() !== "") {
+			picTextCont.style.backgroundColor = $("#colInputTest").val();
+		}
+		if ($("#colInputTest2").val() !== "") {
+			picTextCont.style.color = $("#colInputTest2").val();
+		}
+		
 		current.parent.appendChild(picTextCont);
 	}
 }

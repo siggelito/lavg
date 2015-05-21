@@ -103,15 +103,10 @@ body {
 }
 
 #slideshow-container{
-<<<<<<< HEAD
 	/*width: 800px;
 	height: 480px;*/
 	width: 400px;
 	height: 300px;
-=======
-	width: 400px;
-	height: 240px;
->>>>>>> ce1d1eb85a3721266961a4f3f8fd20c4113443d6
 	margin: 0px auto;
 	position: relative;
 	font-size: 20px;
@@ -405,6 +400,10 @@ body {
 
 #logo-img {
 	width: 70px;
+}
+
+#colorCode1{
+	visibility: hidden;
 }
 
 .glyphicon-plus	{

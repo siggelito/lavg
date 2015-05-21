@@ -13,11 +13,11 @@ function initPreview (imageSet) {
 		else{
 			if (!timeline.paused()) {
 				timeline.pause();
-				$(this).html("<span class='glyphicon glyphicon-pause'></span>");
+				$(this).html("<span class='glyphicon glyphicon-play'></span>");
 			}
 			else{
 				timeline.play();
-				$(this).html("<span class='glyphicon glyphicon-play'></span>");
+				$(this).html("<span class='glyphicon glyphicon-pause'></span>");
 			}
 		}
 	});
@@ -28,6 +28,7 @@ function initPreview (imageSet) {
 	
 	$("#repeat").delay(1000).on("click", function() {
 		timeline.restart();
+		$("#pause").html("<span class='glyphicon glyphicon-pause'></span>");
     });
 	
 	$("#preview-button").delay(1000).on("click", function() {
