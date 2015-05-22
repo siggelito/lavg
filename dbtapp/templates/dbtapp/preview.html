@@ -52,10 +52,11 @@ Din film är snart klar!
 		
 		<div class="col-xs-3 col-sm-3 col-md-3 buffer-0">
 			<h5>Text:</h5>
-			<div id="text-color" class="color-box"></div>
+			<div class="color-box text-color"></div>
 		</div>
 		<div class="col-xs-9 col-sm-9 col-md-9 buffer-0">
-			<h5>Bakgrund:</h5><div id="background-color" class="color-box"></div>
+			<h5>Bakgrund:</h5>
+			<div class="color-box background-color"></div>
 		</div>
 				
 		<div class="col-xs-5 col-sm-5 col-md-5 buffer">
@@ -119,7 +120,7 @@ Din film är snart klar!
 		</div>
 
 
-		<script>
+<script>
 //var companyName = {{video.name}};
 var postURL = "{% url 'dbtapp:videoEdit' video.pk %}";
 var postLogoURL = "{% url 'dbtapp:logoPost' video.pk %}"

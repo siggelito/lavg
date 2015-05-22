@@ -36,8 +36,6 @@ function initPreview (imageSet) {
 		timeline = null;
 		//imageSet = null;
 		initializeVideo();
-
-           //alert($('.color-box').css('background-color'));
 		
 		//runSlideShow(sortSlideShow(imageSet), timeline);
 

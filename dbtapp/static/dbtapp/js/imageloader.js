@@ -32,29 +32,9 @@ function imageloader(){
         } 
         $('#addFileWrapper').css('background-color', backgroundColor);
     }
-    
-    $('#text-color').colpick({
-        colorScheme:'dark',
-        layout:'rgbhex',
-        color:'#000',
-        onSubmit:function(hsb,hex,rgb,el) {
-            $(el).css('background-color', '#'+hex);
-            $(el).colpickHide();
-        },
-    })
-    .css('background-color', '#000');
-    
-    $('#background-color').colpick({
-        colorScheme:'dark',
-        layout:'rgbhex',
-        color:'#ffffff',
-        onSubmit:function(hsb,hex,rgb,el) {
-            $(el).css('background-color', '#'+hex);
-            $(el).colpickHide();
-        },
-    })
-    .css('background-color', '#fff');
 
+    initializeColorSetting();
+    
     initializeVideo();
     
     var images = $('#images li form div img');
@@ -67,20 +47,52 @@ function imageloader(){
     }    
 }
 
+var textCol = "green";
+function initializeColorSetting(){
+    $('.text-color').colpick({
+        colorScheme:'dark',
+        layout:'rgbhex',
+        color:localStorage.getItem('text-col'),
+        onSubmit:function(hsb,hex,rgb,el) {
+            $(el).css('background-color', '#'+hex);
+            $(el).colpickHide();
+            localStorage.setItem("text-col", $('.text-color').css('background-color'));
+        },
+    })
+    .css('background-color', localStorage.getItem('text-col'));
+    
+    $('.background-color').colpick({
+        colorScheme:'dark',
+        layout:'rgbhex',
+        color:localStorage.getItem('background-col'),
+        onSubmit:function(hsb,hex,rgb,el) {
+            $(el).css('background-color', '#'+hex);
+            $(el).colpickHide();
+            localStorage.setItem("background-col", $('.background-color').css('background-color'));
+        },
+    })
+    .css('background-color', localStorage.getItem('background-col')); 
+}
+
 function initializeVideo () {
     
-        var fontChoice = document.getElementById("font");
-        var font = fontChoice.options[fontChoice.selectedIndex].value;
+        if (document.getElementById("font") != undefined) {
+            var fontChoice = document.getElementById("font");
+            var font = fontChoice.options[fontChoice.selectedIndex].value;
+            localStorage.setItem("font", font);
+        }
+
     
         // create video object
         var video = {
             images: [],
             intro: null,
             outro: null,
-            fontFamily: fontChoice.options[fontChoice.selectedIndex].value,
-            textColor: $('#text-color').css('background-color'),
-            backgroundColor: $('#background-color').css('background-color')
+            fontFamily: localStorage.getItem('font'),//fontChoice.options[fontChoice.selectedIndex].value,
+            textColor: localStorage.getItem('text-col'),//$('.text-color').css('background-color'),
+            backgroundColor: localStorage.getItem('background-col')//$('.background-color').css('background-color')
         };
+        
         var slideshow = document.getElementById('slideshow');
     
         var list = $('#slideshow li .slideshow-parent');
@@ -90,10 +102,10 @@ function initializeVideo () {
         // create intro screen
         video.intro = {
             transition: function(first, timeline, transitionLength){
-                fadeStartAnimation(first, timeline, transitionLength);
+                startAnimation(first, timeline, transitionLength);
             },
             transitionSetup: function(first){
-                fadeStartAnimationSetup(first);
+                startAnimationSetup(first);
             },
             transitionLength: 2,
             effectLengt: 2, 
@@ -161,10 +173,10 @@ function initializeVideo () {
         // create outro screen
         video.outro = {
             transition: function(last, outro, timeline, transitionLength){
-                fadeEndAnimation(last, outro, timeline, transitionLength);
+                endAnimation(last, outro, timeline, transitionLength);
             },
             transitionSetup: function(last){
-                fadeEndAnimationSetup(last);
+                endAnimationSetup(last);
              },
             transitionLength: 1,
             effectLengt: 2,

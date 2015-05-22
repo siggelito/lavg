@@ -29,10 +29,10 @@
 	<!-- Google font som finns på servern-->
 	<link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light|Indie+Flower|Pacifico|Amatic+SC|Rochester|Roboto+Condensed:400,300,700' rel='stylesheet' type='text/css'>
 	<!-- Font video-->
-	<link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light+Two' rel='stylesheet' type='text/css'>
+	<!--<link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light+Two' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Amatic+SC:700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Amatic+SC:700' rel='stylesheet' type='text/css'>-->
 	
 	<!-- CSS för base.html -->
 	<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/styleBase.css' %}" />
@@ -45,10 +45,19 @@
 
 	
 	<script type="text/javascript" src="{% static 'dbtapp/js/WearProtection.js' %}"></script>
+	
+	<script>
+		//localStorage.setItem("text-col", "#000");
+		function setVideoDefault(){
+			localStorage.setItem("text-col", "#000000");
+			localStorage.setItem("background-col", "#ffffff");
+			localStorage.setItem("font", "'Roboto Condensed', sans-serif");
+		}	
+	</script>
 
 </head>
 
-<body>
+<body onload="setVideoDefault()">
 	<header>
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">

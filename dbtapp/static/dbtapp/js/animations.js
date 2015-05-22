@@ -32,8 +32,8 @@ function startAnimation(first, timeline, transitionLength) {
 	timeline.add(TweenLite.to($(".lineL"), 0.6, {top:"0%"}));
 	timeline.add(TweenLite.to($(".lineR"), 0.6, {delay: -0.6, top:"0%"}));
 	timeline.add(TweenLite.to($(".videoNameCont"), 0.5, {delay: -0.5, opacity: 0}));
-	timeline.add(TweenLite.to($(".lineL"), 0.8, {top:"50%"}));
-	timeline.add(TweenLite.to($(".lineR"), 0.8, {delay: -0.8, top:"50%"}));
+	timeline.add(TweenLite.to($(".lineL"), 0.8, {top:"60%"}));
+	timeline.add(TweenLite.to($(".lineR"), 0.8, {delay: -0.8, top:"60%"}));
 	timeline.add(TweenLite.to($(".compNameCont"), 0.5, {delay: -0.5, opacity: 0}));
 	timeline.add(TweenLite.to($(".compLogo"), 0.5, {delay: -0.3, opacity: 0}));
 	timeline.add(TweenLite.to($(".lineL"), 0.6, {width:"0%"}));
@@ -89,21 +89,17 @@ function startAnimationSetup(first) {
 	compNameCont.style.opacity = "0";
 	first.parent.appendChild(compNameCont);
 	
-	var compLogo = document.createElement("div");
-	compLogo.className = "compLogo";
-	compLogo.style.textAlign = "center";
-	compLogo.style.position = "absolute";
-	compLogo.style.width = (first.parent.clientWidth/8) + "px";
-	compLogo.style.height = (first.parent.clientWidth/8) + "px";
-	compLogo.style.top = "31%";
-	var leftPos = (first.parent.clientWidth/2) - (($(compLogo).width())/2);
-	compLogo.style.left = leftPos + "px";
-	compLogo.style.backgroundSize = ($(compLogo).width()) + "px " + ($(compLogo).width()) + "px";
-	compLogo.style.backgroundPosition = "0px 0px";
-	compLogo.style.backgroundImage = "url('" + $("#logo-img").attr("src") + "')";
-	compLogo.style.opacity = "0";
-	first.parent.appendChild(compLogo);
-	
+	//If logo
+	if ($("#logo-img").attr("src") !== "") {
+		var logoDiv = setLogo(first.parent);
+		logoDiv.className = "compLogo";
+		logoDiv.style.top = "31%";
+		var leftPos = (first.parent.clientWidth/2) - (($(logoDiv).width())/2);
+		logoDiv.style.left = leftPos + "px";
+		logoDiv.style.opacity = "0";
+		first.parent.appendChild(logoDiv);
+	}
+
 	/*if ($("#colInputTest").val() !== "") {
 		first.parent.style.backgroundColor = $("#colInputTest").val();
 		$("#slideshow").css("background-color",$("#colInputTest").val());
@@ -156,21 +152,16 @@ function fadeStartAnimationSetup(first) {
 	compNameCont.style.opacity = "1";
 	first.parent.appendChild(compNameCont);
 	
-	var compLogo = document.createElement("div");
-	compLogo.className = "compLogo";
-	compLogo.style.textAlign = "center";
-	compLogo.style.position = "absolute";
-	compLogo.style.width = (first.parent.clientWidth/8) + "px";
-	compLogo.style.height = (first.parent.clientWidth/8) + "px";
-	compLogo.style.top = "35%";
-	var leftPos = (first.parent.clientWidth/2) - (($(compLogo).width())/2);
-	compLogo.style.left = leftPos + "px";
-	compLogo.style.backgroundSize = ($(compLogo).width()) + "px " + ($(compLogo).width()) + "px";
-	compLogo.style.backgroundPosition = "0px 0px";
-	compLogo.style.backgroundImage = "url('" + $("#logo-img").attr("src") + "')";
-	compLogo.style.opacity = "1";
-	first.parent.appendChild(compLogo);
-	
+	//If logo
+	if ($("#logo-img").attr("src") !== "") {
+		var logoDiv = setLogo(first.parent);
+		logoDiv.className = "compLogo";
+		logoDiv.style.top = "35%";
+		var leftPos = (first.parent.clientWidth/2) - (($(logoDiv).width())/2);
+		logoDiv.style.left = leftPos + "px";
+		first.parent.appendChild(logoDiv);
+	}
+
 	//Font, color
 	first.parent.style.fontFamily = first.fontFamily;
 	first.parent.style.color = first.textColor;
@@ -254,19 +245,16 @@ function endAnimationSetup(last) {
 	compNameContE.style.opacity = "0";
 	last.parent.appendChild(compNameContE);
 	
-	var compLogoE = document.createElement("div");
-	compLogoE.className = "compLogoE";
-	compLogoE.style.textAlign = "center";
-	compLogoE.style.position = "absolute";
-	compLogoE.style.width = (last.parent.clientWidth/8) + "px";
-	compLogoE.style.height = (last.parent.clientWidth/8) + "px";
-	compLogoE.style.top = "66%";
-	var leftPos = (last.parent.clientWidth/2) - (($(compLogoE).width())/2);
-	compLogoE.style.left = leftPos + "px";
-	compLogoE.style.backgroundSize = ($(compLogoE).width()) + "px " + ($(compLogoE).width()) + "px";
-	compLogoE.style.backgroundPosition = "0px 0px";
-	compLogoE.style.backgroundImage = "url('" + $("#logo-img").attr("src") + "')";
-	last.parent.appendChild(compLogoE);
+	//If logo
+	if ($("#logo-img").attr("src") !== "") {
+		var logoDiv = setLogo(last.parent);
+		logoDiv.className = "compLogoE";
+		logoDiv.style.top = "66%";
+		var leftPos = (last.parent.clientWidth/2) - (($(logoDiv).width())/2);
+		logoDiv.style.left = leftPos + "px";
+		logoDiv.style.opacity = "1";
+		last.parent.appendChild(logoDiv);
+	}
 	
 	//Font, color
 	last.parent.style.fontFamily = last.fontFamily;
@@ -308,19 +296,15 @@ function fadeEndAnimationSetup(last) {
 	compNameContE.style.opacity = "1";
 	last.parent.appendChild(compNameContE);
 	
-	var compLogoE = document.createElement("div");
-	compLogoE.style.textAlign = "center";
-	compLogoE.style.position = "absolute";
-	compLogoE.style.width = (last.parent.clientWidth/8) + "px";
-	compLogoE.style.height = (last.parent.clientWidth/8) + "px";
-	compLogoE.style.top = "66%";
-	var leftPos = (last.parent.clientWidth/2) - (($(compLogoE).width())/2);
-	compLogoE.style.left = leftPos + "px";
-	compLogoE.style.backgroundSize = ($(compLogoE).width()) + "px " + ($(compLogoE).width()) + "px";
-	compLogoE.style.backgroundPosition = "0px 0px";
-	compLogoE.style.backgroundImage = "url('" + $("#logo-img").attr("src") + "')";
-	compLogoE.style.opacity = "1";
-	last.parent.appendChild(compLogoE);
+	//If logo
+	if ($("#logo-img").attr("src") !== "") {
+		var logoDiv = setLogo(last.parent);
+		logoDiv.className = "compLogoE";
+		logoDiv.style.top = "66%";
+		var leftPos = (last.parent.clientWidth/2) - (($(logoDiv).width())/2);
+		logoDiv.style.left = leftPos + "px";
+		last.parent.appendChild(logoDiv);
+	}
 	
 	//Font, color
 	last.parent.style.fontFamily = last.fontFamily;
@@ -609,6 +593,33 @@ function shrinkTransSetup(previous, current, next) {
 	current.parent.appendChild(div);
 }
 
+/* Setup common */
+function setLogo(parent){
+	var compLogo = document.createElement("div");
+		compLogo.style.textAlign = "center";
+		compLogo.style.position = "absolute";
+		compLogo.style.width = (parent.clientWidth/6) + "px";
+		compLogo.style.height = (parent.clientWidth/6) + "px";
+		
+		var logoIm = new Image();
+		logoIm.src = $("#logo-img").attr("src");
+		//Landscape
+		var prop;
+		if (logoIm.naturalWidth > logoIm.naturalHeight) {
+			prop = logoIm.naturalWidth/(parent.clientWidth/6);
+		}
+		else{//Portrait
+			prop = logoIm.naturalHeight/(parent.clientWidth/6);
+		}
+	
+		compLogo.style.backgroundSize = (logoIm.naturalWidth/prop) + "px " + (logoIm.naturalHeight/prop) + "px";
+		compLogo.style.backgroundRepeat="no-repeat";
+		compLogo.style.backgroundPosition = "center";
+		compLogo.style.backgroundImage = "url('" + $("#logo-img").attr("src") + "')";
+		compLogo.style.opacity = "1";
+		return compLogo;
+}
+
 /* Timeline */
 /* Timeline börjar om när stängknappen på previewfönster trycks */
 function killTimeline(timeline) {
@@ -668,4 +679,6 @@ function initControls(timeline){
 	timeline.progress(1)
 	
 }
+
+
 
