@@ -569,6 +569,15 @@ a:hover {
 	background-color:gray;
 }
 
+
+.top-buffer-1	{
+	padding-top: 2%;
+}
+
+.side-buffer-7	{
+	padding-left:7%;
+}
+
 a.list-group-item{
 	font-size: 18px;
 }
