@@ -12,7 +12,7 @@ Din film är snart klar!
 
 {% block content %}	
 <div class="row top-buffer-3">
-	<div class="col-xs-4 col-sm-4 col-md-4 col-md-offset-3">	
+	<div class="col-xs-6 col-sm-6 col-md-6">	
 
 	<div id="slideshow-container">
 
@@ -39,21 +39,23 @@ Din film är snart klar!
 				<p>{{ logoForm.photoFile }}</p>
 			</form>
 		</div>-->
-<div class="col-xs-5 col-sm-5 col-md-5 side-buffer-7">		
+<div class="col-xs-offset-1 col-xs-5 col-sm-5 col-md-5">		
 		<!-- Bildserie -->
-
-	<h3>Ladda upp logga:</h3>
-	<img id="logo-img" src="{{ logo.photoFile.url }}" alt="">
-	<form id="logo-form" action="{% url 'dbtapp:logoPost' video.pk %}" method="post" enctype="multipart/form-data">
-		{% csrf_token %}
-		<p>{{ logoForm.photoFile }}</p>
-	</form>
+	<div>
+		<h3>Ladda upp logga:</h3>
+		<img id="logo-img" src="{{ logo.photoFile.url }}" alt="">
+		<form id="logo-form" action="{% url 'dbtapp:logoPost' video.pk %}" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<p>{{ logoForm.photoFile }}</p>
+		</form>
 
 		<h3 class="top-buffer-1">Ändra textfärg:</h3>
 		# <input class="color" value="000000">
 
 		<h3 class="top-buffer-1">Ändra bakgrundsfärg:</h3>
 		# <input class="color" value="FFFFFF">
+	</div>
+	
 <!--TEST-->
 </div>
 </div>
