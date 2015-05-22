@@ -12,7 +12,7 @@ class Logo(models.Model):
 class Video(models.Model):
     company_name = models.CharField(max_length=100, default = None)
     video_name = models.CharField(max_length=100, default = None)
-    video_url = models.CharField(max_length=500, null=True, blank=True, default=None)
+    video_url = models.CharField(max_length=500, blank=True, default = None)
     logo = models.ForeignKey(Logo, null=True, blank=True, default = None)
     
 class Photo(models.Model):
