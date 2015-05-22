@@ -578,6 +578,13 @@ a:hover {
 	padding-left:7%;
 }
 
+.color-box {
+	width:30px;
+	height:30px;
+	margin:5px;
+	border: 1px solid black;
+}
+
 a.list-group-item{
 	font-size: 18px;
 }

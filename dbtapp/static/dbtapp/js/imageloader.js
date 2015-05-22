@@ -1,18 +1,8 @@
 $(window).load(function  () {
-    imageloader();
+    imageloader(); 
 }); 
 
 function imageloader(){
-    
-    /*TEST*/
-    $("#test").on("click", function() {
-        $("#colorCode1").html($("#colInputTest").val());
-    });
-    $("#test2").on("click", function() {
-        $("#colorCode2").html($("#colInputTest2").val());
-    });
-    
-
     var navList = $(".round-button .round-button-circle");
         if(document.getElementById('head-number') != null) {
         var pageNr = parseInt(document.getElementById('head-number').textContent.replace(/(\r\n|\n|\r)/gm,""));
@@ -42,13 +32,34 @@ function imageloader(){
         } 
         $('#addFileWrapper').css('background-color', backgroundColor);
     }
-
     
-
+    $('#text-color').colpick({
+        colorScheme:'dark',
+        layout:'rgbhex',
+        color:'yellow',
+        onSubmit:function(hsb,hex,rgb,el) {
+            $(el).css('background-color', '#'+hex);
+            $(el).colpickHide();
+        },
+    })
+    .css('background-color', 'yellow');
+    
+    $('#background-color').colpick({
+        colorScheme:'dark',
+        layout:'rgbhex',
+        color:'red',
+        onSubmit:function(hsb,hex,rgb,el) {
+            $(el).css('background-color', '#'+hex);
+            $(el).colpickHide();
+        },
+    })
+    .css('background-color', 'red');
 
     initializeVideo();
+    
+     alert($('.color-box').css('background-color'));
+    
     var images = $('#images li form div img');
-
     for (var i = 0; i < images.length; i++) {
         var size = calcSize(images[i].parentNode,images[i]);
         images[i].style.width = size.width + "px";
@@ -59,16 +70,22 @@ function imageloader(){
 }
 
 function initializeVideo () {
-
+    
         // create video object
         var video = {
             images: [],
             intro: null,
-            outro: null
+            outro: null,
+            fontFamily: "'Rochester', cursive",//"'Roboto Condensed', sans-serif",
+            textColor: $('#text-color').css('background-color'),
+            backgroundColor: $('#background-color').css('background-color')
         };
         var slideshow = document.getElementById('slideshow');
+             
+        //alert($('.color-box').css('background-color'));
+        //video.backgroundColor = $('.color-box').css('background-color');
 
-
+    
         var list = $('#slideshow li .slideshow-parent');
         var images = $('#slideshow li div img');
         var texts = $('#slideshow li div .description');
@@ -76,15 +93,18 @@ function initializeVideo () {
         // create intro screen
         video.intro = {
             transition: function(first, timeline, transitionLength){
-                startAnimation(first, timeline, transitionLength);
+                fadeStartAnimation(first, timeline, transitionLength);
             },
             transitionSetup: function(first){
-                startAnimationSetup(first);
+                fadeStartAnimationSetup(first);
             },
             transitionLength: 2,
             effectLengt: 2, 
-            parent: list[0]
-        } 
+            parent: list[0],
+            fontFamily: video.fontFamily,
+            textColor: video.textColor,
+            backgroundColor: video.backgroundColor
+        }
         // hide intro screen
         $(list[0]).css("opacity", "0");
 
@@ -103,18 +123,21 @@ function initializeVideo () {
                     //simpleTransSetup(previous, current, next);
                 },
                 effect: function(current, timeline, effectLength){
-                    panoramaTextEffect(current, timeline, effectLength);
-                    //panoramaEffect(current, timeline, effectLength);                    
+                    //plainEffect(current, timeline, effectLength);
+                    panoramaEffect(current, timeline, effectLength);                    
                 },
                 effectSetup: function(current){
-                    panoramaTextEffSetup(current);
-                    //panoramaEffSetup(current);
+                    //plainEffSetup(current);
+                    panoramaEffSetup(current);
                 },
                 transitionLength: 1, //(Math.floor((Math.random() * 4) + 2) * 1000)
-                effectLength: 5,
+                effectLength: 2,
                 image: images[i],
                 parent: list[i+1],
-                description: texts[i]
+                description: texts[i],
+                fontFamily: video.fontFamily,
+                textColor: video.textColor,
+                backgroundColor: video.backgroundColor
             };
             
             var size = calcSize(slideshow, images[i]);
@@ -141,20 +164,22 @@ function initializeVideo () {
         // create outro screen
         video.outro = {
             transition: function(last, outro, timeline, transitionLength){
-                endAnimation(last, outro, timeline, transitionLength);
+                fadeEndAnimation(last, outro, timeline, transitionLength);
             },
             transitionSetup: function(last){
-                endAnimationSetup(last);
+                fadeEndAnimationSetup(last);
              },
             transitionLength: 1,
             effectLengt: 2,
-            parent: list[i+1]
+            parent: list[i+1],
+            fontFamily: video.fontFamily,
+            textColor: video.textColor,
+            backgroundColor: video.backgroundColor
         } 
         // hide outro screen
         $(list[i+1]).css("opacity", "0");
 
         doneLoadingFiles(video);
-
     }
 
 function calcSize( parent, image ) {

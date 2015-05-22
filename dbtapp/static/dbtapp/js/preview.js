@@ -1,6 +1,8 @@
 var first = true;
 var timeline = null;
-function initPreview (imageSet) {	
+
+function initPreview (imageSet) {
+
 	timeline = new TimelineMax();
 	initControls(timeline);
 	var previewButton = document.getElementById("preview-button");
@@ -35,6 +37,8 @@ function initPreview (imageSet) {
 		timeline = null;
 		//imageSet = null;
 		initializeVideo();
+           //alert($('.color-box').css('background-color'));
+		
 		runSlideShow(sortSlideShow(imageSet), timeline);
 	});
 	

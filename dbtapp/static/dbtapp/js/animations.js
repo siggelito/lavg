@@ -14,26 +14,16 @@ function startAnimation(first, timeline, transitionLength) {
 	}),null);*/
 	
 	//Setup
-	timeline.add(TweenLite.to($("#company-text-intro"), 0.01, {opacity: 0}));
-	timeline.add(TweenLite.to($(".compNameCont"), 0.01, {opacity: 0}));
-	timeline.add(TweenLite.to($(".compLogo"), 0.01, {opacity: 0}));
-	timeline.add(TweenLite.to($("#video-text-intro"), 0.01, {scale: 0}));
-	timeline.add(TweenLite.to($("#video-text-intro"), 0.01, {opacity: 1}));
 	timeline.add(TweenLite.to($(first.parent), 0.01, {opacity:1}));
-	
-	//Stanan
-	timeline.add(TweenLite.to($(first.parent), 0.5, {}));
-	
-	//Line
-	timeline.add(TweenLite.to($("#video-text-intro"), 0.5, {scale: 1, ease:Linear.easeNone}));
+	timeline.add(TweenLite.to($(".videoNameCont"), 0.01, {opacity: 1}));
+	timeline.add(TweenLite.to($(".videoNameCont"), 0.01, {scale: 0}));
+
+	//Show
+	timeline.add(TweenLite.to($(".videoNameCont"), 0.5, {scale: 1}));
 	timeline.add(TweenLite.to($(".lineL"), 0.8, {width:"50%"}));
 	timeline.add(TweenLite.to($(".lineR"), 0.8, {delay: -0.8, width:"51%", left: "-=50%"}));
-	
-	//Company name
 	timeline.add(TweenLite.to($(".compNameCont"), 1, {opacity:1, top: "20%"}));
-	timeline.add(TweenLite.to($(".compLogo"), 1, {delay: -0.2, opacity:1, top: "34%"}));
-	
-	//timeline.add(TweenLite.to($(".compNameCont"), 1, {rotation: -90, transformOrigin:"60% 60%"}));
+	timeline.add(TweenLite.to($(".compLogo"), 1, {delay: -0.2, opacity:1, top: "35%"}));
 	
 	//Stanan
 	timeline.add(TweenLite.to($(first.parent), transitionLength, {}));
@@ -41,21 +31,17 @@ function startAnimation(first, timeline, transitionLength) {
 	//Erase
 	timeline.add(TweenLite.to($(".lineL"), 0.6, {top:"0%"}));
 	timeline.add(TweenLite.to($(".lineR"), 0.6, {delay: -0.6, top:"0%"}));
-	timeline.add(TweenLite.to($("#video-text-intro"), 0.5, {delay: -0.5, opacity: 0}));
+	timeline.add(TweenLite.to($(".videoNameCont"), 0.5, {delay: -0.5, opacity: 0}));
 	timeline.add(TweenLite.to($(".lineL"), 0.8, {top:"50%"}));
 	timeline.add(TweenLite.to($(".lineR"), 0.8, {delay: -0.8, top:"50%"}));
 	timeline.add(TweenLite.to($(".compNameCont"), 0.5, {delay: -0.5, opacity: 0}));
 	timeline.add(TweenLite.to($(".compLogo"), 0.5, {delay: -0.3, opacity: 0}));
-	
-	//Line
 	timeline.add(TweenLite.to($(".lineL"), 0.6, {width:"0%"}));
 	timeline.add(TweenLite.to($(".lineR"), 0.6, {delay: -0.6, width:"0%", left: "+=50%"}));
-
-	timeline.add(TweenLite.to($("#video-text-intro"), 0.01, {scale: 0}));
-	
 }
 function startAnimationSetup(first) {
 
+	$(".videoNameCont").remove();
 	$(".compNameCont").remove();
 	$(".compLogo").remove();
 	$(".lineL").remove();
@@ -68,7 +54,7 @@ function startAnimationSetup(first) {
 	lineL.style.position = "absolute";
 	lineL.style.left = "50%";
 	lineL.style.top = "15%";
-	lineL.style.backgroundColor = "rgba(0, 0, 0, 1)";	
+	lineL.style.backgroundColor = first.textColor;	
 	first.parent.appendChild(lineL);
 	
 	var lineR = document.createElement("div");
@@ -78,19 +64,29 @@ function startAnimationSetup(first) {
 	lineR.style.position = "absolute";
 	lineR.style.left = "50%";
 	lineR.style.top = "15%";
-	lineR.style.backgroundColor = "rgba(0, 0, 0, 1)";	
+	lineR.style.backgroundColor = first.textColor;	
 	first.parent.appendChild(lineR);
+	
+	var videoNameCont = document.createElement("div");
+	videoNameCont.className = "videoNameCont";
+	videoNameCont.style.fontSize = "200%";
+	videoNameCont.style.textAlign = "center";
+	videoNameCont.style.position = "absolute";
+	videoNameCont.innerHTML = $("#video-text-intro").html();
+	videoNameCont.style.width = "100%";
+	videoNameCont.style.top = "-3%";
+	videoNameCont.style.opacity = "0";
+	first.parent.appendChild(videoNameCont);
 
 	var compNameCont = document.createElement("div");
 	compNameCont.className = "compNameCont";
 	compNameCont.style.fontSize = "150%";
 	compNameCont.style.textAlign = "center";
 	compNameCont.style.position = "absolute";
-	compNameCont.style.fontFamily = $("h2").css("font-family");
-	compNameCont.style.fontWeight = $("h2").css("font-weight");
 	compNameCont.innerHTML = $("#company-text-intro").html();
 	compNameCont.style.width = "100%";
 	compNameCont.style.top = "15%";
+	compNameCont.style.opacity = "0";
 	first.parent.appendChild(compNameCont);
 	
 	var compLogo = document.createElement("div");
@@ -99,33 +95,94 @@ function startAnimationSetup(first) {
 	compLogo.style.position = "absolute";
 	compLogo.style.width = (first.parent.clientWidth/8) + "px";
 	compLogo.style.height = (first.parent.clientWidth/8) + "px";
-	compLogo.style.top = "30%";
+	compLogo.style.top = "31%";
 	var leftPos = (first.parent.clientWidth/2) - (($(compLogo).width())/2);
 	compLogo.style.left = leftPos + "px";
 	compLogo.style.backgroundSize = ($(compLogo).width()) + "px " + ($(compLogo).width()) + "px";
 	compLogo.style.backgroundPosition = "0px 0px";
 	compLogo.style.backgroundImage = "url('" + $("#logo-img").attr("src") + "')";
+	compLogo.style.opacity = "0";
 	first.parent.appendChild(compLogo);
 	
-	if ($("#colInputTest").val() !== "") {
+	/*if ($("#colInputTest").val() !== "") {
 		first.parent.style.backgroundColor = $("#colInputTest").val();
 		$("#slideshow").css("background-color",$("#colInputTest").val());
 	}
 	if ($("#colInputTest2").val() !== "") {
-		first.parent.style.color = $("#colInputTest2").val();
+		first.parent.style.color = first.textColor; //$("#colInputTest2").val();
 		lineL.style.backgroundColor = $("#colInputTest2").val();
 		lineR.style.backgroundColor = $("#colInputTest2").val();
-	}
+	}*/
 	
+	//Font, color
+	first.parent.style.fontFamily = first.fontFamily;
+	first.parent.style.color = first.textColor;
+	first.parent.style.backgroundColor = first.backgroundColor;
+	$("#slideshow").css("background-color", first.backgroundColor);
+
+}
+
+function fadeStartAnimation(first, timeline, transitionLength) {
+	timeline.add(TweenLite.to($(first.parent), 1.5, {opacity:1}));
+	//Stanan
+	timeline.add(TweenLite.to($(first.parent), transitionLength, {}));
+	//Erase
+	timeline.add(TweenLite.to($(first.parent), 1, {opacity: 0}));
+}
+function fadeStartAnimationSetup(first) {
+	$(".videoNameCont").remove();
+	$(".compNameCont").remove();
+	$(".compLogo").remove();
+
+	var videoNameCont = document.createElement("div");
+	videoNameCont.className = "videoNameCont";
+	videoNameCont.style.fontSize = "200%";
+	videoNameCont.style.textAlign = "center";
+	videoNameCont.style.position = "absolute";
+	videoNameCont.innerHTML = $("#video-text-intro").html();
+	videoNameCont.style.width = "100%";
+	videoNameCont.style.top = "-3%";
+	videoNameCont.style.opacity = "1";
+	first.parent.appendChild(videoNameCont);
+
+	var compNameCont = document.createElement("div");
+	compNameCont.className = "compNameCont";
+	compNameCont.style.fontSize = "150%";
+	compNameCont.style.textAlign = "center";
+	compNameCont.style.position = "absolute";
+	compNameCont.innerHTML = $("#company-text-intro").html();
+	compNameCont.style.width = "100%";
+	compNameCont.style.top = "20%";
+	compNameCont.style.opacity = "1";
+	first.parent.appendChild(compNameCont);
+	
+	var compLogo = document.createElement("div");
+	compLogo.className = "compLogo";
+	compLogo.style.textAlign = "center";
+	compLogo.style.position = "absolute";
+	compLogo.style.width = (first.parent.clientWidth/8) + "px";
+	compLogo.style.height = (first.parent.clientWidth/8) + "px";
+	compLogo.style.top = "35%";
+	var leftPos = (first.parent.clientWidth/2) - (($(compLogo).width())/2);
+	compLogo.style.left = leftPos + "px";
+	compLogo.style.backgroundSize = ($(compLogo).width()) + "px " + ($(compLogo).width()) + "px";
+	compLogo.style.backgroundPosition = "0px 0px";
+	compLogo.style.backgroundImage = "url('" + $("#logo-img").attr("src") + "')";
+	compLogo.style.opacity = "1";
+	first.parent.appendChild(compLogo);
+	
+	//Font, color
+	first.parent.style.fontFamily = first.fontFamily;
+	first.parent.style.color = first.textColor;
+	first.parent.style.backgroundColor = first.backgroundColor;
+	$("#slideshow").css("background-color", first.backgroundColor);
 }
 
 function endAnimation(last, outro, timeline, transitionLength) {
-	
-	
 	//Setup
 	timeline.add(TweenLite.to($(last.parent), 0.01, {opacity:0}));
-	timeline.add(TweenLite.to($("#video-text-outro"), 0.01, {opacity: 0}));
-	timeline.add(TweenLite.to($("#company-text-outro"), 0.01, {opacity: 0}));
+	timeline.add(TweenLite.to($(".videoNameContE"), 0.01, {opacity: 0}));
+	timeline.add(TweenLite.to($(".compNameContE"), 0.01, {opacity: 0}));
 	timeline.add(TweenLite.to($(".compLogoE"), 0.01, {opacity: 0}));
 	timeline.add(TweenLite.to($(outro.parent), 0.01, {opacity:1}));
 
@@ -135,21 +192,22 @@ function endAnimation(last, outro, timeline, transitionLength) {
 	timeline.add(TweenLite.to($(".lineLE"), 0.8, {top:"25%"}));
 	timeline.add(TweenLite.to($(".lineRE"), 0.8, {delay: -0.8, top:"25%"}));
 	timeline.add(TweenLite.to($(".compLogoE"), 0.5, {delay: -0.7, opacity: 1}));
-	timeline.add(TweenLite.to($("#company-text-outro"), 0.5, {delay: -0.6, opacity: 1}));
-	timeline.add(TweenLite.to($("#video-text-outro"), 0.5, {delay: -0.3, opacity: 1}));
+	timeline.add(TweenLite.to($(".compNameContE"), 0.5, {delay: -0.6, opacity: 1}));
+	timeline.add(TweenLite.to($(".videoNameContE"), 0.5, {delay: -0.3, opacity: 1}));
 	
 	//Line
 	timeline.add(TweenLite.to($(".lineLE"), 0.5, {width:"0%"}));
 	timeline.add(TweenLite.to($(".lineRE"), 0.5, {delay: -0.5, width:"0%", left: "+=50%"}));
 
-
 	timeline.add(TweenLite.to($(outro.parent), transitionLength, {delay: 2, opacity: 0}));
 }
 function endAnimationSetup(last) {
+	$(".videoNameContE").remove();
+	$(".compNameContE").remove();
+	$(".compLogoE").remove();
 	$(".lineLE").remove();
 	$(".lineRE").remove();
-	$(".compLogoE").remove();
-
+	
 	var lineLE = document.createElement("div");
 	lineLE.className = "lineLE";
 	lineLE.style.width = "0%";
@@ -157,7 +215,7 @@ function endAnimationSetup(last) {
 	lineLE.style.position = "absolute";
 	lineLE.style.left = "50%";
 	lineLE.style.top = "78%";
-	lineLE.style.backgroundColor = "rgba(0, 0, 0, 1)";	
+	lineLE.style.backgroundColor = last.textColor;
 	last.parent.appendChild(lineLE);
 	
 	var lineRE = document.createElement("div");
@@ -167,8 +225,34 @@ function endAnimationSetup(last) {
 	lineRE.style.position = "absolute";
 	lineRE.style.left = "50%";
 	lineRE.style.top = "78%";
-	lineRE.style.backgroundColor = "rgba(0, 0, 0, 1)";	
+	lineRE.style.backgroundColor = last.textColor;		
 	last.parent.appendChild(lineRE);
+	
+	var videoNameContE = document.createElement("div");
+	videoNameContE.className = "videoNameContE";
+	videoNameContE.style.fontSize = "200%";
+	videoNameContE.style.textAlign = "center";
+	videoNameContE.style.position = "absolute";
+	//compNameCont.style.fontFamily = first.fontFamily;
+	//compNameCont.style.fontWeight = $("h2").css("font-weight");
+	videoNameContE.innerHTML = $("#video-text-outro").html();
+	videoNameContE.style.width = "100%";
+	videoNameContE.style.top = "25%";
+	videoNameContE.style.opacity = "0";
+	last.parent.appendChild(videoNameContE);
+
+	var compNameContE = document.createElement("div");
+	compNameContE.className = "compNameContE";
+	compNameContE.style.fontSize = "150%";
+	compNameContE.style.textAlign = "center";
+	compNameContE.style.position = "absolute";
+	//compNameCont.style.fontFamily = first.fontFamily;
+	//compNameCont.style.fontWeight = $("h2").css("font-weight");
+	compNameContE.innerHTML = $("#company-text-outro").html();
+	compNameContE.style.width = "100%";
+	compNameContE.style.top = "50%";
+	compNameContE.style.opacity = "0";
+	last.parent.appendChild(compNameContE);
 	
 	var compLogoE = document.createElement("div");
 	compLogoE.className = "compLogoE";
@@ -184,37 +268,69 @@ function endAnimationSetup(last) {
 	compLogoE.style.backgroundImage = "url('" + $("#logo-img").attr("src") + "')";
 	last.parent.appendChild(compLogoE);
 	
-	if ($("#colInputTest").val() !== "") {
-		last.parent.style.backgroundColor = $("#colInputTest").val();
-		$("#slideshow").css("background-color",$("#colInputTest").val());
-	}
-	if ($("#colInputTest2").val() !== "") {
-		last.parent.style.color = $("#colInputTest2").val();
-		lineLE.style.backgroundColor = $("#colInputTest2").val();
-		lineRE.style.backgroundColor = $("#colInputTest2").val();
-	}
+	//Font, color
+	last.parent.style.fontFamily = last.fontFamily;
+	last.parent.style.color = last.textColor;
+	last.parent.style.backgroundColor = last.backgroundColor;
+	$("#slideshow").css("background-color", last.backgroundColor);
+}
+
+function fadeEndAnimation(last, outro, timeline, transitionLength) {
+	timeline.add(TweenLite.to($(last.parent), 0.01, {opacity:0}));
+
+	timeline.add(TweenLite.to($(outro.parent), 1.5, {opacity:1}));
+
+	timeline.add(TweenLite.to($(outro.parent), transitionLength, {delay: 2, opacity: 0}));
+}
+function fadeEndAnimationSetup(last) {
+
+	/*$(".videoNameContE").remove();
+	$(".compNameContE").remove();
+	$(".compLogoE").remove();*/
+
+	var videoNameContE = document.createElement("div");
+	videoNameContE.style.fontSize = "200%";
+	videoNameContE.style.textAlign = "center";
+	videoNameContE.style.position = "absolute";
+	videoNameContE.innerHTML = $("#video-text-intro").html();
+	videoNameContE.style.width = "100%";
+	videoNameContE.style.top = "25%";
+	videoNameContE.style.opacity = "1";
+	last.parent.appendChild(videoNameContE);
+
+	var compNameContE = document.createElement("div");
+	compNameContE.style.fontSize = "150%";
+	compNameContE.style.textAlign = "center";
+	compNameContE.style.position = "absolute";
+	compNameContE.innerHTML = $("#company-text-intro").html();
+	compNameContE.style.width = "100%";
+	compNameContE.style.top = "50%";
+	compNameContE.style.opacity = "1";
+	last.parent.appendChild(compNameContE);
 	
+	var compLogoE = document.createElement("div");
+	compLogoE.style.textAlign = "center";
+	compLogoE.style.position = "absolute";
+	compLogoE.style.width = (last.parent.clientWidth/8) + "px";
+	compLogoE.style.height = (last.parent.clientWidth/8) + "px";
+	compLogoE.style.top = "66%";
+	var leftPos = (last.parent.clientWidth/2) - (($(compLogoE).width())/2);
+	compLogoE.style.left = leftPos + "px";
+	compLogoE.style.backgroundSize = ($(compLogoE).width()) + "px " + ($(compLogoE).width()) + "px";
+	compLogoE.style.backgroundPosition = "0px 0px";
+	compLogoE.style.backgroundImage = "url('" + $("#logo-img").attr("src") + "')";
+	compLogoE.style.opacity = "1";
+	last.parent.appendChild(compLogoE);
+	
+	//Font, color
+	last.parent.style.fontFamily = last.fontFamily;
+	last.parent.style.color = last.textColor;
+	last.parent.style.backgroundColor = last.backgroundColor;
+	$("#slideshow").css("background-color", last.backgroundColor);
 }
 
 /* Effects */
 function panoramaEffect(current, timeline, transitionLength) {
-	// lägg nästa bild utanför
-	timeline.add(TweenLite.delayedCall(0,function () {
-		$(current.parent).css("-moz-transform", "scale(1.2)");
-		$(current.parent).css("left", "10%");
-	}),null);
-	// animera tillbaka bilden som nu är synlig
-	timeline.add(TweenLite.to($(current.parent), transitionLength, {left:"-10%",ease:Linear.easeNone}));
-	// dölj den gamla bilden
-	
-	killTimeline(timeline);
-}
-function panoramaEffSetup(parent) {
-	$(parent.parent).css("-moz-transform", "scale(1.2)");
-	$(parent.parent).css("left", "10%");
-}
-
-function panoramaTextEffect(current, timeline, transitionLength) {
 	// lägg nästa bild utanför
 	timeline.add(TweenLite.delayedCall(0,function () {
 		$(current.parent).css("-moz-transform", "scale(1.2)");
@@ -234,7 +350,7 @@ function panoramaTextEffect(current, timeline, transitionLength) {
 
 	killTimeline(timeline);
 }
-function panoramaTextEffSetup(current) {
+function panoramaEffSetup(current) {
 	if ((current.description.innerHTML) !== "None") {
 		//alert((current.description.innerHTML).localeCompare("none"));
 		var picTextCont = document.createElement("div");
@@ -246,14 +362,10 @@ function panoramaTextEffSetup(current) {
 		picTextCont.style.top = "80%";
 		picTextCont.style.left = "0%";
 		picTextCont.style.opacity = "0";
-		picTextCont.style.backgroundColor = "#fff";
-		if ($("#colInputTest").val() !== "") {
-			picTextCont.style.backgroundColor = $("#colInputTest").val();
-		}
-		if ($("#colInputTest2").val() !== "") {
-			picTextCont.style.color = $("#colInputTest2").val();
-		}
-		
+		picTextCont.style.fontFamily = current.fontFamily;
+		picTextCont.style.color = current.textColor;
+		picTextCont.style.backgroundColor = current.backgroundColor;
+
 		current.parent.appendChild(picTextCont);
 	}
 }
@@ -264,8 +376,13 @@ function plainEffect(current, timeline, effectLength) {
 	timeline.add(TweenLite.to($(".backgroundEff"), 0.001, {opacity: 1}));
 
 	timeline.add(TweenLite.to($(current.parent), 2, {width:"100%", height:"100%"}));
+	timeline.add(TweenLite.to($(".picPlainText"), 1.5, {delay: -1.5, opacity: 1}));
 	
+	timeline.add(TweenLite.to($(current.parent), effectLength, {}));
+	
+	timeline.add(TweenLite.to($(".picPlainText"), 0.4, {opacity: 0}));
 	timeline.add(TweenLite.to($(".backgroundEff"), 0.001, {opacity: 0}));
+	
 }
 function plainEffSetup(current) {
 	if (current.image != undefined) {
@@ -283,6 +400,25 @@ function plainEffSetup(current) {
 	}
 	
 	//Text
+	if ((current.description.innerHTML) !== "None") {
+		var picTextCont = document.createElement("div");
+		picTextCont.className = "picPlainText";
+		picTextCont.innerHTML =  current.description.innerHTML;
+		picTextCont.style.textAlign = "center";
+		picTextCont.style.position = "absolute";
+		picTextCont.style.fontSize = "200%";
+		picTextCont.style.left = "50%";
+		picTextCont.style.top = "90%";
+		picTextCont.style.transform = "translate(-50%, -90%)";
+		picTextCont.style.padding = "2%";
+		picTextCont.style.opacity = "0";
+		picTextCont.style.fontFamily = current.fontFamily;
+		picTextCont.style.color = current.textColor;
+		picTextCont.style.backgroundColor = "rgba(255, 255, 255, 0)";//current.backgroundColor;
+		
+		current.parent.appendChild(picTextCont);
+	}
+	
 
 }
 
@@ -337,8 +473,7 @@ function fadePanoramaTransition(current, next, timeline, transitionLength) {
 }
 
 function splitTransition(current, next, timeline, transitionLength) {
-	
-	//timeline.add(TweenMax.set($(next.parent), {opacity:1}));
+	timeline.add(TweenLite.to($(next.parent), 0.001, {backgroundColor: current.backgroundColor}));
 	timeline.add(TweenLite.to($(next.parent), 0.001, {opacity: 1}));
 	timeline.add(TweenLite.to($(next.image), 0.001, {opacity: 0}));
 	timeline.add(TweenLite.to($(".background"), 0.001, {opacity: 1}));
@@ -356,10 +491,7 @@ function splitTransition(current, next, timeline, transitionLength) {
 	timeline.add(TweenLite.to($(".third"), 0.001, {width:"25%", height:"0%"}));
 	timeline.add(TweenLite.to($(".fourth"), 0.001, {width:"25%", height:"0%"}));
 	
-	
 	killTimeline(timeline);
-	
-	
 }
 function splitTransSetup(previous, current, next) {
 	
@@ -431,6 +563,7 @@ function splitTransSetup(previous, current, next) {
 
 function shrinkTransition(current, next, timeline, transitionLength) {
 	//timeline.add(TweenMax.set($(next.parent), {opacity:1}));
+	timeline.add(TweenLite.to($(next.parent), 0.001, {backgroundColor: current.backgroundColor}));
 	timeline.add(TweenLite.to($(next.parent), 0.001, {opacity: 1}));
 	timeline.add(TweenLite.to($(next.image), 0.001, {opacity: 0}));
 	timeline.add(TweenLite.to($(".background"), 0.001, {opacity: 1}));
