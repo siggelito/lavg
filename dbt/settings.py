@@ -39,8 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'widget_tweaks',
-    'dbtapp',
+    #'widget_tweaks',
+    #'dbtapp',
 )
 
 MIDDLEWARE_CLASSES = (
