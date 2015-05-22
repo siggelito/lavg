@@ -8,7 +8,7 @@ from dbtapp.models import Video
 def renderVideo(url,url_video, pk, video_name):
     
     video = Video.objects.get(pk=pk)
-    video.video_url = ""
+    video.video_url = None    
     video.save()
     phantomjsCommand = 'phantomjs'
     phantomjsScript = 'dbtapp/phantomjsRenderVideo.js'
