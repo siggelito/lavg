@@ -33,7 +33,7 @@ def videoUpdate(request, pk=-1):
     #import pdb; pdb.set_trace()
     try:
         instance = Video.objects.get(pk=pk)
-    except Video.DoesNotExist:
+    except:
         instance = None
     form = VideoForm(request.POST or None, instance=instance)
     if form.is_valid():
