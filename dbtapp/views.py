@@ -39,13 +39,12 @@ def videoUpdate(request, pk=-1):
     if form.is_valid():
         model = form.save()
         return redirect('dbtapp:videoStep', pk=model.pk, imgtype=1)
-    if pk is not None:
-        return render(
-            request,
-            'dbtapp/videoNew.html',
-            {'form': form, 'videoKey': pk},
-        )
     else:
+        if pk is not None:
+            return render(
+                request,
+                'dbtapp/videoNew.html',
+                {'form': form, 'videoKey': pk},)
         return render(
             request,
             'dbtapp/videoNew.html',
