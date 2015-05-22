@@ -154,7 +154,7 @@ function initializeVideo () {
         $(list[i+1]).css("opacity", "0");
 
         doneLoadingFiles(video);
-
+        return video;
     }
 
 function calcSize( parent, image ) {
