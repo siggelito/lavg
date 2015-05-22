@@ -36,13 +36,13 @@ function initPreview (imageSet) {
 		timeline = null;
 		//imageSet = null;
 		initializeVideo();
-<<<<<<< HEAD
+
            //alert($('.color-box').css('background-color'));
 		
-		runSlideShow(sortSlideShow(imageSet), timeline);
-=======
+		//runSlideShow(sortSlideShow(imageSet), timeline);
+
 		//runSlideShow((video), timeline);
->>>>>>> 77902b208c61b57337ecb7335bfaefe1b15a61a4
+
 	});
 	
 /*	$("#repeat").delay(1000).on("click", function() {

@@ -36,28 +36,26 @@ function imageloader(){
     $('#text-color').colpick({
         colorScheme:'dark',
         layout:'rgbhex',
-        color:'yellow',
+        color:'#000',
         onSubmit:function(hsb,hex,rgb,el) {
             $(el).css('background-color', '#'+hex);
             $(el).colpickHide();
         },
     })
-    .css('background-color', 'yellow');
+    .css('background-color', '#000');
     
     $('#background-color').colpick({
         colorScheme:'dark',
         layout:'rgbhex',
-        color:'red',
+        color:'#ffffff',
         onSubmit:function(hsb,hex,rgb,el) {
             $(el).css('background-color', '#'+hex);
             $(el).colpickHide();
         },
     })
-    .css('background-color', 'red');
+    .css('background-color', '#fff');
 
     initializeVideo();
-    
-     alert($('.color-box').css('background-color'));
     
     var images = $('#images li form div img');
     for (var i = 0; i < images.length; i++) {
@@ -71,20 +69,19 @@ function imageloader(){
 
 function initializeVideo () {
     
+        var fontChoice = document.getElementById("font");
+        var font = fontChoice.options[fontChoice.selectedIndex].value;
+    
         // create video object
         var video = {
             images: [],
             intro: null,
             outro: null,
-            fontFamily: "'Rochester', cursive",//"'Roboto Condensed', sans-serif",
+            fontFamily: fontChoice.options[fontChoice.selectedIndex].value,
             textColor: $('#text-color').css('background-color'),
             backgroundColor: $('#background-color').css('background-color')
         };
         var slideshow = document.getElementById('slideshow');
-             
-        //alert($('.color-box').css('background-color'));
-        //video.backgroundColor = $('.color-box').css('background-color');
-
     
         var list = $('#slideshow li .slideshow-parent');
         var images = $('#slideshow li div img');
@@ -180,10 +177,9 @@ function initializeVideo () {
         $(list[i+1]).css("opacity", "0");
 
         doneLoadingFiles(video);
-<<<<<<< HEAD
-=======
+
         return video;
->>>>>>> 77902b208c61b57337ecb7335bfaefe1b15a61a4
+
     }
 
 function calcSize( parent, image ) {
