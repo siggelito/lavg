@@ -180,6 +180,10 @@ function initializeVideo () {
         $(list[i+1]).css("opacity", "0");
 
         doneLoadingFiles(video);
+<<<<<<< HEAD
+=======
+        return video;
+>>>>>>> 77902b208c61b57337ecb7335bfaefe1b15a61a4
     }
 
 function calcSize( parent, image ) {

@@ -8,11 +8,10 @@ function initPreview (imageSet) {
 	var previewButton = document.getElementById("preview-button");
 	if (previewButton == null) {
 		$("#preview").css("opacity", "1");
-		if (first) {
-			runSlideShow(sortSlideShow(imageSet), timeline);
-			first= false;
-		}
+		runSlideShow((imageSet), timeline);
 		
+	} else {
+		runSlideShow((imageSet), timeline);
 	}
 	
 	$("#pause").html("<span class='glyphicon glyphicon-pause'></span>");
@@ -37,16 +36,20 @@ function initPreview (imageSet) {
 		timeline = null;
 		//imageSet = null;
 		initializeVideo();
+<<<<<<< HEAD
            //alert($('.color-box').css('background-color'));
 		
 		runSlideShow(sortSlideShow(imageSet), timeline);
+=======
+		//runSlideShow((video), timeline);
+>>>>>>> 77902b208c61b57337ecb7335bfaefe1b15a61a4
 	});
 	
 /*	$("#repeat").delay(1000).on("click", function() {
 		timeline.restart();
 		$("#pause").html("<span class='glyphicon glyphicon-pause'></span>");
     });*/
-	
+	$("#preview-button").unbind("click");
 	$("#preview-button").delay(1000).on("click", function() {
 
 		$("#preview").css("opacity", "1");
@@ -56,7 +59,7 @@ function initPreview (imageSet) {
 		timeline = null;
 		//imageSet = null;
 		initializeVideo();
-		runSlideShow(sortSlideShow(imageSet), timeline);
+		//runSlideShow((video), timeline);
     });
 	
 	$("#closeButton").on("click", function() {

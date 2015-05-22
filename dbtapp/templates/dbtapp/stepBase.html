@@ -2,6 +2,9 @@
 {% load staticfiles %}
 
 {% block content %}
+<script>
+    var postURL = "{% url 'dbtapp:videoEdit' video.pk %}"
+</script>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 text-left">
         <a id="preview-button" href="#preview" class="btn btn-primary">Förhandsvisa</a>

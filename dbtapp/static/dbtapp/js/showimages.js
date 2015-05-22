@@ -205,6 +205,76 @@ $(document).ready(function sortImages() {
 			var oldPos = imagePositions.oldPos[0];
 			var newPos = ui.item.index()
 
+			var ul = $("#slideshow");
+			var li = ul.children("li");
+
+			var minVal = 0;
+			var maxVal = 0;
+			// flyttat bakåt i listan
+            if (oldPos < newPos) {
+                minVal = oldPos + 1;
+                maxVal = newPos + 1;
+
+                oldPos = oldPos + 1;
+	            newPos = newPos + 1;
+
+	            var detached = [];
+
+				$(li[oldPos]).detach();
+				var movedElem = li[oldPos]
+				li[oldPos] = null;
+
+				// detatch all elements
+				for (var i = minVal; i < li.length; i++) {
+					$(li[i]).detach()
+					detached.push(li[i])
+				};
+				// append all elements but not outro
+				for (var i = 0; i < detached.length; i++) {
+					
+					if (detached[i] != null) {
+		            	$(ul).append(detached[i]);
+					}
+					if (i == (newPos-minVal)) {
+						$(ul).append(movedElem);
+					}
+					
+	            };
+
+            } else {
+            	minVal = newPos +1;
+                maxVal = oldPos +1;
+
+                oldPos = oldPos + 1;
+	            newPos = newPos + 1;
+
+	            var detached = [];
+
+				$(li[oldPos]).detach();
+				var movedElem = li[oldPos]
+				li[oldPos] = null;
+
+				// detatch all elements
+				for (var i = minVal; i < li.length; i++) {
+					$(li[i]).detach()
+					detached.push(li[i])
+				};
+				// append all elements but not outro
+				for (var i = 0; i < detached.length; i++) {
+					if (i == (newPos-minVal)) {
+						$(ul).append(movedElem);
+					}
+					if (detached[i] != null) {
+		            	$(ul).append(detached[i]);
+					}
+
+					
+	            };
+            }
+
+            
+
+
 			if (oldPos != newPos) {
 				$.ajax({
 					type:"POST",

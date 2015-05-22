@@ -27,7 +27,7 @@
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	
 	<!-- Google font som finns på servern-->
-	<link href='http://fonts.googleapis.com/css?family=Rochester|Roboto+Condensed:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light|Indie+Flower|Pacifico|Amatic+SC|Rochester|Roboto+Condensed:400,300,700' rel='stylesheet' type='text/css'>
 	
 	<!-- CSS för base.html -->
 	<link rel="stylesheet" type="text/css" href="{% static 'dbtapp/styleBase.css' %}" />
@@ -40,6 +40,7 @@
 
 	
 	<script type="text/javascript" src="{% static 'dbtapp/js/WearProtection.js' %}"></script>
+
 </head>
 
 <body>
@@ -59,7 +60,11 @@
 
 				<div class="collapse navbar-collapse navbar-right" id="myNavbar">
 					<ul class="nav navbar-nav">
-						<li><a href="#">Logga in</a>
+						<li>
+						<a href="{% url 'dbtapp:videoList'%}">Videobibliotek</a>
+						</li>
+						<li>
+						<a href="{% url 'admin:index'%}">Logga in</a>
 						</li>
 					</ul>
 				</div>
