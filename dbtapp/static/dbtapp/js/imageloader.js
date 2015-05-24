@@ -102,10 +102,10 @@ function initializeVideo () {
         // create intro screen
         video.intro = {
             transition: function(first, timeline, transitionLength){
-                startAnimation(first, timeline, transitionLength);
+                spinStartAnimation(first, timeline, transitionLength);
             },
             transitionSetup: function(first){
-                startAnimationSetup(first);
+                spinStartAnimationSetup(first);
             },
             transitionLength: 2,
             effectLengt: 2, 
@@ -125,19 +125,19 @@ function initializeVideo () {
             // create imagesettings for each image
             video.images[i] = {
                 transition: function(current, next, timeline, transitionLength){
-                    simpleTransition(current, next, timeline, transitionLength);
+                    shrinkTransition(current, next, timeline, transitionLength);
                 },
                 transitionSetup: function(previous, current, next){
                     //panoramaSetup(parent)
-                    //simpleTransSetup(previous, current, next);
+                    shrinkTransSetup(previous, current, next);
                 },
                 effect: function(current, timeline, effectLength){
                     //plainEffect(current, timeline, effectLength);
-                    panoramaEffect(current, timeline, effectLength);                    
+                    zoomEffect(current, timeline, effectLength);                    
                 },
                 effectSetup: function(current){
                     //plainEffSetup(current);
-                    panoramaEffSetup(current);
+                    zoomEffSetup(current);
                 },
                 transitionLength: 1, //(Math.floor((Math.random() * 4) + 2) * 1000)
                 effectLength: 2,
@@ -173,10 +173,10 @@ function initializeVideo () {
         // create outro screen
         video.outro = {
             transition: function(last, outro, timeline, transitionLength){
-                endAnimation(last, outro, timeline, transitionLength);
+                spinEndAnimation(last, outro, timeline, transitionLength);
             },
             transitionSetup: function(last){
-                endAnimationSetup(last);
+                spinEndAnimationSetup(last);
              },
             transitionLength: 1,
             effectLengt: 2,

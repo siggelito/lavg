@@ -1,14 +1,15 @@
 /* Kombinationer
  * simpleTransition: panoramaEffect
- * shrinkTransition: plainEffect
- * splitTransistion: plainEffect
+ * shrinkTransition: plainEffect, zoomEffect, bounceEffect
+ * splitTransistion: plainEffect, zoomEffect, bounceEffect
  * fadePanoramaTransition: panoramaEffect
+ * rotateTransition: plaineffekt, zoomEffect, bounceEffect
  *
  * Har inga setupfunktioner: simpleTransistion, fadePanoramaTransition
  * */
 
 /* Intro, outro*/
-function startAnimation(first, timeline, transitionLength) {
+function lineStartAnimation(first, timeline, transitionLength) {
 	/*timeline.add(TweenLite.delayedCall(0,function () {
 		$(first.parent).css("opacity", "1");
 	}),null);*/
@@ -39,8 +40,8 @@ function startAnimation(first, timeline, transitionLength) {
 	timeline.add(TweenLite.to($(".lineL"), 0.6, {width:"0%"}));
 	timeline.add(TweenLite.to($(".lineR"), 0.6, {delay: -0.6, width:"0%", left: "+=50%"}));
 }
-function startAnimationSetup(first) {
-
+function lineStartAnimationSetup(first) {
+	
 	$(".videoNameCont").remove();
 	$(".compNameCont").remove();
 	$(".compLogo").remove();
@@ -169,7 +170,65 @@ function fadeStartAnimationSetup(first) {
 	$("#slideshow").css("background-color", first.backgroundColor);
 }
 
-function endAnimation(last, outro, timeline, transitionLength) {
+function spinStartAnimation(first, timeline, transitionLength) {
+	timeline.add(TweenLite.to($(first.parent), 0.01, {opacity:1}));
+	timeline.add(TweenLite.to($(".compNameCont"), 0.01, {opacity:0}));
+
+	timeline.add(TweenLite.to($(".videoNameCont"), 1, {rotationX: (360*2), ease:Circ.easeOut}));
+	timeline.add(TweenLite.to($(".compNameCont"), 0.01, {delay: -0.5, opacity:1}));
+	timeline.add(TweenLite.to($(".compNameCont"), 1, {delay: -0.5, rotationX: (360*2), ease:Circ.easeOut}));
+	timeline.add(TweenLite.to($(".compLogo"), 0.5, {delay: -0.4, height: (first.parent.clientWidth/6) + "px"}));
+
+	timeline.add(TweenLite.to($(first.parent), transitionLength, {}));
+
+	timeline.add(TweenLite.to($(first.parent), 1, {opacity: 0}));
+}
+function spinStartAnimationSetup(first) {
+	$(".videoNameCont").remove();
+	$(".compNameCont").remove();
+	$(".compLogo").remove();
+
+	var videoNameCont = document.createElement("div");
+	videoNameCont.className = "videoNameCont";
+	videoNameCont.style.fontSize = "200%";
+	videoNameCont.style.textAlign = "center";
+	videoNameCont.style.position = "absolute";
+	videoNameCont.innerHTML = $("#video-text-intro").html();
+	videoNameCont.style.width = "100%";
+	videoNameCont.style.top = "-3%";
+	videoNameCont.style.opacity = "1";
+	first.parent.appendChild(videoNameCont);
+
+	var compNameCont = document.createElement("div");
+	compNameCont.className = "compNameCont";
+	compNameCont.style.fontSize = "150%";
+	compNameCont.style.textAlign = "center";
+	compNameCont.style.position = "absolute";
+	compNameCont.innerHTML = $("#company-text-intro").html();
+	compNameCont.style.width = "100%";
+	compNameCont.style.top = "20%";
+	compNameCont.style.opacity = "1";
+	first.parent.appendChild(compNameCont);
+	
+	//If logo
+	if ($("#logo-img").attr("src") !== "") {
+		var logoDiv = setLogo(first.parent);
+		logoDiv.className = "compLogo";
+		logoDiv.style.top = "35%";
+		logoDiv.style.height = "0px";
+		var leftPos = (first.parent.clientWidth/2) - (($(logoDiv).width())/2);
+		logoDiv.style.left = leftPos + "px";
+		first.parent.appendChild(logoDiv);
+	}
+
+	//Font, color
+	first.parent.style.fontFamily = first.fontFamily;
+	first.parent.style.color = first.textColor;
+	first.parent.style.backgroundColor = first.backgroundColor;
+	$("#slideshow").css("background-color", first.backgroundColor);
+}
+
+function lineEndAnimation(last, outro, timeline, transitionLength) {
 	//Setup
 	timeline.add(TweenLite.to($(last.parent), 0.01, {opacity:0}));
 	timeline.add(TweenLite.to($(".videoNameContE"), 0.01, {opacity: 0}));
@@ -192,7 +251,7 @@ function endAnimation(last, outro, timeline, transitionLength) {
 
 	timeline.add(TweenLite.to($(outro.parent), transitionLength, {delay: 2, opacity: 0}));
 }
-function endAnimationSetup(last) {
+function lineEndAnimationSetup(last) {
 	$(".videoNameContE").remove();
 	$(".compNameContE").remove();
 	$(".compLogoE").remove();
@@ -313,6 +372,65 @@ function fadeEndAnimationSetup(last) {
 	$("#slideshow").css("background-color", last.backgroundColor);
 }
 
+function spinEndAnimation(last, outro, timeline, transitionLength) {
+	timeline.add(TweenLite.to($(last.parent), 0.01, {opacity:0}));
+
+	timeline.add(TweenLite.to($(outro.parent), 0.01, {opacity:1}));
+	timeline.add(TweenLite.to($(".compNameContE"), 0.01, {opacity:0}));
+	
+	timeline.add(TweenLite.to($(".videoNameContE"), 1, {rotationX: (360*2), ease:Circ.easeOut}));
+	timeline.add(TweenLite.to($(".compNameContE"), 0.01, {delay: -0.5, opacity:1}));
+	timeline.add(TweenLite.to($(".compNameContE"), 1, {delay: -0.5, rotationX: (360*2), ease:Circ.easeOut}));
+	timeline.add(TweenLite.to($(".compLogoE"), 0.5, {delay: -0.4, height: (first.parent.clientWidth/6) + "px"}));
+
+	timeline.add(TweenLite.to($(outro.parent), transitionLength, {delay: 2, opacity: 0}));
+}
+function spinEndAnimationSetup(last) {
+
+	$(".videoNameContE").remove();
+	$(".compNameContE").remove();
+	$(".compLogoE").remove();
+
+	var videoNameContE = document.createElement("div");
+	videoNameContE.className = "videoNameContE";
+	videoNameContE.style.fontSize = "200%";
+	videoNameContE.style.textAlign = "center";
+	videoNameContE.style.position = "absolute";
+	videoNameContE.innerHTML = $("#video-text-intro").html();
+	videoNameContE.style.width = "100%";
+	videoNameContE.style.top = "25%";
+	videoNameContE.style.opacity = "1";
+	last.parent.appendChild(videoNameContE);
+
+	var compNameContE = document.createElement("div");
+	compNameContE.className = "compNameContE";
+	compNameContE.style.fontSize = "150%";
+	compNameContE.style.textAlign = "center";
+	compNameContE.style.position = "absolute";
+	compNameContE.innerHTML = $("#company-text-intro").html();
+	compNameContE.style.width = "100%";
+	compNameContE.style.top = "50%";
+	compNameContE.style.opacity = "1";
+	last.parent.appendChild(compNameContE);
+	
+	//If logo
+	if ($("#logo-img").attr("src") !== "") {
+		var logoDivE = setLogo(last.parent);
+		logoDivE.className = "compLogoE";
+		logoDivE.style.top = "66%";
+		logoDivE.style.height = "0px";
+		var leftPos = (last.parent.clientWidth/2) - (($(logoDivE).width())/2);
+		logoDivE.style.left = leftPos + "px";
+		last.parent.appendChild(logoDivE);
+	}
+	
+	//Font, color
+	last.parent.style.fontFamily = last.fontFamily;
+	last.parent.style.color = last.textColor;
+	last.parent.style.backgroundColor = last.backgroundColor;
+	$("#slideshow").css("background-color", last.backgroundColor);
+}
+
 /* Effects */
 function panoramaEffect(current, timeline, transitionLength) {
 	// lägg nästa bild utanför
@@ -402,8 +520,108 @@ function plainEffSetup(current) {
 		
 		current.parent.appendChild(picTextCont);
 	}
-	
+}
 
+function zoomEffect(current, timeline, effectLength) {
+	timeline.add(TweenLite.to($(current.parent), 0.001, {opacity: 1}));
+	timeline.add(TweenLite.to($(current.image), 0.001, {opacity: 0}));
+	timeline.add(TweenLite.to($(".backgroundEff"), 0.001, {opacity: 1}));
+	timeline.add(TweenLite.to($(current.parent), 0.001, {width:"100%", height:"100%"}));
+	
+	//timeline.add(TweenLite.to($(current.parent), effectLength, {}));
+	timeline.add(TweenLite.to($(current.parent), effectLength, {scale:1.5, ease:Linear.easeNone}));
+	timeline.add(TweenLite.to($(current.parent), effectLength, {scale:1, ease:Linear.easeNone}));
+	timeline.add(TweenLite.to($(".picPlainText"), 1.5, {delay: -effectLength*1.8, opacity: 1}));
+	
+	timeline.add(TweenLite.to($(".picPlainText"), 0.4, {opacity: 0}));
+	timeline.add(TweenLite.to($(".backgroundEff"), 0.001, {opacity: 0}));
+	
+}
+function zoomEffSetup(current) {
+	if (current.image != undefined) {
+
+		var div5 = document.createElement("div");
+		div5.className = "backgroundEff";
+		div5.style.width = current.parent.clientWidth + "px";
+		div5.style.height = current.parent.clientHeight + "px";
+		div5.style.position = "absolute";
+		div5.style.backgroundPosition = "0px 0px";
+		div5.style.backgroundSize = current.parent.clientWidth + "px " + current.parent.clientHeight + "px";
+		div5.style.opacity="0";
+		div5.style.backgroundImage = "url('" + current.image.getAttribute("src") + "')";		
+		current.parent.appendChild(div5);
+	}
+	
+	//Text
+	if ((current.description.innerHTML) !== "None") {
+		var picTextCont = document.createElement("div");
+		picTextCont.className = "picPlainText";
+		picTextCont.innerHTML =  current.description.innerHTML;
+		picTextCont.style.textAlign = "center";
+		picTextCont.style.position = "absolute";
+		picTextCont.style.fontSize = "200%";
+		picTextCont.style.left = "50%";
+		picTextCont.style.top = "85%";
+		picTextCont.style.transform = "translate(-50%, -90%)";
+		picTextCont.style.padding = "2%";
+		picTextCont.style.opacity = "0";
+		picTextCont.style.fontFamily = current.fontFamily;
+		picTextCont.style.color = current.textColor;
+		picTextCont.style.backgroundColor = "rgba(255, 255, 255, 0)";//current.backgroundColor;
+		
+		current.parent.appendChild(picTextCont);
+	}
+}
+
+function bounceEffect(current, timeline, effectLength) {
+	timeline.add(TweenLite.to($(current.parent), 0.001, {opacity: 1}));
+	timeline.add(TweenLite.to($(current.image), 0.001, {opacity: 0}));
+	timeline.add(TweenLite.to($(".backgroundEff"), 0.001, {opacity: 1}));
+	timeline.add(TweenLite.to($(current.parent), 0.001, {width:"100%", height:"100%"}));
+	
+	//timeline.add(TweenLite.to($(current.parent), effectLength, {}));
+	timeline.add(TweenLite.to($(current.parent), effectLength, {scale:1.5, ease:Bounce.easeOut}));
+	timeline.add(TweenLite.to($(current.parent), 0.4, {scale:1, ease:Linear.easeNone}));
+	timeline.add(TweenLite.to($(".picPlainText"), 1.5, {delay: -effectLength*1.2, opacity: 1}));
+	
+	timeline.add(TweenLite.to($(".picPlainText"), 0.4, {opacity: 0}));
+	timeline.add(TweenLite.to($(".backgroundEff"), 0.001, {opacity: 0}));
+	
+}
+function bounceEffSetup(current) {
+	if (current.image != undefined) {
+
+		var div5 = document.createElement("div");
+		div5.className = "backgroundEff";
+		div5.style.width = current.parent.clientWidth + "px";
+		div5.style.height = current.parent.clientHeight + "px";
+		div5.style.position = "absolute";
+		div5.style.backgroundPosition = "0px 0px";
+		div5.style.backgroundSize = current.parent.clientWidth + "px " + current.parent.clientHeight + "px";
+		div5.style.opacity="0";
+		div5.style.backgroundImage = "url('" + current.image.getAttribute("src") + "')";		
+		current.parent.appendChild(div5);
+	}
+	
+	//Text
+	if ((current.description.innerHTML) !== "None") {
+		var picTextCont = document.createElement("div");
+		picTextCont.className = "picPlainText";
+		picTextCont.innerHTML =  current.description.innerHTML;
+		picTextCont.style.textAlign = "center";
+		picTextCont.style.position = "absolute";
+		picTextCont.style.fontSize = "200%";
+		picTextCont.style.left = "50%";
+		picTextCont.style.top = "85%";
+		picTextCont.style.transform = "translate(-50%, -90%)";
+		picTextCont.style.padding = "2%";
+		picTextCont.style.opacity = "0";
+		picTextCont.style.fontFamily = current.fontFamily;
+		picTextCont.style.color = current.textColor;
+		picTextCont.style.backgroundColor = "rgba(255, 255, 255, 0)";//current.backgroundColor;
+		
+		current.parent.appendChild(picTextCont);
+	}
 }
 
 /* Transisions */
@@ -593,6 +811,56 @@ function shrinkTransSetup(previous, current, next) {
 	current.parent.appendChild(div);
 }
 
+function rotateTransition(current, next, timeline, transitionLength) {
+	timeline.add(TweenLite.to($(next.parent), 0.001, {backgroundColor: current.backgroundColor}));
+	timeline.add(TweenLite.to($(next.parent), 0.001, {opacity: 1}));
+	timeline.add(TweenLite.to($(next.image), 0.001, {opacity: 0}));
+	timeline.add(TweenLite.to($(".background"), 0.001, {opacity: 1}));
+	timeline.add(TweenLite.to($(".shrink"), 0.001, {css: {rotationY: -90, rotationX: -90}}));
+	
+	//timeline.add(TweenLite.to($(".shrink"), transitionLength, {width:"50%", height:"50%", ease:Linear.easeNone}));
+	timeline.add(TweenLite.to($(".shrink"), 1, {css: {rotationY: 0, rotationX: 0}}));
+	
+	timeline.add(TweenLite.to($(".background"), 0.001, {opacity: 0}));
+	timeline.add(TweenLite.to($(current.parent), 0.001, {opacity: 0}));
+	timeline.add(TweenLite.to($(next.image), 0.001, {opacity: 1}));
+	//timeline.add(TweenLite.to($(".shrink"), 0.001, {width:"0%", height:"0%"}));
+	
+	
+	killTimeline(timeline);
+}
+function rotateTransSetup(previous, current, next) {
+	var div = document.createElement("div");
+	div.className = "shrink";
+	div.style.width = "100%";
+	div.style.height = "100%";
+	div.style.position = "absolute";
+	div.style.left = "50%";
+	div.style.top = "50%";
+	div.style.transform = "translate(-50%, -50%)";
+	div.style.backgroundPosition = "center";
+	div.style.backgroundSize = current.parent.clientWidth + "px " + current.parent.clientHeight + "px";
+	div.style.backgroundImage = "url('" + current.image.getAttribute("src") + "')";
+	
+	if (previous != undefined) {
+
+		var div2 = document.createElement("div");
+		div2.className = "background";
+		div2.style.width = "100%";
+		div2.style.height = "100%";
+		div2.style.position = "absolute";
+		div2.style.left = "50%";
+		div2.style.top = "50%";
+		div2.style.transform = "translate(-50%, -50%)";
+		div2.style.backgroundPosition = "center";
+		div2.style.backgroundSize = current.parent.clientWidth + "px " + current.parent.clientHeight + "px";
+		div2.style.backgroundImage = "url('" + previous.image.getAttribute("src") + "')";	
+		
+		current.parent.appendChild(div2);
+	}
+	current.parent.appendChild(div);
+}
+
 /* Setup common */
 function setLogo(parent){
 	var compLogo = document.createElement("div");
@@ -618,6 +886,34 @@ function setLogo(parent){
 		compLogo.style.backgroundImage = "url('" + $("#logo-img").attr("src") + "')";
 		compLogo.style.opacity = "1";
 		return compLogo;
+	
+		/*	localStorage.setItem("logoScr", $("#logo-img").attr("src"));
+	
+	alert(localStorage.getItem('logoScr'));
+	
+	var compLogo = document.createElement("div");
+		compLogo.style.textAlign = "center";
+		compLogo.style.position = "absolute";
+		compLogo.style.width = (parent.clientWidth/6) + "px";
+		compLogo.style.height = (parent.clientWidth/6) + "px";
+		
+		var logoIm = new Image();
+		logoIm.src = $("#logo-img").attr("src");
+		//Landscape
+		var prop;
+		if (logoIm.naturalWidth > logoIm.naturalHeight) {
+			prop = logoIm.naturalWidth/(parent.clientWidth/6);
+		}
+		else{//Portrait
+			prop = logoIm.naturalHeight/(parent.clientWidth/6);
+		}
+	
+		compLogo.style.backgroundSize = (logoIm.naturalWidth/prop) + "px " + (logoIm.naturalHeight/prop) + "px";
+		compLogo.style.backgroundRepeat="no-repeat";
+		compLogo.style.backgroundPosition = "center";
+		compLogo.style.backgroundImage = "url('" + localStorage.getItem('logoScr') + "')";
+		compLogo.style.opacity = "1";
+		return compLogo;*/
 }
 
 /* Timeline */
