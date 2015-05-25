@@ -1,9 +1,9 @@
-var page = require('webpage').create(),
-    system = require('system'),
+var page = require('webpage').create();
+/*    system = require('system'),
     url;
 
 url = system.args[1];
-var page = require('webpage').create();
+var page = require('webpage').create();*/
 page.onError = function (msg, trace) {
     console.log(msg);
     trace.forEach(function(item) {
@@ -11,19 +11,10 @@ page.onError = function (msg, trace) {
     });
 };
 //page.viewportSize = { width: 640, height: 480 };
-page.open(url, function  () {
+page.open("http://stackoverflow.com/questions/20906305/import-error-cannot-import-name-execute-manager-in-windows-environment", function  () {
 setTimeout( function () {
-    var totalTime = page.evaluate( function () {
-        return timeline.totalDuration();
-    });
-    var currentTime = 0;
-    var frames = totalTime * 25;
-    var frameStep = 1 / 25;
-    for (var i = 0; i < frames; i++) {
-        currentTime = frameStep * i;
-        page.evaluate( function (currentTime) {
-            timeline.pause(currentTime);
-        }, currentTime);
+
+    for (var i = 0; i < 100; i++) {
         page.render("/dev/stdout", {format: "png"});
     }
     phantom.exit();

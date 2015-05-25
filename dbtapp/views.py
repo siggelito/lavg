@@ -257,7 +257,8 @@ def videoRender(request, pk):
 from dbtapp.tasks import renderVideo
 
 def phantomjspk(request, pk):
-
+    import pdb; pdb.set_trace()
+    print(pk)
     path = reverse('dbtapp:videoRender', kwargs={'pk': pk})
     
     url = request.build_absolute_uri(path)
@@ -266,7 +267,30 @@ def phantomjspk(request, pk):
     url_list = url_video.split("/")
     url_video = "http://"+url_list[2]+"/"
     video = Video.objects.get(pk=pk)
-    renderVideo.delay(url,url_video, pk, video.video_name)  # @UndefinedVariable
+    video.video_url = None    
+    video.save()
+    phantomjsCommand = 'phantomjs'
+    phantomjsScript = 'dbtapp/phantomjsRenderVideo.js'
+    
+    ffmpegCommand = "ffmpeg -y -c:v png -f image2pipe -r 60 -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart media/videos/"+str(pk)+"-"+"test"+".mp4"
+    print(ffmpegCommand)
+    ffmpegCommand = ffmpegCommand.split(' ')
+
+    #import pdb; pdb.set_trace()
+    phantomProcess = Popen([phantomjsCommand, phantomjsScript, url], stdout=PIPE)
+    ffmpegProcess = Popen(ffmpegCommand, stdin=phantomProcess.stdout, stdout=None, stderr=STDOUT, shell=False)
+
+    try:
+        #(out, error) = 
+        ffmpegProcess.communicate()
+        video.video_url = url_video + "media/videos/" + str(pk) + "-" + "test" + ".mp4"
+        video.save()
+        #print(out, error)
+    except Exception as e:
+        print("\t\tException: %s" % e)
+        phantomProcess.kill()
+        ffmpegProcess.kill()
+  # @UndefinedVariable
 
     # queue = Queue()
     # p = Process(target=renderVideo, args=(request, pk))

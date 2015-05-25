@@ -6,7 +6,7 @@ from dbtapp.models import Video
 
 @shared_task
 def renderVideo(url,url_video, pk, video_name):
-    
+    print(pk)
     video = Video.objects.get(pk=pk)
     video.video_url = None    
     video.save()

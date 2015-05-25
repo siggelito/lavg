@@ -886,34 +886,6 @@ function setLogo(parent){
 		compLogo.style.backgroundImage = "url('" + $("#logo-img").attr("src") + "')";
 		compLogo.style.opacity = "1";
 		return compLogo;
-	
-		/*	localStorage.setItem("logoScr", $("#logo-img").attr("src"));
-	
-	alert(localStorage.getItem('logoScr'));
-	
-	var compLogo = document.createElement("div");
-		compLogo.style.textAlign = "center";
-		compLogo.style.position = "absolute";
-		compLogo.style.width = (parent.clientWidth/6) + "px";
-		compLogo.style.height = (parent.clientWidth/6) + "px";
-		
-		var logoIm = new Image();
-		logoIm.src = $("#logo-img").attr("src");
-		//Landscape
-		var prop;
-		if (logoIm.naturalWidth > logoIm.naturalHeight) {
-			prop = logoIm.naturalWidth/(parent.clientWidth/6);
-		}
-		else{//Portrait
-			prop = logoIm.naturalHeight/(parent.clientWidth/6);
-		}
-	
-		compLogo.style.backgroundSize = (logoIm.naturalWidth/prop) + "px " + (logoIm.naturalHeight/prop) + "px";
-		compLogo.style.backgroundRepeat="no-repeat";
-		compLogo.style.backgroundPosition = "center";
-		compLogo.style.backgroundImage = "url('" + localStorage.getItem('logoScr') + "')";
-		compLogo.style.opacity = "1";
-		return compLogo;*/
 }
 
 /* Timeline */

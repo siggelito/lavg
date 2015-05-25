@@ -33,7 +33,7 @@ function imageloader(){
         $('#addFileWrapper').css('background-color', backgroundColor);
     }
 
-    //initializeColorSetting();
+    initializeColorSetting();
     
     initializeVideo();
     
@@ -47,7 +47,7 @@ function imageloader(){
     }    
 }
 
-/*var textCol = "green";
+var textCol = "green";
 function initializeColorSetting(){
     $('.text-color').colpick({
         colorScheme:'dark',
@@ -72,7 +72,7 @@ function initializeColorSetting(){
         },
     })
     .css('background-color', localStorage.getItem('background-col')); 
-}*/
+}
 
 function initializeVideo () {
     
@@ -125,19 +125,19 @@ function initializeVideo () {
             // create imagesettings for each image
             video.images[i] = {
                 transition: function(current, next, timeline, transitionLength){
-                    shrinkTransition(current, next, timeline, transitionLength);
+                    simpleTransition(current, next, timeline, transitionLength);
                 },
                 transitionSetup: function(previous, current, next){
                     //panoramaSetup(parent)
-                    shrinkTransSetup(previous, current, next);
+                    //shrinkTransSetup(previous, current, next);
                 },
                 effect: function(current, timeline, effectLength){
                     //plainEffect(current, timeline, effectLength);
-                    zoomEffect(current, timeline, effectLength);                    
+                    panoramaEffect(current, timeline, effectLength);                    
                 },
                 effectSetup: function(current){
                     //plainEffSetup(current);
-                    zoomEffSetup(current);
+                    panoramaEffSetup(current);
                 },
                 transitionLength: 1, //(Math.floor((Math.random() * 4) + 2) * 1000)
                 effectLength: 2,
@@ -193,6 +193,7 @@ function initializeVideo () {
         return video;
 
     }
+}
 
 function calcSize( parent, image ) {
     var imgWidth = image.offsetWidth;
