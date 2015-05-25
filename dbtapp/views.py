@@ -188,7 +188,6 @@ def videoEdit(request, pk):
 
 def logoPost(request, pk):
     if request.method == 'POST':
-        import pdb; pdb.set_trace()
         form = LogoForm(request.POST, request.FILES)
         if form.is_valid():
             model = form.save()
