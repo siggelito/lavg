@@ -45,7 +45,7 @@ function imageloader(){
         images[i].style.marginTop = size.paddingTop + "px";
         images[i].style.marginLeft = size.paddingLeft + "px";
     }    
-}
+
 
 var textCol = "green";
 function initializeColorSetting(){
