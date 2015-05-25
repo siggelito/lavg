@@ -188,14 +188,11 @@ def videoEdit(request, pk):
 
 def logoPost(request, pk):
     if request.method == 'POST':
-        import pdb; pdb.set_trace()
         form = LogoForm(request.POST, request.FILES)
         if form.is_valid():
             model = form.save()
 
             video = Video.objects.get(pk=pk)
-            if video.logo is not None:
-                video.logo.delete()
             video.logo = model
             video.save() 
 

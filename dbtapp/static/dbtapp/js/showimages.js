@@ -317,6 +317,7 @@ function postLogoForm(input){
 	    cache: false,
 	    processData: false,
 	    contentType: false,
+	    csrfmiddlewaretoken: '{{ csrf_token }}',
 	    success : function(json) {
             console.log(json); // log the returned json to the console
             console.log("success"); // another sanity check

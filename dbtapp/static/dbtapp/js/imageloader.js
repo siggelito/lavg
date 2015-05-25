@@ -33,7 +33,7 @@ function imageloader(){
         $('#addFileWrapper').css('background-color', backgroundColor);
     }
 
-    initializeColorSetting();
+    //initializeColorSetting();
     
     initializeVideo();
     
@@ -47,7 +47,7 @@ function imageloader(){
     }    
 }
 
-var textCol = "green";
+/*var textCol = "green";
 function initializeColorSetting(){
     $('.text-color').colpick({
         colorScheme:'dark',
@@ -72,7 +72,7 @@ function initializeColorSetting(){
         },
     })
     .css('background-color', localStorage.getItem('background-col')); 
-}
+}*/
 
 function initializeVideo () {
     

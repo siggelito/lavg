@@ -32,7 +32,17 @@
                             <p>Inställningar</p>
                         </div>
                         <div class="settings-content">
-                            <p>Ta bort bilden permanent.<a class="btn btn-primary delete" href="{% url 'dbtapp:photoRemove' video.pk imgtype form.instance.pk %}"><span class="glyphicon glyphicon-trash" id="hover-white" aria-hidden="true"></span></a></p>
+                            <p>
+                                Välj animering.
+                            
+                                {% render_field form.animation class+="form-control" tabindex=1 %}
+                            
+                            
+                                Ta bort bilden permanent.
+                                <a class="btn btn-primary delete" href="{% url 'dbtapp:photoRemove' video.pk imgtype form.instance.pk %}">
+                                    <span class="glyphicon glyphicon-trash" id="hover-white" aria-hidden="true"></span>
+                                </a>
+                            </p>
                             <div>
                                 <button class="btn btn-primary settings-cancel">Avbryt</button>
 

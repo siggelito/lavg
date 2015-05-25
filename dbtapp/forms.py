@@ -35,6 +35,7 @@ class LogoForm(forms.ModelForm):
         }
 
 class SettingsPhotoForm(forms.ModelForm):
+    animation = forms.ChoiceField(choices=[(1, "Fade")] + [(2, "Slide")] + [(3, "Zoom")])
     class Meta:
         model = Photo
         fields = ('description',)
