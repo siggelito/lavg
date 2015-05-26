@@ -12,7 +12,7 @@ def renderVideo(url,url_video, pk, video_name):
     phantomjsCommand = 'phantomjs'
     phantomjsScript = 'dbtapp/phantomjsRenderVideo.js'
     
-    ffmpegCommand = "ffmpeg -y -c:v png -f image2pipe -r 60 -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart media/videos/"+str(pk)+"-"+video_name+".mp4"
+    ffmpegCommand = "ffmpeg -y -c:v png -f image2pipe -r 60 -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart media/videos/"+str(pk)+"-"+video_name.split(" ", "-")+".mp4"
     
     ffmpegCommand = ffmpegCommand.split(' ')
 
@@ -23,7 +23,7 @@ def renderVideo(url,url_video, pk, video_name):
     try:
         #(out, error) = 
         ffmpegProcess.communicate()
-        video.video_url = url_video + "media/videos/" + str(pk) + "-" + video_name + ".mp4"
+        video.video_url = url_video + "media/videos/" + str(pk) + "-" + video_name.split(" ", "-") + ".mp4"
         video.save()
         #print(out, error)
     except Exception as e:        
