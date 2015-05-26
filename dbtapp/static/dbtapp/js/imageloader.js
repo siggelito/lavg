@@ -147,7 +147,7 @@ function initializeVideo () {
 
                 },
                 transitionLength: 1, //(Math.floor((Math.random() * 4) + 2) * 1000)
-                effectLength: 3,
+                effectLength: 1,
                 image: images[i],
                 parent: list[i+1],
                 description: texts[i],
