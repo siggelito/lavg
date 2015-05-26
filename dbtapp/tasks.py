@@ -25,6 +25,7 @@ def renderVideo(url, url_video, pk, video_name):
         
         #(out, error) = 
         ffmpegProcess.communicate()
+        
         video.video_url = url_video + "media/videos/" + str(pk) + "-" + video_name + ".mp4"
         video.save()
         #print(out, error)
