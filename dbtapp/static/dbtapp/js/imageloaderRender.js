@@ -125,19 +125,19 @@ function initializeVideo () {
             // create imagesettings for each image
             video.images[i] = {
                 transition: function(current, next, timeline, transitionLength){
-                    simpleTransition(current, next, timeline, transitionLength);
+                    shrinkTransition(current, next, timeline, transitionLength);
                 },
                 transitionSetup: function(previous, current, next){
                     //panoramaSetup(parent)
-                    //shrinkTransSetup(previous, current, next);
+                    shrinkTransSetup(previous, current, next);
                 },
                 effect: function(current, timeline, effectLength){
                     //plainEffect(current, timeline, effectLength);
-                    panoramaEffect(current, timeline, effectLength);                    
+                    zoomEffect(current, timeline, effectLength);                    
                 },
                 effectSetup: function(current){
                     //plainEffSetup(current);
-                    panoramaEffSetup(current);
+                    zoomEffSetup(current);
                 },
                 transitionLength: 1, //(Math.floor((Math.random() * 4) + 2) * 1000)
                 effectLength: 2,
