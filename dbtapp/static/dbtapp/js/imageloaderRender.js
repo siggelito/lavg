@@ -128,7 +128,8 @@ function initializeVideo () {
             video.images[i] = {
                 transition: function(current, next, timeline, transitionLength){
                     //splitTransition(current, next, timeline, transitionLength);
-                    simpleTransition(current, next, timeline, transitionLength);
+                    //simpleTransition(current, next, timeline, transitionLength);
+                    fadePanoramaTransition(current, next, timeline, transitionLength);
                 },
                 transitionSetup: function(previous, current, next){
                     //panoramaSetup(parent)
