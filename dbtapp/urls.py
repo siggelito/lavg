@@ -19,6 +19,9 @@ urlpatterns = [
     url(r'^video/(?P<pk>\d+)/logoPost$', views.logoPost, name='logoPost'),
     url(r'^video/(?P<pk>\d+)/render', views.videoRender, name='videoRender'),
     #url(r'^riktigIndex/$', views.riktigIndex, name='riktigIndex')
+
+    url(r'^drive/$', views.googleDrive, name='googleDrive'),
+    url(r'^drive/callback$', views.googleDriveCallback, name='googleDriveCallback'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

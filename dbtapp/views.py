@@ -21,6 +21,12 @@ from django.conf.urls import url
 def index(request):
     return render(request, 'dbtapp/Riktigindex.html')
 
+def googleDrive(request):
+    return render(request, 'dbtapp/googleDrive.html')
+
+def googleDriveCallback(request):
+    return render(request, 'dbtapp/googleDrive.html')
+
 def videoList(request):
     video_list = Video.objects.order_by('-pk')
     return render(
