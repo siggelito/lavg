@@ -41,7 +41,7 @@ class SettingsPhotoForm(forms.ModelForm):
         fields = ('description',)
         widgets = {
             'description': forms.TextInput(
-                attrs={'id': 'post-description-text', 'required': False, 'placeholder': 'Skriv din beskrivning här...'}
+                attrs={'id': 'post-description-text', 'required': False, 'placeholder': 'Skriv in din beskrivning...'}
             ),
         }
 
