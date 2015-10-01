@@ -7,6 +7,7 @@
     sudo apt-get install -y rabbitmq-server
     sudo apt-get install -y phantomjs
     sudo apt-get install -y python-dev
+    sudo apt-get install -y libx264-dev
     sudo apt-get install -y virtualenv
 
 Also ensure you have python 2.7 installed
@@ -18,24 +19,28 @@ If not included in your version: https://trac.ffmpeg.org/wiki/CompilationGuide/U
 
 ## Install PIP
 
-If install using apt-get does not work try this:
+If install using apt-get does not work, try this:
 
     apt-get remove --auto-remove python-pip
     wget https://bootstrap.pypa.io/get-pip.py
     mv get-pip.py ~/bin/
     sudo python ~/bin/get-pip.py
 
-# virtualenv
+## virtualenv
 
-Run in project dir to create virtual environment: 
+To run run project in virtual environment:
+
+Create virtualenv (only done once):
 
     virtualenv venv
     virtualenv -p /usr/bin/python2.7 venv 
+
+Use virtualenv: 
+
     source venv/bin/activate
 
+## Install Python libs
 
-Then to install necessary yhon libs in virtual environment
- 
     pip install -r requirements.txt
 
 
@@ -43,7 +48,13 @@ Then to install necessary yhon libs in virtual environment
 
 
 
-#Start Celery server:  
+#Start servers
+## Celery server:  
 
     celery -A dbt worker --loglevel=info 
+
+## Django development server:
+
+    python manage.py runserver
+
 
