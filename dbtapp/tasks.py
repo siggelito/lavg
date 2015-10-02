@@ -25,19 +25,11 @@ def renderVideo(url,url_video, pk, video_name):
     phantomjsCommand = 'phantomjs'
     phantomjsScript = 'dbtapp/phantomjsRenderVideo.js'
     
-    #ffmpegCommand = "/home/sigge/bin/ffmpeg -y -c:v png -f image2pipe -r 60 -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart media/videos/"+str(pk)+"-"+video_name+".mp4"
-    #ffmpegCommand = "ffmpeg -y -c:v png -f image2pipe -r 60 -i - -c:v libx264 -pix_fmt yuv420p -movflags +faststart media/videos/"+str(pk)+"-"+video_name+".mp4"
-    ffmpegCommand = "ffmpeg -y -i /home/sigge/Downloads/ToTheTop.mp3 -c:v png -f image2pipe -r 60 -i - -c:a copy -c:v libx264 -pix_fmt yuv420p -movflags +faststart -shortest media/videos/"+str(pk)+"-"+video_name+".mp4"
-
-    print("ffmpegCommand: " + ffmpegCommand)
+    ffmpegCommand = "ffmpeg -y -threads 2 -i /home/sigge/Downloads/ToTheTop.mp3 -c:v png -f image2pipe -r 60 -i - -c:a copy -c:v libx264 -pix_fmt yuv420p -movflags +faststart -shortest media/videos/"+str(pk)+"-"+video_name+".mp4"
     ffmpegCommand = ffmpegCommand.split(' ')
-
-    print("---------------- about to call Popen() ----------------")
-    print("url: " + url)
 
     #import pdb; pdb.set_trace()
     phantomProcess = Popen([phantomjsCommand, phantomjsScript, url], stdout=PIPE, shell=False)
-
 
     #ffmpegProcess = Popen(ffmpegCommand, stdin=phantomProcess.stdout, stdout=None, stderr=STDOUT, shell=False)
 

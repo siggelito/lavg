@@ -47,6 +47,11 @@ Use virtualenv:
 (To stop using virtual environment: run the command ``deactivate``, to remove virtual environment, delete ``venv`` folder )
 
 
+# Misc
+Create dir 'videos' under dir media.
+
+    python manage.py makemigration
+    python manage.py migrate
 
 #Start servers
 ## Celery server:  
