@@ -86,6 +86,8 @@ Run command (in project directory)
 
     celery -A dbt worker --loglevel=info 
 
+Restart celery when changes are introduced, e.g during development.
+
 ## Django development server:
 Run command (in project directory) to start a development server on host:port [127.0.0.1:8000]
 
