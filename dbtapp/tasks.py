@@ -25,7 +25,7 @@ def renderVideo(url,url_video, pk, video_name):
     phantomjsCommand = 'phantomjs'
     phantomjsScript = 'dbtapp/phantomjsRenderVideo.js'
     
-    ffmpegCommand = "ffmpeg -y -threads 2 -i ./ToTheTop.mp3 -c:v png -f image2pipe -r 60 -i - -c:a copy -c:v libx264 -pix_fmt yuv420p -movflags +faststart -shortest media/videos/"+str(pk)+"-"+video_name+".mp4"
+    ffmpegCommand = "ffmpeg -thread_queue_size 512 -y -threads 2 -i ./ToTheTop.mp3 -c:v png -f image2pipe -r 60 -i - -c:a copy -c:v libx264 -pix_fmt yuv420p -movflags +faststart -shortest media/videos/"+str(pk)+"-"+video_name+".mp4"
     ffmpegCommand = ffmpegCommand.split(' ')
 
     #import pdb; pdb.set_trace()
