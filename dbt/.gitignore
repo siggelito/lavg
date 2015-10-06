@@ -1,5 +1,6 @@
 /__init__.pyc
 /settings.pyc
+/settings_server.pyc
 /urls.pyc
 /wsgi.pyc
 /celery.pyc
